@@ -31902,6 +31902,7 @@ High-level wrapper for VkPhysicalDeviceGroupProperties.
 """
 @struct_hash_equal struct PhysicalDeviceGroupProperties <: HighLevelStruct
         next::Any
+        physical_device_count::UInt32
         physical_devices::NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), PhysicalDevice}
         subset_allocation::Bool
     end
@@ -35168,7 +35169,9 @@ High-level wrapper for VkPhysicalDeviceMemoryProperties.
 
 """
 @struct_hash_equal struct PhysicalDeviceMemoryProperties <: HighLevelStruct
+        memory_type_count::UInt32
         memory_types::NTuple{Int(VK_MAX_MEMORY_TYPES), MemoryType}
+        memory_heap_count::UInt32
         memory_heaps::NTuple{Int(VK_MAX_MEMORY_HEAPS), MemoryHeap}
     end
 
@@ -36504,6 +36507,7 @@ High-level wrapper for VkQueueFamilyGlobalPriorityProperties.
 """
 @struct_hash_equal struct QueueFamilyGlobalPriorityProperties <: HighLevelStruct
         next::Any
+        priority_count::UInt32
         priorities::NTuple{Int(VK_MAX_GLOBAL_PRIORITY_SIZE), QueueGlobalPriority}
     end
 
@@ -39147,11 +39151,11 @@ _ClearValue(color::_ClearColorValue) = _ClearValue(VkClearValue(color.vks))
 
 _ClearValue(depth_stencil::_ClearDepthStencilValue) = _ClearValue(VkClearValue(depth_stencil.vks))
 
-_ClusterAccelerationStructureOpInputNV(clusters_bottom_level::_ClusterAccelerationStructureClustersBottomLevelInputNV) = _ClusterAccelerationStructureOpInputNV(VkClusterAccelerationStructureOpInputNV(clusters_bottom_level))
+_ClusterAccelerationStructureOpInputNV(clusters_bottom_level::Ptr{VkClusterAccelerationStructureClustersBottomLevelInputNV}) = _ClusterAccelerationStructureOpInputNV(VkClusterAccelerationStructureOpInputNV(clusters_bottom_level))
 
-_ClusterAccelerationStructureOpInputNV(triangle_clusters::_ClusterAccelerationStructureTriangleClusterInputNV) = _ClusterAccelerationStructureOpInputNV(VkClusterAccelerationStructureOpInputNV(triangle_clusters))
+_ClusterAccelerationStructureOpInputNV(triangle_clusters::Ptr{VkClusterAccelerationStructureTriangleClusterInputNV}) = _ClusterAccelerationStructureOpInputNV(VkClusterAccelerationStructureOpInputNV(triangle_clusters))
 
-_ClusterAccelerationStructureOpInputNV(move_objects::_ClusterAccelerationStructureMoveObjectsInputNV) = _ClusterAccelerationStructureOpInputNV(VkClusterAccelerationStructureOpInputNV(move_objects))
+_ClusterAccelerationStructureOpInputNV(move_objects::Ptr{VkClusterAccelerationStructureMoveObjectsInputNV}) = _ClusterAccelerationStructureOpInputNV(VkClusterAccelerationStructureOpInputNV(move_objects))
 
 _PerformanceCounterResultKHR(int32::Int32) = _PerformanceCounterResultKHR(VkPerformanceCounterResultKHR(int32))
 
@@ -39197,17 +39201,17 @@ _AccelerationStructureGeometryDataKHR(aabbs::_AccelerationStructureGeometryAabbs
 
 _AccelerationStructureGeometryDataKHR(instances::_AccelerationStructureGeometryInstancesDataKHR) = _AccelerationStructureGeometryDataKHR(VkAccelerationStructureGeometryDataKHR(instances.vks))
 
-_IndirectExecutionSetInfoEXT(pipeline_info::_IndirectExecutionSetPipelineInfoEXT) = _IndirectExecutionSetInfoEXT(VkIndirectExecutionSetInfoEXT(pipeline_info))
+_IndirectExecutionSetInfoEXT(pipeline_info::Ptr{VkIndirectExecutionSetPipelineInfoEXT}) = _IndirectExecutionSetInfoEXT(VkIndirectExecutionSetInfoEXT(pipeline_info))
 
-_IndirectExecutionSetInfoEXT(shader_info::_IndirectExecutionSetShaderInfoEXT) = _IndirectExecutionSetInfoEXT(VkIndirectExecutionSetInfoEXT(shader_info))
+_IndirectExecutionSetInfoEXT(shader_info::Ptr{VkIndirectExecutionSetShaderInfoEXT}) = _IndirectExecutionSetInfoEXT(VkIndirectExecutionSetInfoEXT(shader_info))
 
-_IndirectCommandsTokenDataEXT(push_constant::_IndirectCommandsPushConstantTokenEXT) = _IndirectCommandsTokenDataEXT(VkIndirectCommandsTokenDataEXT(push_constant))
+_IndirectCommandsTokenDataEXT(push_constant::Ptr{VkIndirectCommandsPushConstantTokenEXT}) = _IndirectCommandsTokenDataEXT(VkIndirectCommandsTokenDataEXT(push_constant))
 
-_IndirectCommandsTokenDataEXT(vertex_buffer::_IndirectCommandsVertexBufferTokenEXT) = _IndirectCommandsTokenDataEXT(VkIndirectCommandsTokenDataEXT(vertex_buffer))
+_IndirectCommandsTokenDataEXT(vertex_buffer::Ptr{VkIndirectCommandsVertexBufferTokenEXT}) = _IndirectCommandsTokenDataEXT(VkIndirectCommandsTokenDataEXT(vertex_buffer))
 
-_IndirectCommandsTokenDataEXT(index_buffer::_IndirectCommandsIndexBufferTokenEXT) = _IndirectCommandsTokenDataEXT(VkIndirectCommandsTokenDataEXT(index_buffer))
+_IndirectCommandsTokenDataEXT(index_buffer::Ptr{VkIndirectCommandsIndexBufferTokenEXT}) = _IndirectCommandsTokenDataEXT(VkIndirectCommandsTokenDataEXT(index_buffer))
 
-_IndirectCommandsTokenDataEXT(execution_set::_IndirectCommandsExecutionSetTokenEXT) = _IndirectCommandsTokenDataEXT(VkIndirectCommandsTokenDataEXT(execution_set))
+_IndirectCommandsTokenDataEXT(execution_set::Ptr{VkIndirectCommandsExecutionSetTokenEXT}) = _IndirectCommandsTokenDataEXT(VkIndirectCommandsTokenDataEXT(execution_set))
 
 _DescriptorDataEXT(x::Union{Sampler, Ptr{VkDescriptorImageInfo}, Ptr{VkDescriptorAddressInfoEXT}, UInt64}) = _DescriptorDataEXT(VkDescriptorDataEXT(x))
 
@@ -39227,11 +39231,11 @@ ClearValue(color::ClearColorValue) = ClearValue(VkClearValue(color.vks))
 
 ClearValue(depth_stencil::ClearDepthStencilValue) = ClearValue(VkClearValue((_ClearDepthStencilValue(depth_stencil)).vks))
 
-ClusterAccelerationStructureOpInputNV(clusters_bottom_level::ClusterAccelerationStructureClustersBottomLevelInputNV) = ClusterAccelerationStructureOpInputNV(VkClusterAccelerationStructureOpInputNV(clusters_bottom_level))
+ClusterAccelerationStructureOpInputNV(clusters_bottom_level::Ptr{VkClusterAccelerationStructureClustersBottomLevelInputNV}) = ClusterAccelerationStructureOpInputNV(VkClusterAccelerationStructureOpInputNV(clusters_bottom_level))
 
-ClusterAccelerationStructureOpInputNV(triangle_clusters::ClusterAccelerationStructureTriangleClusterInputNV) = ClusterAccelerationStructureOpInputNV(VkClusterAccelerationStructureOpInputNV(triangle_clusters))
+ClusterAccelerationStructureOpInputNV(triangle_clusters::Ptr{VkClusterAccelerationStructureTriangleClusterInputNV}) = ClusterAccelerationStructureOpInputNV(VkClusterAccelerationStructureOpInputNV(triangle_clusters))
 
-ClusterAccelerationStructureOpInputNV(move_objects::ClusterAccelerationStructureMoveObjectsInputNV) = ClusterAccelerationStructureOpInputNV(VkClusterAccelerationStructureOpInputNV(move_objects))
+ClusterAccelerationStructureOpInputNV(move_objects::Ptr{VkClusterAccelerationStructureMoveObjectsInputNV}) = ClusterAccelerationStructureOpInputNV(VkClusterAccelerationStructureOpInputNV(move_objects))
 
 PerformanceCounterResultKHR(int32::Int32) = PerformanceCounterResultKHR(VkPerformanceCounterResultKHR(int32))
 
@@ -39277,17 +39281,17 @@ AccelerationStructureGeometryDataKHR(aabbs::AccelerationStructureGeometryAabbsDa
 
 AccelerationStructureGeometryDataKHR(instances::AccelerationStructureGeometryInstancesDataKHR) = AccelerationStructureGeometryDataKHR(VkAccelerationStructureGeometryDataKHR((_AccelerationStructureGeometryInstancesDataKHR(instances)).vks))
 
-IndirectExecutionSetInfoEXT(pipeline_info::IndirectExecutionSetPipelineInfoEXT) = IndirectExecutionSetInfoEXT(VkIndirectExecutionSetInfoEXT(pipeline_info))
+IndirectExecutionSetInfoEXT(pipeline_info::Ptr{VkIndirectExecutionSetPipelineInfoEXT}) = IndirectExecutionSetInfoEXT(VkIndirectExecutionSetInfoEXT(pipeline_info))
 
-IndirectExecutionSetInfoEXT(shader_info::IndirectExecutionSetShaderInfoEXT) = IndirectExecutionSetInfoEXT(VkIndirectExecutionSetInfoEXT(shader_info))
+IndirectExecutionSetInfoEXT(shader_info::Ptr{VkIndirectExecutionSetShaderInfoEXT}) = IndirectExecutionSetInfoEXT(VkIndirectExecutionSetInfoEXT(shader_info))
 
-IndirectCommandsTokenDataEXT(push_constant::IndirectCommandsPushConstantTokenEXT) = IndirectCommandsTokenDataEXT(VkIndirectCommandsTokenDataEXT(push_constant))
+IndirectCommandsTokenDataEXT(push_constant::Ptr{VkIndirectCommandsPushConstantTokenEXT}) = IndirectCommandsTokenDataEXT(VkIndirectCommandsTokenDataEXT(push_constant))
 
-IndirectCommandsTokenDataEXT(vertex_buffer::IndirectCommandsVertexBufferTokenEXT) = IndirectCommandsTokenDataEXT(VkIndirectCommandsTokenDataEXT(vertex_buffer))
+IndirectCommandsTokenDataEXT(vertex_buffer::Ptr{VkIndirectCommandsVertexBufferTokenEXT}) = IndirectCommandsTokenDataEXT(VkIndirectCommandsTokenDataEXT(vertex_buffer))
 
-IndirectCommandsTokenDataEXT(index_buffer::IndirectCommandsIndexBufferTokenEXT) = IndirectCommandsTokenDataEXT(VkIndirectCommandsTokenDataEXT(index_buffer))
+IndirectCommandsTokenDataEXT(index_buffer::Ptr{VkIndirectCommandsIndexBufferTokenEXT}) = IndirectCommandsTokenDataEXT(VkIndirectCommandsTokenDataEXT(index_buffer))
 
-IndirectCommandsTokenDataEXT(execution_set::IndirectCommandsExecutionSetTokenEXT) = IndirectCommandsTokenDataEXT(VkIndirectCommandsTokenDataEXT(execution_set))
+IndirectCommandsTokenDataEXT(execution_set::Ptr{VkIndirectCommandsExecutionSetTokenEXT}) = IndirectCommandsTokenDataEXT(VkIndirectCommandsTokenDataEXT(execution_set))
 
 DescriptorDataEXT(x::Union{Sampler, Ptr{VkDescriptorImageInfo}, Ptr{VkDescriptorAddressInfoEXT}, UInt64}) = DescriptorDataEXT(VkDescriptorDataEXT(x))
 
@@ -39535,7 +39539,7 @@ Arguments:
 function _BaseOutStructure(; next = C_NULL)
     next = cconvert(Ptr{VkBaseOutStructure}, next)
     deps = Any[next]
-    vks = VkBaseOutStructure(s_type, unsafe_convert(Ptr{VkBaseOutStructure}, next))
+    vks = VkBaseOutStructure(convert(VkStructureType, s_type), unsafe_convert(Ptr{VkBaseOutStructure}, next))
     _BaseOutStructure(vks, deps)
 end
 
@@ -39549,7 +39553,7 @@ Arguments:
 function _BaseInStructure(; next = C_NULL)
     next = cconvert(Ptr{VkBaseInStructure}, next)
     deps = Any[next]
-    vks = VkBaseInStructure(s_type, unsafe_convert(Ptr{VkBaseInStructure}, next))
+    vks = VkBaseInStructure(convert(VkStructureType, s_type), unsafe_convert(Ptr{VkBaseInStructure}, next))
     _BaseInStructure(vks, deps)
 end
 
@@ -39562,7 +39566,7 @@ Arguments:
 
 """
 function _Offset2D(x::Integer, y::Integer)
-    _Offset2D(VkOffset2D(x, y))
+    _Offset2D(VkOffset2D(convert(Int32, x), convert(Int32, y)))
 end
 
 """
@@ -39575,7 +39579,7 @@ Arguments:
 
 """
 function _Offset3D(x::Integer, y::Integer, z::Integer)
-    _Offset3D(VkOffset3D(x, y, z))
+    _Offset3D(VkOffset3D(convert(Int32, x), convert(Int32, y), convert(Int32, z)))
 end
 
 """
@@ -39587,7 +39591,7 @@ Arguments:
 
 """
 function _Extent2D(width::Integer, height::Integer)
-    _Extent2D(VkExtent2D(width, height))
+    _Extent2D(VkExtent2D(convert(UInt32, width), convert(UInt32, height)))
 end
 
 """
@@ -39600,7 +39604,7 @@ Arguments:
 
 """
 function _Extent3D(width::Integer, height::Integer, depth::Integer)
-    _Extent3D(VkExtent3D(width, height, depth))
+    _Extent3D(VkExtent3D(convert(UInt32, width), convert(UInt32, height), convert(UInt32, depth)))
 end
 
 """
@@ -39616,7 +39620,7 @@ Arguments:
 
 """
 function _Viewport(x::Real, y::Real, width::Real, height::Real, min_depth::Real, max_depth::Real)
-    _Viewport(VkViewport(x, y, width, height, min_depth, max_depth))
+    _Viewport(VkViewport(convert(Float32, x), convert(Float32, y), convert(Float32, width), convert(Float32, height), convert(Float32, min_depth), convert(Float32, max_depth)))
 end
 
 """
@@ -39641,7 +39645,7 @@ Arguments:
 
 """
 function _ClearRect(rect::_Rect2D, base_array_layer::Integer, layer_count::Integer)
-    _ClearRect(VkClearRect(rect.vks, base_array_layer, layer_count))
+    _ClearRect(VkClearRect(rect.vks, convert(UInt32, base_array_layer), convert(UInt32, layer_count)))
 end
 
 """
@@ -39655,7 +39659,7 @@ Arguments:
 
 """
 function _ComponentMapping(r::ComponentSwizzle, g::ComponentSwizzle, b::ComponentSwizzle, a::ComponentSwizzle)
-    _ComponentMapping(VkComponentMapping(r, g, b, a))
+    _ComponentMapping(VkComponentMapping(convert(VkComponentSwizzle, r), convert(VkComponentSwizzle, g), convert(VkComponentSwizzle, b), convert(VkComponentSwizzle, a)))
 end
 
 """
@@ -39674,7 +39678,7 @@ Arguments:
 
 """
 function _PhysicalDeviceProperties(api_version::VersionNumber, driver_version::VersionNumber, vendor_id::Integer, device_id::Integer, device_type::PhysicalDeviceType, device_name::AbstractString, pipeline_cache_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}, limits::_PhysicalDeviceLimits, sparse_properties::_PhysicalDeviceSparseProperties)
-    _PhysicalDeviceProperties(VkPhysicalDeviceProperties(to_vk(UInt32, api_version), to_vk(UInt32, driver_version), vendor_id, device_id, device_type, device_name, pipeline_cache_uuid, limits.vks, sparse_properties.vks))
+    _PhysicalDeviceProperties(VkPhysicalDeviceProperties(to_vk(UInt32, api_version), to_vk(UInt32, driver_version), convert(UInt32, vendor_id), convert(UInt32, device_id), convert(VkPhysicalDeviceType, device_type), convert(NTuple{Int(VK_MAX_PHYSICAL_DEVICE_NAME_SIZE), Char}, device_name), convert(NTuple{Int(VK_UUID_SIZE), UInt8}, pipeline_cache_uuid), limits.vks, sparse_properties.vks))
 end
 
 """
@@ -39686,7 +39690,7 @@ Arguments:
 
 """
 function _ExtensionProperties(extension_name::AbstractString, spec_version::VersionNumber)
-    _ExtensionProperties(VkExtensionProperties(extension_name, to_vk(UInt32, spec_version)))
+    _ExtensionProperties(VkExtensionProperties(convert(NTuple{Int(VK_MAX_EXTENSION_NAME_SIZE), Char}, extension_name), to_vk(UInt32, spec_version)))
 end
 
 """
@@ -39700,7 +39704,7 @@ Arguments:
 
 """
 function _LayerProperties(layer_name::AbstractString, spec_version::VersionNumber, implementation_version::VersionNumber, description::AbstractString)
-    _LayerProperties(VkLayerProperties(layer_name, to_vk(UInt32, spec_version), to_vk(UInt32, implementation_version), description))
+    _LayerProperties(VkLayerProperties(convert(NTuple{Int(VK_MAX_EXTENSION_NAME_SIZE), Char}, layer_name), to_vk(UInt32, spec_version), to_vk(UInt32, implementation_version), convert(NTuple{Int(VK_MAX_DESCRIPTION_SIZE), Char}, description)))
 end
 
 """
@@ -39758,7 +39762,7 @@ function _DeviceQueueCreateInfo(queue_family_index::Integer, queue_priorities::A
     next = cconvert(Ptr{Cvoid}, next)
     queue_priorities = cconvert(Ptr{Float32}, queue_priorities)
     deps = Any[next, queue_priorities]
-    vks = VkDeviceQueueCreateInfo(structure_type(VkDeviceQueueCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, queue_family_index, queue_count, unsafe_convert(Ptr{Float32}, queue_priorities))
+    vks = VkDeviceQueueCreateInfo(structure_type(VkDeviceQueueCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceQueueCreateFlags, flags), convert(UInt32, queue_family_index), convert(UInt32, queue_count), unsafe_convert(Ptr{Float32}, queue_priorities))
     _DeviceQueueCreateInfo(vks, deps)
 end
 
@@ -39784,7 +39788,7 @@ function _DeviceCreateInfo(queue_create_infos::AbstractArray, enabled_layer_name
     enabled_extension_names = cconvert(Ptr{Cstring}, enabled_extension_names)
     enabled_features = cconvert(Ptr{VkPhysicalDeviceFeatures}, enabled_features)
     deps = Any[next, queue_create_infos, enabled_layer_names, enabled_extension_names, enabled_features]
-    vks = VkDeviceCreateInfo(structure_type(VkDeviceCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, queue_create_info_count, unsafe_convert(Ptr{VkDeviceQueueCreateInfo}, queue_create_infos), enabled_layer_count, unsafe_convert(Ptr{Cstring}, enabled_layer_names), enabled_extension_count, unsafe_convert(Ptr{Cstring}, enabled_extension_names), unsafe_convert(Ptr{VkPhysicalDeviceFeatures}, enabled_features))
+    vks = VkDeviceCreateInfo(structure_type(VkDeviceCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceCreateFlags, flags), convert(UInt32, queue_create_info_count), unsafe_convert(Ptr{VkDeviceQueueCreateInfo}, queue_create_infos), convert(UInt32, enabled_layer_count), unsafe_convert(Ptr{Cstring}, enabled_layer_names), convert(UInt32, enabled_extension_count), unsafe_convert(Ptr{Cstring}, enabled_extension_names), unsafe_convert(Ptr{VkPhysicalDeviceFeatures}, enabled_features))
     _DeviceCreateInfo(vks, deps)
 end
 
@@ -39807,7 +39811,7 @@ function _InstanceCreateInfo(enabled_layer_names::AbstractArray, enabled_extensi
     enabled_layer_names = cconvert(Ptr{Cstring}, enabled_layer_names)
     enabled_extension_names = cconvert(Ptr{Cstring}, enabled_extension_names)
     deps = Any[next, application_info, enabled_layer_names, enabled_extension_names]
-    vks = VkInstanceCreateInfo(structure_type(VkInstanceCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, unsafe_convert(Ptr{VkApplicationInfo}, application_info), enabled_layer_count, unsafe_convert(Ptr{Cstring}, enabled_layer_names), enabled_extension_count, unsafe_convert(Ptr{Cstring}, enabled_extension_names))
+    vks = VkInstanceCreateInfo(structure_type(VkInstanceCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkInstanceCreateFlags, flags), unsafe_convert(Ptr{VkApplicationInfo}, application_info), convert(UInt32, enabled_layer_count), unsafe_convert(Ptr{Cstring}, enabled_layer_names), convert(UInt32, enabled_extension_count), unsafe_convert(Ptr{Cstring}, enabled_extension_names))
     _InstanceCreateInfo(vks, deps)
 end
 
@@ -39822,19 +39826,21 @@ Arguments:
 
 """
 function _QueueFamilyProperties(queue_count::Integer, timestamp_valid_bits::Integer, min_image_transfer_granularity::_Extent3D; queue_flags = 0)
-    _QueueFamilyProperties(VkQueueFamilyProperties(queue_flags, queue_count, timestamp_valid_bits, min_image_transfer_granularity.vks))
+    _QueueFamilyProperties(VkQueueFamilyProperties(convert(VkQueueFlags, queue_flags), convert(UInt32, queue_count), convert(UInt32, timestamp_valid_bits), min_image_transfer_granularity.vks))
 end
 
 """
 Arguments:
+- `memory_type_count::UInt32`
 - `memory_types::NTuple{Int(VK_MAX_MEMORY_TYPES), _MemoryType}`
+- `memory_heap_count::UInt32`
 - `memory_heaps::NTuple{Int(VK_MAX_MEMORY_HEAPS), _MemoryHeap}`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceMemoryProperties.html)
 
 """
-function _PhysicalDeviceMemoryProperties(memory_types::NTuple{Int(VK_MAX_MEMORY_TYPES), _MemoryType}, memory_heaps::NTuple{Int(VK_MAX_MEMORY_HEAPS), _MemoryHeap})
-    _PhysicalDeviceMemoryProperties(VkPhysicalDeviceMemoryProperties(memory_type_count, memory_types, memory_heap_count, memory_heaps))
+function _PhysicalDeviceMemoryProperties(memory_type_count::Integer, memory_types::NTuple{Int(VK_MAX_MEMORY_TYPES), _MemoryType}, memory_heap_count::Integer, memory_heaps::NTuple{Int(VK_MAX_MEMORY_HEAPS), _MemoryHeap})
+    _PhysicalDeviceMemoryProperties(VkPhysicalDeviceMemoryProperties(convert(UInt32, memory_type_count), convert(NTuple{Int(VK_MAX_MEMORY_TYPES), VkMemoryType}, memory_types), convert(UInt32, memory_heap_count), convert(NTuple{Int(VK_MAX_MEMORY_HEAPS), VkMemoryHeap}, memory_heaps)))
 end
 
 """
@@ -39849,7 +39855,7 @@ Arguments:
 function _MemoryAllocateInfo(allocation_size::Integer, memory_type_index::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMemoryAllocateInfo(structure_type(VkMemoryAllocateInfo), unsafe_convert(Ptr{Cvoid}, next), allocation_size, memory_type_index)
+    vks = VkMemoryAllocateInfo(structure_type(VkMemoryAllocateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceSize, allocation_size), convert(UInt32, memory_type_index))
     _MemoryAllocateInfo(vks, deps)
 end
 
@@ -39863,7 +39869,7 @@ Arguments:
 
 """
 function _MemoryRequirements(size::Integer, alignment::Integer, memory_type_bits::Integer)
-    _MemoryRequirements(VkMemoryRequirements(size, alignment, memory_type_bits))
+    _MemoryRequirements(VkMemoryRequirements(convert(VkDeviceSize, size), convert(VkDeviceSize, alignment), convert(UInt32, memory_type_bits)))
 end
 
 """
@@ -39876,7 +39882,7 @@ Arguments:
 
 """
 function _SparseImageFormatProperties(image_granularity::_Extent3D; aspect_mask = 0, flags = 0)
-    _SparseImageFormatProperties(VkSparseImageFormatProperties(aspect_mask, image_granularity.vks, flags))
+    _SparseImageFormatProperties(VkSparseImageFormatProperties(convert(VkImageAspectFlags, aspect_mask), image_granularity.vks, convert(VkSparseImageFormatFlags, flags)))
 end
 
 """
@@ -39891,7 +39897,7 @@ Arguments:
 
 """
 function _SparseImageMemoryRequirements(format_properties::_SparseImageFormatProperties, image_mip_tail_first_lod::Integer, image_mip_tail_size::Integer, image_mip_tail_offset::Integer, image_mip_tail_stride::Integer)
-    _SparseImageMemoryRequirements(VkSparseImageMemoryRequirements(format_properties.vks, image_mip_tail_first_lod, image_mip_tail_size, image_mip_tail_offset, image_mip_tail_stride))
+    _SparseImageMemoryRequirements(VkSparseImageMemoryRequirements(format_properties.vks, convert(UInt32, image_mip_tail_first_lod), convert(VkDeviceSize, image_mip_tail_size), convert(VkDeviceSize, image_mip_tail_offset), convert(VkDeviceSize, image_mip_tail_stride)))
 end
 
 """
@@ -39903,7 +39909,7 @@ Arguments:
 
 """
 function _MemoryType(heap_index::Integer; property_flags = 0)
-    _MemoryType(VkMemoryType(property_flags, heap_index))
+    _MemoryType(VkMemoryType(convert(VkMemoryPropertyFlags, property_flags), convert(UInt32, heap_index)))
 end
 
 """
@@ -39915,7 +39921,7 @@ Arguments:
 
 """
 function _MemoryHeap(size::Integer; flags = 0)
-    _MemoryHeap(VkMemoryHeap(size, flags))
+    _MemoryHeap(VkMemoryHeap(convert(VkDeviceSize, size), convert(VkMemoryHeapFlags, flags)))
 end
 
 """
@@ -39931,7 +39937,7 @@ Arguments:
 function _MappedMemoryRange(memory, offset::Integer, size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMappedMemoryRange(structure_type(VkMappedMemoryRange), unsafe_convert(Ptr{Cvoid}, next), memory, offset, size)
+    vks = VkMappedMemoryRange(structure_type(VkMappedMemoryRange), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceMemory, memory), convert(VkDeviceSize, offset), convert(VkDeviceSize, size))
     _MappedMemoryRange(vks, deps, memory)
 end
 
@@ -39945,7 +39951,7 @@ Arguments:
 
 """
 function _FormatProperties(; linear_tiling_features = 0, optimal_tiling_features = 0, buffer_features = 0)
-    _FormatProperties(VkFormatProperties(linear_tiling_features, optimal_tiling_features, buffer_features))
+    _FormatProperties(VkFormatProperties(convert(VkFormatFeatureFlags, linear_tiling_features), convert(VkFormatFeatureFlags, optimal_tiling_features), convert(VkFormatFeatureFlags, buffer_features)))
 end
 
 """
@@ -39960,7 +39966,7 @@ Arguments:
 
 """
 function _ImageFormatProperties(max_extent::_Extent3D, max_mip_levels::Integer, max_array_layers::Integer, max_resource_size::Integer; sample_counts = 0)
-    _ImageFormatProperties(VkImageFormatProperties(max_extent.vks, max_mip_levels, max_array_layers, sample_counts, max_resource_size))
+    _ImageFormatProperties(VkImageFormatProperties(max_extent.vks, convert(UInt32, max_mip_levels), convert(UInt32, max_array_layers), convert(VkSampleCountFlags, sample_counts), convert(VkDeviceSize, max_resource_size)))
 end
 
 """
@@ -39973,7 +39979,7 @@ Arguments:
 
 """
 function _DescriptorBufferInfo(offset::Integer, range::Integer; buffer = C_NULL)
-    _DescriptorBufferInfo(VkDescriptorBufferInfo(buffer, offset, range), buffer)
+    _DescriptorBufferInfo(VkDescriptorBufferInfo(convert(VkBuffer, buffer), convert(VkDeviceSize, offset), convert(VkDeviceSize, range)), buffer)
 end
 
 """
@@ -39986,7 +39992,7 @@ Arguments:
 
 """
 function _DescriptorImageInfo(sampler, image_view, image_layout::ImageLayout)
-    _DescriptorImageInfo(VkDescriptorImageInfo(sampler, image_view, image_layout), sampler, image_view)
+    _DescriptorImageInfo(VkDescriptorImageInfo(convert(VkSampler, sampler), convert(VkImageView, image_view), convert(VkImageLayout, image_layout)), sampler, image_view)
 end
 
 """
@@ -40010,7 +40016,7 @@ function _WriteDescriptorSet(dst_set, dst_binding::Integer, dst_array_element::I
     buffer_info = cconvert(Ptr{VkDescriptorBufferInfo}, buffer_info)
     texel_buffer_view = cconvert(Ptr{VkBufferView}, texel_buffer_view)
     deps = Any[next, image_info, buffer_info, texel_buffer_view]
-    vks = VkWriteDescriptorSet(structure_type(VkWriteDescriptorSet), unsafe_convert(Ptr{Cvoid}, next), dst_set, dst_binding, dst_array_element, descriptor_count, descriptor_type, unsafe_convert(Ptr{VkDescriptorImageInfo}, image_info), unsafe_convert(Ptr{VkDescriptorBufferInfo}, buffer_info), unsafe_convert(Ptr{VkBufferView}, texel_buffer_view))
+    vks = VkWriteDescriptorSet(structure_type(VkWriteDescriptorSet), unsafe_convert(Ptr{Cvoid}, next), convert(VkDescriptorSet, dst_set), convert(UInt32, dst_binding), convert(UInt32, dst_array_element), convert(UInt32, descriptor_count), convert(VkDescriptorType, descriptor_type), unsafe_convert(Ptr{VkDescriptorImageInfo}, image_info), unsafe_convert(Ptr{VkDescriptorBufferInfo}, buffer_info), unsafe_convert(Ptr{VkBufferView}, texel_buffer_view))
     _WriteDescriptorSet(vks, deps, dst_set)
 end
 
@@ -40031,7 +40037,7 @@ Arguments:
 function _CopyDescriptorSet(src_set, src_binding::Integer, src_array_element::Integer, dst_set, dst_binding::Integer, dst_array_element::Integer, descriptor_count::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkCopyDescriptorSet(structure_type(VkCopyDescriptorSet), unsafe_convert(Ptr{Cvoid}, next), src_set, src_binding, src_array_element, dst_set, dst_binding, dst_array_element, descriptor_count)
+    vks = VkCopyDescriptorSet(structure_type(VkCopyDescriptorSet), unsafe_convert(Ptr{Cvoid}, next), convert(VkDescriptorSet, src_set), convert(UInt32, src_binding), convert(UInt32, src_array_element), convert(VkDescriptorSet, dst_set), convert(UInt32, dst_binding), convert(UInt32, dst_array_element), convert(UInt32, descriptor_count))
     _CopyDescriptorSet(vks, deps, src_set, dst_set)
 end
 
@@ -40046,7 +40052,7 @@ Arguments:
 function _BufferUsageFlags2CreateInfo(usage::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkBufferUsageFlags2CreateInfo(structure_type(VkBufferUsageFlags2CreateInfo), unsafe_convert(Ptr{Cvoid}, next), usage)
+    vks = VkBufferUsageFlags2CreateInfo(structure_type(VkBufferUsageFlags2CreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkBufferUsageFlags2, usage))
     _BufferUsageFlags2CreateInfo(vks, deps)
 end
 
@@ -40067,7 +40073,7 @@ function _BufferCreateInfo(size::Integer, usage::BufferUsageFlag, sharing_mode::
     next = cconvert(Ptr{Cvoid}, next)
     queue_family_indices = cconvert(Ptr{UInt32}, queue_family_indices)
     deps = Any[next, queue_family_indices]
-    vks = VkBufferCreateInfo(structure_type(VkBufferCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, size, usage, sharing_mode, queue_family_index_count, unsafe_convert(Ptr{UInt32}, queue_family_indices))
+    vks = VkBufferCreateInfo(structure_type(VkBufferCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkBufferCreateFlags, flags), convert(VkDeviceSize, size), convert(VkBufferUsageFlags, usage), convert(VkSharingMode, sharing_mode), convert(UInt32, queue_family_index_count), unsafe_convert(Ptr{UInt32}, queue_family_indices))
     _BufferCreateInfo(vks, deps)
 end
 
@@ -40086,7 +40092,7 @@ Arguments:
 function _BufferViewCreateInfo(buffer, format::Format, offset::Integer, range::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkBufferViewCreateInfo(structure_type(VkBufferViewCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, buffer, format, offset, range)
+    vks = VkBufferViewCreateInfo(structure_type(VkBufferViewCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkBufferViewCreateFlags, flags), convert(VkBuffer, buffer), convert(VkFormat, format), convert(VkDeviceSize, offset), convert(VkDeviceSize, range))
     _BufferViewCreateInfo(vks, deps, buffer)
 end
 
@@ -40100,7 +40106,7 @@ Arguments:
 
 """
 function _ImageSubresource(aspect_mask::ImageAspectFlag, mip_level::Integer, array_layer::Integer)
-    _ImageSubresource(VkImageSubresource(aspect_mask, mip_level, array_layer))
+    _ImageSubresource(VkImageSubresource(convert(VkImageAspectFlags, aspect_mask), convert(UInt32, mip_level), convert(UInt32, array_layer)))
 end
 
 """
@@ -40114,7 +40120,7 @@ Arguments:
 
 """
 function _ImageSubresourceLayers(aspect_mask::ImageAspectFlag, mip_level::Integer, base_array_layer::Integer, layer_count::Integer)
-    _ImageSubresourceLayers(VkImageSubresourceLayers(aspect_mask, mip_level, base_array_layer, layer_count))
+    _ImageSubresourceLayers(VkImageSubresourceLayers(convert(VkImageAspectFlags, aspect_mask), convert(UInt32, mip_level), convert(UInt32, base_array_layer), convert(UInt32, layer_count)))
 end
 
 """
@@ -40129,7 +40135,7 @@ Arguments:
 
 """
 function _ImageSubresourceRange(aspect_mask::ImageAspectFlag, base_mip_level::Integer, level_count::Integer, base_array_layer::Integer, layer_count::Integer)
-    _ImageSubresourceRange(VkImageSubresourceRange(aspect_mask, base_mip_level, level_count, base_array_layer, layer_count))
+    _ImageSubresourceRange(VkImageSubresourceRange(convert(VkImageAspectFlags, aspect_mask), convert(UInt32, base_mip_level), convert(UInt32, level_count), convert(UInt32, base_array_layer), convert(UInt32, layer_count)))
 end
 
 """
@@ -40144,7 +40150,7 @@ Arguments:
 function _MemoryBarrier(; next = C_NULL, src_access_mask = 0, dst_access_mask = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMemoryBarrier(structure_type(VkMemoryBarrier), unsafe_convert(Ptr{Cvoid}, next), src_access_mask, dst_access_mask)
+    vks = VkMemoryBarrier(structure_type(VkMemoryBarrier), unsafe_convert(Ptr{Cvoid}, next), convert(VkAccessFlags, src_access_mask), convert(VkAccessFlags, dst_access_mask))
     _MemoryBarrier(vks, deps)
 end
 
@@ -40165,7 +40171,7 @@ Arguments:
 function _BufferMemoryBarrier(src_access_mask::AccessFlag, dst_access_mask::AccessFlag, src_queue_family_index::Integer, dst_queue_family_index::Integer, buffer, offset::Integer, size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkBufferMemoryBarrier(structure_type(VkBufferMemoryBarrier), unsafe_convert(Ptr{Cvoid}, next), src_access_mask, dst_access_mask, src_queue_family_index, dst_queue_family_index, buffer, offset, size)
+    vks = VkBufferMemoryBarrier(structure_type(VkBufferMemoryBarrier), unsafe_convert(Ptr{Cvoid}, next), convert(VkAccessFlags, src_access_mask), convert(VkAccessFlags, dst_access_mask), convert(UInt32, src_queue_family_index), convert(UInt32, dst_queue_family_index), convert(VkBuffer, buffer), convert(VkDeviceSize, offset), convert(VkDeviceSize, size))
     _BufferMemoryBarrier(vks, deps, buffer)
 end
 
@@ -40187,7 +40193,7 @@ Arguments:
 function _ImageMemoryBarrier(src_access_mask::AccessFlag, dst_access_mask::AccessFlag, old_layout::ImageLayout, new_layout::ImageLayout, src_queue_family_index::Integer, dst_queue_family_index::Integer, image, subresource_range::_ImageSubresourceRange; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImageMemoryBarrier(structure_type(VkImageMemoryBarrier), unsafe_convert(Ptr{Cvoid}, next), src_access_mask, dst_access_mask, old_layout, new_layout, src_queue_family_index, dst_queue_family_index, image, subresource_range.vks)
+    vks = VkImageMemoryBarrier(structure_type(VkImageMemoryBarrier), unsafe_convert(Ptr{Cvoid}, next), convert(VkAccessFlags, src_access_mask), convert(VkAccessFlags, dst_access_mask), convert(VkImageLayout, old_layout), convert(VkImageLayout, new_layout), convert(UInt32, src_queue_family_index), convert(UInt32, dst_queue_family_index), convert(VkImage, image), subresource_range.vks)
     _ImageMemoryBarrier(vks, deps, image)
 end
 
@@ -40215,7 +40221,7 @@ function _ImageCreateInfo(image_type::ImageType, format::Format, extent::_Extent
     next = cconvert(Ptr{Cvoid}, next)
     queue_family_indices = cconvert(Ptr{UInt32}, queue_family_indices)
     deps = Any[next, queue_family_indices]
-    vks = VkImageCreateInfo(structure_type(VkImageCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, image_type, format, extent.vks, mip_levels, array_layers, VkSampleCountFlagBits(samples.val), tiling, usage, sharing_mode, queue_family_index_count, unsafe_convert(Ptr{UInt32}, queue_family_indices), initial_layout)
+    vks = VkImageCreateInfo(structure_type(VkImageCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkImageCreateFlags, flags), convert(VkImageType, image_type), convert(VkFormat, format), extent.vks, convert(UInt32, mip_levels), convert(UInt32, array_layers), VkSampleCountFlagBits(flag_value(samples)), convert(VkImageTiling, tiling), convert(VkImageUsageFlags, usage), convert(VkSharingMode, sharing_mode), convert(UInt32, queue_family_index_count), unsafe_convert(Ptr{UInt32}, queue_family_indices), convert(VkImageLayout, initial_layout))
     _ImageCreateInfo(vks, deps)
 end
 
@@ -40231,7 +40237,7 @@ Arguments:
 
 """
 function _SubresourceLayout(offset::Integer, size::Integer, row_pitch::Integer, array_pitch::Integer, depth_pitch::Integer)
-    _SubresourceLayout(VkSubresourceLayout(offset, size, row_pitch, array_pitch, depth_pitch))
+    _SubresourceLayout(VkSubresourceLayout(convert(VkDeviceSize, offset), convert(VkDeviceSize, size), convert(VkDeviceSize, row_pitch), convert(VkDeviceSize, array_pitch), convert(VkDeviceSize, depth_pitch)))
 end
 
 """
@@ -40250,7 +40256,7 @@ Arguments:
 function _ImageViewCreateInfo(image, view_type::ImageViewType, format::Format, components::_ComponentMapping, subresource_range::_ImageSubresourceRange; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImageViewCreateInfo(structure_type(VkImageViewCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, image, view_type, format, components.vks, subresource_range.vks)
+    vks = VkImageViewCreateInfo(structure_type(VkImageViewCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkImageViewCreateFlags, flags), convert(VkImage, image), convert(VkImageViewType, view_type), convert(VkFormat, format), components.vks, subresource_range.vks)
     _ImageViewCreateInfo(vks, deps, image)
 end
 
@@ -40264,7 +40270,7 @@ Arguments:
 
 """
 function _BufferCopy(src_offset::Integer, dst_offset::Integer, size::Integer)
-    _BufferCopy(VkBufferCopy(src_offset, dst_offset, size))
+    _BufferCopy(VkBufferCopy(convert(VkDeviceSize, src_offset), convert(VkDeviceSize, dst_offset), convert(VkDeviceSize, size)))
 end
 
 """
@@ -40279,7 +40285,7 @@ Arguments:
 
 """
 function _SparseMemoryBind(resource_offset::Integer, size::Integer, memory_offset::Integer; memory = C_NULL, flags = 0)
-    _SparseMemoryBind(VkSparseMemoryBind(resource_offset, size, memory, memory_offset, flags), memory)
+    _SparseMemoryBind(VkSparseMemoryBind(convert(VkDeviceSize, resource_offset), convert(VkDeviceSize, size), convert(VkDeviceMemory, memory), convert(VkDeviceSize, memory_offset), convert(VkSparseMemoryBindFlags, flags)), memory)
 end
 
 """
@@ -40295,7 +40301,7 @@ Arguments:
 
 """
 function _SparseImageMemoryBind(subresource::_ImageSubresource, offset::_Offset3D, extent::_Extent3D, memory_offset::Integer; memory = C_NULL, flags = 0)
-    _SparseImageMemoryBind(VkSparseImageMemoryBind(subresource.vks, offset.vks, extent.vks, memory, memory_offset, flags), memory)
+    _SparseImageMemoryBind(VkSparseImageMemoryBind(subresource.vks, offset.vks, extent.vks, convert(VkDeviceMemory, memory), convert(VkDeviceSize, memory_offset), convert(VkSparseMemoryBindFlags, flags)), memory)
 end
 
 """
@@ -40310,7 +40316,7 @@ function _SparseBufferMemoryBindInfo(buffer, binds::AbstractArray)
     bind_count = pointer_length(binds)
     binds = cconvert(Ptr{VkSparseMemoryBind}, binds)
     deps = Any[binds]
-    vks = VkSparseBufferMemoryBindInfo(buffer, bind_count, unsafe_convert(Ptr{VkSparseMemoryBind}, binds))
+    vks = VkSparseBufferMemoryBindInfo(convert(VkBuffer, buffer), convert(UInt32, bind_count), unsafe_convert(Ptr{VkSparseMemoryBind}, binds))
     _SparseBufferMemoryBindInfo(vks, deps, buffer)
 end
 
@@ -40326,7 +40332,7 @@ function _SparseImageOpaqueMemoryBindInfo(image, binds::AbstractArray)
     bind_count = pointer_length(binds)
     binds = cconvert(Ptr{VkSparseMemoryBind}, binds)
     deps = Any[binds]
-    vks = VkSparseImageOpaqueMemoryBindInfo(image, bind_count, unsafe_convert(Ptr{VkSparseMemoryBind}, binds))
+    vks = VkSparseImageOpaqueMemoryBindInfo(convert(VkImage, image), convert(UInt32, bind_count), unsafe_convert(Ptr{VkSparseMemoryBind}, binds))
     _SparseImageOpaqueMemoryBindInfo(vks, deps, image)
 end
 
@@ -40342,7 +40348,7 @@ function _SparseImageMemoryBindInfo(image, binds::AbstractArray)
     bind_count = pointer_length(binds)
     binds = cconvert(Ptr{VkSparseImageMemoryBind}, binds)
     deps = Any[binds]
-    vks = VkSparseImageMemoryBindInfo(image, bind_count, unsafe_convert(Ptr{VkSparseImageMemoryBind}, binds))
+    vks = VkSparseImageMemoryBindInfo(convert(VkImage, image), convert(UInt32, bind_count), unsafe_convert(Ptr{VkSparseImageMemoryBind}, binds))
     _SparseImageMemoryBindInfo(vks, deps, image)
 end
 
@@ -40371,7 +40377,7 @@ function _BindSparseInfo(wait_semaphores::AbstractArray, buffer_binds::AbstractA
     image_binds = cconvert(Ptr{VkSparseImageMemoryBindInfo}, image_binds)
     signal_semaphores = cconvert(Ptr{VkSemaphore}, signal_semaphores)
     deps = Any[next, wait_semaphores, buffer_binds, image_opaque_binds, image_binds, signal_semaphores]
-    vks = VkBindSparseInfo(structure_type(VkBindSparseInfo), unsafe_convert(Ptr{Cvoid}, next), wait_semaphore_count, unsafe_convert(Ptr{VkSemaphore}, wait_semaphores), buffer_bind_count, unsafe_convert(Ptr{VkSparseBufferMemoryBindInfo}, buffer_binds), image_opaque_bind_count, unsafe_convert(Ptr{VkSparseImageOpaqueMemoryBindInfo}, image_opaque_binds), image_bind_count, unsafe_convert(Ptr{VkSparseImageMemoryBindInfo}, image_binds), signal_semaphore_count, unsafe_convert(Ptr{VkSemaphore}, signal_semaphores))
+    vks = VkBindSparseInfo(structure_type(VkBindSparseInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, wait_semaphore_count), unsafe_convert(Ptr{VkSemaphore}, wait_semaphores), convert(UInt32, buffer_bind_count), unsafe_convert(Ptr{VkSparseBufferMemoryBindInfo}, buffer_binds), convert(UInt32, image_opaque_bind_count), unsafe_convert(Ptr{VkSparseImageOpaqueMemoryBindInfo}, image_opaque_binds), convert(UInt32, image_bind_count), unsafe_convert(Ptr{VkSparseImageMemoryBindInfo}, image_binds), convert(UInt32, signal_semaphore_count), unsafe_convert(Ptr{VkSemaphore}, signal_semaphores))
     _BindSparseInfo(vks, deps)
 end
 
@@ -40417,7 +40423,7 @@ Arguments:
 
 """
 function _BufferImageCopy(buffer_offset::Integer, buffer_row_length::Integer, buffer_image_height::Integer, image_subresource::_ImageSubresourceLayers, image_offset::_Offset3D, image_extent::_Extent3D)
-    _BufferImageCopy(VkBufferImageCopy(buffer_offset, buffer_row_length, buffer_image_height, image_subresource.vks, image_offset.vks, image_extent.vks))
+    _BufferImageCopy(VkBufferImageCopy(convert(VkDeviceSize, buffer_offset), convert(UInt32, buffer_row_length), convert(UInt32, buffer_image_height), image_subresource.vks, image_offset.vks, image_extent.vks))
 end
 
 """
@@ -40432,7 +40438,7 @@ Arguments:
 
 """
 function _CopyMemoryIndirectCommandNV(src_address::Integer, dst_address::Integer, size::Integer)
-    _CopyMemoryIndirectCommandNV(VkCopyMemoryIndirectCommandNV(src_address, dst_address, size))
+    _CopyMemoryIndirectCommandNV(VkCopyMemoryIndirectCommandNV(convert(VkDeviceAddress, src_address), convert(VkDeviceAddress, dst_address), convert(VkDeviceSize, size)))
 end
 
 """
@@ -40450,7 +40456,7 @@ Arguments:
 
 """
 function _CopyMemoryToImageIndirectCommandNV(src_address::Integer, buffer_row_length::Integer, buffer_image_height::Integer, image_subresource::_ImageSubresourceLayers, image_offset::_Offset3D, image_extent::_Extent3D)
-    _CopyMemoryToImageIndirectCommandNV(VkCopyMemoryToImageIndirectCommandNV(src_address, buffer_row_length, buffer_image_height, image_subresource.vks, image_offset.vks, image_extent.vks))
+    _CopyMemoryToImageIndirectCommandNV(VkCopyMemoryToImageIndirectCommandNV(convert(VkDeviceAddress, src_address), convert(UInt32, buffer_row_length), convert(UInt32, buffer_image_height), image_subresource.vks, image_offset.vks, image_extent.vks))
 end
 
 """
@@ -40482,7 +40488,7 @@ function _ShaderModuleCreateInfo(code_size::Integer, code::AbstractArray; next =
     next = cconvert(Ptr{Cvoid}, next)
     code = cconvert(Ptr{UInt32}, code)
     deps = Any[next, code]
-    vks = VkShaderModuleCreateInfo(structure_type(VkShaderModuleCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, code_size, unsafe_convert(Ptr{UInt32}, code))
+    vks = VkShaderModuleCreateInfo(structure_type(VkShaderModuleCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkShaderModuleCreateFlags, flags), convert(UInt, code_size), unsafe_convert(Ptr{UInt32}, code))
     _ShaderModuleCreateInfo(vks, deps)
 end
 
@@ -40500,7 +40506,7 @@ Arguments:
 function _DescriptorSetLayoutBinding(binding::Integer, descriptor_type::DescriptorType, stage_flags::ShaderStageFlag; descriptor_count = 0, immutable_samplers = C_NULL)
     immutable_samplers = cconvert(Ptr{VkSampler}, immutable_samplers)
     deps = Any[immutable_samplers]
-    vks = VkDescriptorSetLayoutBinding(binding, descriptor_type, descriptor_count, stage_flags, unsafe_convert(Ptr{VkSampler}, immutable_samplers))
+    vks = VkDescriptorSetLayoutBinding(convert(UInt32, binding), convert(VkDescriptorType, descriptor_type), convert(UInt32, descriptor_count), convert(VkShaderStageFlags, stage_flags), unsafe_convert(Ptr{VkSampler}, immutable_samplers))
     _DescriptorSetLayoutBinding(vks, deps)
 end
 
@@ -40518,7 +40524,7 @@ function _DescriptorSetLayoutCreateInfo(bindings::AbstractArray; next = C_NULL, 
     next = cconvert(Ptr{Cvoid}, next)
     bindings = cconvert(Ptr{VkDescriptorSetLayoutBinding}, bindings)
     deps = Any[next, bindings]
-    vks = VkDescriptorSetLayoutCreateInfo(structure_type(VkDescriptorSetLayoutCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, binding_count, unsafe_convert(Ptr{VkDescriptorSetLayoutBinding}, bindings))
+    vks = VkDescriptorSetLayoutCreateInfo(structure_type(VkDescriptorSetLayoutCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkDescriptorSetLayoutCreateFlags, flags), convert(UInt32, binding_count), unsafe_convert(Ptr{VkDescriptorSetLayoutBinding}, bindings))
     _DescriptorSetLayoutCreateInfo(vks, deps)
 end
 
@@ -40531,7 +40537,7 @@ Arguments:
 
 """
 function _DescriptorPoolSize(type::DescriptorType, descriptor_count::Integer)
-    _DescriptorPoolSize(VkDescriptorPoolSize(type, descriptor_count))
+    _DescriptorPoolSize(VkDescriptorPoolSize(convert(VkDescriptorType, type), convert(UInt32, descriptor_count)))
 end
 
 """
@@ -40549,7 +40555,7 @@ function _DescriptorPoolCreateInfo(max_sets::Integer, pool_sizes::AbstractArray;
     next = cconvert(Ptr{Cvoid}, next)
     pool_sizes = cconvert(Ptr{VkDescriptorPoolSize}, pool_sizes)
     deps = Any[next, pool_sizes]
-    vks = VkDescriptorPoolCreateInfo(structure_type(VkDescriptorPoolCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, max_sets, pool_size_count, unsafe_convert(Ptr{VkDescriptorPoolSize}, pool_sizes))
+    vks = VkDescriptorPoolCreateInfo(structure_type(VkDescriptorPoolCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkDescriptorPoolCreateFlags, flags), convert(UInt32, max_sets), convert(UInt32, pool_size_count), unsafe_convert(Ptr{VkDescriptorPoolSize}, pool_sizes))
     _DescriptorPoolCreateInfo(vks, deps)
 end
 
@@ -40567,7 +40573,7 @@ function _DescriptorSetAllocateInfo(descriptor_pool, set_layouts::AbstractArray;
     next = cconvert(Ptr{Cvoid}, next)
     set_layouts = cconvert(Ptr{VkDescriptorSetLayout}, set_layouts)
     deps = Any[next, set_layouts]
-    vks = VkDescriptorSetAllocateInfo(structure_type(VkDescriptorSetAllocateInfo), unsafe_convert(Ptr{Cvoid}, next), descriptor_pool, descriptor_set_count, unsafe_convert(Ptr{VkDescriptorSetLayout}, set_layouts))
+    vks = VkDescriptorSetAllocateInfo(structure_type(VkDescriptorSetAllocateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkDescriptorPool, descriptor_pool), convert(UInt32, descriptor_set_count), unsafe_convert(Ptr{VkDescriptorSetLayout}, set_layouts))
     _DescriptorSetAllocateInfo(vks, deps, descriptor_pool)
 end
 
@@ -40581,7 +40587,7 @@ Arguments:
 
 """
 function _SpecializationMapEntry(constant_id::Integer, offset::Integer, size::Integer)
-    _SpecializationMapEntry(VkSpecializationMapEntry(constant_id, offset, size))
+    _SpecializationMapEntry(VkSpecializationMapEntry(convert(UInt32, constant_id), convert(UInt32, offset), convert(UInt, size)))
 end
 
 """
@@ -40598,7 +40604,7 @@ function _SpecializationInfo(map_entries::AbstractArray, data::Ptr{Cvoid}; data_
     map_entries = cconvert(Ptr{VkSpecializationMapEntry}, map_entries)
     data = cconvert(Ptr{Cvoid}, data)
     deps = Any[map_entries, data]
-    vks = VkSpecializationInfo(map_entry_count, unsafe_convert(Ptr{VkSpecializationMapEntry}, map_entries), data_size, unsafe_convert(Ptr{Cvoid}, data))
+    vks = VkSpecializationInfo(convert(UInt32, map_entry_count), unsafe_convert(Ptr{VkSpecializationMapEntry}, map_entries), convert(UInt, data_size), unsafe_convert(Ptr{Cvoid}, data))
     _SpecializationInfo(vks, deps)
 end
 
@@ -40619,7 +40625,7 @@ function _PipelineShaderStageCreateInfo(stage::ShaderStageFlag, _module, name::A
     name = cconvert(Cstring, name)
     specialization_info = cconvert(Ptr{VkSpecializationInfo}, specialization_info)
     deps = Any[next, name, specialization_info]
-    vks = VkPipelineShaderStageCreateInfo(structure_type(VkPipelineShaderStageCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, VkShaderStageFlagBits(stage.val), _module, unsafe_convert(Cstring, name), unsafe_convert(Ptr{VkSpecializationInfo}, specialization_info))
+    vks = VkPipelineShaderStageCreateInfo(structure_type(VkPipelineShaderStageCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineShaderStageCreateFlags, flags), VkShaderStageFlagBits(flag_value(stage)), convert(VkShaderModule, _module), unsafe_convert(Cstring, name), unsafe_convert(Ptr{VkSpecializationInfo}, specialization_info))
     _PipelineShaderStageCreateInfo(vks, deps, _module)
 end
 
@@ -40638,7 +40644,7 @@ Arguments:
 function _ComputePipelineCreateInfo(stage::_PipelineShaderStageCreateInfo, layout, base_pipeline_index::Integer; next = C_NULL, flags = 0, base_pipeline_handle = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkComputePipelineCreateInfo(structure_type(VkComputePipelineCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, stage.vks, layout, base_pipeline_handle, base_pipeline_index)
+    vks = VkComputePipelineCreateInfo(structure_type(VkComputePipelineCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineCreateFlags, flags), stage.vks, convert(VkPipelineLayout, layout), convert(VkPipeline, base_pipeline_handle), convert(Int32, base_pipeline_index))
     _ComputePipelineCreateInfo(vks, deps, layout, base_pipeline_handle)
 end
 
@@ -40657,7 +40663,7 @@ Arguments:
 function _ComputePipelineIndirectBufferInfoNV(device_address::Integer, size::Integer, pipeline_device_address_capture_replay::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkComputePipelineIndirectBufferInfoNV(structure_type(VkComputePipelineIndirectBufferInfoNV), unsafe_convert(Ptr{Cvoid}, next), device_address, size, pipeline_device_address_capture_replay)
+    vks = VkComputePipelineIndirectBufferInfoNV(structure_type(VkComputePipelineIndirectBufferInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceAddress, device_address), convert(VkDeviceSize, size), convert(VkDeviceAddress, pipeline_device_address_capture_replay))
     _ComputePipelineIndirectBufferInfoNV(vks, deps)
 end
 
@@ -40672,7 +40678,7 @@ Arguments:
 function _PipelineCreateFlags2CreateInfo(flags::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineCreateFlags2CreateInfo(structure_type(VkPipelineCreateFlags2CreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags)
+    vks = VkPipelineCreateFlags2CreateInfo(structure_type(VkPipelineCreateFlags2CreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineCreateFlags2, flags))
     _PipelineCreateFlags2CreateInfo(vks, deps)
 end
 
@@ -40686,7 +40692,7 @@ Arguments:
 
 """
 function _VertexInputBindingDescription(binding::Integer, stride::Integer, input_rate::VertexInputRate)
-    _VertexInputBindingDescription(VkVertexInputBindingDescription(binding, stride, input_rate))
+    _VertexInputBindingDescription(VkVertexInputBindingDescription(convert(UInt32, binding), convert(UInt32, stride), convert(VkVertexInputRate, input_rate)))
 end
 
 """
@@ -40700,7 +40706,7 @@ Arguments:
 
 """
 function _VertexInputAttributeDescription(location::Integer, binding::Integer, format::Format, offset::Integer)
-    _VertexInputAttributeDescription(VkVertexInputAttributeDescription(location, binding, format, offset))
+    _VertexInputAttributeDescription(VkVertexInputAttributeDescription(convert(UInt32, location), convert(UInt32, binding), convert(VkFormat, format), convert(UInt32, offset)))
 end
 
 """
@@ -40720,7 +40726,7 @@ function _PipelineVertexInputStateCreateInfo(vertex_binding_descriptions::Abstra
     vertex_binding_descriptions = cconvert(Ptr{VkVertexInputBindingDescription}, vertex_binding_descriptions)
     vertex_attribute_descriptions = cconvert(Ptr{VkVertexInputAttributeDescription}, vertex_attribute_descriptions)
     deps = Any[next, vertex_binding_descriptions, vertex_attribute_descriptions]
-    vks = VkPipelineVertexInputStateCreateInfo(structure_type(VkPipelineVertexInputStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, vertex_binding_description_count, unsafe_convert(Ptr{VkVertexInputBindingDescription}, vertex_binding_descriptions), vertex_attribute_description_count, unsafe_convert(Ptr{VkVertexInputAttributeDescription}, vertex_attribute_descriptions))
+    vks = VkPipelineVertexInputStateCreateInfo(structure_type(VkPipelineVertexInputStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineVertexInputStateCreateFlags, flags), convert(UInt32, vertex_binding_description_count), unsafe_convert(Ptr{VkVertexInputBindingDescription}, vertex_binding_descriptions), convert(UInt32, vertex_attribute_description_count), unsafe_convert(Ptr{VkVertexInputAttributeDescription}, vertex_attribute_descriptions))
     _PipelineVertexInputStateCreateInfo(vks, deps)
 end
 
@@ -40737,7 +40743,7 @@ Arguments:
 function _PipelineInputAssemblyStateCreateInfo(topology::PrimitiveTopology, primitive_restart_enable::Bool; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineInputAssemblyStateCreateInfo(structure_type(VkPipelineInputAssemblyStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, topology, primitive_restart_enable)
+    vks = VkPipelineInputAssemblyStateCreateInfo(structure_type(VkPipelineInputAssemblyStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineInputAssemblyStateCreateFlags, flags), convert(VkPrimitiveTopology, topology), convert(VkBool32, primitive_restart_enable))
     _PipelineInputAssemblyStateCreateInfo(vks, deps)
 end
 
@@ -40753,7 +40759,7 @@ Arguments:
 function _PipelineTessellationStateCreateInfo(patch_control_points::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineTessellationStateCreateInfo(structure_type(VkPipelineTessellationStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, patch_control_points)
+    vks = VkPipelineTessellationStateCreateInfo(structure_type(VkPipelineTessellationStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineTessellationStateCreateFlags, flags), convert(UInt32, patch_control_points))
     _PipelineTessellationStateCreateInfo(vks, deps)
 end
 
@@ -40774,7 +40780,7 @@ function _PipelineViewportStateCreateInfo(; next = C_NULL, flags = 0, viewports 
     viewports = cconvert(Ptr{VkViewport}, viewports)
     scissors = cconvert(Ptr{VkRect2D}, scissors)
     deps = Any[next, viewports, scissors]
-    vks = VkPipelineViewportStateCreateInfo(structure_type(VkPipelineViewportStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, viewport_count, unsafe_convert(Ptr{VkViewport}, viewports), scissor_count, unsafe_convert(Ptr{VkRect2D}, scissors))
+    vks = VkPipelineViewportStateCreateInfo(structure_type(VkPipelineViewportStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineViewportStateCreateFlags, flags), convert(UInt32, viewport_count), unsafe_convert(Ptr{VkViewport}, viewports), convert(UInt32, scissor_count), unsafe_convert(Ptr{VkRect2D}, scissors))
     _PipelineViewportStateCreateInfo(vks, deps)
 end
 
@@ -40799,7 +40805,7 @@ Arguments:
 function _PipelineRasterizationStateCreateInfo(depth_clamp_enable::Bool, rasterizer_discard_enable::Bool, polygon_mode::PolygonMode, front_face::FrontFace, depth_bias_enable::Bool, depth_bias_constant_factor::Real, depth_bias_clamp::Real, depth_bias_slope_factor::Real, line_width::Real; next = C_NULL, flags = 0, cull_mode = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineRasterizationStateCreateInfo(structure_type(VkPipelineRasterizationStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, depth_clamp_enable, rasterizer_discard_enable, polygon_mode, cull_mode, front_face, depth_bias_enable, depth_bias_constant_factor, depth_bias_clamp, depth_bias_slope_factor, line_width)
+    vks = VkPipelineRasterizationStateCreateInfo(structure_type(VkPipelineRasterizationStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineRasterizationStateCreateFlags, flags), convert(VkBool32, depth_clamp_enable), convert(VkBool32, rasterizer_discard_enable), convert(VkPolygonMode, polygon_mode), convert(VkCullModeFlags, cull_mode), convert(VkFrontFace, front_face), convert(VkBool32, depth_bias_enable), convert(Float32, depth_bias_constant_factor), convert(Float32, depth_bias_clamp), convert(Float32, depth_bias_slope_factor), convert(Float32, line_width))
     _PipelineRasterizationStateCreateInfo(vks, deps)
 end
 
@@ -40821,7 +40827,7 @@ function _PipelineMultisampleStateCreateInfo(rasterization_samples::SampleCountF
     next = cconvert(Ptr{Cvoid}, next)
     sample_mask = cconvert(Ptr{VkSampleMask}, sample_mask)
     deps = Any[next, sample_mask]
-    vks = VkPipelineMultisampleStateCreateInfo(structure_type(VkPipelineMultisampleStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, VkSampleCountFlagBits(rasterization_samples.val), sample_shading_enable, min_sample_shading, unsafe_convert(Ptr{VkSampleMask}, sample_mask), alpha_to_coverage_enable, alpha_to_one_enable)
+    vks = VkPipelineMultisampleStateCreateInfo(structure_type(VkPipelineMultisampleStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineMultisampleStateCreateFlags, flags), VkSampleCountFlagBits(flag_value(rasterization_samples)), convert(VkBool32, sample_shading_enable), convert(Float32, min_sample_shading), unsafe_convert(Ptr{VkSampleMask}, sample_mask), convert(VkBool32, alpha_to_coverage_enable), convert(VkBool32, alpha_to_one_enable))
     _PipelineMultisampleStateCreateInfo(vks, deps)
 end
 
@@ -40840,7 +40846,7 @@ Arguments:
 
 """
 function _PipelineColorBlendAttachmentState(blend_enable::Bool, src_color_blend_factor::BlendFactor, dst_color_blend_factor::BlendFactor, color_blend_op::BlendOp, src_alpha_blend_factor::BlendFactor, dst_alpha_blend_factor::BlendFactor, alpha_blend_op::BlendOp; color_write_mask = 0)
-    _PipelineColorBlendAttachmentState(VkPipelineColorBlendAttachmentState(blend_enable, src_color_blend_factor, dst_color_blend_factor, color_blend_op, src_alpha_blend_factor, dst_alpha_blend_factor, alpha_blend_op, color_write_mask))
+    _PipelineColorBlendAttachmentState(VkPipelineColorBlendAttachmentState(convert(VkBool32, blend_enable), convert(VkBlendFactor, src_color_blend_factor), convert(VkBlendFactor, dst_color_blend_factor), convert(VkBlendOp, color_blend_op), convert(VkBlendFactor, src_alpha_blend_factor), convert(VkBlendFactor, dst_alpha_blend_factor), convert(VkBlendOp, alpha_blend_op), convert(VkColorComponentFlags, color_write_mask)))
 end
 
 """
@@ -40860,7 +40866,7 @@ function _PipelineColorBlendStateCreateInfo(logic_op_enable::Bool, logic_op::Log
     next = cconvert(Ptr{Cvoid}, next)
     attachments = cconvert(Ptr{VkPipelineColorBlendAttachmentState}, attachments)
     deps = Any[next, attachments]
-    vks = VkPipelineColorBlendStateCreateInfo(structure_type(VkPipelineColorBlendStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, logic_op_enable, logic_op, attachment_count, unsafe_convert(Ptr{VkPipelineColorBlendAttachmentState}, attachments), blend_constants)
+    vks = VkPipelineColorBlendStateCreateInfo(structure_type(VkPipelineColorBlendStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineColorBlendStateCreateFlags, flags), convert(VkBool32, logic_op_enable), convert(VkLogicOp, logic_op), convert(UInt32, attachment_count), unsafe_convert(Ptr{VkPipelineColorBlendAttachmentState}, attachments), convert(NTuple{4, Float32}, blend_constants))
     _PipelineColorBlendStateCreateInfo(vks, deps)
 end
 
@@ -40878,7 +40884,7 @@ function _PipelineDynamicStateCreateInfo(dynamic_states::AbstractArray; next = C
     next = cconvert(Ptr{Cvoid}, next)
     dynamic_states = cconvert(Ptr{VkDynamicState}, dynamic_states)
     deps = Any[next, dynamic_states]
-    vks = VkPipelineDynamicStateCreateInfo(structure_type(VkPipelineDynamicStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, dynamic_state_count, unsafe_convert(Ptr{VkDynamicState}, dynamic_states))
+    vks = VkPipelineDynamicStateCreateInfo(structure_type(VkPipelineDynamicStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineDynamicStateCreateFlags, flags), convert(UInt32, dynamic_state_count), unsafe_convert(Ptr{VkDynamicState}, dynamic_states))
     _PipelineDynamicStateCreateInfo(vks, deps)
 end
 
@@ -40896,7 +40902,7 @@ Arguments:
 
 """
 function _StencilOpState(fail_op::StencilOp, pass_op::StencilOp, depth_fail_op::StencilOp, compare_op::CompareOp, compare_mask::Integer, write_mask::Integer, reference::Integer)
-    _StencilOpState(VkStencilOpState(fail_op, pass_op, depth_fail_op, compare_op, compare_mask, write_mask, reference))
+    _StencilOpState(VkStencilOpState(convert(VkStencilOp, fail_op), convert(VkStencilOp, pass_op), convert(VkStencilOp, depth_fail_op), convert(VkCompareOp, compare_op), convert(UInt32, compare_mask), convert(UInt32, write_mask), convert(UInt32, reference)))
 end
 
 """
@@ -40919,7 +40925,7 @@ Arguments:
 function _PipelineDepthStencilStateCreateInfo(depth_test_enable::Bool, depth_write_enable::Bool, depth_compare_op::CompareOp, depth_bounds_test_enable::Bool, stencil_test_enable::Bool, front::_StencilOpState, back::_StencilOpState, min_depth_bounds::Real, max_depth_bounds::Real; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineDepthStencilStateCreateInfo(structure_type(VkPipelineDepthStencilStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, depth_test_enable, depth_write_enable, depth_compare_op, depth_bounds_test_enable, stencil_test_enable, front.vks, back.vks, min_depth_bounds, max_depth_bounds)
+    vks = VkPipelineDepthStencilStateCreateInfo(structure_type(VkPipelineDepthStencilStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineDepthStencilStateCreateFlags, flags), convert(VkBool32, depth_test_enable), convert(VkBool32, depth_write_enable), convert(VkCompareOp, depth_compare_op), convert(VkBool32, depth_bounds_test_enable), convert(VkBool32, stencil_test_enable), front.vks, back.vks, convert(Float32, min_depth_bounds), convert(Float32, max_depth_bounds))
     _PipelineDepthStencilStateCreateInfo(vks, deps)
 end
 
@@ -40960,7 +40966,7 @@ function _GraphicsPipelineCreateInfo(stages::AbstractArray, rasterization_state:
     color_blend_state = cconvert(Ptr{VkPipelineColorBlendStateCreateInfo}, color_blend_state)
     dynamic_state = cconvert(Ptr{VkPipelineDynamicStateCreateInfo}, dynamic_state)
     deps = Any[next, stages, vertex_input_state, input_assembly_state, tessellation_state, viewport_state, rasterization_state, multisample_state, depth_stencil_state, color_blend_state, dynamic_state]
-    vks = VkGraphicsPipelineCreateInfo(structure_type(VkGraphicsPipelineCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, stage_count, unsafe_convert(Ptr{VkPipelineShaderStageCreateInfo}, stages), unsafe_convert(Ptr{VkPipelineVertexInputStateCreateInfo}, vertex_input_state), unsafe_convert(Ptr{VkPipelineInputAssemblyStateCreateInfo}, input_assembly_state), unsafe_convert(Ptr{VkPipelineTessellationStateCreateInfo}, tessellation_state), unsafe_convert(Ptr{VkPipelineViewportStateCreateInfo}, viewport_state), unsafe_convert(Ptr{VkPipelineRasterizationStateCreateInfo}, rasterization_state), unsafe_convert(Ptr{VkPipelineMultisampleStateCreateInfo}, multisample_state), unsafe_convert(Ptr{VkPipelineDepthStencilStateCreateInfo}, depth_stencil_state), unsafe_convert(Ptr{VkPipelineColorBlendStateCreateInfo}, color_blend_state), unsafe_convert(Ptr{VkPipelineDynamicStateCreateInfo}, dynamic_state), layout, render_pass, subpass, base_pipeline_handle, base_pipeline_index)
+    vks = VkGraphicsPipelineCreateInfo(structure_type(VkGraphicsPipelineCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineCreateFlags, flags), convert(UInt32, stage_count), unsafe_convert(Ptr{VkPipelineShaderStageCreateInfo}, stages), unsafe_convert(Ptr{VkPipelineVertexInputStateCreateInfo}, vertex_input_state), unsafe_convert(Ptr{VkPipelineInputAssemblyStateCreateInfo}, input_assembly_state), unsafe_convert(Ptr{VkPipelineTessellationStateCreateInfo}, tessellation_state), unsafe_convert(Ptr{VkPipelineViewportStateCreateInfo}, viewport_state), unsafe_convert(Ptr{VkPipelineRasterizationStateCreateInfo}, rasterization_state), unsafe_convert(Ptr{VkPipelineMultisampleStateCreateInfo}, multisample_state), unsafe_convert(Ptr{VkPipelineDepthStencilStateCreateInfo}, depth_stencil_state), unsafe_convert(Ptr{VkPipelineColorBlendStateCreateInfo}, color_blend_state), unsafe_convert(Ptr{VkPipelineDynamicStateCreateInfo}, dynamic_state), convert(VkPipelineLayout, layout), convert(VkRenderPass, render_pass), convert(UInt32, subpass), convert(VkPipeline, base_pipeline_handle), convert(Int32, base_pipeline_index))
     _GraphicsPipelineCreateInfo(vks, deps, layout, render_pass, base_pipeline_handle)
 end
 
@@ -40978,7 +40984,7 @@ function _PipelineCacheCreateInfo(initial_data::Ptr{Cvoid}; next = C_NULL, flags
     next = cconvert(Ptr{Cvoid}, next)
     initial_data = cconvert(Ptr{Cvoid}, initial_data)
     deps = Any[next, initial_data]
-    vks = VkPipelineCacheCreateInfo(structure_type(VkPipelineCacheCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, initial_data_size, unsafe_convert(Ptr{Cvoid}, initial_data))
+    vks = VkPipelineCacheCreateInfo(structure_type(VkPipelineCacheCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineCacheCreateFlags, flags), convert(UInt, initial_data_size), unsafe_convert(Ptr{Cvoid}, initial_data))
     _PipelineCacheCreateInfo(vks, deps)
 end
 
@@ -40994,7 +41000,7 @@ Arguments:
 
 """
 function _PipelineCacheHeaderVersionOne(header_size::Integer, header_version::PipelineCacheHeaderVersion, vendor_id::Integer, device_id::Integer, pipeline_cache_uuid::NTuple{Int(VK_UUID_SIZE), UInt8})
-    _PipelineCacheHeaderVersionOne(VkPipelineCacheHeaderVersionOne(header_size, header_version, vendor_id, device_id, pipeline_cache_uuid))
+    _PipelineCacheHeaderVersionOne(VkPipelineCacheHeaderVersionOne(convert(UInt32, header_size), convert(VkPipelineCacheHeaderVersion, header_version), convert(UInt32, vendor_id), convert(UInt32, device_id), convert(NTuple{Int(VK_UUID_SIZE), UInt8}, pipeline_cache_uuid)))
 end
 
 """
@@ -41007,7 +41013,7 @@ Arguments:
 
 """
 function _PushConstantRange(stage_flags::ShaderStageFlag, offset::Integer, size::Integer)
-    _PushConstantRange(VkPushConstantRange(stage_flags, offset, size))
+    _PushConstantRange(VkPushConstantRange(convert(VkShaderStageFlags, stage_flags), convert(UInt32, offset), convert(UInt32, size)))
 end
 
 """
@@ -41027,7 +41033,7 @@ function _PipelineBinaryCreateInfoKHR(; next = C_NULL, keys_and_data_info = C_NU
     keys_and_data_info = cconvert(Ptr{VkPipelineBinaryKeysAndDataKHR}, keys_and_data_info)
     pipeline_create_info = cconvert(Ptr{VkPipelineCreateInfoKHR}, pipeline_create_info)
     deps = Any[next, keys_and_data_info, pipeline_create_info]
-    vks = VkPipelineBinaryCreateInfoKHR(structure_type(VkPipelineBinaryCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{VkPipelineBinaryKeysAndDataKHR}, keys_and_data_info), pipeline, unsafe_convert(Ptr{VkPipelineCreateInfoKHR}, pipeline_create_info))
+    vks = VkPipelineBinaryCreateInfoKHR(structure_type(VkPipelineBinaryCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{VkPipelineBinaryKeysAndDataKHR}, keys_and_data_info), convert(VkPipeline, pipeline), unsafe_convert(Ptr{VkPipelineCreateInfoKHR}, pipeline_create_info))
     _PipelineBinaryCreateInfoKHR(vks, deps, pipeline)
 end
 
@@ -41046,7 +41052,7 @@ function _PipelineBinaryHandlesInfoKHR(; next = C_NULL, pipeline_binaries = C_NU
     next = cconvert(Ptr{Cvoid}, next)
     pipeline_binaries = cconvert(Ptr{VkPipelineBinaryKHR}, pipeline_binaries)
     deps = Any[next, pipeline_binaries]
-    vks = VkPipelineBinaryHandlesInfoKHR(structure_type(VkPipelineBinaryHandlesInfoKHR), unsafe_convert(Ptr{Cvoid}, next), pipeline_binary_count, unsafe_convert(Ptr{VkPipelineBinaryKHR}, pipeline_binaries))
+    vks = VkPipelineBinaryHandlesInfoKHR(structure_type(VkPipelineBinaryHandlesInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, pipeline_binary_count), unsafe_convert(Ptr{VkPipelineBinaryKHR}, pipeline_binaries))
     _PipelineBinaryHandlesInfoKHR(vks, deps)
 end
 
@@ -41063,7 +41069,7 @@ Arguments:
 function _PipelineBinaryDataKHR(data_size::Integer, data::Ptr{Cvoid})
     data = cconvert(Ptr{Cvoid}, data)
     deps = Any[data]
-    vks = VkPipelineBinaryDataKHR(data_size, unsafe_convert(Ptr{Cvoid}, data))
+    vks = VkPipelineBinaryDataKHR(convert(UInt, data_size), unsafe_convert(Ptr{Cvoid}, data))
     _PipelineBinaryDataKHR(vks, deps)
 end
 
@@ -41082,7 +41088,7 @@ function _PipelineBinaryKeysAndDataKHR(pipeline_binary_keys::AbstractArray, pipe
     pipeline_binary_keys = cconvert(Ptr{VkPipelineBinaryKeyKHR}, pipeline_binary_keys)
     pipeline_binary_data = cconvert(Ptr{VkPipelineBinaryDataKHR}, pipeline_binary_data)
     deps = Any[pipeline_binary_keys, pipeline_binary_data]
-    vks = VkPipelineBinaryKeysAndDataKHR(binary_count, unsafe_convert(Ptr{VkPipelineBinaryKeyKHR}, pipeline_binary_keys), unsafe_convert(Ptr{VkPipelineBinaryDataKHR}, pipeline_binary_data))
+    vks = VkPipelineBinaryKeysAndDataKHR(convert(UInt32, binary_count), unsafe_convert(Ptr{VkPipelineBinaryKeyKHR}, pipeline_binary_keys), unsafe_convert(Ptr{VkPipelineBinaryDataKHR}, pipeline_binary_data))
     _PipelineBinaryKeysAndDataKHR(vks, deps)
 end
 
@@ -41100,7 +41106,7 @@ Arguments:
 function _PipelineBinaryKeyKHR(key_size::Integer, key::NTuple{Int(VK_MAX_PIPELINE_BINARY_KEY_SIZE_KHR), UInt8}; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineBinaryKeyKHR(structure_type(VkPipelineBinaryKeyKHR), unsafe_convert(Ptr{Cvoid}, next), key_size, key)
+    vks = VkPipelineBinaryKeyKHR(structure_type(VkPipelineBinaryKeyKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, key_size), convert(NTuple{Int(VK_MAX_PIPELINE_BINARY_KEY_SIZE_KHR), UInt8}, key))
     _PipelineBinaryKeyKHR(vks, deps)
 end
 
@@ -41119,7 +41125,7 @@ function _PipelineBinaryInfoKHR(pipeline_binaries::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     pipeline_binaries = cconvert(Ptr{VkPipelineBinaryKHR}, pipeline_binaries)
     deps = Any[next, pipeline_binaries]
-    vks = VkPipelineBinaryInfoKHR(structure_type(VkPipelineBinaryInfoKHR), unsafe_convert(Ptr{Cvoid}, next), binary_count, unsafe_convert(Ptr{VkPipelineBinaryKHR}, pipeline_binaries))
+    vks = VkPipelineBinaryInfoKHR(structure_type(VkPipelineBinaryInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, binary_count), unsafe_convert(Ptr{VkPipelineBinaryKHR}, pipeline_binaries))
     _PipelineBinaryInfoKHR(vks, deps)
 end
 
@@ -41136,7 +41142,7 @@ Arguments:
 function _ReleaseCapturedPipelineDataInfoKHR(pipeline; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkReleaseCapturedPipelineDataInfoKHR(structure_type(VkReleaseCapturedPipelineDataInfoKHR), unsafe_convert(Ptr{Cvoid}, next), pipeline)
+    vks = VkReleaseCapturedPipelineDataInfoKHR(structure_type(VkReleaseCapturedPipelineDataInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipeline, pipeline))
     _ReleaseCapturedPipelineDataInfoKHR(vks, deps, pipeline)
 end
 
@@ -41153,7 +41159,7 @@ Arguments:
 function _PipelineBinaryDataInfoKHR(pipeline_binary; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineBinaryDataInfoKHR(structure_type(VkPipelineBinaryDataInfoKHR), unsafe_convert(Ptr{Cvoid}, next), pipeline_binary)
+    vks = VkPipelineBinaryDataInfoKHR(structure_type(VkPipelineBinaryDataInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineBinaryKHR, pipeline_binary))
     _PipelineBinaryDataInfoKHR(vks, deps, pipeline_binary)
 end
 
@@ -41190,7 +41196,7 @@ function _PipelineLayoutCreateInfo(set_layouts::AbstractArray, push_constant_ran
     set_layouts = cconvert(Ptr{VkDescriptorSetLayout}, set_layouts)
     push_constant_ranges = cconvert(Ptr{VkPushConstantRange}, push_constant_ranges)
     deps = Any[next, set_layouts, push_constant_ranges]
-    vks = VkPipelineLayoutCreateInfo(structure_type(VkPipelineLayoutCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, set_layout_count, unsafe_convert(Ptr{VkDescriptorSetLayout}, set_layouts), push_constant_range_count, unsafe_convert(Ptr{VkPushConstantRange}, push_constant_ranges))
+    vks = VkPipelineLayoutCreateInfo(structure_type(VkPipelineLayoutCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineLayoutCreateFlags, flags), convert(UInt32, set_layout_count), unsafe_convert(Ptr{VkDescriptorSetLayout}, set_layouts), convert(UInt32, push_constant_range_count), unsafe_convert(Ptr{VkPushConstantRange}, push_constant_ranges))
     _PipelineLayoutCreateInfo(vks, deps)
 end
 
@@ -41220,7 +41226,7 @@ Arguments:
 function _SamplerCreateInfo(mag_filter::Filter, min_filter::Filter, mipmap_mode::SamplerMipmapMode, address_mode_u::SamplerAddressMode, address_mode_v::SamplerAddressMode, address_mode_w::SamplerAddressMode, mip_lod_bias::Real, anisotropy_enable::Bool, max_anisotropy::Real, compare_enable::Bool, compare_op::CompareOp, min_lod::Real, max_lod::Real, border_color::BorderColor, unnormalized_coordinates::Bool; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSamplerCreateInfo(structure_type(VkSamplerCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, mag_filter, min_filter, mipmap_mode, address_mode_u, address_mode_v, address_mode_w, mip_lod_bias, anisotropy_enable, max_anisotropy, compare_enable, compare_op, min_lod, max_lod, border_color, unnormalized_coordinates)
+    vks = VkSamplerCreateInfo(structure_type(VkSamplerCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkSamplerCreateFlags, flags), convert(VkFilter, mag_filter), convert(VkFilter, min_filter), convert(VkSamplerMipmapMode, mipmap_mode), convert(VkSamplerAddressMode, address_mode_u), convert(VkSamplerAddressMode, address_mode_v), convert(VkSamplerAddressMode, address_mode_w), convert(Float32, mip_lod_bias), convert(VkBool32, anisotropy_enable), convert(Float32, max_anisotropy), convert(VkBool32, compare_enable), convert(VkCompareOp, compare_op), convert(Float32, min_lod), convert(Float32, max_lod), convert(VkBorderColor, border_color), convert(VkBool32, unnormalized_coordinates))
     _SamplerCreateInfo(vks, deps)
 end
 
@@ -41236,7 +41242,7 @@ Arguments:
 function _CommandPoolCreateInfo(queue_family_index::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkCommandPoolCreateInfo(structure_type(VkCommandPoolCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, queue_family_index)
+    vks = VkCommandPoolCreateInfo(structure_type(VkCommandPoolCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkCommandPoolCreateFlags, flags), convert(UInt32, queue_family_index))
     _CommandPoolCreateInfo(vks, deps)
 end
 
@@ -41253,7 +41259,7 @@ Arguments:
 function _CommandBufferAllocateInfo(command_pool, level::CommandBufferLevel, command_buffer_count::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkCommandBufferAllocateInfo(structure_type(VkCommandBufferAllocateInfo), unsafe_convert(Ptr{Cvoid}, next), command_pool, level, command_buffer_count)
+    vks = VkCommandBufferAllocateInfo(structure_type(VkCommandBufferAllocateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkCommandPool, command_pool), convert(VkCommandBufferLevel, level), convert(UInt32, command_buffer_count))
     _CommandBufferAllocateInfo(vks, deps, command_pool)
 end
 
@@ -41273,7 +41279,7 @@ Arguments:
 function _CommandBufferInheritanceInfo(subpass::Integer, occlusion_query_enable::Bool; next = C_NULL, render_pass = C_NULL, framebuffer = C_NULL, query_flags = 0, pipeline_statistics = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkCommandBufferInheritanceInfo(structure_type(VkCommandBufferInheritanceInfo), unsafe_convert(Ptr{Cvoid}, next), render_pass, subpass, framebuffer, occlusion_query_enable, query_flags, pipeline_statistics)
+    vks = VkCommandBufferInheritanceInfo(structure_type(VkCommandBufferInheritanceInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkRenderPass, render_pass), convert(UInt32, subpass), convert(VkFramebuffer, framebuffer), convert(VkBool32, occlusion_query_enable), convert(VkQueryControlFlags, query_flags), convert(VkQueryPipelineStatisticFlags, pipeline_statistics))
     _CommandBufferInheritanceInfo(vks, deps, render_pass, framebuffer)
 end
 
@@ -41290,7 +41296,7 @@ function _CommandBufferBeginInfo(; next = C_NULL, flags = 0, inheritance_info = 
     next = cconvert(Ptr{Cvoid}, next)
     inheritance_info = cconvert(Ptr{VkCommandBufferInheritanceInfo}, inheritance_info)
     deps = Any[next, inheritance_info]
-    vks = VkCommandBufferBeginInfo(structure_type(VkCommandBufferBeginInfo), unsafe_convert(Ptr{Cvoid}, next), flags, unsafe_convert(Ptr{VkCommandBufferInheritanceInfo}, inheritance_info))
+    vks = VkCommandBufferBeginInfo(structure_type(VkCommandBufferBeginInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkCommandBufferUsageFlags, flags), unsafe_convert(Ptr{VkCommandBufferInheritanceInfo}, inheritance_info))
     _CommandBufferBeginInfo(vks, deps)
 end
 
@@ -41310,7 +41316,7 @@ function _RenderPassBeginInfo(render_pass, framebuffer, render_area::_Rect2D, cl
     next = cconvert(Ptr{Cvoid}, next)
     clear_values = cconvert(Ptr{VkClearValue}, clear_values)
     deps = Any[next, clear_values]
-    vks = VkRenderPassBeginInfo(structure_type(VkRenderPassBeginInfo), unsafe_convert(Ptr{Cvoid}, next), render_pass, framebuffer, render_area.vks, clear_value_count, unsafe_convert(Ptr{VkClearValue}, clear_values))
+    vks = VkRenderPassBeginInfo(structure_type(VkRenderPassBeginInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkRenderPass, render_pass), convert(VkFramebuffer, framebuffer), render_area.vks, convert(UInt32, clear_value_count), unsafe_convert(Ptr{VkClearValue}, clear_values))
     _RenderPassBeginInfo(vks, deps, render_pass, framebuffer)
 end
 
@@ -41323,7 +41329,7 @@ Arguments:
 
 """
 function _ClearDepthStencilValue(depth::Real, stencil::Integer)
-    _ClearDepthStencilValue(VkClearDepthStencilValue(depth, stencil))
+    _ClearDepthStencilValue(VkClearDepthStencilValue(convert(Float32, depth), convert(UInt32, stencil)))
 end
 
 """
@@ -41336,7 +41342,7 @@ Arguments:
 
 """
 function _ClearAttachment(aspect_mask::ImageAspectFlag, color_attachment::Integer, clear_value::_ClearValue)
-    _ClearAttachment(VkClearAttachment(aspect_mask, color_attachment, clear_value.vks))
+    _ClearAttachment(VkClearAttachment(convert(VkImageAspectFlags, aspect_mask), convert(UInt32, color_attachment), clear_value.vks))
 end
 
 """
@@ -41355,7 +41361,7 @@ Arguments:
 
 """
 function _AttachmentDescription(format::Format, samples::SampleCountFlag, load_op::AttachmentLoadOp, store_op::AttachmentStoreOp, stencil_load_op::AttachmentLoadOp, stencil_store_op::AttachmentStoreOp, initial_layout::ImageLayout, final_layout::ImageLayout; flags = 0)
-    _AttachmentDescription(VkAttachmentDescription(flags, format, VkSampleCountFlagBits(samples.val), load_op, store_op, stencil_load_op, stencil_store_op, initial_layout, final_layout))
+    _AttachmentDescription(VkAttachmentDescription(convert(VkAttachmentDescriptionFlags, flags), convert(VkFormat, format), VkSampleCountFlagBits(flag_value(samples)), convert(VkAttachmentLoadOp, load_op), convert(VkAttachmentStoreOp, store_op), convert(VkAttachmentLoadOp, stencil_load_op), convert(VkAttachmentStoreOp, stencil_store_op), convert(VkImageLayout, initial_layout), convert(VkImageLayout, final_layout)))
 end
 
 """
@@ -41367,7 +41373,7 @@ Arguments:
 
 """
 function _AttachmentReference(attachment::Integer, layout::ImageLayout)
-    _AttachmentReference(VkAttachmentReference(attachment, layout))
+    _AttachmentReference(VkAttachmentReference(convert(UInt32, attachment), convert(VkImageLayout, layout)))
 end
 
 """
@@ -41393,7 +41399,7 @@ function _SubpassDescription(pipeline_bind_point::PipelineBindPoint, input_attac
     depth_stencil_attachment = cconvert(Ptr{VkAttachmentReference}, depth_stencil_attachment)
     preserve_attachments = cconvert(Ptr{UInt32}, preserve_attachments)
     deps = Any[input_attachments, color_attachments, resolve_attachments, depth_stencil_attachment, preserve_attachments]
-    vks = VkSubpassDescription(flags, pipeline_bind_point, input_attachment_count, unsafe_convert(Ptr{VkAttachmentReference}, input_attachments), color_attachment_count, unsafe_convert(Ptr{VkAttachmentReference}, color_attachments), unsafe_convert(Ptr{VkAttachmentReference}, resolve_attachments), unsafe_convert(Ptr{VkAttachmentReference}, depth_stencil_attachment), preserve_attachment_count, unsafe_convert(Ptr{UInt32}, preserve_attachments))
+    vks = VkSubpassDescription(convert(VkSubpassDescriptionFlags, flags), convert(VkPipelineBindPoint, pipeline_bind_point), convert(UInt32, input_attachment_count), unsafe_convert(Ptr{VkAttachmentReference}, input_attachments), convert(UInt32, color_attachment_count), unsafe_convert(Ptr{VkAttachmentReference}, color_attachments), unsafe_convert(Ptr{VkAttachmentReference}, resolve_attachments), unsafe_convert(Ptr{VkAttachmentReference}, depth_stencil_attachment), convert(UInt32, preserve_attachment_count), unsafe_convert(Ptr{UInt32}, preserve_attachments))
     _SubpassDescription(vks, deps)
 end
 
@@ -41411,7 +41417,7 @@ Arguments:
 
 """
 function _SubpassDependency(src_subpass::Integer, dst_subpass::Integer; src_stage_mask = 0, dst_stage_mask = 0, src_access_mask = 0, dst_access_mask = 0, dependency_flags = 0)
-    _SubpassDependency(VkSubpassDependency(src_subpass, dst_subpass, src_stage_mask, dst_stage_mask, src_access_mask, dst_access_mask, dependency_flags))
+    _SubpassDependency(VkSubpassDependency(convert(UInt32, src_subpass), convert(UInt32, dst_subpass), convert(VkPipelineStageFlags, src_stage_mask), convert(VkPipelineStageFlags, dst_stage_mask), convert(VkAccessFlags, src_access_mask), convert(VkAccessFlags, dst_access_mask), convert(VkDependencyFlags, dependency_flags)))
 end
 
 """
@@ -41434,7 +41440,7 @@ function _RenderPassCreateInfo(attachments::AbstractArray, subpasses::AbstractAr
     subpasses = cconvert(Ptr{VkSubpassDescription}, subpasses)
     dependencies = cconvert(Ptr{VkSubpassDependency}, dependencies)
     deps = Any[next, attachments, subpasses, dependencies]
-    vks = VkRenderPassCreateInfo(structure_type(VkRenderPassCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, attachment_count, unsafe_convert(Ptr{VkAttachmentDescription}, attachments), subpass_count, unsafe_convert(Ptr{VkSubpassDescription}, subpasses), dependency_count, unsafe_convert(Ptr{VkSubpassDependency}, dependencies))
+    vks = VkRenderPassCreateInfo(structure_type(VkRenderPassCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkRenderPassCreateFlags, flags), convert(UInt32, attachment_count), unsafe_convert(Ptr{VkAttachmentDescription}, attachments), convert(UInt32, subpass_count), unsafe_convert(Ptr{VkSubpassDescription}, subpasses), convert(UInt32, dependency_count), unsafe_convert(Ptr{VkSubpassDependency}, dependencies))
     _RenderPassCreateInfo(vks, deps)
 end
 
@@ -41449,7 +41455,7 @@ Arguments:
 function _EventCreateInfo(; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkEventCreateInfo(structure_type(VkEventCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags)
+    vks = VkEventCreateInfo(structure_type(VkEventCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkEventCreateFlags, flags))
     _EventCreateInfo(vks, deps)
 end
 
@@ -41464,7 +41470,7 @@ Arguments:
 function _FenceCreateInfo(; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkFenceCreateInfo(structure_type(VkFenceCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags)
+    vks = VkFenceCreateInfo(structure_type(VkFenceCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkFenceCreateFlags, flags))
     _FenceCreateInfo(vks, deps)
 end
 
@@ -41530,7 +41536,7 @@ Arguments:
 
 """
 function _PhysicalDeviceFeatures(robust_buffer_access::Bool, full_draw_index_uint_32::Bool, image_cube_array::Bool, independent_blend::Bool, geometry_shader::Bool, tessellation_shader::Bool, sample_rate_shading::Bool, dual_src_blend::Bool, logic_op::Bool, multi_draw_indirect::Bool, draw_indirect_first_instance::Bool, depth_clamp::Bool, depth_bias_clamp::Bool, fill_mode_non_solid::Bool, depth_bounds::Bool, wide_lines::Bool, large_points::Bool, alpha_to_one::Bool, multi_viewport::Bool, sampler_anisotropy::Bool, texture_compression_etc_2::Bool, texture_compression_astc_ldr::Bool, texture_compression_bc::Bool, occlusion_query_precise::Bool, pipeline_statistics_query::Bool, vertex_pipeline_stores_and_atomics::Bool, fragment_stores_and_atomics::Bool, shader_tessellation_and_geometry_point_size::Bool, shader_image_gather_extended::Bool, shader_storage_image_extended_formats::Bool, shader_storage_image_multisample::Bool, shader_storage_image_read_without_format::Bool, shader_storage_image_write_without_format::Bool, shader_uniform_buffer_array_dynamic_indexing::Bool, shader_sampled_image_array_dynamic_indexing::Bool, shader_storage_buffer_array_dynamic_indexing::Bool, shader_storage_image_array_dynamic_indexing::Bool, shader_clip_distance::Bool, shader_cull_distance::Bool, shader_float_64::Bool, shader_int_64::Bool, shader_int_16::Bool, shader_resource_residency::Bool, shader_resource_min_lod::Bool, sparse_binding::Bool, sparse_residency_buffer::Bool, sparse_residency_image_2_d::Bool, sparse_residency_image_3_d::Bool, sparse_residency_2_samples::Bool, sparse_residency_4_samples::Bool, sparse_residency_8_samples::Bool, sparse_residency_16_samples::Bool, sparse_residency_aliased::Bool, variable_multisample_rate::Bool, inherited_queries::Bool)
-    _PhysicalDeviceFeatures(VkPhysicalDeviceFeatures(robust_buffer_access, full_draw_index_uint_32, image_cube_array, independent_blend, geometry_shader, tessellation_shader, sample_rate_shading, dual_src_blend, logic_op, multi_draw_indirect, draw_indirect_first_instance, depth_clamp, depth_bias_clamp, fill_mode_non_solid, depth_bounds, wide_lines, large_points, alpha_to_one, multi_viewport, sampler_anisotropy, texture_compression_etc_2, texture_compression_astc_ldr, texture_compression_bc, occlusion_query_precise, pipeline_statistics_query, vertex_pipeline_stores_and_atomics, fragment_stores_and_atomics, shader_tessellation_and_geometry_point_size, shader_image_gather_extended, shader_storage_image_extended_formats, shader_storage_image_multisample, shader_storage_image_read_without_format, shader_storage_image_write_without_format, shader_uniform_buffer_array_dynamic_indexing, shader_sampled_image_array_dynamic_indexing, shader_storage_buffer_array_dynamic_indexing, shader_storage_image_array_dynamic_indexing, shader_clip_distance, shader_cull_distance, shader_float_64, shader_int_64, shader_int_16, shader_resource_residency, shader_resource_min_lod, sparse_binding, sparse_residency_buffer, sparse_residency_image_2_d, sparse_residency_image_3_d, sparse_residency_2_samples, sparse_residency_4_samples, sparse_residency_8_samples, sparse_residency_16_samples, sparse_residency_aliased, variable_multisample_rate, inherited_queries))
+    _PhysicalDeviceFeatures(VkPhysicalDeviceFeatures(convert(VkBool32, robust_buffer_access), convert(VkBool32, full_draw_index_uint_32), convert(VkBool32, image_cube_array), convert(VkBool32, independent_blend), convert(VkBool32, geometry_shader), convert(VkBool32, tessellation_shader), convert(VkBool32, sample_rate_shading), convert(VkBool32, dual_src_blend), convert(VkBool32, logic_op), convert(VkBool32, multi_draw_indirect), convert(VkBool32, draw_indirect_first_instance), convert(VkBool32, depth_clamp), convert(VkBool32, depth_bias_clamp), convert(VkBool32, fill_mode_non_solid), convert(VkBool32, depth_bounds), convert(VkBool32, wide_lines), convert(VkBool32, large_points), convert(VkBool32, alpha_to_one), convert(VkBool32, multi_viewport), convert(VkBool32, sampler_anisotropy), convert(VkBool32, texture_compression_etc_2), convert(VkBool32, texture_compression_astc_ldr), convert(VkBool32, texture_compression_bc), convert(VkBool32, occlusion_query_precise), convert(VkBool32, pipeline_statistics_query), convert(VkBool32, vertex_pipeline_stores_and_atomics), convert(VkBool32, fragment_stores_and_atomics), convert(VkBool32, shader_tessellation_and_geometry_point_size), convert(VkBool32, shader_image_gather_extended), convert(VkBool32, shader_storage_image_extended_formats), convert(VkBool32, shader_storage_image_multisample), convert(VkBool32, shader_storage_image_read_without_format), convert(VkBool32, shader_storage_image_write_without_format), convert(VkBool32, shader_uniform_buffer_array_dynamic_indexing), convert(VkBool32, shader_sampled_image_array_dynamic_indexing), convert(VkBool32, shader_storage_buffer_array_dynamic_indexing), convert(VkBool32, shader_storage_image_array_dynamic_indexing), convert(VkBool32, shader_clip_distance), convert(VkBool32, shader_cull_distance), convert(VkBool32, shader_float_64), convert(VkBool32, shader_int_64), convert(VkBool32, shader_int_16), convert(VkBool32, shader_resource_residency), convert(VkBool32, shader_resource_min_lod), convert(VkBool32, sparse_binding), convert(VkBool32, sparse_residency_buffer), convert(VkBool32, sparse_residency_image_2_d), convert(VkBool32, sparse_residency_image_3_d), convert(VkBool32, sparse_residency_2_samples), convert(VkBool32, sparse_residency_4_samples), convert(VkBool32, sparse_residency_8_samples), convert(VkBool32, sparse_residency_16_samples), convert(VkBool32, sparse_residency_aliased), convert(VkBool32, variable_multisample_rate), convert(VkBool32, inherited_queries)))
 end
 
 """
@@ -41545,7 +41551,7 @@ Arguments:
 
 """
 function _PhysicalDeviceSparseProperties(residency_standard_2_d_block_shape::Bool, residency_standard_2_d_multisample_block_shape::Bool, residency_standard_3_d_block_shape::Bool, residency_aligned_mip_size::Bool, residency_non_resident_strict::Bool)
-    _PhysicalDeviceSparseProperties(VkPhysicalDeviceSparseProperties(residency_standard_2_d_block_shape, residency_standard_2_d_multisample_block_shape, residency_standard_3_d_block_shape, residency_aligned_mip_size, residency_non_resident_strict))
+    _PhysicalDeviceSparseProperties(VkPhysicalDeviceSparseProperties(convert(VkBool32, residency_standard_2_d_block_shape), convert(VkBool32, residency_standard_2_d_multisample_block_shape), convert(VkBool32, residency_standard_3_d_block_shape), convert(VkBool32, residency_aligned_mip_size), convert(VkBool32, residency_non_resident_strict)))
 end
 
 """
@@ -41661,7 +41667,7 @@ Arguments:
 
 """
 function _PhysicalDeviceLimits(max_image_dimension_1_d::Integer, max_image_dimension_2_d::Integer, max_image_dimension_3_d::Integer, max_image_dimension_cube::Integer, max_image_array_layers::Integer, max_texel_buffer_elements::Integer, max_uniform_buffer_range::Integer, max_storage_buffer_range::Integer, max_push_constants_size::Integer, max_memory_allocation_count::Integer, max_sampler_allocation_count::Integer, buffer_image_granularity::Integer, sparse_address_space_size::Integer, max_bound_descriptor_sets::Integer, max_per_stage_descriptor_samplers::Integer, max_per_stage_descriptor_uniform_buffers::Integer, max_per_stage_descriptor_storage_buffers::Integer, max_per_stage_descriptor_sampled_images::Integer, max_per_stage_descriptor_storage_images::Integer, max_per_stage_descriptor_input_attachments::Integer, max_per_stage_resources::Integer, max_descriptor_set_samplers::Integer, max_descriptor_set_uniform_buffers::Integer, max_descriptor_set_uniform_buffers_dynamic::Integer, max_descriptor_set_storage_buffers::Integer, max_descriptor_set_storage_buffers_dynamic::Integer, max_descriptor_set_sampled_images::Integer, max_descriptor_set_storage_images::Integer, max_descriptor_set_input_attachments::Integer, max_vertex_input_attributes::Integer, max_vertex_input_bindings::Integer, max_vertex_input_attribute_offset::Integer, max_vertex_input_binding_stride::Integer, max_vertex_output_components::Integer, max_tessellation_generation_level::Integer, max_tessellation_patch_size::Integer, max_tessellation_control_per_vertex_input_components::Integer, max_tessellation_control_per_vertex_output_components::Integer, max_tessellation_control_per_patch_output_components::Integer, max_tessellation_control_total_output_components::Integer, max_tessellation_evaluation_input_components::Integer, max_tessellation_evaluation_output_components::Integer, max_geometry_shader_invocations::Integer, max_geometry_input_components::Integer, max_geometry_output_components::Integer, max_geometry_output_vertices::Integer, max_geometry_total_output_components::Integer, max_fragment_input_components::Integer, max_fragment_output_attachments::Integer, max_fragment_dual_src_attachments::Integer, max_fragment_combined_output_resources::Integer, max_compute_shared_memory_size::Integer, max_compute_work_group_count::NTuple{3, UInt32}, max_compute_work_group_invocations::Integer, max_compute_work_group_size::NTuple{3, UInt32}, sub_pixel_precision_bits::Integer, sub_texel_precision_bits::Integer, mipmap_precision_bits::Integer, max_draw_indexed_index_value::Integer, max_draw_indirect_count::Integer, max_sampler_lod_bias::Real, max_sampler_anisotropy::Real, max_viewports::Integer, max_viewport_dimensions::NTuple{2, UInt32}, viewport_bounds_range::NTuple{2, Float32}, viewport_sub_pixel_bits::Integer, min_memory_map_alignment::Integer, min_texel_buffer_offset_alignment::Integer, min_uniform_buffer_offset_alignment::Integer, min_storage_buffer_offset_alignment::Integer, min_texel_offset::Integer, max_texel_offset::Integer, min_texel_gather_offset::Integer, max_texel_gather_offset::Integer, min_interpolation_offset::Real, max_interpolation_offset::Real, sub_pixel_interpolation_offset_bits::Integer, max_framebuffer_width::Integer, max_framebuffer_height::Integer, max_framebuffer_layers::Integer, max_color_attachments::Integer, max_sample_mask_words::Integer, timestamp_compute_and_graphics::Bool, timestamp_period::Real, max_clip_distances::Integer, max_cull_distances::Integer, max_combined_clip_and_cull_distances::Integer, discrete_queue_priorities::Integer, point_size_range::NTuple{2, Float32}, line_width_range::NTuple{2, Float32}, point_size_granularity::Real, line_width_granularity::Real, strict_lines::Bool, standard_sample_locations::Bool, optimal_buffer_copy_offset_alignment::Integer, optimal_buffer_copy_row_pitch_alignment::Integer, non_coherent_atom_size::Integer; framebuffer_color_sample_counts = 0, framebuffer_depth_sample_counts = 0, framebuffer_stencil_sample_counts = 0, framebuffer_no_attachments_sample_counts = 0, sampled_image_color_sample_counts = 0, sampled_image_integer_sample_counts = 0, sampled_image_depth_sample_counts = 0, sampled_image_stencil_sample_counts = 0, storage_image_sample_counts = 0)
-    _PhysicalDeviceLimits(VkPhysicalDeviceLimits(max_image_dimension_1_d, max_image_dimension_2_d, max_image_dimension_3_d, max_image_dimension_cube, max_image_array_layers, max_texel_buffer_elements, max_uniform_buffer_range, max_storage_buffer_range, max_push_constants_size, max_memory_allocation_count, max_sampler_allocation_count, buffer_image_granularity, sparse_address_space_size, max_bound_descriptor_sets, max_per_stage_descriptor_samplers, max_per_stage_descriptor_uniform_buffers, max_per_stage_descriptor_storage_buffers, max_per_stage_descriptor_sampled_images, max_per_stage_descriptor_storage_images, max_per_stage_descriptor_input_attachments, max_per_stage_resources, max_descriptor_set_samplers, max_descriptor_set_uniform_buffers, max_descriptor_set_uniform_buffers_dynamic, max_descriptor_set_storage_buffers, max_descriptor_set_storage_buffers_dynamic, max_descriptor_set_sampled_images, max_descriptor_set_storage_images, max_descriptor_set_input_attachments, max_vertex_input_attributes, max_vertex_input_bindings, max_vertex_input_attribute_offset, max_vertex_input_binding_stride, max_vertex_output_components, max_tessellation_generation_level, max_tessellation_patch_size, max_tessellation_control_per_vertex_input_components, max_tessellation_control_per_vertex_output_components, max_tessellation_control_per_patch_output_components, max_tessellation_control_total_output_components, max_tessellation_evaluation_input_components, max_tessellation_evaluation_output_components, max_geometry_shader_invocations, max_geometry_input_components, max_geometry_output_components, max_geometry_output_vertices, max_geometry_total_output_components, max_fragment_input_components, max_fragment_output_attachments, max_fragment_dual_src_attachments, max_fragment_combined_output_resources, max_compute_shared_memory_size, max_compute_work_group_count, max_compute_work_group_invocations, max_compute_work_group_size, sub_pixel_precision_bits, sub_texel_precision_bits, mipmap_precision_bits, max_draw_indexed_index_value, max_draw_indirect_count, max_sampler_lod_bias, max_sampler_anisotropy, max_viewports, max_viewport_dimensions, viewport_bounds_range, viewport_sub_pixel_bits, min_memory_map_alignment, min_texel_buffer_offset_alignment, min_uniform_buffer_offset_alignment, min_storage_buffer_offset_alignment, min_texel_offset, max_texel_offset, min_texel_gather_offset, max_texel_gather_offset, min_interpolation_offset, max_interpolation_offset, sub_pixel_interpolation_offset_bits, max_framebuffer_width, max_framebuffer_height, max_framebuffer_layers, framebuffer_color_sample_counts, framebuffer_depth_sample_counts, framebuffer_stencil_sample_counts, framebuffer_no_attachments_sample_counts, max_color_attachments, sampled_image_color_sample_counts, sampled_image_integer_sample_counts, sampled_image_depth_sample_counts, sampled_image_stencil_sample_counts, storage_image_sample_counts, max_sample_mask_words, timestamp_compute_and_graphics, timestamp_period, max_clip_distances, max_cull_distances, max_combined_clip_and_cull_distances, discrete_queue_priorities, point_size_range, line_width_range, point_size_granularity, line_width_granularity, strict_lines, standard_sample_locations, optimal_buffer_copy_offset_alignment, optimal_buffer_copy_row_pitch_alignment, non_coherent_atom_size))
+    _PhysicalDeviceLimits(VkPhysicalDeviceLimits(convert(UInt32, max_image_dimension_1_d), convert(UInt32, max_image_dimension_2_d), convert(UInt32, max_image_dimension_3_d), convert(UInt32, max_image_dimension_cube), convert(UInt32, max_image_array_layers), convert(UInt32, max_texel_buffer_elements), convert(UInt32, max_uniform_buffer_range), convert(UInt32, max_storage_buffer_range), convert(UInt32, max_push_constants_size), convert(UInt32, max_memory_allocation_count), convert(UInt32, max_sampler_allocation_count), convert(VkDeviceSize, buffer_image_granularity), convert(VkDeviceSize, sparse_address_space_size), convert(UInt32, max_bound_descriptor_sets), convert(UInt32, max_per_stage_descriptor_samplers), convert(UInt32, max_per_stage_descriptor_uniform_buffers), convert(UInt32, max_per_stage_descriptor_storage_buffers), convert(UInt32, max_per_stage_descriptor_sampled_images), convert(UInt32, max_per_stage_descriptor_storage_images), convert(UInt32, max_per_stage_descriptor_input_attachments), convert(UInt32, max_per_stage_resources), convert(UInt32, max_descriptor_set_samplers), convert(UInt32, max_descriptor_set_uniform_buffers), convert(UInt32, max_descriptor_set_uniform_buffers_dynamic), convert(UInt32, max_descriptor_set_storage_buffers), convert(UInt32, max_descriptor_set_storage_buffers_dynamic), convert(UInt32, max_descriptor_set_sampled_images), convert(UInt32, max_descriptor_set_storage_images), convert(UInt32, max_descriptor_set_input_attachments), convert(UInt32, max_vertex_input_attributes), convert(UInt32, max_vertex_input_bindings), convert(UInt32, max_vertex_input_attribute_offset), convert(UInt32, max_vertex_input_binding_stride), convert(UInt32, max_vertex_output_components), convert(UInt32, max_tessellation_generation_level), convert(UInt32, max_tessellation_patch_size), convert(UInt32, max_tessellation_control_per_vertex_input_components), convert(UInt32, max_tessellation_control_per_vertex_output_components), convert(UInt32, max_tessellation_control_per_patch_output_components), convert(UInt32, max_tessellation_control_total_output_components), convert(UInt32, max_tessellation_evaluation_input_components), convert(UInt32, max_tessellation_evaluation_output_components), convert(UInt32, max_geometry_shader_invocations), convert(UInt32, max_geometry_input_components), convert(UInt32, max_geometry_output_components), convert(UInt32, max_geometry_output_vertices), convert(UInt32, max_geometry_total_output_components), convert(UInt32, max_fragment_input_components), convert(UInt32, max_fragment_output_attachments), convert(UInt32, max_fragment_dual_src_attachments), convert(UInt32, max_fragment_combined_output_resources), convert(UInt32, max_compute_shared_memory_size), convert(NTuple{3, UInt32}, max_compute_work_group_count), convert(UInt32, max_compute_work_group_invocations), convert(NTuple{3, UInt32}, max_compute_work_group_size), convert(UInt32, sub_pixel_precision_bits), convert(UInt32, sub_texel_precision_bits), convert(UInt32, mipmap_precision_bits), convert(UInt32, max_draw_indexed_index_value), convert(UInt32, max_draw_indirect_count), convert(Float32, max_sampler_lod_bias), convert(Float32, max_sampler_anisotropy), convert(UInt32, max_viewports), convert(NTuple{2, UInt32}, max_viewport_dimensions), convert(NTuple{2, Float32}, viewport_bounds_range), convert(UInt32, viewport_sub_pixel_bits), convert(UInt, min_memory_map_alignment), convert(VkDeviceSize, min_texel_buffer_offset_alignment), convert(VkDeviceSize, min_uniform_buffer_offset_alignment), convert(VkDeviceSize, min_storage_buffer_offset_alignment), convert(Int32, min_texel_offset), convert(UInt32, max_texel_offset), convert(Int32, min_texel_gather_offset), convert(UInt32, max_texel_gather_offset), convert(Float32, min_interpolation_offset), convert(Float32, max_interpolation_offset), convert(UInt32, sub_pixel_interpolation_offset_bits), convert(UInt32, max_framebuffer_width), convert(UInt32, max_framebuffer_height), convert(UInt32, max_framebuffer_layers), convert(VkSampleCountFlags, framebuffer_color_sample_counts), convert(VkSampleCountFlags, framebuffer_depth_sample_counts), convert(VkSampleCountFlags, framebuffer_stencil_sample_counts), convert(VkSampleCountFlags, framebuffer_no_attachments_sample_counts), convert(UInt32, max_color_attachments), convert(VkSampleCountFlags, sampled_image_color_sample_counts), convert(VkSampleCountFlags, sampled_image_integer_sample_counts), convert(VkSampleCountFlags, sampled_image_depth_sample_counts), convert(VkSampleCountFlags, sampled_image_stencil_sample_counts), convert(VkSampleCountFlags, storage_image_sample_counts), convert(UInt32, max_sample_mask_words), convert(VkBool32, timestamp_compute_and_graphics), convert(Float32, timestamp_period), convert(UInt32, max_clip_distances), convert(UInt32, max_cull_distances), convert(UInt32, max_combined_clip_and_cull_distances), convert(UInt32, discrete_queue_priorities), convert(NTuple{2, Float32}, point_size_range), convert(NTuple{2, Float32}, line_width_range), convert(Float32, point_size_granularity), convert(Float32, line_width_granularity), convert(VkBool32, strict_lines), convert(VkBool32, standard_sample_locations), convert(VkDeviceSize, optimal_buffer_copy_offset_alignment), convert(VkDeviceSize, optimal_buffer_copy_row_pitch_alignment), convert(VkDeviceSize, non_coherent_atom_size)))
 end
 
 """
@@ -41675,7 +41681,7 @@ Arguments:
 function _SemaphoreCreateInfo(; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSemaphoreCreateInfo(structure_type(VkSemaphoreCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags)
+    vks = VkSemaphoreCreateInfo(structure_type(VkSemaphoreCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkSemaphoreCreateFlags, flags))
     _SemaphoreCreateInfo(vks, deps)
 end
 
@@ -41693,7 +41699,7 @@ Arguments:
 function _QueryPoolCreateInfo(query_type::QueryType, query_count::Integer; next = C_NULL, flags = 0, pipeline_statistics = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkQueryPoolCreateInfo(structure_type(VkQueryPoolCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, query_type, query_count, pipeline_statistics)
+    vks = VkQueryPoolCreateInfo(structure_type(VkQueryPoolCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkQueryPoolCreateFlags, flags), convert(VkQueryType, query_type), convert(UInt32, query_count), convert(VkQueryPipelineStatisticFlags, pipeline_statistics))
     _QueryPoolCreateInfo(vks, deps)
 end
 
@@ -41715,7 +41721,7 @@ function _FramebufferCreateInfo(render_pass, attachments::AbstractArray, width::
     next = cconvert(Ptr{Cvoid}, next)
     attachments = cconvert(Ptr{VkImageView}, attachments)
     deps = Any[next, attachments]
-    vks = VkFramebufferCreateInfo(structure_type(VkFramebufferCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, render_pass, attachment_count, unsafe_convert(Ptr{VkImageView}, attachments), width, height, layers)
+    vks = VkFramebufferCreateInfo(structure_type(VkFramebufferCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkFramebufferCreateFlags, flags), convert(VkRenderPass, render_pass), convert(UInt32, attachment_count), unsafe_convert(Ptr{VkImageView}, attachments), convert(UInt32, width), convert(UInt32, height), convert(UInt32, layers))
     _FramebufferCreateInfo(vks, deps, render_pass)
 end
 
@@ -41730,7 +41736,7 @@ Arguments:
 
 """
 function _DrawIndirectCommand(vertex_count::Integer, instance_count::Integer, first_vertex::Integer, first_instance::Integer)
-    _DrawIndirectCommand(VkDrawIndirectCommand(vertex_count, instance_count, first_vertex, first_instance))
+    _DrawIndirectCommand(VkDrawIndirectCommand(convert(UInt32, vertex_count), convert(UInt32, instance_count), convert(UInt32, first_vertex), convert(UInt32, first_instance)))
 end
 
 """
@@ -41745,7 +41751,7 @@ Arguments:
 
 """
 function _DrawIndexedIndirectCommand(index_count::Integer, instance_count::Integer, first_index::Integer, vertex_offset::Integer, first_instance::Integer)
-    _DrawIndexedIndirectCommand(VkDrawIndexedIndirectCommand(index_count, instance_count, first_index, vertex_offset, first_instance))
+    _DrawIndexedIndirectCommand(VkDrawIndexedIndirectCommand(convert(UInt32, index_count), convert(UInt32, instance_count), convert(UInt32, first_index), convert(Int32, vertex_offset), convert(UInt32, first_instance)))
 end
 
 """
@@ -41758,7 +41764,7 @@ Arguments:
 
 """
 function _DispatchIndirectCommand(x::Integer, y::Integer, z::Integer)
-    _DispatchIndirectCommand(VkDispatchIndirectCommand(x, y, z))
+    _DispatchIndirectCommand(VkDispatchIndirectCommand(convert(UInt32, x), convert(UInt32, y), convert(UInt32, z)))
 end
 
 """
@@ -41772,7 +41778,7 @@ Arguments:
 
 """
 function _MultiDrawInfoEXT(first_vertex::Integer, vertex_count::Integer)
-    _MultiDrawInfoEXT(VkMultiDrawInfoEXT(first_vertex, vertex_count))
+    _MultiDrawInfoEXT(VkMultiDrawInfoEXT(convert(UInt32, first_vertex), convert(UInt32, vertex_count)))
 end
 
 """
@@ -41787,7 +41793,7 @@ Arguments:
 
 """
 function _MultiDrawIndexedInfoEXT(first_index::Integer, index_count::Integer, vertex_offset::Integer)
-    _MultiDrawIndexedInfoEXT(VkMultiDrawIndexedInfoEXT(first_index, index_count, vertex_offset))
+    _MultiDrawIndexedInfoEXT(VkMultiDrawIndexedInfoEXT(convert(UInt32, first_index), convert(UInt32, index_count), convert(Int32, vertex_offset)))
 end
 
 """
@@ -41811,7 +41817,7 @@ function _SubmitInfo(wait_semaphores::AbstractArray, wait_dst_stage_mask::Abstra
     command_buffers = cconvert(Ptr{VkCommandBuffer}, command_buffers)
     signal_semaphores = cconvert(Ptr{VkSemaphore}, signal_semaphores)
     deps = Any[next, wait_semaphores, wait_dst_stage_mask, command_buffers, signal_semaphores]
-    vks = VkSubmitInfo(structure_type(VkSubmitInfo), unsafe_convert(Ptr{Cvoid}, next), wait_semaphore_count, unsafe_convert(Ptr{VkSemaphore}, wait_semaphores), unsafe_convert(Ptr{VkPipelineStageFlags}, wait_dst_stage_mask), command_buffer_count, unsafe_convert(Ptr{VkCommandBuffer}, command_buffers), signal_semaphore_count, unsafe_convert(Ptr{VkSemaphore}, signal_semaphores))
+    vks = VkSubmitInfo(structure_type(VkSubmitInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, wait_semaphore_count), unsafe_convert(Ptr{VkSemaphore}, wait_semaphores), unsafe_convert(Ptr{VkPipelineStageFlags}, wait_dst_stage_mask), convert(UInt32, command_buffer_count), unsafe_convert(Ptr{VkCommandBuffer}, command_buffers), convert(UInt32, signal_semaphore_count), unsafe_convert(Ptr{VkSemaphore}, signal_semaphores))
     _SubmitInfo(vks, deps)
 end
 
@@ -41833,7 +41839,7 @@ Arguments:
 function _DisplayPropertiesKHR(display, display_name::AbstractString, physical_dimensions::_Extent2D, physical_resolution::_Extent2D, plane_reorder_possible::Bool, persistent_content::Bool; supported_transforms = 0)
     display_name = cconvert(Cstring, display_name)
     deps = Any[display_name]
-    vks = VkDisplayPropertiesKHR(display, unsafe_convert(Cstring, display_name), physical_dimensions.vks, physical_resolution.vks, supported_transforms, plane_reorder_possible, persistent_content)
+    vks = VkDisplayPropertiesKHR(convert(VkDisplayKHR, display), unsafe_convert(Cstring, display_name), physical_dimensions.vks, physical_resolution.vks, convert(VkSurfaceTransformFlagsKHR, supported_transforms), convert(VkBool32, plane_reorder_possible), convert(VkBool32, persistent_content))
     _DisplayPropertiesKHR(vks, deps, display)
 end
 
@@ -41848,7 +41854,7 @@ Arguments:
 
 """
 function _DisplayPlanePropertiesKHR(current_display, current_stack_index::Integer)
-    _DisplayPlanePropertiesKHR(VkDisplayPlanePropertiesKHR(current_display, current_stack_index), current_display)
+    _DisplayPlanePropertiesKHR(VkDisplayPlanePropertiesKHR(convert(VkDisplayKHR, current_display), convert(UInt32, current_stack_index)), current_display)
 end
 
 """
@@ -41862,7 +41868,7 @@ Arguments:
 
 """
 function _DisplayModeParametersKHR(visible_region::_Extent2D, refresh_rate::Integer)
-    _DisplayModeParametersKHR(VkDisplayModeParametersKHR(visible_region.vks, refresh_rate))
+    _DisplayModeParametersKHR(VkDisplayModeParametersKHR(visible_region.vks, convert(UInt32, refresh_rate)))
 end
 
 """
@@ -41876,7 +41882,7 @@ Arguments:
 
 """
 function _DisplayModePropertiesKHR(display_mode, parameters::_DisplayModeParametersKHR)
-    _DisplayModePropertiesKHR(VkDisplayModePropertiesKHR(display_mode, parameters.vks), display_mode)
+    _DisplayModePropertiesKHR(VkDisplayModePropertiesKHR(convert(VkDisplayModeKHR, display_mode), parameters.vks), display_mode)
 end
 
 """
@@ -41893,7 +41899,7 @@ Arguments:
 function _DisplayModeCreateInfoKHR(parameters::_DisplayModeParametersKHR; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDisplayModeCreateInfoKHR(structure_type(VkDisplayModeCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), flags, parameters.vks)
+    vks = VkDisplayModeCreateInfoKHR(structure_type(VkDisplayModeCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkDisplayModeCreateFlagsKHR, flags), parameters.vks)
     _DisplayModeCreateInfoKHR(vks, deps)
 end
 
@@ -41915,7 +41921,7 @@ Arguments:
 
 """
 function _DisplayPlaneCapabilitiesKHR(min_src_position::_Offset2D, max_src_position::_Offset2D, min_src_extent::_Extent2D, max_src_extent::_Extent2D, min_dst_position::_Offset2D, max_dst_position::_Offset2D, min_dst_extent::_Extent2D, max_dst_extent::_Extent2D; supported_alpha = 0)
-    _DisplayPlaneCapabilitiesKHR(VkDisplayPlaneCapabilitiesKHR(supported_alpha, min_src_position.vks, max_src_position.vks, min_src_extent.vks, max_src_extent.vks, min_dst_position.vks, max_dst_position.vks, min_dst_extent.vks, max_dst_extent.vks))
+    _DisplayPlaneCapabilitiesKHR(VkDisplayPlaneCapabilitiesKHR(convert(VkDisplayPlaneAlphaFlagsKHR, supported_alpha), min_src_position.vks, max_src_position.vks, min_src_extent.vks, max_src_extent.vks, min_dst_position.vks, max_dst_position.vks, min_dst_extent.vks, max_dst_extent.vks))
 end
 
 """
@@ -41938,7 +41944,7 @@ Arguments:
 function _DisplaySurfaceCreateInfoKHR(display_mode, plane_index::Integer, plane_stack_index::Integer, transform::SurfaceTransformFlagKHR, global_alpha::Real, alpha_mode::DisplayPlaneAlphaFlagKHR, image_extent::_Extent2D; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDisplaySurfaceCreateInfoKHR(structure_type(VkDisplaySurfaceCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), flags, display_mode, plane_index, plane_stack_index, VkSurfaceTransformFlagBitsKHR(transform.val), global_alpha, VkDisplayPlaneAlphaFlagBitsKHR(alpha_mode.val), image_extent.vks)
+    vks = VkDisplaySurfaceCreateInfoKHR(structure_type(VkDisplaySurfaceCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkDisplaySurfaceCreateFlagsKHR, flags), convert(VkDisplayModeKHR, display_mode), convert(UInt32, plane_index), convert(UInt32, plane_stack_index), VkSurfaceTransformFlagBitsKHR(flag_value(transform)), convert(Float32, global_alpha), VkDisplayPlaneAlphaFlagBitsKHR(flag_value(alpha_mode)), image_extent.vks)
     _DisplaySurfaceCreateInfoKHR(vks, deps, display_mode)
 end
 
@@ -41955,7 +41961,7 @@ Arguments:
 function _DisplaySurfaceStereoCreateInfoNV(stereo_type::DisplaySurfaceStereoTypeNV; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDisplaySurfaceStereoCreateInfoNV(structure_type(VkDisplaySurfaceStereoCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), stereo_type)
+    vks = VkDisplaySurfaceStereoCreateInfoNV(structure_type(VkDisplaySurfaceStereoCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkDisplaySurfaceStereoTypeNV, stereo_type))
     _DisplaySurfaceStereoCreateInfoNV(vks, deps)
 end
 
@@ -41974,7 +41980,7 @@ Arguments:
 function _DisplayPresentInfoKHR(src_rect::_Rect2D, dst_rect::_Rect2D, persistent::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDisplayPresentInfoKHR(structure_type(VkDisplayPresentInfoKHR), unsafe_convert(Ptr{Cvoid}, next), src_rect.vks, dst_rect.vks, persistent)
+    vks = VkDisplayPresentInfoKHR(structure_type(VkDisplayPresentInfoKHR), unsafe_convert(Ptr{Cvoid}, next), src_rect.vks, dst_rect.vks, convert(VkBool32, persistent))
     _DisplayPresentInfoKHR(vks, deps)
 end
 
@@ -41997,7 +42003,7 @@ Arguments:
 
 """
 function _SurfaceCapabilitiesKHR(min_image_count::Integer, max_image_count::Integer, current_extent::_Extent2D, min_image_extent::_Extent2D, max_image_extent::_Extent2D, max_image_array_layers::Integer, supported_transforms::SurfaceTransformFlagKHR, current_transform::SurfaceTransformFlagKHR, supported_composite_alpha::CompositeAlphaFlagKHR, supported_usage_flags::ImageUsageFlag)
-    _SurfaceCapabilitiesKHR(VkSurfaceCapabilitiesKHR(min_image_count, max_image_count, current_extent.vks, min_image_extent.vks, max_image_extent.vks, max_image_array_layers, supported_transforms, VkSurfaceTransformFlagBitsKHR(current_transform.val), supported_composite_alpha, supported_usage_flags))
+    _SurfaceCapabilitiesKHR(VkSurfaceCapabilitiesKHR(convert(UInt32, min_image_count), convert(UInt32, max_image_count), current_extent.vks, min_image_extent.vks, max_image_extent.vks, convert(UInt32, max_image_array_layers), convert(VkSurfaceTransformFlagsKHR, supported_transforms), VkSurfaceTransformFlagBitsKHR(flag_value(current_transform)), convert(VkCompositeAlphaFlagsKHR, supported_composite_alpha), convert(VkImageUsageFlags, supported_usage_flags)))
 end
 
 """
@@ -42011,7 +42017,7 @@ Arguments:
 
 """
 function _SurfaceFormatKHR(format::Format, color_space::ColorSpaceKHR)
-    _SurfaceFormatKHR(VkSurfaceFormatKHR(format, color_space))
+    _SurfaceFormatKHR(VkSurfaceFormatKHR(convert(VkFormat, format), convert(VkColorSpaceKHR, color_space)))
 end
 
 """
@@ -42043,7 +42049,7 @@ function _SwapchainCreateInfoKHR(surface, min_image_count::Integer, image_format
     next = cconvert(Ptr{Cvoid}, next)
     queue_family_indices = cconvert(Ptr{UInt32}, queue_family_indices)
     deps = Any[next, queue_family_indices]
-    vks = VkSwapchainCreateInfoKHR(structure_type(VkSwapchainCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), flags, surface, min_image_count, image_format, image_color_space, image_extent.vks, image_array_layers, image_usage, image_sharing_mode, queue_family_index_count, unsafe_convert(Ptr{UInt32}, queue_family_indices), VkSurfaceTransformFlagBitsKHR(pre_transform.val), VkCompositeAlphaFlagBitsKHR(composite_alpha.val), present_mode, clipped, old_swapchain)
+    vks = VkSwapchainCreateInfoKHR(structure_type(VkSwapchainCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkSwapchainCreateFlagsKHR, flags), convert(VkSurfaceKHR, surface), convert(UInt32, min_image_count), convert(VkFormat, image_format), convert(VkColorSpaceKHR, image_color_space), image_extent.vks, convert(UInt32, image_array_layers), convert(VkImageUsageFlags, image_usage), convert(VkSharingMode, image_sharing_mode), convert(UInt32, queue_family_index_count), unsafe_convert(Ptr{UInt32}, queue_family_indices), VkSurfaceTransformFlagBitsKHR(flag_value(pre_transform)), VkCompositeAlphaFlagBitsKHR(flag_value(composite_alpha)), convert(VkPresentModeKHR, present_mode), convert(VkBool32, clipped), convert(VkSwapchainKHR, old_swapchain))
     _SwapchainCreateInfoKHR(vks, deps, surface, old_swapchain)
 end
 
@@ -42069,7 +42075,7 @@ function _PresentInfoKHR(wait_semaphores::AbstractArray, swapchains::AbstractArr
     image_indices = cconvert(Ptr{UInt32}, image_indices)
     results = cconvert(Ptr{VkResult}, results)
     deps = Any[next, wait_semaphores, swapchains, image_indices, results]
-    vks = VkPresentInfoKHR(structure_type(VkPresentInfoKHR), unsafe_convert(Ptr{Cvoid}, next), wait_semaphore_count, unsafe_convert(Ptr{VkSemaphore}, wait_semaphores), swapchain_count, unsafe_convert(Ptr{VkSwapchainKHR}, swapchains), unsafe_convert(Ptr{UInt32}, image_indices), unsafe_convert(Ptr{VkResult}, results))
+    vks = VkPresentInfoKHR(structure_type(VkPresentInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, wait_semaphore_count), unsafe_convert(Ptr{VkSemaphore}, wait_semaphores), convert(UInt32, swapchain_count), unsafe_convert(Ptr{VkSwapchainKHR}, swapchains), unsafe_convert(Ptr{UInt32}, image_indices), unsafe_convert(Ptr{VkResult}, results))
     _PresentInfoKHR(vks, deps)
 end
 
@@ -42089,7 +42095,7 @@ function _DebugReportCallbackCreateInfoEXT(pfn_callback::FunctionPtr; next = C_N
     next = cconvert(Ptr{Cvoid}, next)
     user_data = cconvert(Ptr{Cvoid}, user_data)
     deps = Any[next, user_data]
-    vks = VkDebugReportCallbackCreateInfoEXT(structure_type(VkDebugReportCallbackCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), flags, pfn_callback, unsafe_convert(Ptr{Cvoid}, user_data))
+    vks = VkDebugReportCallbackCreateInfoEXT(structure_type(VkDebugReportCallbackCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDebugReportFlagsEXT, flags), pfn_callback, unsafe_convert(Ptr{Cvoid}, user_data))
     _DebugReportCallbackCreateInfoEXT(vks, deps)
 end
 
@@ -42108,7 +42114,7 @@ function _ValidationFlagsEXT(disabled_validation_checks::AbstractArray; next = C
     next = cconvert(Ptr{Cvoid}, next)
     disabled_validation_checks = cconvert(Ptr{VkValidationCheckEXT}, disabled_validation_checks)
     deps = Any[next, disabled_validation_checks]
-    vks = VkValidationFlagsEXT(structure_type(VkValidationFlagsEXT), unsafe_convert(Ptr{Cvoid}, next), disabled_validation_check_count, unsafe_convert(Ptr{VkValidationCheckEXT}, disabled_validation_checks))
+    vks = VkValidationFlagsEXT(structure_type(VkValidationFlagsEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, disabled_validation_check_count), unsafe_convert(Ptr{VkValidationCheckEXT}, disabled_validation_checks))
     _ValidationFlagsEXT(vks, deps)
 end
 
@@ -42130,7 +42136,7 @@ function _ValidationFeaturesEXT(enabled_validation_features::AbstractArray, disa
     enabled_validation_features = cconvert(Ptr{VkValidationFeatureEnableEXT}, enabled_validation_features)
     disabled_validation_features = cconvert(Ptr{VkValidationFeatureDisableEXT}, disabled_validation_features)
     deps = Any[next, enabled_validation_features, disabled_validation_features]
-    vks = VkValidationFeaturesEXT(structure_type(VkValidationFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), enabled_validation_feature_count, unsafe_convert(Ptr{VkValidationFeatureEnableEXT}, enabled_validation_features), disabled_validation_feature_count, unsafe_convert(Ptr{VkValidationFeatureDisableEXT}, disabled_validation_features))
+    vks = VkValidationFeaturesEXT(structure_type(VkValidationFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, enabled_validation_feature_count), unsafe_convert(Ptr{VkValidationFeatureEnableEXT}, enabled_validation_features), convert(UInt32, disabled_validation_feature_count), unsafe_convert(Ptr{VkValidationFeatureDisableEXT}, disabled_validation_features))
     _ValidationFeaturesEXT(vks, deps)
 end
 
@@ -42149,7 +42155,7 @@ function _LayerSettingsCreateInfoEXT(settings::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     settings = cconvert(Ptr{VkLayerSettingEXT}, settings)
     deps = Any[next, settings]
-    vks = VkLayerSettingsCreateInfoEXT(structure_type(VkLayerSettingsCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), setting_count, unsafe_convert(Ptr{VkLayerSettingEXT}, settings))
+    vks = VkLayerSettingsCreateInfoEXT(structure_type(VkLayerSettingsCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, setting_count), unsafe_convert(Ptr{VkLayerSettingEXT}, settings))
     _LayerSettingsCreateInfoEXT(vks, deps)
 end
 
@@ -42171,7 +42177,7 @@ function _LayerSettingEXT(layer_name::AbstractString, setting_name::AbstractStri
     setting_name = cconvert(Cstring, setting_name)
     values = cconvert(Ptr{Cvoid}, values)
     deps = Any[layer_name, setting_name, values]
-    vks = VkLayerSettingEXT(unsafe_convert(Cstring, layer_name), unsafe_convert(Cstring, setting_name), type, value_count, unsafe_convert(Ptr{Cvoid}, values))
+    vks = VkLayerSettingEXT(unsafe_convert(Cstring, layer_name), unsafe_convert(Cstring, setting_name), convert(VkLayerSettingTypeEXT, type), convert(UInt32, value_count), unsafe_convert(Ptr{Cvoid}, values))
     _LayerSettingEXT(vks, deps)
 end
 
@@ -42188,7 +42194,7 @@ Arguments:
 function _PipelineRasterizationStateRasterizationOrderAMD(rasterization_order::RasterizationOrderAMD; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineRasterizationStateRasterizationOrderAMD(structure_type(VkPipelineRasterizationStateRasterizationOrderAMD), unsafe_convert(Ptr{Cvoid}, next), rasterization_order)
+    vks = VkPipelineRasterizationStateRasterizationOrderAMD(structure_type(VkPipelineRasterizationStateRasterizationOrderAMD), unsafe_convert(Ptr{Cvoid}, next), convert(VkRasterizationOrderAMD, rasterization_order))
     _PipelineRasterizationStateRasterizationOrderAMD(vks, deps)
 end
 
@@ -42208,7 +42214,7 @@ function _DebugMarkerObjectNameInfoEXT(object_type::DebugReportObjectTypeEXT, ob
     next = cconvert(Ptr{Cvoid}, next)
     object_name = cconvert(Cstring, object_name)
     deps = Any[next, object_name]
-    vks = VkDebugMarkerObjectNameInfoEXT(structure_type(VkDebugMarkerObjectNameInfoEXT), unsafe_convert(Ptr{Cvoid}, next), object_type, object, unsafe_convert(Cstring, object_name))
+    vks = VkDebugMarkerObjectNameInfoEXT(structure_type(VkDebugMarkerObjectNameInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDebugReportObjectTypeEXT, object_type), convert(UInt64, object), unsafe_convert(Cstring, object_name))
     _DebugMarkerObjectNameInfoEXT(vks, deps)
 end
 
@@ -42230,7 +42236,7 @@ function _DebugMarkerObjectTagInfoEXT(object_type::DebugReportObjectTypeEXT, obj
     next = cconvert(Ptr{Cvoid}, next)
     tag = cconvert(Ptr{Cvoid}, tag)
     deps = Any[next, tag]
-    vks = VkDebugMarkerObjectTagInfoEXT(structure_type(VkDebugMarkerObjectTagInfoEXT), unsafe_convert(Ptr{Cvoid}, next), object_type, object, tag_name, tag_size, unsafe_convert(Ptr{Cvoid}, tag))
+    vks = VkDebugMarkerObjectTagInfoEXT(structure_type(VkDebugMarkerObjectTagInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDebugReportObjectTypeEXT, object_type), convert(UInt64, object), convert(UInt64, tag_name), convert(UInt, tag_size), unsafe_convert(Ptr{Cvoid}, tag))
     _DebugMarkerObjectTagInfoEXT(vks, deps)
 end
 
@@ -42249,7 +42255,7 @@ function _DebugMarkerMarkerInfoEXT(marker_name::AbstractString, color::NTuple{4,
     next = cconvert(Ptr{Cvoid}, next)
     marker_name = cconvert(Cstring, marker_name)
     deps = Any[next, marker_name]
-    vks = VkDebugMarkerMarkerInfoEXT(structure_type(VkDebugMarkerMarkerInfoEXT), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Cstring, marker_name), color)
+    vks = VkDebugMarkerMarkerInfoEXT(structure_type(VkDebugMarkerMarkerInfoEXT), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Cstring, marker_name), convert(NTuple{4, Float32}, color))
     _DebugMarkerMarkerInfoEXT(vks, deps)
 end
 
@@ -42266,7 +42272,7 @@ Arguments:
 function _DedicatedAllocationImageCreateInfoNV(dedicated_allocation::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDedicatedAllocationImageCreateInfoNV(structure_type(VkDedicatedAllocationImageCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), dedicated_allocation)
+    vks = VkDedicatedAllocationImageCreateInfoNV(structure_type(VkDedicatedAllocationImageCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, dedicated_allocation))
     _DedicatedAllocationImageCreateInfoNV(vks, deps)
 end
 
@@ -42283,7 +42289,7 @@ Arguments:
 function _DedicatedAllocationBufferCreateInfoNV(dedicated_allocation::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDedicatedAllocationBufferCreateInfoNV(structure_type(VkDedicatedAllocationBufferCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), dedicated_allocation)
+    vks = VkDedicatedAllocationBufferCreateInfoNV(structure_type(VkDedicatedAllocationBufferCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, dedicated_allocation))
     _DedicatedAllocationBufferCreateInfoNV(vks, deps)
 end
 
@@ -42301,7 +42307,7 @@ Arguments:
 function _DedicatedAllocationMemoryAllocateInfoNV(; next = C_NULL, image = C_NULL, buffer = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDedicatedAllocationMemoryAllocateInfoNV(structure_type(VkDedicatedAllocationMemoryAllocateInfoNV), unsafe_convert(Ptr{Cvoid}, next), image, buffer)
+    vks = VkDedicatedAllocationMemoryAllocateInfoNV(structure_type(VkDedicatedAllocationMemoryAllocateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkImage, image), convert(VkBuffer, buffer))
     _DedicatedAllocationMemoryAllocateInfoNV(vks, deps, image, buffer)
 end
 
@@ -42318,7 +42324,7 @@ Arguments:
 
 """
 function _ExternalImageFormatPropertiesNV(image_format_properties::_ImageFormatProperties; external_memory_features = 0, export_from_imported_handle_types = 0, compatible_handle_types = 0)
-    _ExternalImageFormatPropertiesNV(VkExternalImageFormatPropertiesNV(image_format_properties.vks, external_memory_features, export_from_imported_handle_types, compatible_handle_types))
+    _ExternalImageFormatPropertiesNV(VkExternalImageFormatPropertiesNV(image_format_properties.vks, convert(VkExternalMemoryFeatureFlagsNV, external_memory_features), convert(VkExternalMemoryHandleTypeFlagsNV, export_from_imported_handle_types), convert(VkExternalMemoryHandleTypeFlagsNV, compatible_handle_types)))
 end
 
 """
@@ -42334,7 +42340,7 @@ Arguments:
 function _ExternalMemoryImageCreateInfoNV(; next = C_NULL, handle_types = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExternalMemoryImageCreateInfoNV(structure_type(VkExternalMemoryImageCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), handle_types)
+    vks = VkExternalMemoryImageCreateInfoNV(structure_type(VkExternalMemoryImageCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkExternalMemoryHandleTypeFlagsNV, handle_types))
     _ExternalMemoryImageCreateInfoNV(vks, deps)
 end
 
@@ -42351,7 +42357,7 @@ Arguments:
 function _ExportMemoryAllocateInfoNV(; next = C_NULL, handle_types = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExportMemoryAllocateInfoNV(structure_type(VkExportMemoryAllocateInfoNV), unsafe_convert(Ptr{Cvoid}, next), handle_types)
+    vks = VkExportMemoryAllocateInfoNV(structure_type(VkExportMemoryAllocateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkExternalMemoryHandleTypeFlagsNV, handle_types))
     _ExportMemoryAllocateInfoNV(vks, deps)
 end
 
@@ -42368,7 +42374,7 @@ Arguments:
 function _PhysicalDeviceDeviceGeneratedCommandsFeaturesNV(device_generated_commands::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV(structure_type(VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), device_generated_commands)
+    vks = VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV(structure_type(VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, device_generated_commands))
     _PhysicalDeviceDeviceGeneratedCommandsFeaturesNV(vks, deps)
 end
 
@@ -42387,7 +42393,7 @@ Arguments:
 function _PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV(device_generated_compute::Bool, device_generated_compute_pipelines::Bool, device_generated_compute_capture_replay::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV(structure_type(VkPhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), device_generated_compute, device_generated_compute_pipelines, device_generated_compute_capture_replay)
+    vks = VkPhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV(structure_type(VkPhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, device_generated_compute), convert(VkBool32, device_generated_compute_pipelines), convert(VkBool32, device_generated_compute_capture_replay))
     _PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV(vks, deps)
 end
 
@@ -42402,7 +42408,7 @@ Arguments:
 function _DevicePrivateDataCreateInfo(private_data_slot_request_count::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDevicePrivateDataCreateInfo(structure_type(VkDevicePrivateDataCreateInfo), unsafe_convert(Ptr{Cvoid}, next), private_data_slot_request_count)
+    vks = VkDevicePrivateDataCreateInfo(structure_type(VkDevicePrivateDataCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, private_data_slot_request_count))
     _DevicePrivateDataCreateInfo(vks, deps)
 end
 
@@ -42417,7 +42423,7 @@ Arguments:
 function _PrivateDataSlotCreateInfo(flags::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPrivateDataSlotCreateInfo(structure_type(VkPrivateDataSlotCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags)
+    vks = VkPrivateDataSlotCreateInfo(structure_type(VkPrivateDataSlotCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkPrivateDataSlotCreateFlags, flags))
     _PrivateDataSlotCreateInfo(vks, deps)
 end
 
@@ -42432,7 +42438,7 @@ Arguments:
 function _PhysicalDevicePrivateDataFeatures(private_data::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePrivateDataFeatures(structure_type(VkPhysicalDevicePrivateDataFeatures), unsafe_convert(Ptr{Cvoid}, next), private_data)
+    vks = VkPhysicalDevicePrivateDataFeatures(structure_type(VkPhysicalDevicePrivateDataFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, private_data))
     _PhysicalDevicePrivateDataFeatures(vks, deps)
 end
 
@@ -42457,7 +42463,7 @@ Arguments:
 function _PhysicalDeviceDeviceGeneratedCommandsPropertiesNV(max_graphics_shader_group_count::Integer, max_indirect_sequence_count::Integer, max_indirect_commands_token_count::Integer, max_indirect_commands_stream_count::Integer, max_indirect_commands_token_offset::Integer, max_indirect_commands_stream_stride::Integer, min_sequences_count_buffer_offset_alignment::Integer, min_sequences_index_buffer_offset_alignment::Integer, min_indirect_commands_buffer_offset_alignment::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV(structure_type(VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), max_graphics_shader_group_count, max_indirect_sequence_count, max_indirect_commands_token_count, max_indirect_commands_stream_count, max_indirect_commands_token_offset, max_indirect_commands_stream_stride, min_sequences_count_buffer_offset_alignment, min_sequences_index_buffer_offset_alignment, min_indirect_commands_buffer_offset_alignment)
+    vks = VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV(structure_type(VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_graphics_shader_group_count), convert(UInt32, max_indirect_sequence_count), convert(UInt32, max_indirect_commands_token_count), convert(UInt32, max_indirect_commands_stream_count), convert(UInt32, max_indirect_commands_token_offset), convert(UInt32, max_indirect_commands_stream_stride), convert(UInt32, min_sequences_count_buffer_offset_alignment), convert(UInt32, min_sequences_index_buffer_offset_alignment), convert(UInt32, min_indirect_commands_buffer_offset_alignment))
     _PhysicalDeviceDeviceGeneratedCommandsPropertiesNV(vks, deps)
 end
 
@@ -42474,7 +42480,7 @@ Arguments:
 function _PhysicalDeviceClusterAccelerationStructureFeaturesNV(cluster_acceleration_structure::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceClusterAccelerationStructureFeaturesNV(structure_type(VkPhysicalDeviceClusterAccelerationStructureFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), cluster_acceleration_structure)
+    vks = VkPhysicalDeviceClusterAccelerationStructureFeaturesNV(structure_type(VkPhysicalDeviceClusterAccelerationStructureFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, cluster_acceleration_structure))
     _PhysicalDeviceClusterAccelerationStructureFeaturesNV(vks, deps)
 end
 
@@ -42498,7 +42504,7 @@ Arguments:
 function _PhysicalDeviceClusterAccelerationStructurePropertiesNV(max_vertices_per_cluster::Integer, max_triangles_per_cluster::Integer, cluster_scratch_byte_alignment::Integer, cluster_byte_alignment::Integer, cluster_template_byte_alignment::Integer, cluster_bottom_level_byte_alignment::Integer, cluster_template_bounds_byte_alignment::Integer, max_cluster_geometry_index::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceClusterAccelerationStructurePropertiesNV(structure_type(VkPhysicalDeviceClusterAccelerationStructurePropertiesNV), unsafe_convert(Ptr{Cvoid}, next), max_vertices_per_cluster, max_triangles_per_cluster, cluster_scratch_byte_alignment, cluster_byte_alignment, cluster_template_byte_alignment, cluster_bottom_level_byte_alignment, cluster_template_bounds_byte_alignment, max_cluster_geometry_index)
+    vks = VkPhysicalDeviceClusterAccelerationStructurePropertiesNV(structure_type(VkPhysicalDeviceClusterAccelerationStructurePropertiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_vertices_per_cluster), convert(UInt32, max_triangles_per_cluster), convert(UInt32, cluster_scratch_byte_alignment), convert(UInt32, cluster_byte_alignment), convert(UInt32, cluster_template_byte_alignment), convert(UInt32, cluster_bottom_level_byte_alignment), convert(UInt32, cluster_template_bounds_byte_alignment), convert(UInt32, max_cluster_geometry_index))
     _PhysicalDeviceClusterAccelerationStructurePropertiesNV(vks, deps)
 end
 
@@ -42513,7 +42519,7 @@ Arguments:
 
 """
 function _StridedDeviceAddressNV(start_address::Integer, stride_in_bytes::Integer)
-    _StridedDeviceAddressNV(VkStridedDeviceAddressNV(start_address, stride_in_bytes))
+    _StridedDeviceAddressNV(VkStridedDeviceAddressNV(convert(VkDeviceAddress, start_address), convert(VkDeviceSize, stride_in_bytes)))
 end
 
 """
@@ -42529,7 +42535,7 @@ Arguments:
 function _RayTracingPipelineClusterAccelerationStructureCreateInfoNV(allow_cluster_acceleration_structure::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkRayTracingPipelineClusterAccelerationStructureCreateInfoNV(structure_type(VkRayTracingPipelineClusterAccelerationStructureCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), allow_cluster_acceleration_structure)
+    vks = VkRayTracingPipelineClusterAccelerationStructureCreateInfoNV(structure_type(VkRayTracingPipelineClusterAccelerationStructureCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, allow_cluster_acceleration_structure))
     _RayTracingPipelineClusterAccelerationStructureCreateInfoNV(vks, deps)
 end
 
@@ -42545,7 +42551,7 @@ Arguments:
 
 """
 function _ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV(geometry_index::Integer, reserved::Integer, geometry_flags::Integer)
-    _ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV(VkClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV(geometry_index, reserved, geometry_flags))
+    _ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV(VkClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV(convert(UInt32, geometry_index), convert(UInt32, reserved), convert(UInt32, geometry_flags)))
 end
 
 """
@@ -42558,7 +42564,7 @@ Arguments:
 
 """
 function _ClusterAccelerationStructureMoveObjectsInfoNV(src_acceleration_structure::Integer)
-    _ClusterAccelerationStructureMoveObjectsInfoNV(VkClusterAccelerationStructureMoveObjectsInfoNV(src_acceleration_structure))
+    _ClusterAccelerationStructureMoveObjectsInfoNV(VkClusterAccelerationStructureMoveObjectsInfoNV(convert(VkDeviceAddress, src_acceleration_structure)))
 end
 
 """
@@ -42573,7 +42579,7 @@ Arguments:
 
 """
 function _ClusterAccelerationStructureBuildClustersBottomLevelInfoNV(cluster_references_count::Integer, cluster_references_stride::Integer, cluster_references::Integer)
-    _ClusterAccelerationStructureBuildClustersBottomLevelInfoNV(VkClusterAccelerationStructureBuildClustersBottomLevelInfoNV(cluster_references_count, cluster_references_stride, cluster_references))
+    _ClusterAccelerationStructureBuildClustersBottomLevelInfoNV(VkClusterAccelerationStructureBuildClustersBottomLevelInfoNV(convert(UInt32, cluster_references_count), convert(UInt32, cluster_references_stride), convert(VkDeviceAddress, cluster_references)))
 end
 
 """
@@ -42586,7 +42592,7 @@ Arguments:
 
 """
 function _ClusterAccelerationStructureGetTemplateIndicesInfoNV(cluster_template_address::Integer)
-    _ClusterAccelerationStructureGetTemplateIndicesInfoNV(VkClusterAccelerationStructureGetTemplateIndicesInfoNV(cluster_template_address))
+    _ClusterAccelerationStructureGetTemplateIndicesInfoNV(VkClusterAccelerationStructureGetTemplateIndicesInfoNV(convert(VkDeviceAddress, cluster_template_address)))
 end
 
 """
@@ -42615,7 +42621,7 @@ Arguments:
 
 """
 function _ClusterAccelerationStructureBuildTriangleClusterInfoNV(cluster_id::Integer, triangle_count::Integer, vertex_count::Integer, position_truncate_bit_count::Integer, index_type::Integer, opacity_micromap_index_type::Integer, base_geometry_index_and_geometry_flags::_ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV, index_buffer_stride::Integer, vertex_buffer_stride::Integer, geometry_index_and_flags_buffer_stride::Integer, opacity_micromap_index_buffer_stride::Integer, index_buffer::Integer, vertex_buffer::Integer, geometry_index_and_flags_buffer::Integer, opacity_micromap_array::Integer, opacity_micromap_index_buffer::Integer; cluster_flags = 0)
-    _ClusterAccelerationStructureBuildTriangleClusterInfoNV(VkClusterAccelerationStructureBuildTriangleClusterInfoNV(cluster_id, cluster_flags, triangle_count, vertex_count, position_truncate_bit_count, index_type, opacity_micromap_index_type, base_geometry_index_and_geometry_flags.vks, index_buffer_stride, vertex_buffer_stride, geometry_index_and_flags_buffer_stride, opacity_micromap_index_buffer_stride, index_buffer, vertex_buffer, geometry_index_and_flags_buffer, opacity_micromap_array, opacity_micromap_index_buffer))
+    _ClusterAccelerationStructureBuildTriangleClusterInfoNV(VkClusterAccelerationStructureBuildTriangleClusterInfoNV(convert(UInt32, cluster_id), convert(VkClusterAccelerationStructureClusterFlagsNV, cluster_flags), convert(UInt32, triangle_count), convert(UInt32, vertex_count), convert(UInt32, position_truncate_bit_count), convert(UInt32, index_type), convert(UInt32, opacity_micromap_index_type), base_geometry_index_and_geometry_flags.vks, convert(UInt16, index_buffer_stride), convert(UInt16, vertex_buffer_stride), convert(UInt16, geometry_index_and_flags_buffer_stride), convert(UInt16, opacity_micromap_index_buffer_stride), convert(VkDeviceAddress, index_buffer), convert(VkDeviceAddress, vertex_buffer), convert(VkDeviceAddress, geometry_index_and_flags_buffer), convert(VkDeviceAddress, opacity_micromap_array), convert(VkDeviceAddress, opacity_micromap_index_buffer)))
 end
 
 """
@@ -42645,7 +42651,7 @@ Arguments:
 
 """
 function _ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV(cluster_id::Integer, triangle_count::Integer, vertex_count::Integer, position_truncate_bit_count::Integer, index_type::Integer, opacity_micromap_index_type::Integer, base_geometry_index_and_geometry_flags::_ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV, index_buffer_stride::Integer, vertex_buffer_stride::Integer, geometry_index_and_flags_buffer_stride::Integer, opacity_micromap_index_buffer_stride::Integer, index_buffer::Integer, vertex_buffer::Integer, geometry_index_and_flags_buffer::Integer, opacity_micromap_array::Integer, opacity_micromap_index_buffer::Integer, instantiation_bounding_box_limit::Integer; cluster_flags = 0)
-    _ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV(VkClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV(cluster_id, cluster_flags, triangle_count, vertex_count, position_truncate_bit_count, index_type, opacity_micromap_index_type, base_geometry_index_and_geometry_flags.vks, index_buffer_stride, vertex_buffer_stride, geometry_index_and_flags_buffer_stride, opacity_micromap_index_buffer_stride, index_buffer, vertex_buffer, geometry_index_and_flags_buffer, opacity_micromap_array, opacity_micromap_index_buffer, instantiation_bounding_box_limit))
+    _ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV(VkClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV(convert(UInt32, cluster_id), convert(VkClusterAccelerationStructureClusterFlagsNV, cluster_flags), convert(UInt32, triangle_count), convert(UInt32, vertex_count), convert(UInt32, position_truncate_bit_count), convert(UInt32, index_type), convert(UInt32, opacity_micromap_index_type), base_geometry_index_and_geometry_flags.vks, convert(UInt16, index_buffer_stride), convert(UInt16, vertex_buffer_stride), convert(UInt16, geometry_index_and_flags_buffer_stride), convert(UInt16, opacity_micromap_index_buffer_stride), convert(VkDeviceAddress, index_buffer), convert(VkDeviceAddress, vertex_buffer), convert(VkDeviceAddress, geometry_index_and_flags_buffer), convert(VkDeviceAddress, opacity_micromap_array), convert(VkDeviceAddress, opacity_micromap_index_buffer), convert(VkDeviceAddress, instantiation_bounding_box_limit)))
 end
 
 """
@@ -42662,7 +42668,7 @@ Arguments:
 
 """
 function _ClusterAccelerationStructureInstantiateClusterInfoNV(cluster_id_offset::Integer, geometry_index_offset::Integer, reserved::Integer, cluster_template_address::Integer, vertex_buffer::_StridedDeviceAddressNV)
-    _ClusterAccelerationStructureInstantiateClusterInfoNV(VkClusterAccelerationStructureInstantiateClusterInfoNV(cluster_id_offset, geometry_index_offset, reserved, cluster_template_address, vertex_buffer.vks))
+    _ClusterAccelerationStructureInstantiateClusterInfoNV(VkClusterAccelerationStructureInstantiateClusterInfoNV(convert(UInt32, cluster_id_offset), convert(UInt32, geometry_index_offset), convert(UInt32, reserved), convert(VkDeviceAddress, cluster_template_address), vertex_buffer.vks))
 end
 
 """
@@ -42679,7 +42685,7 @@ Arguments:
 function _ClusterAccelerationStructureClustersBottomLevelInputNV(max_total_cluster_count::Integer, max_cluster_count_per_acceleration_structure::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkClusterAccelerationStructureClustersBottomLevelInputNV(structure_type(VkClusterAccelerationStructureClustersBottomLevelInputNV), unsafe_convert(Ptr{Cvoid}, next), max_total_cluster_count, max_cluster_count_per_acceleration_structure)
+    vks = VkClusterAccelerationStructureClustersBottomLevelInputNV(structure_type(VkClusterAccelerationStructureClustersBottomLevelInputNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_total_cluster_count), convert(UInt32, max_cluster_count_per_acceleration_structure))
     _ClusterAccelerationStructureClustersBottomLevelInputNV(vks, deps)
 end
 
@@ -42703,7 +42709,7 @@ Arguments:
 function _ClusterAccelerationStructureTriangleClusterInputNV(vertex_format::Format, max_geometry_index_value::Integer, max_cluster_unique_geometry_count::Integer, max_cluster_triangle_count::Integer, max_cluster_vertex_count::Integer, max_total_triangle_count::Integer, max_total_vertex_count::Integer, min_position_truncate_bit_count::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkClusterAccelerationStructureTriangleClusterInputNV(structure_type(VkClusterAccelerationStructureTriangleClusterInputNV), unsafe_convert(Ptr{Cvoid}, next), vertex_format, max_geometry_index_value, max_cluster_unique_geometry_count, max_cluster_triangle_count, max_cluster_vertex_count, max_total_triangle_count, max_total_vertex_count, min_position_truncate_bit_count)
+    vks = VkClusterAccelerationStructureTriangleClusterInputNV(structure_type(VkClusterAccelerationStructureTriangleClusterInputNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkFormat, vertex_format), convert(UInt32, max_geometry_index_value), convert(UInt32, max_cluster_unique_geometry_count), convert(UInt32, max_cluster_triangle_count), convert(UInt32, max_cluster_vertex_count), convert(UInt32, max_total_triangle_count), convert(UInt32, max_total_vertex_count), convert(UInt32, min_position_truncate_bit_count))
     _ClusterAccelerationStructureTriangleClusterInputNV(vks, deps)
 end
 
@@ -42722,7 +42728,7 @@ Arguments:
 function _ClusterAccelerationStructureMoveObjectsInputNV(type::ClusterAccelerationStructureTypeNV, no_move_overlap::Bool, max_moved_bytes::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkClusterAccelerationStructureMoveObjectsInputNV(structure_type(VkClusterAccelerationStructureMoveObjectsInputNV), unsafe_convert(Ptr{Cvoid}, next), type, no_move_overlap, max_moved_bytes)
+    vks = VkClusterAccelerationStructureMoveObjectsInputNV(structure_type(VkClusterAccelerationStructureMoveObjectsInputNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkClusterAccelerationStructureTypeNV, type), convert(VkBool32, no_move_overlap), convert(VkDeviceSize, max_moved_bytes))
     _ClusterAccelerationStructureMoveObjectsInputNV(vks, deps)
 end
 
@@ -42743,7 +42749,7 @@ Arguments:
 function _ClusterAccelerationStructureInputInfoNV(max_acceleration_structure_count::Integer, op_type::ClusterAccelerationStructureOpTypeNV, op_mode::ClusterAccelerationStructureOpModeNV, op_input::_ClusterAccelerationStructureOpInputNV; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkClusterAccelerationStructureInputInfoNV(structure_type(VkClusterAccelerationStructureInputInfoNV), unsafe_convert(Ptr{Cvoid}, next), max_acceleration_structure_count, flags, op_type, op_mode, op_input.vks)
+    vks = VkClusterAccelerationStructureInputInfoNV(structure_type(VkClusterAccelerationStructureInputInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_acceleration_structure_count), convert(VkBuildAccelerationStructureFlagsKHR, flags), convert(VkClusterAccelerationStructureOpTypeNV, op_type), convert(VkClusterAccelerationStructureOpModeNV, op_mode), op_input.vks)
     _ClusterAccelerationStructureInputInfoNV(vks, deps)
 end
 
@@ -42767,7 +42773,7 @@ Arguments:
 function _ClusterAccelerationStructureCommandsInfoNV(input::_ClusterAccelerationStructureInputInfoNV, dst_implicit_data::Integer, scratch_data::Integer, dst_addresses_array::_StridedDeviceAddressRegionKHR, dst_sizes_array::_StridedDeviceAddressRegionKHR, src_infos_array::_StridedDeviceAddressRegionKHR, src_infos_count::Integer; next = C_NULL, address_resolution_flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkClusterAccelerationStructureCommandsInfoNV(structure_type(VkClusterAccelerationStructureCommandsInfoNV), unsafe_convert(Ptr{Cvoid}, next), input.vks, dst_implicit_data, scratch_data, dst_addresses_array.vks, dst_sizes_array.vks, src_infos_array.vks, src_infos_count, address_resolution_flags)
+    vks = VkClusterAccelerationStructureCommandsInfoNV(structure_type(VkClusterAccelerationStructureCommandsInfoNV), unsafe_convert(Ptr{Cvoid}, next), input.vks, convert(VkDeviceAddress, dst_implicit_data), convert(VkDeviceAddress, scratch_data), dst_addresses_array.vks, dst_sizes_array.vks, src_infos_array.vks, convert(VkDeviceAddress, src_infos_count), convert(VkClusterAccelerationStructureAddressResolutionFlagsNV, address_resolution_flags))
     _ClusterAccelerationStructureCommandsInfoNV(vks, deps)
 end
 
@@ -42784,7 +42790,7 @@ Arguments:
 function _PhysicalDeviceMultiDrawPropertiesEXT(max_multi_draw_count::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMultiDrawPropertiesEXT(structure_type(VkPhysicalDeviceMultiDrawPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), max_multi_draw_count)
+    vks = VkPhysicalDeviceMultiDrawPropertiesEXT(structure_type(VkPhysicalDeviceMultiDrawPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_multi_draw_count))
     _PhysicalDeviceMultiDrawPropertiesEXT(vks, deps)
 end
 
@@ -42807,7 +42813,7 @@ function _GraphicsShaderGroupCreateInfoNV(stages::AbstractArray; next = C_NULL, 
     vertex_input_state = cconvert(Ptr{VkPipelineVertexInputStateCreateInfo}, vertex_input_state)
     tessellation_state = cconvert(Ptr{VkPipelineTessellationStateCreateInfo}, tessellation_state)
     deps = Any[next, stages, vertex_input_state, tessellation_state]
-    vks = VkGraphicsShaderGroupCreateInfoNV(structure_type(VkGraphicsShaderGroupCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), stage_count, unsafe_convert(Ptr{VkPipelineShaderStageCreateInfo}, stages), unsafe_convert(Ptr{VkPipelineVertexInputStateCreateInfo}, vertex_input_state), unsafe_convert(Ptr{VkPipelineTessellationStateCreateInfo}, tessellation_state))
+    vks = VkGraphicsShaderGroupCreateInfoNV(structure_type(VkGraphicsShaderGroupCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, stage_count), unsafe_convert(Ptr{VkPipelineShaderStageCreateInfo}, stages), unsafe_convert(Ptr{VkPipelineVertexInputStateCreateInfo}, vertex_input_state), unsafe_convert(Ptr{VkPipelineTessellationStateCreateInfo}, tessellation_state))
     _GraphicsShaderGroupCreateInfoNV(vks, deps)
 end
 
@@ -42829,7 +42835,7 @@ function _GraphicsPipelineShaderGroupsCreateInfoNV(groups::AbstractArray, pipeli
     groups = cconvert(Ptr{VkGraphicsShaderGroupCreateInfoNV}, groups)
     pipelines = cconvert(Ptr{VkPipeline}, pipelines)
     deps = Any[next, groups, pipelines]
-    vks = VkGraphicsPipelineShaderGroupsCreateInfoNV(structure_type(VkGraphicsPipelineShaderGroupsCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), group_count, unsafe_convert(Ptr{VkGraphicsShaderGroupCreateInfoNV}, groups), pipeline_count, unsafe_convert(Ptr{VkPipeline}, pipelines))
+    vks = VkGraphicsPipelineShaderGroupsCreateInfoNV(structure_type(VkGraphicsPipelineShaderGroupsCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, group_count), unsafe_convert(Ptr{VkGraphicsShaderGroupCreateInfoNV}, groups), convert(UInt32, pipeline_count), unsafe_convert(Ptr{VkPipeline}, pipelines))
     _GraphicsPipelineShaderGroupsCreateInfoNV(vks, deps)
 end
 
@@ -42843,7 +42849,7 @@ Arguments:
 
 """
 function _BindShaderGroupIndirectCommandNV(group_index::Integer)
-    _BindShaderGroupIndirectCommandNV(VkBindShaderGroupIndirectCommandNV(group_index))
+    _BindShaderGroupIndirectCommandNV(VkBindShaderGroupIndirectCommandNV(convert(UInt32, group_index)))
 end
 
 """
@@ -42858,7 +42864,7 @@ Arguments:
 
 """
 function _BindIndexBufferIndirectCommandNV(buffer_address::Integer, size::Integer, index_type::IndexType)
-    _BindIndexBufferIndirectCommandNV(VkBindIndexBufferIndirectCommandNV(buffer_address, size, index_type))
+    _BindIndexBufferIndirectCommandNV(VkBindIndexBufferIndirectCommandNV(convert(VkDeviceAddress, buffer_address), convert(UInt32, size), convert(VkIndexType, index_type)))
 end
 
 """
@@ -42873,7 +42879,7 @@ Arguments:
 
 """
 function _BindVertexBufferIndirectCommandNV(buffer_address::Integer, size::Integer, stride::Integer)
-    _BindVertexBufferIndirectCommandNV(VkBindVertexBufferIndirectCommandNV(buffer_address, size, stride))
+    _BindVertexBufferIndirectCommandNV(VkBindVertexBufferIndirectCommandNV(convert(VkDeviceAddress, buffer_address), convert(UInt32, size), convert(UInt32, stride)))
 end
 
 """
@@ -42886,7 +42892,7 @@ Arguments:
 
 """
 function _SetStateFlagsIndirectCommandNV(data::Integer)
-    _SetStateFlagsIndirectCommandNV(VkSetStateFlagsIndirectCommandNV(data))
+    _SetStateFlagsIndirectCommandNV(VkSetStateFlagsIndirectCommandNV(convert(UInt32, data)))
 end
 
 """
@@ -42900,7 +42906,7 @@ Arguments:
 
 """
 function _IndirectCommandsStreamNV(buffer, offset::Integer)
-    _IndirectCommandsStreamNV(VkIndirectCommandsStreamNV(buffer, offset), buffer)
+    _IndirectCommandsStreamNV(VkIndirectCommandsStreamNV(convert(VkBuffer, buffer), convert(VkDeviceSize, offset)), buffer)
 end
 
 """
@@ -42930,7 +42936,7 @@ function _IndirectCommandsLayoutTokenNV(token_type::IndirectCommandsTokenTypeNV,
     index_types = cconvert(Ptr{VkIndexType}, index_types)
     index_type_values = cconvert(Ptr{UInt32}, index_type_values)
     deps = Any[next, index_types, index_type_values]
-    vks = VkIndirectCommandsLayoutTokenNV(structure_type(VkIndirectCommandsLayoutTokenNV), unsafe_convert(Ptr{Cvoid}, next), token_type, stream, offset, vertex_binding_unit, vertex_dynamic_stride, pushconstant_pipeline_layout, pushconstant_shader_stage_flags, pushconstant_offset, pushconstant_size, indirect_state_flags, index_type_count, unsafe_convert(Ptr{VkIndexType}, index_types), unsafe_convert(Ptr{UInt32}, index_type_values))
+    vks = VkIndirectCommandsLayoutTokenNV(structure_type(VkIndirectCommandsLayoutTokenNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkIndirectCommandsTokenTypeNV, token_type), convert(UInt32, stream), convert(UInt32, offset), convert(UInt32, vertex_binding_unit), convert(VkBool32, vertex_dynamic_stride), convert(VkPipelineLayout, pushconstant_pipeline_layout), convert(VkShaderStageFlags, pushconstant_shader_stage_flags), convert(UInt32, pushconstant_offset), convert(UInt32, pushconstant_size), convert(VkIndirectStateFlagsNV, indirect_state_flags), convert(UInt32, index_type_count), unsafe_convert(Ptr{VkIndexType}, index_types), unsafe_convert(Ptr{UInt32}, index_type_values))
     _IndirectCommandsLayoutTokenNV(vks, deps, pushconstant_pipeline_layout)
 end
 
@@ -42954,7 +42960,7 @@ function _IndirectCommandsLayoutCreateInfoNV(pipeline_bind_point::PipelineBindPo
     tokens = cconvert(Ptr{VkIndirectCommandsLayoutTokenNV}, tokens)
     stream_strides = cconvert(Ptr{UInt32}, stream_strides)
     deps = Any[next, tokens, stream_strides]
-    vks = VkIndirectCommandsLayoutCreateInfoNV(structure_type(VkIndirectCommandsLayoutCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), flags, pipeline_bind_point, token_count, unsafe_convert(Ptr{VkIndirectCommandsLayoutTokenNV}, tokens), stream_count, unsafe_convert(Ptr{UInt32}, stream_strides))
+    vks = VkIndirectCommandsLayoutCreateInfoNV(structure_type(VkIndirectCommandsLayoutCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkIndirectCommandsLayoutUsageFlagsNV, flags), convert(VkPipelineBindPoint, pipeline_bind_point), convert(UInt32, token_count), unsafe_convert(Ptr{VkIndirectCommandsLayoutTokenNV}, tokens), convert(UInt32, stream_count), unsafe_convert(Ptr{UInt32}, stream_strides))
     _IndirectCommandsLayoutCreateInfoNV(vks, deps)
 end
 
@@ -42984,7 +42990,7 @@ function _GeneratedCommandsInfoNV(pipeline_bind_point::PipelineBindPoint, pipeli
     next = cconvert(Ptr{Cvoid}, next)
     streams = cconvert(Ptr{VkIndirectCommandsStreamNV}, streams)
     deps = Any[next, streams]
-    vks = VkGeneratedCommandsInfoNV(structure_type(VkGeneratedCommandsInfoNV), unsafe_convert(Ptr{Cvoid}, next), pipeline_bind_point, pipeline, indirect_commands_layout, stream_count, unsafe_convert(Ptr{VkIndirectCommandsStreamNV}, streams), sequences_count, preprocess_buffer, preprocess_offset, preprocess_size, sequences_count_buffer, sequences_count_offset, sequences_index_buffer, sequences_index_offset)
+    vks = VkGeneratedCommandsInfoNV(structure_type(VkGeneratedCommandsInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineBindPoint, pipeline_bind_point), convert(VkPipeline, pipeline), convert(VkIndirectCommandsLayoutNV, indirect_commands_layout), convert(UInt32, stream_count), unsafe_convert(Ptr{VkIndirectCommandsStreamNV}, streams), convert(UInt32, sequences_count), convert(VkBuffer, preprocess_buffer), convert(VkDeviceSize, preprocess_offset), convert(VkDeviceSize, preprocess_size), convert(VkBuffer, sequences_count_buffer), convert(VkDeviceSize, sequences_count_offset), convert(VkBuffer, sequences_index_buffer), convert(VkDeviceSize, sequences_index_offset))
     _GeneratedCommandsInfoNV(vks, deps, pipeline, indirect_commands_layout, preprocess_buffer, sequences_count_buffer, sequences_index_buffer)
 end
 
@@ -43004,7 +43010,7 @@ Arguments:
 function _GeneratedCommandsMemoryRequirementsInfoNV(pipeline_bind_point::PipelineBindPoint, pipeline, indirect_commands_layout, max_sequences_count::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkGeneratedCommandsMemoryRequirementsInfoNV(structure_type(VkGeneratedCommandsMemoryRequirementsInfoNV), unsafe_convert(Ptr{Cvoid}, next), pipeline_bind_point, pipeline, indirect_commands_layout, max_sequences_count)
+    vks = VkGeneratedCommandsMemoryRequirementsInfoNV(structure_type(VkGeneratedCommandsMemoryRequirementsInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineBindPoint, pipeline_bind_point), convert(VkPipeline, pipeline), convert(VkIndirectCommandsLayoutNV, indirect_commands_layout), convert(UInt32, max_sequences_count))
     _GeneratedCommandsMemoryRequirementsInfoNV(vks, deps, pipeline, indirect_commands_layout)
 end
 
@@ -43022,7 +43028,7 @@ Arguments:
 function _PipelineIndirectDeviceAddressInfoNV(pipeline_bind_point::PipelineBindPoint, pipeline; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineIndirectDeviceAddressInfoNV(structure_type(VkPipelineIndirectDeviceAddressInfoNV), unsafe_convert(Ptr{Cvoid}, next), pipeline_bind_point, pipeline)
+    vks = VkPipelineIndirectDeviceAddressInfoNV(structure_type(VkPipelineIndirectDeviceAddressInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineBindPoint, pipeline_bind_point), convert(VkPipeline, pipeline))
     _PipelineIndirectDeviceAddressInfoNV(vks, deps, pipeline)
 end
 
@@ -43036,7 +43042,7 @@ Arguments:
 
 """
 function _BindPipelineIndirectCommandNV(pipeline_address::Integer)
-    _BindPipelineIndirectCommandNV(VkBindPipelineIndirectCommandNV(pipeline_address))
+    _BindPipelineIndirectCommandNV(VkBindPipelineIndirectCommandNV(convert(VkDeviceAddress, pipeline_address)))
 end
 
 """
@@ -43114,7 +43120,7 @@ Arguments:
 function _PhysicalDeviceImageFormatInfo2(format::Format, type::ImageType, tiling::ImageTiling, usage::ImageUsageFlag; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceImageFormatInfo2(structure_type(VkPhysicalDeviceImageFormatInfo2), unsafe_convert(Ptr{Cvoid}, next), format, type, tiling, usage, flags)
+    vks = VkPhysicalDeviceImageFormatInfo2(structure_type(VkPhysicalDeviceImageFormatInfo2), unsafe_convert(Ptr{Cvoid}, next), convert(VkFormat, format), convert(VkImageType, type), convert(VkImageTiling, tiling), convert(VkImageUsageFlags, usage), convert(VkImageCreateFlags, flags))
     _PhysicalDeviceImageFormatInfo2(vks, deps)
 end
 
@@ -43178,7 +43184,7 @@ Arguments:
 function _PhysicalDeviceSparseImageFormatInfo2(format::Format, type::ImageType, samples::SampleCountFlag, usage::ImageUsageFlag, tiling::ImageTiling; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceSparseImageFormatInfo2(structure_type(VkPhysicalDeviceSparseImageFormatInfo2), unsafe_convert(Ptr{Cvoid}, next), format, type, VkSampleCountFlagBits(samples.val), usage, tiling)
+    vks = VkPhysicalDeviceSparseImageFormatInfo2(structure_type(VkPhysicalDeviceSparseImageFormatInfo2), unsafe_convert(Ptr{Cvoid}, next), convert(VkFormat, format), convert(VkImageType, type), VkSampleCountFlagBits(flag_value(samples)), convert(VkImageUsageFlags, usage), convert(VkImageTiling, tiling))
     _PhysicalDeviceSparseImageFormatInfo2(vks, deps)
 end
 
@@ -43193,7 +43199,7 @@ Arguments:
 function _PhysicalDevicePushDescriptorProperties(max_push_descriptors::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePushDescriptorProperties(structure_type(VkPhysicalDevicePushDescriptorProperties), unsafe_convert(Ptr{Cvoid}, next), max_push_descriptors)
+    vks = VkPhysicalDevicePushDescriptorProperties(structure_type(VkPhysicalDevicePushDescriptorProperties), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_push_descriptors))
     _PhysicalDevicePushDescriptorProperties(vks, deps)
 end
 
@@ -43208,7 +43214,7 @@ Arguments:
 
 """
 function _ConformanceVersion(major::Integer, minor::Integer, subminor::Integer, patch::Integer)
-    _ConformanceVersion(VkConformanceVersion(major, minor, subminor, patch))
+    _ConformanceVersion(VkConformanceVersion(convert(UInt8, major), convert(UInt8, minor), convert(UInt8, subminor), convert(UInt8, patch)))
 end
 
 """
@@ -43225,7 +43231,7 @@ Arguments:
 function _PhysicalDeviceDriverProperties(driver_id::DriverId, driver_name::AbstractString, driver_info::AbstractString, conformance_version::_ConformanceVersion; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDriverProperties(structure_type(VkPhysicalDeviceDriverProperties), unsafe_convert(Ptr{Cvoid}, next), driver_id, driver_name, driver_info, conformance_version.vks)
+    vks = VkPhysicalDeviceDriverProperties(structure_type(VkPhysicalDeviceDriverProperties), unsafe_convert(Ptr{Cvoid}, next), convert(VkDriverId, driver_id), convert(NTuple{Int(VK_MAX_DRIVER_NAME_SIZE), Char}, driver_name), convert(NTuple{Int(VK_MAX_DRIVER_INFO_SIZE), Char}, driver_info), conformance_version.vks)
     _PhysicalDeviceDriverProperties(vks, deps)
 end
 
@@ -43244,7 +43250,7 @@ function _PresentRegionsKHR(; next = C_NULL, regions = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     regions = cconvert(Ptr{VkPresentRegionKHR}, regions)
     deps = Any[next, regions]
-    vks = VkPresentRegionsKHR(structure_type(VkPresentRegionsKHR), unsafe_convert(Ptr{Cvoid}, next), swapchain_count, unsafe_convert(Ptr{VkPresentRegionKHR}, regions))
+    vks = VkPresentRegionsKHR(structure_type(VkPresentRegionsKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, swapchain_count), unsafe_convert(Ptr{VkPresentRegionKHR}, regions))
     _PresentRegionsKHR(vks, deps)
 end
 
@@ -43261,7 +43267,7 @@ function _PresentRegionKHR(; rectangles = C_NULL)
     rectangle_count = pointer_length(rectangles)
     rectangles = cconvert(Ptr{VkRectLayerKHR}, rectangles)
     deps = Any[rectangles]
-    vks = VkPresentRegionKHR(rectangle_count, unsafe_convert(Ptr{VkRectLayerKHR}, rectangles))
+    vks = VkPresentRegionKHR(convert(UInt32, rectangle_count), unsafe_convert(Ptr{VkRectLayerKHR}, rectangles))
     _PresentRegionKHR(vks, deps)
 end
 
@@ -43277,7 +43283,7 @@ Arguments:
 
 """
 function _RectLayerKHR(offset::_Offset2D, extent::_Extent2D, layer::Integer)
-    _RectLayerKHR(VkRectLayerKHR(offset.vks, extent.vks, layer))
+    _RectLayerKHR(VkRectLayerKHR(offset.vks, extent.vks, convert(UInt32, layer)))
 end
 
 """
@@ -43292,7 +43298,7 @@ Arguments:
 function _PhysicalDeviceVariablePointersFeatures(variable_pointers_storage_buffer::Bool, variable_pointers::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceVariablePointersFeatures(structure_type(VkPhysicalDeviceVariablePointersFeatures), unsafe_convert(Ptr{Cvoid}, next), variable_pointers_storage_buffer, variable_pointers)
+    vks = VkPhysicalDeviceVariablePointersFeatures(structure_type(VkPhysicalDeviceVariablePointersFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, variable_pointers_storage_buffer), convert(VkBool32, variable_pointers))
     _PhysicalDeviceVariablePointersFeatures(vks, deps)
 end
 
@@ -43306,7 +43312,7 @@ Arguments:
 
 """
 function _ExternalMemoryProperties(external_memory_features::ExternalMemoryFeatureFlag, compatible_handle_types::ExternalMemoryHandleTypeFlag; export_from_imported_handle_types = 0)
-    _ExternalMemoryProperties(VkExternalMemoryProperties(external_memory_features, export_from_imported_handle_types, compatible_handle_types))
+    _ExternalMemoryProperties(VkExternalMemoryProperties(convert(VkExternalMemoryFeatureFlags, external_memory_features), convert(VkExternalMemoryHandleTypeFlags, export_from_imported_handle_types), convert(VkExternalMemoryHandleTypeFlags, compatible_handle_types)))
 end
 
 """
@@ -43320,7 +43326,7 @@ Arguments:
 function _PhysicalDeviceExternalImageFormatInfo(; next = C_NULL, handle_type = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceExternalImageFormatInfo(structure_type(VkPhysicalDeviceExternalImageFormatInfo), unsafe_convert(Ptr{Cvoid}, next), VkExternalMemoryHandleTypeFlagBits(handle_type.val))
+    vks = VkPhysicalDeviceExternalImageFormatInfo(structure_type(VkPhysicalDeviceExternalImageFormatInfo), unsafe_convert(Ptr{Cvoid}, next), VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)))
     _PhysicalDeviceExternalImageFormatInfo(vks, deps)
 end
 
@@ -43352,7 +43358,7 @@ Arguments:
 function _PhysicalDeviceExternalBufferInfo(usage::BufferUsageFlag, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceExternalBufferInfo(structure_type(VkPhysicalDeviceExternalBufferInfo), unsafe_convert(Ptr{Cvoid}, next), flags, usage, VkExternalMemoryHandleTypeFlagBits(handle_type.val))
+    vks = VkPhysicalDeviceExternalBufferInfo(structure_type(VkPhysicalDeviceExternalBufferInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkBufferCreateFlags, flags), convert(VkBufferUsageFlags, usage), VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)))
     _PhysicalDeviceExternalBufferInfo(vks, deps)
 end
 
@@ -43386,7 +43392,7 @@ Arguments:
 function _PhysicalDeviceIDProperties(device_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}, driver_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}, device_luid::NTuple{Int(VK_LUID_SIZE), UInt8}, device_node_mask::Integer, device_luid_valid::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceIDProperties(structure_type(VkPhysicalDeviceIDProperties), unsafe_convert(Ptr{Cvoid}, next), device_uuid, driver_uuid, device_luid, device_node_mask, device_luid_valid)
+    vks = VkPhysicalDeviceIDProperties(structure_type(VkPhysicalDeviceIDProperties), unsafe_convert(Ptr{Cvoid}, next), convert(NTuple{Int(VK_UUID_SIZE), UInt8}, device_uuid), convert(NTuple{Int(VK_UUID_SIZE), UInt8}, driver_uuid), convert(NTuple{Int(VK_LUID_SIZE), UInt8}, device_luid), convert(UInt32, device_node_mask), convert(VkBool32, device_luid_valid))
     _PhysicalDeviceIDProperties(vks, deps)
 end
 
@@ -43401,7 +43407,7 @@ Arguments:
 function _ExternalMemoryImageCreateInfo(; next = C_NULL, handle_types = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExternalMemoryImageCreateInfo(structure_type(VkExternalMemoryImageCreateInfo), unsafe_convert(Ptr{Cvoid}, next), handle_types)
+    vks = VkExternalMemoryImageCreateInfo(structure_type(VkExternalMemoryImageCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkExternalMemoryHandleTypeFlags, handle_types))
     _ExternalMemoryImageCreateInfo(vks, deps)
 end
 
@@ -43416,7 +43422,7 @@ Arguments:
 function _ExternalMemoryBufferCreateInfo(; next = C_NULL, handle_types = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExternalMemoryBufferCreateInfo(structure_type(VkExternalMemoryBufferCreateInfo), unsafe_convert(Ptr{Cvoid}, next), handle_types)
+    vks = VkExternalMemoryBufferCreateInfo(structure_type(VkExternalMemoryBufferCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkExternalMemoryHandleTypeFlags, handle_types))
     _ExternalMemoryBufferCreateInfo(vks, deps)
 end
 
@@ -43431,7 +43437,7 @@ Arguments:
 function _ExportMemoryAllocateInfo(; next = C_NULL, handle_types = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExportMemoryAllocateInfo(structure_type(VkExportMemoryAllocateInfo), unsafe_convert(Ptr{Cvoid}, next), handle_types)
+    vks = VkExportMemoryAllocateInfo(structure_type(VkExportMemoryAllocateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkExternalMemoryHandleTypeFlags, handle_types))
     _ExportMemoryAllocateInfo(vks, deps)
 end
 
@@ -43449,7 +43455,7 @@ Arguments:
 function _ImportMemoryFdInfoKHR(fd::Integer; next = C_NULL, handle_type = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImportMemoryFdInfoKHR(structure_type(VkImportMemoryFdInfoKHR), unsafe_convert(Ptr{Cvoid}, next), VkExternalMemoryHandleTypeFlagBits(handle_type.val), fd)
+    vks = VkImportMemoryFdInfoKHR(structure_type(VkImportMemoryFdInfoKHR), unsafe_convert(Ptr{Cvoid}, next), VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)), convert(Int, fd))
     _ImportMemoryFdInfoKHR(vks, deps)
 end
 
@@ -43466,7 +43472,7 @@ Arguments:
 function _MemoryFdPropertiesKHR(memory_type_bits::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMemoryFdPropertiesKHR(structure_type(VkMemoryFdPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), memory_type_bits)
+    vks = VkMemoryFdPropertiesKHR(structure_type(VkMemoryFdPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, memory_type_bits))
     _MemoryFdPropertiesKHR(vks, deps)
 end
 
@@ -43484,7 +43490,7 @@ Arguments:
 function _MemoryGetFdInfoKHR(memory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMemoryGetFdInfoKHR(structure_type(VkMemoryGetFdInfoKHR), unsafe_convert(Ptr{Cvoid}, next), memory, VkExternalMemoryHandleTypeFlagBits(handle_type.val))
+    vks = VkMemoryGetFdInfoKHR(structure_type(VkMemoryGetFdInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceMemory, memory), VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)))
     _MemoryGetFdInfoKHR(vks, deps, memory)
 end
 
@@ -43503,7 +43509,7 @@ function _ImportMemoryMetalHandleInfoEXT(; next = C_NULL, handle_type = 0, handl
     next = cconvert(Ptr{Cvoid}, next)
     handle = cconvert(Ptr{Cvoid}, handle)
     deps = Any[next, handle]
-    vks = VkImportMemoryMetalHandleInfoEXT(structure_type(VkImportMemoryMetalHandleInfoEXT), unsafe_convert(Ptr{Cvoid}, next), VkExternalMemoryHandleTypeFlagBits(handle_type.val), unsafe_convert(Ptr{Cvoid}, handle))
+    vks = VkImportMemoryMetalHandleInfoEXT(structure_type(VkImportMemoryMetalHandleInfoEXT), unsafe_convert(Ptr{Cvoid}, next), VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)), unsafe_convert(Ptr{Cvoid}, handle))
     _ImportMemoryMetalHandleInfoEXT(vks, deps)
 end
 
@@ -43520,7 +43526,7 @@ Arguments:
 function _MemoryMetalHandlePropertiesEXT(memory_type_bits::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMemoryMetalHandlePropertiesEXT(structure_type(VkMemoryMetalHandlePropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), memory_type_bits)
+    vks = VkMemoryMetalHandlePropertiesEXT(structure_type(VkMemoryMetalHandlePropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, memory_type_bits))
     _MemoryMetalHandlePropertiesEXT(vks, deps)
 end
 
@@ -43538,7 +43544,7 @@ Arguments:
 function _MemoryGetMetalHandleInfoEXT(memory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMemoryGetMetalHandleInfoEXT(structure_type(VkMemoryGetMetalHandleInfoEXT), unsafe_convert(Ptr{Cvoid}, next), memory, VkExternalMemoryHandleTypeFlagBits(handle_type.val))
+    vks = VkMemoryGetMetalHandleInfoEXT(structure_type(VkMemoryGetMetalHandleInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceMemory, memory), VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)))
     _MemoryGetMetalHandleInfoEXT(vks, deps, memory)
 end
 
@@ -43553,7 +43559,7 @@ Arguments:
 function _PhysicalDeviceExternalSemaphoreInfo(handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceExternalSemaphoreInfo(structure_type(VkPhysicalDeviceExternalSemaphoreInfo), unsafe_convert(Ptr{Cvoid}, next), VkExternalSemaphoreHandleTypeFlagBits(handle_type.val))
+    vks = VkPhysicalDeviceExternalSemaphoreInfo(structure_type(VkPhysicalDeviceExternalSemaphoreInfo), unsafe_convert(Ptr{Cvoid}, next), VkExternalSemaphoreHandleTypeFlagBits(flag_value(handle_type)))
     _PhysicalDeviceExternalSemaphoreInfo(vks, deps)
 end
 
@@ -43570,7 +43576,7 @@ Arguments:
 function _ExternalSemaphoreProperties(export_from_imported_handle_types::ExternalSemaphoreHandleTypeFlag, compatible_handle_types::ExternalSemaphoreHandleTypeFlag; next = C_NULL, external_semaphore_features = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExternalSemaphoreProperties(structure_type(VkExternalSemaphoreProperties), unsafe_convert(Ptr{Cvoid}, next), export_from_imported_handle_types, compatible_handle_types, external_semaphore_features)
+    vks = VkExternalSemaphoreProperties(structure_type(VkExternalSemaphoreProperties), unsafe_convert(Ptr{Cvoid}, next), convert(VkExternalSemaphoreHandleTypeFlags, export_from_imported_handle_types), convert(VkExternalSemaphoreHandleTypeFlags, compatible_handle_types), convert(VkExternalSemaphoreFeatureFlags, external_semaphore_features))
     _ExternalSemaphoreProperties(vks, deps)
 end
 
@@ -43585,7 +43591,7 @@ Arguments:
 function _ExportSemaphoreCreateInfo(; next = C_NULL, handle_types = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExportSemaphoreCreateInfo(structure_type(VkExportSemaphoreCreateInfo), unsafe_convert(Ptr{Cvoid}, next), handle_types)
+    vks = VkExportSemaphoreCreateInfo(structure_type(VkExportSemaphoreCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkExternalSemaphoreHandleTypeFlags, handle_types))
     _ExportSemaphoreCreateInfo(vks, deps)
 end
 
@@ -43605,7 +43611,7 @@ Arguments:
 function _ImportSemaphoreFdInfoKHR(semaphore, handle_type::ExternalSemaphoreHandleTypeFlag, fd::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImportSemaphoreFdInfoKHR(structure_type(VkImportSemaphoreFdInfoKHR), unsafe_convert(Ptr{Cvoid}, next), semaphore, flags, VkExternalSemaphoreHandleTypeFlagBits(handle_type.val), fd)
+    vks = VkImportSemaphoreFdInfoKHR(structure_type(VkImportSemaphoreFdInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkSemaphore, semaphore), convert(VkSemaphoreImportFlags, flags), VkExternalSemaphoreHandleTypeFlagBits(flag_value(handle_type)), convert(Int, fd))
     _ImportSemaphoreFdInfoKHR(vks, deps, semaphore)
 end
 
@@ -43623,7 +43629,7 @@ Arguments:
 function _SemaphoreGetFdInfoKHR(semaphore, handle_type::ExternalSemaphoreHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSemaphoreGetFdInfoKHR(structure_type(VkSemaphoreGetFdInfoKHR), unsafe_convert(Ptr{Cvoid}, next), semaphore, VkExternalSemaphoreHandleTypeFlagBits(handle_type.val))
+    vks = VkSemaphoreGetFdInfoKHR(structure_type(VkSemaphoreGetFdInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkSemaphore, semaphore), VkExternalSemaphoreHandleTypeFlagBits(flag_value(handle_type)))
     _SemaphoreGetFdInfoKHR(vks, deps, semaphore)
 end
 
@@ -43638,7 +43644,7 @@ Arguments:
 function _PhysicalDeviceExternalFenceInfo(handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceExternalFenceInfo(structure_type(VkPhysicalDeviceExternalFenceInfo), unsafe_convert(Ptr{Cvoid}, next), VkExternalFenceHandleTypeFlagBits(handle_type.val))
+    vks = VkPhysicalDeviceExternalFenceInfo(structure_type(VkPhysicalDeviceExternalFenceInfo), unsafe_convert(Ptr{Cvoid}, next), VkExternalFenceHandleTypeFlagBits(flag_value(handle_type)))
     _PhysicalDeviceExternalFenceInfo(vks, deps)
 end
 
@@ -43655,7 +43661,7 @@ Arguments:
 function _ExternalFenceProperties(export_from_imported_handle_types::ExternalFenceHandleTypeFlag, compatible_handle_types::ExternalFenceHandleTypeFlag; next = C_NULL, external_fence_features = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExternalFenceProperties(structure_type(VkExternalFenceProperties), unsafe_convert(Ptr{Cvoid}, next), export_from_imported_handle_types, compatible_handle_types, external_fence_features)
+    vks = VkExternalFenceProperties(structure_type(VkExternalFenceProperties), unsafe_convert(Ptr{Cvoid}, next), convert(VkExternalFenceHandleTypeFlags, export_from_imported_handle_types), convert(VkExternalFenceHandleTypeFlags, compatible_handle_types), convert(VkExternalFenceFeatureFlags, external_fence_features))
     _ExternalFenceProperties(vks, deps)
 end
 
@@ -43670,7 +43676,7 @@ Arguments:
 function _ExportFenceCreateInfo(; next = C_NULL, handle_types = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExportFenceCreateInfo(structure_type(VkExportFenceCreateInfo), unsafe_convert(Ptr{Cvoid}, next), handle_types)
+    vks = VkExportFenceCreateInfo(structure_type(VkExportFenceCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkExternalFenceHandleTypeFlags, handle_types))
     _ExportFenceCreateInfo(vks, deps)
 end
 
@@ -43690,7 +43696,7 @@ Arguments:
 function _ImportFenceFdInfoKHR(fence, handle_type::ExternalFenceHandleTypeFlag, fd::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImportFenceFdInfoKHR(structure_type(VkImportFenceFdInfoKHR), unsafe_convert(Ptr{Cvoid}, next), fence, flags, VkExternalFenceHandleTypeFlagBits(handle_type.val), fd)
+    vks = VkImportFenceFdInfoKHR(structure_type(VkImportFenceFdInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkFence, fence), convert(VkFenceImportFlags, flags), VkExternalFenceHandleTypeFlagBits(flag_value(handle_type)), convert(Int, fd))
     _ImportFenceFdInfoKHR(vks, deps, fence)
 end
 
@@ -43708,7 +43714,7 @@ Arguments:
 function _FenceGetFdInfoKHR(fence, handle_type::ExternalFenceHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkFenceGetFdInfoKHR(structure_type(VkFenceGetFdInfoKHR), unsafe_convert(Ptr{Cvoid}, next), fence, VkExternalFenceHandleTypeFlagBits(handle_type.val))
+    vks = VkFenceGetFdInfoKHR(structure_type(VkFenceGetFdInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkFence, fence), VkExternalFenceHandleTypeFlagBits(flag_value(handle_type)))
     _FenceGetFdInfoKHR(vks, deps, fence)
 end
 
@@ -43725,7 +43731,7 @@ Arguments:
 function _PhysicalDeviceMultiviewFeatures(multiview::Bool, multiview_geometry_shader::Bool, multiview_tessellation_shader::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMultiviewFeatures(structure_type(VkPhysicalDeviceMultiviewFeatures), unsafe_convert(Ptr{Cvoid}, next), multiview, multiview_geometry_shader, multiview_tessellation_shader)
+    vks = VkPhysicalDeviceMultiviewFeatures(structure_type(VkPhysicalDeviceMultiviewFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, multiview), convert(VkBool32, multiview_geometry_shader), convert(VkBool32, multiview_tessellation_shader))
     _PhysicalDeviceMultiviewFeatures(vks, deps)
 end
 
@@ -43741,7 +43747,7 @@ Arguments:
 function _PhysicalDeviceMultiviewProperties(max_multiview_view_count::Integer, max_multiview_instance_index::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMultiviewProperties(structure_type(VkPhysicalDeviceMultiviewProperties), unsafe_convert(Ptr{Cvoid}, next), max_multiview_view_count, max_multiview_instance_index)
+    vks = VkPhysicalDeviceMultiviewProperties(structure_type(VkPhysicalDeviceMultiviewProperties), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_multiview_view_count), convert(UInt32, max_multiview_instance_index))
     _PhysicalDeviceMultiviewProperties(vks, deps)
 end
 
@@ -43764,7 +43770,7 @@ function _RenderPassMultiviewCreateInfo(view_masks::AbstractArray, view_offsets:
     view_offsets = cconvert(Ptr{Int32}, view_offsets)
     correlation_masks = cconvert(Ptr{UInt32}, correlation_masks)
     deps = Any[next, view_masks, view_offsets, correlation_masks]
-    vks = VkRenderPassMultiviewCreateInfo(structure_type(VkRenderPassMultiviewCreateInfo), unsafe_convert(Ptr{Cvoid}, next), subpass_count, unsafe_convert(Ptr{UInt32}, view_masks), dependency_count, unsafe_convert(Ptr{Int32}, view_offsets), correlation_mask_count, unsafe_convert(Ptr{UInt32}, correlation_masks))
+    vks = VkRenderPassMultiviewCreateInfo(structure_type(VkRenderPassMultiviewCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, subpass_count), unsafe_convert(Ptr{UInt32}, view_masks), convert(UInt32, dependency_count), unsafe_convert(Ptr{Int32}, view_offsets), convert(UInt32, correlation_mask_count), unsafe_convert(Ptr{UInt32}, correlation_masks))
     _RenderPassMultiviewCreateInfo(vks, deps)
 end
 
@@ -43791,7 +43797,7 @@ Arguments:
 function _SurfaceCapabilities2EXT(min_image_count::Integer, max_image_count::Integer, current_extent::_Extent2D, min_image_extent::_Extent2D, max_image_extent::_Extent2D, max_image_array_layers::Integer, supported_transforms::SurfaceTransformFlagKHR, current_transform::SurfaceTransformFlagKHR, supported_composite_alpha::CompositeAlphaFlagKHR, supported_usage_flags::ImageUsageFlag; next = C_NULL, supported_surface_counters = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSurfaceCapabilities2EXT(structure_type(VkSurfaceCapabilities2EXT), unsafe_convert(Ptr{Cvoid}, next), min_image_count, max_image_count, current_extent.vks, min_image_extent.vks, max_image_extent.vks, max_image_array_layers, supported_transforms, VkSurfaceTransformFlagBitsKHR(current_transform.val), supported_composite_alpha, supported_usage_flags, supported_surface_counters)
+    vks = VkSurfaceCapabilities2EXT(structure_type(VkSurfaceCapabilities2EXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, min_image_count), convert(UInt32, max_image_count), current_extent.vks, min_image_extent.vks, max_image_extent.vks, convert(UInt32, max_image_array_layers), convert(VkSurfaceTransformFlagsKHR, supported_transforms), VkSurfaceTransformFlagBitsKHR(flag_value(current_transform)), convert(VkCompositeAlphaFlagsKHR, supported_composite_alpha), convert(VkImageUsageFlags, supported_usage_flags), convert(VkSurfaceCounterFlagsEXT, supported_surface_counters))
     _SurfaceCapabilities2EXT(vks, deps)
 end
 
@@ -43808,7 +43814,7 @@ Arguments:
 function _DisplayPowerInfoEXT(power_state::DisplayPowerStateEXT; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDisplayPowerInfoEXT(structure_type(VkDisplayPowerInfoEXT), unsafe_convert(Ptr{Cvoid}, next), power_state)
+    vks = VkDisplayPowerInfoEXT(structure_type(VkDisplayPowerInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDisplayPowerStateEXT, power_state))
     _DisplayPowerInfoEXT(vks, deps)
 end
 
@@ -43825,7 +43831,7 @@ Arguments:
 function _DeviceEventInfoEXT(device_event::DeviceEventTypeEXT; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDeviceEventInfoEXT(structure_type(VkDeviceEventInfoEXT), unsafe_convert(Ptr{Cvoid}, next), device_event)
+    vks = VkDeviceEventInfoEXT(structure_type(VkDeviceEventInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceEventTypeEXT, device_event))
     _DeviceEventInfoEXT(vks, deps)
 end
 
@@ -43842,7 +43848,7 @@ Arguments:
 function _DisplayEventInfoEXT(display_event::DisplayEventTypeEXT; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDisplayEventInfoEXT(structure_type(VkDisplayEventInfoEXT), unsafe_convert(Ptr{Cvoid}, next), display_event)
+    vks = VkDisplayEventInfoEXT(structure_type(VkDisplayEventInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDisplayEventTypeEXT, display_event))
     _DisplayEventInfoEXT(vks, deps)
 end
 
@@ -43859,12 +43865,13 @@ Arguments:
 function _SwapchainCounterCreateInfoEXT(; next = C_NULL, surface_counters = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSwapchainCounterCreateInfoEXT(structure_type(VkSwapchainCounterCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), surface_counters)
+    vks = VkSwapchainCounterCreateInfoEXT(structure_type(VkSwapchainCounterCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkSurfaceCounterFlagsEXT, surface_counters))
     _SwapchainCounterCreateInfoEXT(vks, deps)
 end
 
 """
 Arguments:
+- `physical_device_count::UInt32`
 - `physical_devices::NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), PhysicalDevice}`
 - `subset_allocation::Bool`
 - `next::Ptr{Cvoid}`: defaults to `C_NULL`
@@ -43872,11 +43879,11 @@ Arguments:
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceGroupProperties.html)
 
 """
-function _PhysicalDeviceGroupProperties(physical_devices::NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), PhysicalDevice}, subset_allocation::Bool; next = C_NULL)
+function _PhysicalDeviceGroupProperties(physical_device_count::Integer, physical_devices::NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), PhysicalDevice}, subset_allocation::Bool; next = C_NULL)
     physical_device_count = pointer_length(physical_devices)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceGroupProperties(structure_type(VkPhysicalDeviceGroupProperties), unsafe_convert(Ptr{Cvoid}, next), physical_device_count, physical_devices, subset_allocation)
+    vks = VkPhysicalDeviceGroupProperties(structure_type(VkPhysicalDeviceGroupProperties), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, physical_device_count), convert(NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), VkPhysicalDevice}, physical_devices), convert(VkBool32, subset_allocation))
     _PhysicalDeviceGroupProperties(vks, deps)
 end
 
@@ -43892,7 +43899,7 @@ Arguments:
 function _MemoryAllocateFlagsInfo(device_mask::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMemoryAllocateFlagsInfo(structure_type(VkMemoryAllocateFlagsInfo), unsafe_convert(Ptr{Cvoid}, next), flags, device_mask)
+    vks = VkMemoryAllocateFlagsInfo(structure_type(VkMemoryAllocateFlagsInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkMemoryAllocateFlags, flags), convert(UInt32, device_mask))
     _MemoryAllocateFlagsInfo(vks, deps)
 end
 
@@ -43909,7 +43916,7 @@ Arguments:
 function _BindBufferMemoryInfo(buffer, memory, memory_offset::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkBindBufferMemoryInfo(structure_type(VkBindBufferMemoryInfo), unsafe_convert(Ptr{Cvoid}, next), buffer, memory, memory_offset)
+    vks = VkBindBufferMemoryInfo(structure_type(VkBindBufferMemoryInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkBuffer, buffer), convert(VkDeviceMemory, memory), convert(VkDeviceSize, memory_offset))
     _BindBufferMemoryInfo(vks, deps, buffer, memory)
 end
 
@@ -43926,7 +43933,7 @@ function _BindBufferMemoryDeviceGroupInfo(device_indices::AbstractArray; next = 
     next = cconvert(Ptr{Cvoid}, next)
     device_indices = cconvert(Ptr{UInt32}, device_indices)
     deps = Any[next, device_indices]
-    vks = VkBindBufferMemoryDeviceGroupInfo(structure_type(VkBindBufferMemoryDeviceGroupInfo), unsafe_convert(Ptr{Cvoid}, next), device_index_count, unsafe_convert(Ptr{UInt32}, device_indices))
+    vks = VkBindBufferMemoryDeviceGroupInfo(structure_type(VkBindBufferMemoryDeviceGroupInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, device_index_count), unsafe_convert(Ptr{UInt32}, device_indices))
     _BindBufferMemoryDeviceGroupInfo(vks, deps)
 end
 
@@ -43943,7 +43950,7 @@ Arguments:
 function _BindImageMemoryInfo(image, memory, memory_offset::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkBindImageMemoryInfo(structure_type(VkBindImageMemoryInfo), unsafe_convert(Ptr{Cvoid}, next), image, memory, memory_offset)
+    vks = VkBindImageMemoryInfo(structure_type(VkBindImageMemoryInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkImage, image), convert(VkDeviceMemory, memory), convert(VkDeviceSize, memory_offset))
     _BindImageMemoryInfo(vks, deps, image, memory)
 end
 
@@ -43963,7 +43970,7 @@ function _BindImageMemoryDeviceGroupInfo(device_indices::AbstractArray, split_in
     device_indices = cconvert(Ptr{UInt32}, device_indices)
     split_instance_bind_regions = cconvert(Ptr{VkRect2D}, split_instance_bind_regions)
     deps = Any[next, device_indices, split_instance_bind_regions]
-    vks = VkBindImageMemoryDeviceGroupInfo(structure_type(VkBindImageMemoryDeviceGroupInfo), unsafe_convert(Ptr{Cvoid}, next), device_index_count, unsafe_convert(Ptr{UInt32}, device_indices), split_instance_bind_region_count, unsafe_convert(Ptr{VkRect2D}, split_instance_bind_regions))
+    vks = VkBindImageMemoryDeviceGroupInfo(structure_type(VkBindImageMemoryDeviceGroupInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, device_index_count), unsafe_convert(Ptr{UInt32}, device_indices), convert(UInt32, split_instance_bind_region_count), unsafe_convert(Ptr{VkRect2D}, split_instance_bind_regions))
     _BindImageMemoryDeviceGroupInfo(vks, deps)
 end
 
@@ -43981,7 +43988,7 @@ function _DeviceGroupRenderPassBeginInfo(device_mask::Integer, device_render_are
     next = cconvert(Ptr{Cvoid}, next)
     device_render_areas = cconvert(Ptr{VkRect2D}, device_render_areas)
     deps = Any[next, device_render_areas]
-    vks = VkDeviceGroupRenderPassBeginInfo(structure_type(VkDeviceGroupRenderPassBeginInfo), unsafe_convert(Ptr{Cvoid}, next), device_mask, device_render_area_count, unsafe_convert(Ptr{VkRect2D}, device_render_areas))
+    vks = VkDeviceGroupRenderPassBeginInfo(structure_type(VkDeviceGroupRenderPassBeginInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, device_mask), convert(UInt32, device_render_area_count), unsafe_convert(Ptr{VkRect2D}, device_render_areas))
     _DeviceGroupRenderPassBeginInfo(vks, deps)
 end
 
@@ -43996,7 +44003,7 @@ Arguments:
 function _DeviceGroupCommandBufferBeginInfo(device_mask::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDeviceGroupCommandBufferBeginInfo(structure_type(VkDeviceGroupCommandBufferBeginInfo), unsafe_convert(Ptr{Cvoid}, next), device_mask)
+    vks = VkDeviceGroupCommandBufferBeginInfo(structure_type(VkDeviceGroupCommandBufferBeginInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, device_mask))
     _DeviceGroupCommandBufferBeginInfo(vks, deps)
 end
 
@@ -44019,7 +44026,7 @@ function _DeviceGroupSubmitInfo(wait_semaphore_device_indices::AbstractArray, co
     command_buffer_device_masks = cconvert(Ptr{UInt32}, command_buffer_device_masks)
     signal_semaphore_device_indices = cconvert(Ptr{UInt32}, signal_semaphore_device_indices)
     deps = Any[next, wait_semaphore_device_indices, command_buffer_device_masks, signal_semaphore_device_indices]
-    vks = VkDeviceGroupSubmitInfo(structure_type(VkDeviceGroupSubmitInfo), unsafe_convert(Ptr{Cvoid}, next), wait_semaphore_count, unsafe_convert(Ptr{UInt32}, wait_semaphore_device_indices), command_buffer_count, unsafe_convert(Ptr{UInt32}, command_buffer_device_masks), signal_semaphore_count, unsafe_convert(Ptr{UInt32}, signal_semaphore_device_indices))
+    vks = VkDeviceGroupSubmitInfo(structure_type(VkDeviceGroupSubmitInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, wait_semaphore_count), unsafe_convert(Ptr{UInt32}, wait_semaphore_device_indices), convert(UInt32, command_buffer_count), unsafe_convert(Ptr{UInt32}, command_buffer_device_masks), convert(UInt32, signal_semaphore_count), unsafe_convert(Ptr{UInt32}, signal_semaphore_device_indices))
     _DeviceGroupSubmitInfo(vks, deps)
 end
 
@@ -44035,7 +44042,7 @@ Arguments:
 function _DeviceGroupBindSparseInfo(resource_device_index::Integer, memory_device_index::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDeviceGroupBindSparseInfo(structure_type(VkDeviceGroupBindSparseInfo), unsafe_convert(Ptr{Cvoid}, next), resource_device_index, memory_device_index)
+    vks = VkDeviceGroupBindSparseInfo(structure_type(VkDeviceGroupBindSparseInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, resource_device_index), convert(UInt32, memory_device_index))
     _DeviceGroupBindSparseInfo(vks, deps)
 end
 
@@ -44053,7 +44060,7 @@ Arguments:
 function _DeviceGroupPresentCapabilitiesKHR(present_mask::NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), UInt32}, modes::DeviceGroupPresentModeFlagKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDeviceGroupPresentCapabilitiesKHR(structure_type(VkDeviceGroupPresentCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), present_mask, modes)
+    vks = VkDeviceGroupPresentCapabilitiesKHR(structure_type(VkDeviceGroupPresentCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), UInt32}, present_mask), convert(VkDeviceGroupPresentModeFlagsKHR, modes))
     _DeviceGroupPresentCapabilitiesKHR(vks, deps)
 end
 
@@ -44070,7 +44077,7 @@ Arguments:
 function _ImageSwapchainCreateInfoKHR(; next = C_NULL, swapchain = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImageSwapchainCreateInfoKHR(structure_type(VkImageSwapchainCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), swapchain)
+    vks = VkImageSwapchainCreateInfoKHR(structure_type(VkImageSwapchainCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkSwapchainKHR, swapchain))
     _ImageSwapchainCreateInfoKHR(vks, deps, swapchain)
 end
 
@@ -44088,7 +44095,7 @@ Arguments:
 function _BindImageMemorySwapchainInfoKHR(swapchain, image_index::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkBindImageMemorySwapchainInfoKHR(structure_type(VkBindImageMemorySwapchainInfoKHR), unsafe_convert(Ptr{Cvoid}, next), swapchain, image_index)
+    vks = VkBindImageMemorySwapchainInfoKHR(structure_type(VkBindImageMemorySwapchainInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkSwapchainKHR, swapchain), convert(UInt32, image_index))
     _BindImageMemorySwapchainInfoKHR(vks, deps, swapchain)
 end
 
@@ -44109,7 +44116,7 @@ Arguments:
 function _AcquireNextImageInfoKHR(swapchain, timeout::Integer, device_mask::Integer; next = C_NULL, semaphore = C_NULL, fence = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAcquireNextImageInfoKHR(structure_type(VkAcquireNextImageInfoKHR), unsafe_convert(Ptr{Cvoid}, next), swapchain, timeout, semaphore, fence, device_mask)
+    vks = VkAcquireNextImageInfoKHR(structure_type(VkAcquireNextImageInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkSwapchainKHR, swapchain), convert(UInt64, timeout), convert(VkSemaphore, semaphore), convert(VkFence, fence), convert(UInt32, device_mask))
     _AcquireNextImageInfoKHR(vks, deps, swapchain, semaphore, fence)
 end
 
@@ -44129,7 +44136,7 @@ function _DeviceGroupPresentInfoKHR(device_masks::AbstractArray, mode::DeviceGro
     next = cconvert(Ptr{Cvoid}, next)
     device_masks = cconvert(Ptr{UInt32}, device_masks)
     deps = Any[next, device_masks]
-    vks = VkDeviceGroupPresentInfoKHR(structure_type(VkDeviceGroupPresentInfoKHR), unsafe_convert(Ptr{Cvoid}, next), swapchain_count, unsafe_convert(Ptr{UInt32}, device_masks), VkDeviceGroupPresentModeFlagBitsKHR(mode.val))
+    vks = VkDeviceGroupPresentInfoKHR(structure_type(VkDeviceGroupPresentInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, swapchain_count), unsafe_convert(Ptr{UInt32}, device_masks), VkDeviceGroupPresentModeFlagBitsKHR(flag_value(mode)))
     _DeviceGroupPresentInfoKHR(vks, deps)
 end
 
@@ -44146,7 +44153,7 @@ function _DeviceGroupDeviceCreateInfo(physical_devices::AbstractArray; next = C_
     next = cconvert(Ptr{Cvoid}, next)
     physical_devices = cconvert(Ptr{VkPhysicalDevice}, physical_devices)
     deps = Any[next, physical_devices]
-    vks = VkDeviceGroupDeviceCreateInfo(structure_type(VkDeviceGroupDeviceCreateInfo), unsafe_convert(Ptr{Cvoid}, next), physical_device_count, unsafe_convert(Ptr{VkPhysicalDevice}, physical_devices))
+    vks = VkDeviceGroupDeviceCreateInfo(structure_type(VkDeviceGroupDeviceCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, physical_device_count), unsafe_convert(Ptr{VkPhysicalDevice}, physical_devices))
     _DeviceGroupDeviceCreateInfo(vks, deps)
 end
 
@@ -44163,7 +44170,7 @@ Arguments:
 function _DeviceGroupSwapchainCreateInfoKHR(modes::DeviceGroupPresentModeFlagKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDeviceGroupSwapchainCreateInfoKHR(structure_type(VkDeviceGroupSwapchainCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), modes)
+    vks = VkDeviceGroupSwapchainCreateInfoKHR(structure_type(VkDeviceGroupSwapchainCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceGroupPresentModeFlagsKHR, modes))
     _DeviceGroupSwapchainCreateInfoKHR(vks, deps)
 end
 
@@ -44180,7 +44187,7 @@ Arguments:
 
 """
 function _DescriptorUpdateTemplateEntry(dst_binding::Integer, dst_array_element::Integer, descriptor_count::Integer, descriptor_type::DescriptorType, offset::Integer, stride::Integer)
-    _DescriptorUpdateTemplateEntry(VkDescriptorUpdateTemplateEntry(dst_binding, dst_array_element, descriptor_count, descriptor_type, offset, stride))
+    _DescriptorUpdateTemplateEntry(VkDescriptorUpdateTemplateEntry(convert(UInt32, dst_binding), convert(UInt32, dst_array_element), convert(UInt32, descriptor_count), convert(VkDescriptorType, descriptor_type), convert(UInt, offset), convert(UInt, stride)))
 end
 
 """
@@ -44202,7 +44209,7 @@ function _DescriptorUpdateTemplateCreateInfo(descriptor_update_entries::Abstract
     next = cconvert(Ptr{Cvoid}, next)
     descriptor_update_entries = cconvert(Ptr{VkDescriptorUpdateTemplateEntry}, descriptor_update_entries)
     deps = Any[next, descriptor_update_entries]
-    vks = VkDescriptorUpdateTemplateCreateInfo(structure_type(VkDescriptorUpdateTemplateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, descriptor_update_entry_count, unsafe_convert(Ptr{VkDescriptorUpdateTemplateEntry}, descriptor_update_entries), template_type, descriptor_set_layout, pipeline_bind_point, pipeline_layout, set)
+    vks = VkDescriptorUpdateTemplateCreateInfo(structure_type(VkDescriptorUpdateTemplateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkDescriptorUpdateTemplateCreateFlags, flags), convert(UInt32, descriptor_update_entry_count), unsafe_convert(Ptr{VkDescriptorUpdateTemplateEntry}, descriptor_update_entries), convert(VkDescriptorUpdateTemplateType, template_type), convert(VkDescriptorSetLayout, descriptor_set_layout), convert(VkPipelineBindPoint, pipeline_bind_point), convert(VkPipelineLayout, pipeline_layout), convert(UInt32, set))
     _DescriptorUpdateTemplateCreateInfo(vks, deps, descriptor_set_layout, pipeline_layout)
 end
 
@@ -44217,7 +44224,7 @@ Arguments:
 
 """
 function _XYColorEXT(x::Real, y::Real)
-    _XYColorEXT(VkXYColorEXT(x, y))
+    _XYColorEXT(VkXYColorEXT(convert(Float32, x), convert(Float32, y)))
 end
 
 """
@@ -44233,7 +44240,7 @@ Arguments:
 function _PhysicalDevicePresentIdFeaturesKHR(present_id::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePresentIdFeaturesKHR(structure_type(VkPhysicalDevicePresentIdFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), present_id)
+    vks = VkPhysicalDevicePresentIdFeaturesKHR(structure_type(VkPhysicalDevicePresentIdFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, present_id))
     _PhysicalDevicePresentIdFeaturesKHR(vks, deps)
 end
 
@@ -44252,7 +44259,7 @@ function _PresentIdKHR(; next = C_NULL, present_ids = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     present_ids = cconvert(Ptr{UInt64}, present_ids)
     deps = Any[next, present_ids]
-    vks = VkPresentIdKHR(structure_type(VkPresentIdKHR), unsafe_convert(Ptr{Cvoid}, next), swapchain_count, unsafe_convert(Ptr{UInt64}, present_ids))
+    vks = VkPresentIdKHR(structure_type(VkPresentIdKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, swapchain_count), unsafe_convert(Ptr{UInt64}, present_ids))
     _PresentIdKHR(vks, deps)
 end
 
@@ -44269,7 +44276,7 @@ Arguments:
 function _PhysicalDevicePresentId2FeaturesKHR(present_id_2::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePresentId2FeaturesKHR(structure_type(VkPhysicalDevicePresentId2FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), present_id_2)
+    vks = VkPhysicalDevicePresentId2FeaturesKHR(structure_type(VkPhysicalDevicePresentId2FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, present_id_2))
     _PhysicalDevicePresentId2FeaturesKHR(vks, deps)
 end
 
@@ -44288,7 +44295,7 @@ function _PresentId2KHR(; next = C_NULL, present_ids = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     present_ids = cconvert(Ptr{UInt64}, present_ids)
     deps = Any[next, present_ids]
-    vks = VkPresentId2KHR(structure_type(VkPresentId2KHR), unsafe_convert(Ptr{Cvoid}, next), swapchain_count, unsafe_convert(Ptr{UInt64}, present_ids))
+    vks = VkPresentId2KHR(structure_type(VkPresentId2KHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, swapchain_count), unsafe_convert(Ptr{UInt64}, present_ids))
     _PresentId2KHR(vks, deps)
 end
 
@@ -44306,7 +44313,7 @@ Arguments:
 function _PresentWait2InfoKHR(present_id::Integer, timeout::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPresentWait2InfoKHR(structure_type(VkPresentWait2InfoKHR), unsafe_convert(Ptr{Cvoid}, next), present_id, timeout)
+    vks = VkPresentWait2InfoKHR(structure_type(VkPresentWait2InfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt64, present_id), convert(UInt64, timeout))
     _PresentWait2InfoKHR(vks, deps)
 end
 
@@ -44323,7 +44330,7 @@ Arguments:
 function _PhysicalDevicePresentWaitFeaturesKHR(present_wait::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePresentWaitFeaturesKHR(structure_type(VkPhysicalDevicePresentWaitFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), present_wait)
+    vks = VkPhysicalDevicePresentWaitFeaturesKHR(structure_type(VkPhysicalDevicePresentWaitFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, present_wait))
     _PhysicalDevicePresentWaitFeaturesKHR(vks, deps)
 end
 
@@ -44340,7 +44347,7 @@ Arguments:
 function _PhysicalDevicePresentWait2FeaturesKHR(present_wait_2::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePresentWait2FeaturesKHR(structure_type(VkPhysicalDevicePresentWait2FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), present_wait_2)
+    vks = VkPhysicalDevicePresentWait2FeaturesKHR(structure_type(VkPhysicalDevicePresentWait2FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, present_wait_2))
     _PhysicalDevicePresentWait2FeaturesKHR(vks, deps)
 end
 
@@ -44364,7 +44371,7 @@ Arguments:
 function _HdrMetadataEXT(display_primary_red::_XYColorEXT, display_primary_green::_XYColorEXT, display_primary_blue::_XYColorEXT, white_point::_XYColorEXT, max_luminance::Real, min_luminance::Real, max_content_light_level::Real, max_frame_average_light_level::Real; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkHdrMetadataEXT(structure_type(VkHdrMetadataEXT), unsafe_convert(Ptr{Cvoid}, next), display_primary_red.vks, display_primary_green.vks, display_primary_blue.vks, white_point.vks, max_luminance, min_luminance, max_content_light_level, max_frame_average_light_level)
+    vks = VkHdrMetadataEXT(structure_type(VkHdrMetadataEXT), unsafe_convert(Ptr{Cvoid}, next), display_primary_red.vks, display_primary_green.vks, display_primary_blue.vks, white_point.vks, convert(Float32, max_luminance), convert(Float32, min_luminance), convert(Float32, max_content_light_level), convert(Float32, max_frame_average_light_level))
     _HdrMetadataEXT(vks, deps)
 end
 
@@ -44383,7 +44390,7 @@ function _HdrVividDynamicMetadataHUAWEI(dynamic_metadata_size::Integer, dynamic_
     next = cconvert(Ptr{Cvoid}, next)
     dynamic_metadata = cconvert(Ptr{Cvoid}, dynamic_metadata)
     deps = Any[next, dynamic_metadata]
-    vks = VkHdrVividDynamicMetadataHUAWEI(structure_type(VkHdrVividDynamicMetadataHUAWEI), unsafe_convert(Ptr{Cvoid}, next), dynamic_metadata_size, unsafe_convert(Ptr{Cvoid}, dynamic_metadata))
+    vks = VkHdrVividDynamicMetadataHUAWEI(structure_type(VkHdrVividDynamicMetadataHUAWEI), unsafe_convert(Ptr{Cvoid}, next), convert(UInt, dynamic_metadata_size), unsafe_convert(Ptr{Cvoid}, dynamic_metadata))
     _HdrVividDynamicMetadataHUAWEI(vks, deps)
 end
 
@@ -44400,7 +44407,7 @@ Arguments:
 function _DisplayNativeHdrSurfaceCapabilitiesAMD(local_dimming_support::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDisplayNativeHdrSurfaceCapabilitiesAMD(structure_type(VkDisplayNativeHdrSurfaceCapabilitiesAMD), unsafe_convert(Ptr{Cvoid}, next), local_dimming_support)
+    vks = VkDisplayNativeHdrSurfaceCapabilitiesAMD(structure_type(VkDisplayNativeHdrSurfaceCapabilitiesAMD), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, local_dimming_support))
     _DisplayNativeHdrSurfaceCapabilitiesAMD(vks, deps)
 end
 
@@ -44417,7 +44424,7 @@ Arguments:
 function _SwapchainDisplayNativeHdrCreateInfoAMD(local_dimming_enable::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSwapchainDisplayNativeHdrCreateInfoAMD(structure_type(VkSwapchainDisplayNativeHdrCreateInfoAMD), unsafe_convert(Ptr{Cvoid}, next), local_dimming_enable)
+    vks = VkSwapchainDisplayNativeHdrCreateInfoAMD(structure_type(VkSwapchainDisplayNativeHdrCreateInfoAMD), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, local_dimming_enable))
     _SwapchainDisplayNativeHdrCreateInfoAMD(vks, deps)
 end
 
@@ -44431,7 +44438,7 @@ Arguments:
 
 """
 function _RefreshCycleDurationGOOGLE(refresh_duration::Integer)
-    _RefreshCycleDurationGOOGLE(VkRefreshCycleDurationGOOGLE(refresh_duration))
+    _RefreshCycleDurationGOOGLE(VkRefreshCycleDurationGOOGLE(convert(UInt64, refresh_duration)))
 end
 
 """
@@ -44448,7 +44455,7 @@ Arguments:
 
 """
 function _PastPresentationTimingGOOGLE(present_id::Integer, desired_present_time::Integer, actual_present_time::Integer, earliest_present_time::Integer, present_margin::Integer)
-    _PastPresentationTimingGOOGLE(VkPastPresentationTimingGOOGLE(present_id, desired_present_time, actual_present_time, earliest_present_time, present_margin))
+    _PastPresentationTimingGOOGLE(VkPastPresentationTimingGOOGLE(convert(UInt32, present_id), convert(UInt64, desired_present_time), convert(UInt64, actual_present_time), convert(UInt64, earliest_present_time), convert(UInt64, present_margin)))
 end
 
 """
@@ -44466,7 +44473,7 @@ function _PresentTimesInfoGOOGLE(; next = C_NULL, times = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     times = cconvert(Ptr{VkPresentTimeGOOGLE}, times)
     deps = Any[next, times]
-    vks = VkPresentTimesInfoGOOGLE(structure_type(VkPresentTimesInfoGOOGLE), unsafe_convert(Ptr{Cvoid}, next), swapchain_count, unsafe_convert(Ptr{VkPresentTimeGOOGLE}, times))
+    vks = VkPresentTimesInfoGOOGLE(structure_type(VkPresentTimesInfoGOOGLE), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, swapchain_count), unsafe_convert(Ptr{VkPresentTimeGOOGLE}, times))
     _PresentTimesInfoGOOGLE(vks, deps)
 end
 
@@ -44481,7 +44488,7 @@ Arguments:
 
 """
 function _PresentTimeGOOGLE(present_id::Integer, desired_present_time::Integer)
-    _PresentTimeGOOGLE(VkPresentTimeGOOGLE(present_id, desired_present_time))
+    _PresentTimeGOOGLE(VkPresentTimeGOOGLE(convert(UInt32, present_id), convert(UInt64, desired_present_time)))
 end
 
 """
@@ -44499,7 +44506,7 @@ function _MacOSSurfaceCreateInfoMVK(view::Ptr{Cvoid}; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     view = cconvert(Ptr{Cvoid}, view)
     deps = Any[next, view]
-    vks = VkMacOSSurfaceCreateInfoMVK(structure_type(VkMacOSSurfaceCreateInfoMVK), unsafe_convert(Ptr{Cvoid}, next), flags, unsafe_convert(Ptr{Cvoid}, view))
+    vks = VkMacOSSurfaceCreateInfoMVK(structure_type(VkMacOSSurfaceCreateInfoMVK), unsafe_convert(Ptr{Cvoid}, next), convert(VkMacOSSurfaceCreateFlagsMVK, flags), unsafe_convert(Ptr{Cvoid}, view))
     _MacOSSurfaceCreateInfoMVK(vks, deps)
 end
 
@@ -44518,7 +44525,7 @@ function _MetalSurfaceCreateInfoEXT(layer::Ptr{vk.CAMetalLayer}; next = C_NULL, 
     next = cconvert(Ptr{Cvoid}, next)
     layer = cconvert(Ptr{vk.CAMetalLayer}, layer)
     deps = Any[next, layer]
-    vks = VkMetalSurfaceCreateInfoEXT(structure_type(VkMetalSurfaceCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), flags, unsafe_convert(Ptr{vk.CAMetalLayer}, layer))
+    vks = VkMetalSurfaceCreateInfoEXT(structure_type(VkMetalSurfaceCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkMetalSurfaceCreateFlagsEXT, flags), unsafe_convert(Ptr{vk.CAMetalLayer}, layer))
     _MetalSurfaceCreateInfoEXT(vks, deps)
 end
 
@@ -44533,7 +44540,7 @@ Arguments:
 
 """
 function _ViewportWScalingNV(xcoeff::Real, ycoeff::Real)
-    _ViewportWScalingNV(VkViewportWScalingNV(xcoeff, ycoeff))
+    _ViewportWScalingNV(VkViewportWScalingNV(convert(Float32, xcoeff), convert(Float32, ycoeff)))
 end
 
 """
@@ -44552,7 +44559,7 @@ function _PipelineViewportWScalingStateCreateInfoNV(viewport_w_scaling_enable::B
     next = cconvert(Ptr{Cvoid}, next)
     viewport_w_scalings = cconvert(Ptr{VkViewportWScalingNV}, viewport_w_scalings)
     deps = Any[next, viewport_w_scalings]
-    vks = VkPipelineViewportWScalingStateCreateInfoNV(structure_type(VkPipelineViewportWScalingStateCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), viewport_w_scaling_enable, viewport_count, unsafe_convert(Ptr{VkViewportWScalingNV}, viewport_w_scalings))
+    vks = VkPipelineViewportWScalingStateCreateInfoNV(structure_type(VkPipelineViewportWScalingStateCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, viewport_w_scaling_enable), convert(UInt32, viewport_count), unsafe_convert(Ptr{VkViewportWScalingNV}, viewport_w_scalings))
     _PipelineViewportWScalingStateCreateInfoNV(vks, deps)
 end
 
@@ -44569,7 +44576,7 @@ Arguments:
 
 """
 function _ViewportSwizzleNV(x::ViewportCoordinateSwizzleNV, y::ViewportCoordinateSwizzleNV, z::ViewportCoordinateSwizzleNV, w::ViewportCoordinateSwizzleNV)
-    _ViewportSwizzleNV(VkViewportSwizzleNV(x, y, z, w))
+    _ViewportSwizzleNV(VkViewportSwizzleNV(convert(VkViewportCoordinateSwizzleNV, x), convert(VkViewportCoordinateSwizzleNV, y), convert(VkViewportCoordinateSwizzleNV, z), convert(VkViewportCoordinateSwizzleNV, w)))
 end
 
 """
@@ -44588,7 +44595,7 @@ function _PipelineViewportSwizzleStateCreateInfoNV(viewport_swizzles::AbstractAr
     next = cconvert(Ptr{Cvoid}, next)
     viewport_swizzles = cconvert(Ptr{VkViewportSwizzleNV}, viewport_swizzles)
     deps = Any[next, viewport_swizzles]
-    vks = VkPipelineViewportSwizzleStateCreateInfoNV(structure_type(VkPipelineViewportSwizzleStateCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), flags, viewport_count, unsafe_convert(Ptr{VkViewportSwizzleNV}, viewport_swizzles))
+    vks = VkPipelineViewportSwizzleStateCreateInfoNV(structure_type(VkPipelineViewportSwizzleStateCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineViewportSwizzleStateCreateFlagsNV, flags), convert(UInt32, viewport_count), unsafe_convert(Ptr{VkViewportSwizzleNV}, viewport_swizzles))
     _PipelineViewportSwizzleStateCreateInfoNV(vks, deps)
 end
 
@@ -44605,7 +44612,7 @@ Arguments:
 function _PhysicalDeviceDiscardRectanglePropertiesEXT(max_discard_rectangles::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDiscardRectanglePropertiesEXT(structure_type(VkPhysicalDeviceDiscardRectanglePropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), max_discard_rectangles)
+    vks = VkPhysicalDeviceDiscardRectanglePropertiesEXT(structure_type(VkPhysicalDeviceDiscardRectanglePropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_discard_rectangles))
     _PhysicalDeviceDiscardRectanglePropertiesEXT(vks, deps)
 end
 
@@ -44626,7 +44633,7 @@ function _PipelineDiscardRectangleStateCreateInfoEXT(discard_rectangle_mode::Dis
     next = cconvert(Ptr{Cvoid}, next)
     discard_rectangles = cconvert(Ptr{VkRect2D}, discard_rectangles)
     deps = Any[next, discard_rectangles]
-    vks = VkPipelineDiscardRectangleStateCreateInfoEXT(structure_type(VkPipelineDiscardRectangleStateCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), flags, discard_rectangle_mode, discard_rectangle_count, unsafe_convert(Ptr{VkRect2D}, discard_rectangles))
+    vks = VkPipelineDiscardRectangleStateCreateInfoEXT(structure_type(VkPipelineDiscardRectangleStateCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineDiscardRectangleStateCreateFlagsEXT, flags), convert(VkDiscardRectangleModeEXT, discard_rectangle_mode), convert(UInt32, discard_rectangle_count), unsafe_convert(Ptr{VkRect2D}, discard_rectangles))
     _PipelineDiscardRectangleStateCreateInfoEXT(vks, deps)
 end
 
@@ -44643,7 +44650,7 @@ Arguments:
 function _PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX(per_view_position_all_components::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX(structure_type(VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX), unsafe_convert(Ptr{Cvoid}, next), per_view_position_all_components)
+    vks = VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX(structure_type(VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, per_view_position_all_components))
     _PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX(vks, deps)
 end
 
@@ -44657,7 +44664,7 @@ Arguments:
 
 """
 function _InputAttachmentAspectReference(subpass::Integer, input_attachment_index::Integer, aspect_mask::ImageAspectFlag)
-    _InputAttachmentAspectReference(VkInputAttachmentAspectReference(subpass, input_attachment_index, aspect_mask))
+    _InputAttachmentAspectReference(VkInputAttachmentAspectReference(convert(UInt32, subpass), convert(UInt32, input_attachment_index), convert(VkImageAspectFlags, aspect_mask)))
 end
 
 """
@@ -44673,7 +44680,7 @@ function _RenderPassInputAttachmentAspectCreateInfo(aspect_references::AbstractA
     next = cconvert(Ptr{Cvoid}, next)
     aspect_references = cconvert(Ptr{VkInputAttachmentAspectReference}, aspect_references)
     deps = Any[next, aspect_references]
-    vks = VkRenderPassInputAttachmentAspectCreateInfo(structure_type(VkRenderPassInputAttachmentAspectCreateInfo), unsafe_convert(Ptr{Cvoid}, next), aspect_reference_count, unsafe_convert(Ptr{VkInputAttachmentAspectReference}, aspect_references))
+    vks = VkRenderPassInputAttachmentAspectCreateInfo(structure_type(VkRenderPassInputAttachmentAspectCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, aspect_reference_count), unsafe_convert(Ptr{VkInputAttachmentAspectReference}, aspect_references))
     _RenderPassInputAttachmentAspectCreateInfo(vks, deps)
 end
 
@@ -44690,7 +44697,7 @@ Arguments:
 function _PhysicalDeviceSurfaceInfo2KHR(; next = C_NULL, surface = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceSurfaceInfo2KHR(structure_type(VkPhysicalDeviceSurfaceInfo2KHR), unsafe_convert(Ptr{Cvoid}, next), surface)
+    vks = VkPhysicalDeviceSurfaceInfo2KHR(structure_type(VkPhysicalDeviceSurfaceInfo2KHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkSurfaceKHR, surface))
     _PhysicalDeviceSurfaceInfo2KHR(vks, deps, surface)
 end
 
@@ -44792,7 +44799,7 @@ Arguments:
 function _DisplayModeStereoPropertiesNV(hdmi_3_d_supported::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDisplayModeStereoPropertiesNV(structure_type(VkDisplayModeStereoPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), hdmi_3_d_supported)
+    vks = VkDisplayModeStereoPropertiesNV(structure_type(VkDisplayModeStereoPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, hdmi_3_d_supported))
     _DisplayModeStereoPropertiesNV(vks, deps)
 end
 
@@ -44810,7 +44817,7 @@ Arguments:
 function _DisplayPlaneInfo2KHR(mode, plane_index::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDisplayPlaneInfo2KHR(structure_type(VkDisplayPlaneInfo2KHR), unsafe_convert(Ptr{Cvoid}, next), mode, plane_index)
+    vks = VkDisplayPlaneInfo2KHR(structure_type(VkDisplayPlaneInfo2KHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkDisplayModeKHR, mode), convert(UInt32, plane_index))
     _DisplayPlaneInfo2KHR(vks, deps, mode)
 end
 
@@ -44844,7 +44851,7 @@ Arguments:
 function _SharedPresentSurfaceCapabilitiesKHR(; next = C_NULL, shared_present_supported_usage_flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSharedPresentSurfaceCapabilitiesKHR(structure_type(VkSharedPresentSurfaceCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), shared_present_supported_usage_flags)
+    vks = VkSharedPresentSurfaceCapabilitiesKHR(structure_type(VkSharedPresentSurfaceCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkImageUsageFlags, shared_present_supported_usage_flags))
     _SharedPresentSurfaceCapabilitiesKHR(vks, deps)
 end
 
@@ -44862,7 +44869,7 @@ Arguments:
 function _PhysicalDevice16BitStorageFeatures(storage_buffer_16_bit_access::Bool, uniform_and_storage_buffer_16_bit_access::Bool, storage_push_constant_16::Bool, storage_input_output_16::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevice16BitStorageFeatures(structure_type(VkPhysicalDevice16BitStorageFeatures), unsafe_convert(Ptr{Cvoid}, next), storage_buffer_16_bit_access, uniform_and_storage_buffer_16_bit_access, storage_push_constant_16, storage_input_output_16)
+    vks = VkPhysicalDevice16BitStorageFeatures(structure_type(VkPhysicalDevice16BitStorageFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, storage_buffer_16_bit_access), convert(VkBool32, uniform_and_storage_buffer_16_bit_access), convert(VkBool32, storage_push_constant_16), convert(VkBool32, storage_input_output_16))
     _PhysicalDevice16BitStorageFeatures(vks, deps)
 end
 
@@ -44880,7 +44887,7 @@ Arguments:
 function _PhysicalDeviceSubgroupProperties(subgroup_size::Integer, supported_stages::ShaderStageFlag, supported_operations::SubgroupFeatureFlag, quad_operations_in_all_stages::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceSubgroupProperties(structure_type(VkPhysicalDeviceSubgroupProperties), unsafe_convert(Ptr{Cvoid}, next), subgroup_size, supported_stages, supported_operations, quad_operations_in_all_stages)
+    vks = VkPhysicalDeviceSubgroupProperties(structure_type(VkPhysicalDeviceSubgroupProperties), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, subgroup_size), convert(VkShaderStageFlags, supported_stages), convert(VkSubgroupFeatureFlags, supported_operations), convert(VkBool32, quad_operations_in_all_stages))
     _PhysicalDeviceSubgroupProperties(vks, deps)
 end
 
@@ -44895,7 +44902,7 @@ Arguments:
 function _PhysicalDeviceShaderSubgroupExtendedTypesFeatures(shader_subgroup_extended_types::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures(structure_type(VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures), unsafe_convert(Ptr{Cvoid}, next), shader_subgroup_extended_types)
+    vks = VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures(structure_type(VkPhysicalDeviceShaderSubgroupExtendedTypesFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_subgroup_extended_types))
     _PhysicalDeviceShaderSubgroupExtendedTypesFeatures(vks, deps)
 end
 
@@ -44910,7 +44917,7 @@ Arguments:
 function _BufferMemoryRequirementsInfo2(buffer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkBufferMemoryRequirementsInfo2(structure_type(VkBufferMemoryRequirementsInfo2), unsafe_convert(Ptr{Cvoid}, next), buffer)
+    vks = VkBufferMemoryRequirementsInfo2(structure_type(VkBufferMemoryRequirementsInfo2), unsafe_convert(Ptr{Cvoid}, next), convert(VkBuffer, buffer))
     _BufferMemoryRequirementsInfo2(vks, deps, buffer)
 end
 
@@ -44941,7 +44948,7 @@ Arguments:
 function _ImageMemoryRequirementsInfo2(image; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImageMemoryRequirementsInfo2(structure_type(VkImageMemoryRequirementsInfo2), unsafe_convert(Ptr{Cvoid}, next), image)
+    vks = VkImageMemoryRequirementsInfo2(structure_type(VkImageMemoryRequirementsInfo2), unsafe_convert(Ptr{Cvoid}, next), convert(VkImage, image))
     _ImageMemoryRequirementsInfo2(vks, deps, image)
 end
 
@@ -44956,7 +44963,7 @@ Arguments:
 function _ImageSparseMemoryRequirementsInfo2(image; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImageSparseMemoryRequirementsInfo2(structure_type(VkImageSparseMemoryRequirementsInfo2), unsafe_convert(Ptr{Cvoid}, next), image)
+    vks = VkImageSparseMemoryRequirementsInfo2(structure_type(VkImageSparseMemoryRequirementsInfo2), unsafe_convert(Ptr{Cvoid}, next), convert(VkImage, image))
     _ImageSparseMemoryRequirementsInfo2(vks, deps, image)
 end
 
@@ -44973,7 +44980,7 @@ function _DeviceImageMemoryRequirements(create_info::_ImageCreateInfo; next = C_
     next = cconvert(Ptr{Cvoid}, next)
     create_info = cconvert(Ptr{VkImageCreateInfo}, create_info)
     deps = Any[next, create_info]
-    vks = VkDeviceImageMemoryRequirements(structure_type(VkDeviceImageMemoryRequirements), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{VkImageCreateInfo}, create_info), VkImageAspectFlagBits(plane_aspect.val))
+    vks = VkDeviceImageMemoryRequirements(structure_type(VkDeviceImageMemoryRequirements), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{VkImageCreateInfo}, create_info), VkImageAspectFlagBits(flag_value(plane_aspect)))
     _DeviceImageMemoryRequirements(vks, deps)
 end
 
@@ -45018,7 +45025,7 @@ Arguments:
 function _PhysicalDevicePointClippingProperties(point_clipping_behavior::PointClippingBehavior; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePointClippingProperties(structure_type(VkPhysicalDevicePointClippingProperties), unsafe_convert(Ptr{Cvoid}, next), point_clipping_behavior)
+    vks = VkPhysicalDevicePointClippingProperties(structure_type(VkPhysicalDevicePointClippingProperties), unsafe_convert(Ptr{Cvoid}, next), convert(VkPointClippingBehavior, point_clipping_behavior))
     _PhysicalDevicePointClippingProperties(vks, deps)
 end
 
@@ -45034,7 +45041,7 @@ Arguments:
 function _MemoryDedicatedRequirements(prefers_dedicated_allocation::Bool, requires_dedicated_allocation::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMemoryDedicatedRequirements(structure_type(VkMemoryDedicatedRequirements), unsafe_convert(Ptr{Cvoid}, next), prefers_dedicated_allocation, requires_dedicated_allocation)
+    vks = VkMemoryDedicatedRequirements(structure_type(VkMemoryDedicatedRequirements), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, prefers_dedicated_allocation), convert(VkBool32, requires_dedicated_allocation))
     _MemoryDedicatedRequirements(vks, deps)
 end
 
@@ -45050,7 +45057,7 @@ Arguments:
 function _MemoryDedicatedAllocateInfo(; next = C_NULL, image = C_NULL, buffer = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMemoryDedicatedAllocateInfo(structure_type(VkMemoryDedicatedAllocateInfo), unsafe_convert(Ptr{Cvoid}, next), image, buffer)
+    vks = VkMemoryDedicatedAllocateInfo(structure_type(VkMemoryDedicatedAllocateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkImage, image), convert(VkBuffer, buffer))
     _MemoryDedicatedAllocateInfo(vks, deps, image, buffer)
 end
 
@@ -45065,7 +45072,7 @@ Arguments:
 function _ImageViewUsageCreateInfo(usage::ImageUsageFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImageViewUsageCreateInfo(structure_type(VkImageViewUsageCreateInfo), unsafe_convert(Ptr{Cvoid}, next), usage)
+    vks = VkImageViewUsageCreateInfo(structure_type(VkImageViewUsageCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkImageUsageFlags, usage))
     _ImageViewUsageCreateInfo(vks, deps)
 end
 
@@ -45083,7 +45090,7 @@ Arguments:
 function _ImageViewSlicedCreateInfoEXT(slice_offset::Integer, slice_count::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImageViewSlicedCreateInfoEXT(structure_type(VkImageViewSlicedCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), slice_offset, slice_count)
+    vks = VkImageViewSlicedCreateInfoEXT(structure_type(VkImageViewSlicedCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, slice_offset), convert(UInt32, slice_count))
     _ImageViewSlicedCreateInfoEXT(vks, deps)
 end
 
@@ -45098,7 +45105,7 @@ Arguments:
 function _PipelineTessellationDomainOriginStateCreateInfo(domain_origin::TessellationDomainOrigin; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineTessellationDomainOriginStateCreateInfo(structure_type(VkPipelineTessellationDomainOriginStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), domain_origin)
+    vks = VkPipelineTessellationDomainOriginStateCreateInfo(structure_type(VkPipelineTessellationDomainOriginStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkTessellationDomainOrigin, domain_origin))
     _PipelineTessellationDomainOriginStateCreateInfo(vks, deps)
 end
 
@@ -45113,7 +45120,7 @@ Arguments:
 function _SamplerYcbcrConversionInfo(conversion; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSamplerYcbcrConversionInfo(structure_type(VkSamplerYcbcrConversionInfo), unsafe_convert(Ptr{Cvoid}, next), conversion)
+    vks = VkSamplerYcbcrConversionInfo(structure_type(VkSamplerYcbcrConversionInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkSamplerYcbcrConversion, conversion))
     _SamplerYcbcrConversionInfo(vks, deps, conversion)
 end
 
@@ -45135,7 +45142,7 @@ Arguments:
 function _SamplerYcbcrConversionCreateInfo(format::Format, ycbcr_model::SamplerYcbcrModelConversion, ycbcr_range::SamplerYcbcrRange, components::_ComponentMapping, x_chroma_offset::ChromaLocation, y_chroma_offset::ChromaLocation, chroma_filter::Filter, force_explicit_reconstruction::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSamplerYcbcrConversionCreateInfo(structure_type(VkSamplerYcbcrConversionCreateInfo), unsafe_convert(Ptr{Cvoid}, next), format, ycbcr_model, ycbcr_range, components.vks, x_chroma_offset, y_chroma_offset, chroma_filter, force_explicit_reconstruction)
+    vks = VkSamplerYcbcrConversionCreateInfo(structure_type(VkSamplerYcbcrConversionCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkFormat, format), convert(VkSamplerYcbcrModelConversion, ycbcr_model), convert(VkSamplerYcbcrRange, ycbcr_range), components.vks, convert(VkChromaLocation, x_chroma_offset), convert(VkChromaLocation, y_chroma_offset), convert(VkFilter, chroma_filter), convert(VkBool32, force_explicit_reconstruction))
     _SamplerYcbcrConversionCreateInfo(vks, deps)
 end
 
@@ -45150,7 +45157,7 @@ Arguments:
 function _BindImagePlaneMemoryInfo(plane_aspect::ImageAspectFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkBindImagePlaneMemoryInfo(structure_type(VkBindImagePlaneMemoryInfo), unsafe_convert(Ptr{Cvoid}, next), VkImageAspectFlagBits(plane_aspect.val))
+    vks = VkBindImagePlaneMemoryInfo(structure_type(VkBindImagePlaneMemoryInfo), unsafe_convert(Ptr{Cvoid}, next), VkImageAspectFlagBits(flag_value(plane_aspect)))
     _BindImagePlaneMemoryInfo(vks, deps)
 end
 
@@ -45165,7 +45172,7 @@ Arguments:
 function _ImagePlaneMemoryRequirementsInfo(plane_aspect::ImageAspectFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImagePlaneMemoryRequirementsInfo(structure_type(VkImagePlaneMemoryRequirementsInfo), unsafe_convert(Ptr{Cvoid}, next), VkImageAspectFlagBits(plane_aspect.val))
+    vks = VkImagePlaneMemoryRequirementsInfo(structure_type(VkImagePlaneMemoryRequirementsInfo), unsafe_convert(Ptr{Cvoid}, next), VkImageAspectFlagBits(flag_value(plane_aspect)))
     _ImagePlaneMemoryRequirementsInfo(vks, deps)
 end
 
@@ -45180,7 +45187,7 @@ Arguments:
 function _PhysicalDeviceSamplerYcbcrConversionFeatures(sampler_ycbcr_conversion::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceSamplerYcbcrConversionFeatures(structure_type(VkPhysicalDeviceSamplerYcbcrConversionFeatures), unsafe_convert(Ptr{Cvoid}, next), sampler_ycbcr_conversion)
+    vks = VkPhysicalDeviceSamplerYcbcrConversionFeatures(structure_type(VkPhysicalDeviceSamplerYcbcrConversionFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, sampler_ycbcr_conversion))
     _PhysicalDeviceSamplerYcbcrConversionFeatures(vks, deps)
 end
 
@@ -45195,7 +45202,7 @@ Arguments:
 function _SamplerYcbcrConversionImageFormatProperties(combined_image_sampler_descriptor_count::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSamplerYcbcrConversionImageFormatProperties(structure_type(VkSamplerYcbcrConversionImageFormatProperties), unsafe_convert(Ptr{Cvoid}, next), combined_image_sampler_descriptor_count)
+    vks = VkSamplerYcbcrConversionImageFormatProperties(structure_type(VkSamplerYcbcrConversionImageFormatProperties), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, combined_image_sampler_descriptor_count))
     _SamplerYcbcrConversionImageFormatProperties(vks, deps)
 end
 
@@ -45212,7 +45219,7 @@ Arguments:
 function _TextureLODGatherFormatPropertiesAMD(supports_texture_gather_lod_bias_amd::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkTextureLODGatherFormatPropertiesAMD(structure_type(VkTextureLODGatherFormatPropertiesAMD), unsafe_convert(Ptr{Cvoid}, next), supports_texture_gather_lod_bias_amd)
+    vks = VkTextureLODGatherFormatPropertiesAMD(structure_type(VkTextureLODGatherFormatPropertiesAMD), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, supports_texture_gather_lod_bias_amd))
     _TextureLODGatherFormatPropertiesAMD(vks, deps)
 end
 
@@ -45231,7 +45238,7 @@ Arguments:
 function _ConditionalRenderingBeginInfoEXT(buffer, offset::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkConditionalRenderingBeginInfoEXT(structure_type(VkConditionalRenderingBeginInfoEXT), unsafe_convert(Ptr{Cvoid}, next), buffer, offset, flags)
+    vks = VkConditionalRenderingBeginInfoEXT(structure_type(VkConditionalRenderingBeginInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBuffer, buffer), convert(VkDeviceSize, offset), convert(VkConditionalRenderingFlagsEXT, flags))
     _ConditionalRenderingBeginInfoEXT(vks, deps, buffer)
 end
 
@@ -45246,7 +45253,7 @@ Arguments:
 function _ProtectedSubmitInfo(protected_submit::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkProtectedSubmitInfo(structure_type(VkProtectedSubmitInfo), unsafe_convert(Ptr{Cvoid}, next), protected_submit)
+    vks = VkProtectedSubmitInfo(structure_type(VkProtectedSubmitInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, protected_submit))
     _ProtectedSubmitInfo(vks, deps)
 end
 
@@ -45261,7 +45268,7 @@ Arguments:
 function _PhysicalDeviceProtectedMemoryFeatures(protected_memory::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceProtectedMemoryFeatures(structure_type(VkPhysicalDeviceProtectedMemoryFeatures), unsafe_convert(Ptr{Cvoid}, next), protected_memory)
+    vks = VkPhysicalDeviceProtectedMemoryFeatures(structure_type(VkPhysicalDeviceProtectedMemoryFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, protected_memory))
     _PhysicalDeviceProtectedMemoryFeatures(vks, deps)
 end
 
@@ -45276,7 +45283,7 @@ Arguments:
 function _PhysicalDeviceProtectedMemoryProperties(protected_no_fault::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceProtectedMemoryProperties(structure_type(VkPhysicalDeviceProtectedMemoryProperties), unsafe_convert(Ptr{Cvoid}, next), protected_no_fault)
+    vks = VkPhysicalDeviceProtectedMemoryProperties(structure_type(VkPhysicalDeviceProtectedMemoryProperties), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, protected_no_fault))
     _PhysicalDeviceProtectedMemoryProperties(vks, deps)
 end
 
@@ -45293,7 +45300,7 @@ Arguments:
 function _DeviceQueueInfo2(queue_family_index::Integer, queue_index::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDeviceQueueInfo2(structure_type(VkDeviceQueueInfo2), unsafe_convert(Ptr{Cvoid}, next), flags, queue_family_index, queue_index)
+    vks = VkDeviceQueueInfo2(structure_type(VkDeviceQueueInfo2), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceQueueCreateFlags, flags), convert(UInt32, queue_family_index), convert(UInt32, queue_index))
     _DeviceQueueInfo2(vks, deps)
 end
 
@@ -45312,7 +45319,7 @@ Arguments:
 function _PipelineCoverageToColorStateCreateInfoNV(coverage_to_color_enable::Bool; next = C_NULL, flags = 0, coverage_to_color_location = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineCoverageToColorStateCreateInfoNV(structure_type(VkPipelineCoverageToColorStateCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), flags, coverage_to_color_enable, coverage_to_color_location)
+    vks = VkPipelineCoverageToColorStateCreateInfoNV(structure_type(VkPipelineCoverageToColorStateCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineCoverageToColorStateCreateFlagsNV, flags), convert(VkBool32, coverage_to_color_enable), convert(UInt32, coverage_to_color_location))
     _PipelineCoverageToColorStateCreateInfoNV(vks, deps)
 end
 
@@ -45328,7 +45335,7 @@ Arguments:
 function _PhysicalDeviceSamplerFilterMinmaxProperties(filter_minmax_single_component_formats::Bool, filter_minmax_image_component_mapping::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceSamplerFilterMinmaxProperties(structure_type(VkPhysicalDeviceSamplerFilterMinmaxProperties), unsafe_convert(Ptr{Cvoid}, next), filter_minmax_single_component_formats, filter_minmax_image_component_mapping)
+    vks = VkPhysicalDeviceSamplerFilterMinmaxProperties(structure_type(VkPhysicalDeviceSamplerFilterMinmaxProperties), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, filter_minmax_single_component_formats), convert(VkBool32, filter_minmax_image_component_mapping))
     _PhysicalDeviceSamplerFilterMinmaxProperties(vks, deps)
 end
 
@@ -45343,7 +45350,7 @@ Arguments:
 
 """
 function _SampleLocationEXT(x::Real, y::Real)
-    _SampleLocationEXT(VkSampleLocationEXT(x, y))
+    _SampleLocationEXT(VkSampleLocationEXT(convert(Float32, x), convert(Float32, y)))
 end
 
 """
@@ -45363,7 +45370,7 @@ function _SampleLocationsInfoEXT(sample_locations_per_pixel::SampleCountFlag, sa
     next = cconvert(Ptr{Cvoid}, next)
     sample_locations = cconvert(Ptr{VkSampleLocationEXT}, sample_locations)
     deps = Any[next, sample_locations]
-    vks = VkSampleLocationsInfoEXT(structure_type(VkSampleLocationsInfoEXT), unsafe_convert(Ptr{Cvoid}, next), VkSampleCountFlagBits(sample_locations_per_pixel.val), sample_location_grid_size.vks, sample_locations_count, unsafe_convert(Ptr{VkSampleLocationEXT}, sample_locations))
+    vks = VkSampleLocationsInfoEXT(structure_type(VkSampleLocationsInfoEXT), unsafe_convert(Ptr{Cvoid}, next), VkSampleCountFlagBits(flag_value(sample_locations_per_pixel)), sample_location_grid_size.vks, convert(UInt32, sample_locations_count), unsafe_convert(Ptr{VkSampleLocationEXT}, sample_locations))
     _SampleLocationsInfoEXT(vks, deps)
 end
 
@@ -45378,7 +45385,7 @@ Arguments:
 
 """
 function _AttachmentSampleLocationsEXT(attachment_index::Integer, sample_locations_info::_SampleLocationsInfoEXT)
-    _AttachmentSampleLocationsEXT(VkAttachmentSampleLocationsEXT(attachment_index, sample_locations_info.vks))
+    _AttachmentSampleLocationsEXT(VkAttachmentSampleLocationsEXT(convert(UInt32, attachment_index), sample_locations_info.vks))
 end
 
 """
@@ -45392,7 +45399,7 @@ Arguments:
 
 """
 function _SubpassSampleLocationsEXT(subpass_index::Integer, sample_locations_info::_SampleLocationsInfoEXT)
-    _SubpassSampleLocationsEXT(VkSubpassSampleLocationsEXT(subpass_index, sample_locations_info.vks))
+    _SubpassSampleLocationsEXT(VkSubpassSampleLocationsEXT(convert(UInt32, subpass_index), sample_locations_info.vks))
 end
 
 """
@@ -45413,7 +45420,7 @@ function _RenderPassSampleLocationsBeginInfoEXT(attachment_initial_sample_locati
     attachment_initial_sample_locations = cconvert(Ptr{VkAttachmentSampleLocationsEXT}, attachment_initial_sample_locations)
     post_subpass_sample_locations = cconvert(Ptr{VkSubpassSampleLocationsEXT}, post_subpass_sample_locations)
     deps = Any[next, attachment_initial_sample_locations, post_subpass_sample_locations]
-    vks = VkRenderPassSampleLocationsBeginInfoEXT(structure_type(VkRenderPassSampleLocationsBeginInfoEXT), unsafe_convert(Ptr{Cvoid}, next), attachment_initial_sample_locations_count, unsafe_convert(Ptr{VkAttachmentSampleLocationsEXT}, attachment_initial_sample_locations), post_subpass_sample_locations_count, unsafe_convert(Ptr{VkSubpassSampleLocationsEXT}, post_subpass_sample_locations))
+    vks = VkRenderPassSampleLocationsBeginInfoEXT(structure_type(VkRenderPassSampleLocationsBeginInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, attachment_initial_sample_locations_count), unsafe_convert(Ptr{VkAttachmentSampleLocationsEXT}, attachment_initial_sample_locations), convert(UInt32, post_subpass_sample_locations_count), unsafe_convert(Ptr{VkSubpassSampleLocationsEXT}, post_subpass_sample_locations))
     _RenderPassSampleLocationsBeginInfoEXT(vks, deps)
 end
 
@@ -45431,7 +45438,7 @@ Arguments:
 function _PipelineSampleLocationsStateCreateInfoEXT(sample_locations_enable::Bool, sample_locations_info::_SampleLocationsInfoEXT; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineSampleLocationsStateCreateInfoEXT(structure_type(VkPipelineSampleLocationsStateCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), sample_locations_enable, sample_locations_info.vks)
+    vks = VkPipelineSampleLocationsStateCreateInfoEXT(structure_type(VkPipelineSampleLocationsStateCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, sample_locations_enable), sample_locations_info.vks)
     _PipelineSampleLocationsStateCreateInfoEXT(vks, deps)
 end
 
@@ -45452,7 +45459,7 @@ Arguments:
 function _PhysicalDeviceSampleLocationsPropertiesEXT(sample_location_sample_counts::SampleCountFlag, max_sample_location_grid_size::_Extent2D, sample_location_coordinate_range::NTuple{2, Float32}, sample_location_sub_pixel_bits::Integer, variable_sample_locations::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceSampleLocationsPropertiesEXT(structure_type(VkPhysicalDeviceSampleLocationsPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), sample_location_sample_counts, max_sample_location_grid_size.vks, sample_location_coordinate_range, sample_location_sub_pixel_bits, variable_sample_locations)
+    vks = VkPhysicalDeviceSampleLocationsPropertiesEXT(structure_type(VkPhysicalDeviceSampleLocationsPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkSampleCountFlags, sample_location_sample_counts), max_sample_location_grid_size.vks, convert(NTuple{2, Float32}, sample_location_coordinate_range), convert(UInt32, sample_location_sub_pixel_bits), convert(VkBool32, variable_sample_locations))
     _PhysicalDeviceSampleLocationsPropertiesEXT(vks, deps)
 end
 
@@ -45484,7 +45491,7 @@ Arguments:
 function _SamplerReductionModeCreateInfo(reduction_mode::SamplerReductionMode; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSamplerReductionModeCreateInfo(structure_type(VkSamplerReductionModeCreateInfo), unsafe_convert(Ptr{Cvoid}, next), reduction_mode)
+    vks = VkSamplerReductionModeCreateInfo(structure_type(VkSamplerReductionModeCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkSamplerReductionMode, reduction_mode))
     _SamplerReductionModeCreateInfo(vks, deps)
 end
 
@@ -45501,7 +45508,7 @@ Arguments:
 function _PhysicalDeviceBlendOperationAdvancedFeaturesEXT(advanced_blend_coherent_operations::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT(structure_type(VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), advanced_blend_coherent_operations)
+    vks = VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT(structure_type(VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, advanced_blend_coherent_operations))
     _PhysicalDeviceBlendOperationAdvancedFeaturesEXT(vks, deps)
 end
 
@@ -45518,7 +45525,7 @@ Arguments:
 function _PhysicalDeviceMultiDrawFeaturesEXT(multi_draw::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMultiDrawFeaturesEXT(structure_type(VkPhysicalDeviceMultiDrawFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), multi_draw)
+    vks = VkPhysicalDeviceMultiDrawFeaturesEXT(structure_type(VkPhysicalDeviceMultiDrawFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, multi_draw))
     _PhysicalDeviceMultiDrawFeaturesEXT(vks, deps)
 end
 
@@ -45540,7 +45547,7 @@ Arguments:
 function _PhysicalDeviceBlendOperationAdvancedPropertiesEXT(advanced_blend_max_color_attachments::Integer, advanced_blend_independent_blend::Bool, advanced_blend_non_premultiplied_src_color::Bool, advanced_blend_non_premultiplied_dst_color::Bool, advanced_blend_correlated_overlap::Bool, advanced_blend_all_operations::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT(structure_type(VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), advanced_blend_max_color_attachments, advanced_blend_independent_blend, advanced_blend_non_premultiplied_src_color, advanced_blend_non_premultiplied_dst_color, advanced_blend_correlated_overlap, advanced_blend_all_operations)
+    vks = VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT(structure_type(VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, advanced_blend_max_color_attachments), convert(VkBool32, advanced_blend_independent_blend), convert(VkBool32, advanced_blend_non_premultiplied_src_color), convert(VkBool32, advanced_blend_non_premultiplied_dst_color), convert(VkBool32, advanced_blend_correlated_overlap), convert(VkBool32, advanced_blend_all_operations))
     _PhysicalDeviceBlendOperationAdvancedPropertiesEXT(vks, deps)
 end
 
@@ -45559,7 +45566,7 @@ Arguments:
 function _PipelineColorBlendAdvancedStateCreateInfoEXT(src_premultiplied::Bool, dst_premultiplied::Bool, blend_overlap::BlendOverlapEXT; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineColorBlendAdvancedStateCreateInfoEXT(structure_type(VkPipelineColorBlendAdvancedStateCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), src_premultiplied, dst_premultiplied, blend_overlap)
+    vks = VkPipelineColorBlendAdvancedStateCreateInfoEXT(structure_type(VkPipelineColorBlendAdvancedStateCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, src_premultiplied), convert(VkBool32, dst_premultiplied), convert(VkBlendOverlapEXT, blend_overlap))
     _PipelineColorBlendAdvancedStateCreateInfoEXT(vks, deps)
 end
 
@@ -45575,7 +45582,7 @@ Arguments:
 function _PhysicalDeviceInlineUniformBlockFeatures(inline_uniform_block::Bool, descriptor_binding_inline_uniform_block_update_after_bind::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceInlineUniformBlockFeatures(structure_type(VkPhysicalDeviceInlineUniformBlockFeatures), unsafe_convert(Ptr{Cvoid}, next), inline_uniform_block, descriptor_binding_inline_uniform_block_update_after_bind)
+    vks = VkPhysicalDeviceInlineUniformBlockFeatures(structure_type(VkPhysicalDeviceInlineUniformBlockFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, inline_uniform_block), convert(VkBool32, descriptor_binding_inline_uniform_block_update_after_bind))
     _PhysicalDeviceInlineUniformBlockFeatures(vks, deps)
 end
 
@@ -45594,7 +45601,7 @@ Arguments:
 function _PhysicalDeviceInlineUniformBlockProperties(max_inline_uniform_block_size::Integer, max_per_stage_descriptor_inline_uniform_blocks::Integer, max_per_stage_descriptor_update_after_bind_inline_uniform_blocks::Integer, max_descriptor_set_inline_uniform_blocks::Integer, max_descriptor_set_update_after_bind_inline_uniform_blocks::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceInlineUniformBlockProperties(structure_type(VkPhysicalDeviceInlineUniformBlockProperties), unsafe_convert(Ptr{Cvoid}, next), max_inline_uniform_block_size, max_per_stage_descriptor_inline_uniform_blocks, max_per_stage_descriptor_update_after_bind_inline_uniform_blocks, max_descriptor_set_inline_uniform_blocks, max_descriptor_set_update_after_bind_inline_uniform_blocks)
+    vks = VkPhysicalDeviceInlineUniformBlockProperties(structure_type(VkPhysicalDeviceInlineUniformBlockProperties), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_inline_uniform_block_size), convert(UInt32, max_per_stage_descriptor_inline_uniform_blocks), convert(UInt32, max_per_stage_descriptor_update_after_bind_inline_uniform_blocks), convert(UInt32, max_descriptor_set_inline_uniform_blocks), convert(UInt32, max_descriptor_set_update_after_bind_inline_uniform_blocks))
     _PhysicalDeviceInlineUniformBlockProperties(vks, deps)
 end
 
@@ -45611,7 +45618,7 @@ function _WriteDescriptorSetInlineUniformBlock(data_size::Integer, data::Ptr{Cvo
     next = cconvert(Ptr{Cvoid}, next)
     data = cconvert(Ptr{Cvoid}, data)
     deps = Any[next, data]
-    vks = VkWriteDescriptorSetInlineUniformBlock(structure_type(VkWriteDescriptorSetInlineUniformBlock), unsafe_convert(Ptr{Cvoid}, next), data_size, unsafe_convert(Ptr{Cvoid}, data))
+    vks = VkWriteDescriptorSetInlineUniformBlock(structure_type(VkWriteDescriptorSetInlineUniformBlock), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, data_size), unsafe_convert(Ptr{Cvoid}, data))
     _WriteDescriptorSetInlineUniformBlock(vks, deps)
 end
 
@@ -45626,7 +45633,7 @@ Arguments:
 function _DescriptorPoolInlineUniformBlockCreateInfo(max_inline_uniform_block_bindings::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDescriptorPoolInlineUniformBlockCreateInfo(structure_type(VkDescriptorPoolInlineUniformBlockCreateInfo), unsafe_convert(Ptr{Cvoid}, next), max_inline_uniform_block_bindings)
+    vks = VkDescriptorPoolInlineUniformBlockCreateInfo(structure_type(VkDescriptorPoolInlineUniformBlockCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_inline_uniform_block_bindings))
     _DescriptorPoolInlineUniformBlockCreateInfo(vks, deps)
 end
 
@@ -45648,7 +45655,7 @@ function _PipelineCoverageModulationStateCreateInfoNV(coverage_modulation_mode::
     next = cconvert(Ptr{Cvoid}, next)
     coverage_modulation_table = cconvert(Ptr{Float32}, coverage_modulation_table)
     deps = Any[next, coverage_modulation_table]
-    vks = VkPipelineCoverageModulationStateCreateInfoNV(structure_type(VkPipelineCoverageModulationStateCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), flags, coverage_modulation_mode, coverage_modulation_table_enable, coverage_modulation_table_count, unsafe_convert(Ptr{Float32}, coverage_modulation_table))
+    vks = VkPipelineCoverageModulationStateCreateInfoNV(structure_type(VkPipelineCoverageModulationStateCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineCoverageModulationStateCreateFlagsNV, flags), convert(VkCoverageModulationModeNV, coverage_modulation_mode), convert(VkBool32, coverage_modulation_table_enable), convert(UInt32, coverage_modulation_table_count), unsafe_convert(Ptr{Float32}, coverage_modulation_table))
     _PipelineCoverageModulationStateCreateInfoNV(vks, deps)
 end
 
@@ -45665,7 +45672,7 @@ function _ImageFormatListCreateInfo(view_formats::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     view_formats = cconvert(Ptr{VkFormat}, view_formats)
     deps = Any[next, view_formats]
-    vks = VkImageFormatListCreateInfo(structure_type(VkImageFormatListCreateInfo), unsafe_convert(Ptr{Cvoid}, next), view_format_count, unsafe_convert(Ptr{VkFormat}, view_formats))
+    vks = VkImageFormatListCreateInfo(structure_type(VkImageFormatListCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, view_format_count), unsafe_convert(Ptr{VkFormat}, view_formats))
     _ImageFormatListCreateInfo(vks, deps)
 end
 
@@ -45685,7 +45692,7 @@ function _ValidationCacheCreateInfoEXT(initial_data::Ptr{Cvoid}; next = C_NULL, 
     next = cconvert(Ptr{Cvoid}, next)
     initial_data = cconvert(Ptr{Cvoid}, initial_data)
     deps = Any[next, initial_data]
-    vks = VkValidationCacheCreateInfoEXT(structure_type(VkValidationCacheCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), flags, initial_data_size, unsafe_convert(Ptr{Cvoid}, initial_data))
+    vks = VkValidationCacheCreateInfoEXT(structure_type(VkValidationCacheCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkValidationCacheCreateFlagsEXT, flags), convert(UInt, initial_data_size), unsafe_convert(Ptr{Cvoid}, initial_data))
     _ValidationCacheCreateInfoEXT(vks, deps)
 end
 
@@ -45702,7 +45709,7 @@ Arguments:
 function _ShaderModuleValidationCacheCreateInfoEXT(validation_cache; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkShaderModuleValidationCacheCreateInfoEXT(structure_type(VkShaderModuleValidationCacheCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), validation_cache)
+    vks = VkShaderModuleValidationCacheCreateInfoEXT(structure_type(VkShaderModuleValidationCacheCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkValidationCacheEXT, validation_cache))
     _ShaderModuleValidationCacheCreateInfoEXT(vks, deps, validation_cache)
 end
 
@@ -45718,7 +45725,7 @@ Arguments:
 function _PhysicalDeviceMaintenance3Properties(max_per_set_descriptors::Integer, max_memory_allocation_size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMaintenance3Properties(structure_type(VkPhysicalDeviceMaintenance3Properties), unsafe_convert(Ptr{Cvoid}, next), max_per_set_descriptors, max_memory_allocation_size)
+    vks = VkPhysicalDeviceMaintenance3Properties(structure_type(VkPhysicalDeviceMaintenance3Properties), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_per_set_descriptors), convert(VkDeviceSize, max_memory_allocation_size))
     _PhysicalDeviceMaintenance3Properties(vks, deps)
 end
 
@@ -45733,7 +45740,7 @@ Arguments:
 function _PhysicalDeviceMaintenance4Features(maintenance4::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMaintenance4Features(structure_type(VkPhysicalDeviceMaintenance4Features), unsafe_convert(Ptr{Cvoid}, next), maintenance4)
+    vks = VkPhysicalDeviceMaintenance4Features(structure_type(VkPhysicalDeviceMaintenance4Features), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, maintenance4))
     _PhysicalDeviceMaintenance4Features(vks, deps)
 end
 
@@ -45748,7 +45755,7 @@ Arguments:
 function _PhysicalDeviceMaintenance4Properties(max_buffer_size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMaintenance4Properties(structure_type(VkPhysicalDeviceMaintenance4Properties), unsafe_convert(Ptr{Cvoid}, next), max_buffer_size)
+    vks = VkPhysicalDeviceMaintenance4Properties(structure_type(VkPhysicalDeviceMaintenance4Properties), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceSize, max_buffer_size))
     _PhysicalDeviceMaintenance4Properties(vks, deps)
 end
 
@@ -45763,7 +45770,7 @@ Arguments:
 function _PhysicalDeviceMaintenance5Features(maintenance5::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMaintenance5Features(structure_type(VkPhysicalDeviceMaintenance5Features), unsafe_convert(Ptr{Cvoid}, next), maintenance5)
+    vks = VkPhysicalDeviceMaintenance5Features(structure_type(VkPhysicalDeviceMaintenance5Features), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, maintenance5))
     _PhysicalDeviceMaintenance5Features(vks, deps)
 end
 
@@ -45783,7 +45790,7 @@ Arguments:
 function _PhysicalDeviceMaintenance5Properties(early_fragment_multisample_coverage_after_sample_counting::Bool, early_fragment_sample_mask_test_before_sample_counting::Bool, depth_stencil_swizzle_one_support::Bool, polygon_mode_point_size::Bool, non_strict_single_pixel_wide_lines_use_parallelogram::Bool, non_strict_wide_lines_use_parallelogram::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMaintenance5Properties(structure_type(VkPhysicalDeviceMaintenance5Properties), unsafe_convert(Ptr{Cvoid}, next), early_fragment_multisample_coverage_after_sample_counting, early_fragment_sample_mask_test_before_sample_counting, depth_stencil_swizzle_one_support, polygon_mode_point_size, non_strict_single_pixel_wide_lines_use_parallelogram, non_strict_wide_lines_use_parallelogram)
+    vks = VkPhysicalDeviceMaintenance5Properties(structure_type(VkPhysicalDeviceMaintenance5Properties), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, early_fragment_multisample_coverage_after_sample_counting), convert(VkBool32, early_fragment_sample_mask_test_before_sample_counting), convert(VkBool32, depth_stencil_swizzle_one_support), convert(VkBool32, polygon_mode_point_size), convert(VkBool32, non_strict_single_pixel_wide_lines_use_parallelogram), convert(VkBool32, non_strict_wide_lines_use_parallelogram))
     _PhysicalDeviceMaintenance5Properties(vks, deps)
 end
 
@@ -45798,7 +45805,7 @@ Arguments:
 function _PhysicalDeviceMaintenance6Features(maintenance6::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMaintenance6Features(structure_type(VkPhysicalDeviceMaintenance6Features), unsafe_convert(Ptr{Cvoid}, next), maintenance6)
+    vks = VkPhysicalDeviceMaintenance6Features(structure_type(VkPhysicalDeviceMaintenance6Features), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, maintenance6))
     _PhysicalDeviceMaintenance6Features(vks, deps)
 end
 
@@ -45815,7 +45822,7 @@ Arguments:
 function _PhysicalDeviceMaintenance6Properties(block_texel_view_compatible_multiple_layers::Bool, max_combined_image_sampler_descriptor_count::Integer, fragment_shading_rate_clamp_combiner_inputs::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMaintenance6Properties(structure_type(VkPhysicalDeviceMaintenance6Properties), unsafe_convert(Ptr{Cvoid}, next), block_texel_view_compatible_multiple_layers, max_combined_image_sampler_descriptor_count, fragment_shading_rate_clamp_combiner_inputs)
+    vks = VkPhysicalDeviceMaintenance6Properties(structure_type(VkPhysicalDeviceMaintenance6Properties), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, block_texel_view_compatible_multiple_layers), convert(UInt32, max_combined_image_sampler_descriptor_count), convert(VkBool32, fragment_shading_rate_clamp_combiner_inputs))
     _PhysicalDeviceMaintenance6Properties(vks, deps)
 end
 
@@ -45832,7 +45839,7 @@ Arguments:
 function _PhysicalDeviceMaintenance7FeaturesKHR(maintenance7::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMaintenance7FeaturesKHR(structure_type(VkPhysicalDeviceMaintenance7FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), maintenance7)
+    vks = VkPhysicalDeviceMaintenance7FeaturesKHR(structure_type(VkPhysicalDeviceMaintenance7FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, maintenance7))
     _PhysicalDeviceMaintenance7FeaturesKHR(vks, deps)
 end
 
@@ -45856,7 +45863,7 @@ Arguments:
 function _PhysicalDeviceMaintenance7PropertiesKHR(robust_fragment_shading_rate_attachment_access::Bool, separate_depth_stencil_attachment_access::Bool, max_descriptor_set_total_uniform_buffers_dynamic::Integer, max_descriptor_set_total_storage_buffers_dynamic::Integer, max_descriptor_set_total_buffers_dynamic::Integer, max_descriptor_set_update_after_bind_total_uniform_buffers_dynamic::Integer, max_descriptor_set_update_after_bind_total_storage_buffers_dynamic::Integer, max_descriptor_set_update_after_bind_total_buffers_dynamic::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMaintenance7PropertiesKHR(structure_type(VkPhysicalDeviceMaintenance7PropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), robust_fragment_shading_rate_attachment_access, separate_depth_stencil_attachment_access, max_descriptor_set_total_uniform_buffers_dynamic, max_descriptor_set_total_storage_buffers_dynamic, max_descriptor_set_total_buffers_dynamic, max_descriptor_set_update_after_bind_total_uniform_buffers_dynamic, max_descriptor_set_update_after_bind_total_storage_buffers_dynamic, max_descriptor_set_update_after_bind_total_buffers_dynamic)
+    vks = VkPhysicalDeviceMaintenance7PropertiesKHR(structure_type(VkPhysicalDeviceMaintenance7PropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, robust_fragment_shading_rate_attachment_access), convert(VkBool32, separate_depth_stencil_attachment_access), convert(UInt32, max_descriptor_set_total_uniform_buffers_dynamic), convert(UInt32, max_descriptor_set_total_storage_buffers_dynamic), convert(UInt32, max_descriptor_set_total_buffers_dynamic), convert(UInt32, max_descriptor_set_update_after_bind_total_uniform_buffers_dynamic), convert(UInt32, max_descriptor_set_update_after_bind_total_storage_buffers_dynamic), convert(UInt32, max_descriptor_set_update_after_bind_total_buffers_dynamic))
     _PhysicalDeviceMaintenance7PropertiesKHR(vks, deps)
 end
 
@@ -45875,7 +45882,7 @@ function _PhysicalDeviceLayeredApiPropertiesListKHR(; next = C_NULL, layered_api
     next = cconvert(Ptr{Cvoid}, next)
     layered_apis = cconvert(Ptr{VkPhysicalDeviceLayeredApiPropertiesKHR}, layered_apis)
     deps = Any[next, layered_apis]
-    vks = VkPhysicalDeviceLayeredApiPropertiesListKHR(structure_type(VkPhysicalDeviceLayeredApiPropertiesListKHR), unsafe_convert(Ptr{Cvoid}, next), layered_api_count, unsafe_convert(Ptr{VkPhysicalDeviceLayeredApiPropertiesKHR}, layered_apis))
+    vks = VkPhysicalDeviceLayeredApiPropertiesListKHR(structure_type(VkPhysicalDeviceLayeredApiPropertiesListKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, layered_api_count), unsafe_convert(Ptr{VkPhysicalDeviceLayeredApiPropertiesKHR}, layered_apis))
     _PhysicalDeviceLayeredApiPropertiesListKHR(vks, deps)
 end
 
@@ -45895,7 +45902,7 @@ Arguments:
 function _PhysicalDeviceLayeredApiPropertiesKHR(vendor_id::Integer, device_id::Integer, layered_api::PhysicalDeviceLayeredApiKHR, device_name::AbstractString; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceLayeredApiPropertiesKHR(structure_type(VkPhysicalDeviceLayeredApiPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), vendor_id, device_id, layered_api, device_name)
+    vks = VkPhysicalDeviceLayeredApiPropertiesKHR(structure_type(VkPhysicalDeviceLayeredApiPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, vendor_id), convert(UInt32, device_id), convert(VkPhysicalDeviceLayeredApiKHR, layered_api), convert(NTuple{Int(VK_MAX_PHYSICAL_DEVICE_NAME_SIZE), Char}, device_name))
     _PhysicalDeviceLayeredApiPropertiesKHR(vks, deps)
 end
 
@@ -45929,7 +45936,7 @@ Arguments:
 function _PhysicalDeviceMaintenance8FeaturesKHR(maintenance8::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMaintenance8FeaturesKHR(structure_type(VkPhysicalDeviceMaintenance8FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), maintenance8)
+    vks = VkPhysicalDeviceMaintenance8FeaturesKHR(structure_type(VkPhysicalDeviceMaintenance8FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, maintenance8))
     _PhysicalDeviceMaintenance8FeaturesKHR(vks, deps)
 end
 
@@ -45946,7 +45953,7 @@ Arguments:
 function _PhysicalDeviceMaintenance9FeaturesKHR(maintenance9::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMaintenance9FeaturesKHR(structure_type(VkPhysicalDeviceMaintenance9FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), maintenance9)
+    vks = VkPhysicalDeviceMaintenance9FeaturesKHR(structure_type(VkPhysicalDeviceMaintenance9FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, maintenance9))
     _PhysicalDeviceMaintenance9FeaturesKHR(vks, deps)
 end
 
@@ -45964,7 +45971,7 @@ Arguments:
 function _PhysicalDeviceMaintenance9PropertiesKHR(image_2_d_view_of_3_d_sparse::Bool, default_vertex_attribute_value::DefaultVertexAttributeValueKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMaintenance9PropertiesKHR(structure_type(VkPhysicalDeviceMaintenance9PropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), image_2_d_view_of_3_d_sparse, default_vertex_attribute_value)
+    vks = VkPhysicalDeviceMaintenance9PropertiesKHR(structure_type(VkPhysicalDeviceMaintenance9PropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, image_2_d_view_of_3_d_sparse), convert(VkDefaultVertexAttributeValueKHR, default_vertex_attribute_value))
     _PhysicalDeviceMaintenance9PropertiesKHR(vks, deps)
 end
 
@@ -45981,7 +45988,7 @@ Arguments:
 function _QueueFamilyOwnershipTransferPropertiesKHR(optimal_image_transfer_to_queue_families::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkQueueFamilyOwnershipTransferPropertiesKHR(structure_type(VkQueueFamilyOwnershipTransferPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), optimal_image_transfer_to_queue_families)
+    vks = VkQueueFamilyOwnershipTransferPropertiesKHR(structure_type(VkQueueFamilyOwnershipTransferPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, optimal_image_transfer_to_queue_families))
     _QueueFamilyOwnershipTransferPropertiesKHR(vks, deps)
 end
 
@@ -46001,7 +46008,7 @@ function _RenderingAreaInfo(view_mask::Integer, color_attachment_formats::Abstra
     next = cconvert(Ptr{Cvoid}, next)
     color_attachment_formats = cconvert(Ptr{VkFormat}, color_attachment_formats)
     deps = Any[next, color_attachment_formats]
-    vks = VkRenderingAreaInfo(structure_type(VkRenderingAreaInfo), unsafe_convert(Ptr{Cvoid}, next), view_mask, color_attachment_count, unsafe_convert(Ptr{VkFormat}, color_attachment_formats), depth_attachment_format, stencil_attachment_format)
+    vks = VkRenderingAreaInfo(structure_type(VkRenderingAreaInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, view_mask), convert(UInt32, color_attachment_count), unsafe_convert(Ptr{VkFormat}, color_attachment_formats), convert(VkFormat, depth_attachment_format), convert(VkFormat, stencil_attachment_format))
     _RenderingAreaInfo(vks, deps)
 end
 
@@ -46016,7 +46023,7 @@ Arguments:
 function _DescriptorSetLayoutSupport(supported::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDescriptorSetLayoutSupport(structure_type(VkDescriptorSetLayoutSupport), unsafe_convert(Ptr{Cvoid}, next), supported)
+    vks = VkDescriptorSetLayoutSupport(structure_type(VkDescriptorSetLayoutSupport), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, supported))
     _DescriptorSetLayoutSupport(vks, deps)
 end
 
@@ -46031,7 +46038,7 @@ Arguments:
 function _PhysicalDeviceShaderDrawParametersFeatures(shader_draw_parameters::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderDrawParametersFeatures(structure_type(VkPhysicalDeviceShaderDrawParametersFeatures), unsafe_convert(Ptr{Cvoid}, next), shader_draw_parameters)
+    vks = VkPhysicalDeviceShaderDrawParametersFeatures(structure_type(VkPhysicalDeviceShaderDrawParametersFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_draw_parameters))
     _PhysicalDeviceShaderDrawParametersFeatures(vks, deps)
 end
 
@@ -46047,7 +46054,7 @@ Arguments:
 function _PhysicalDeviceShaderFloat16Int8Features(shader_float_16::Bool, shader_int_8::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderFloat16Int8Features(structure_type(VkPhysicalDeviceShaderFloat16Int8Features), unsafe_convert(Ptr{Cvoid}, next), shader_float_16, shader_int_8)
+    vks = VkPhysicalDeviceShaderFloat16Int8Features(structure_type(VkPhysicalDeviceShaderFloat16Int8Features), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_float_16), convert(VkBool32, shader_int_8))
     _PhysicalDeviceShaderFloat16Int8Features(vks, deps)
 end
 
@@ -46078,7 +46085,7 @@ Arguments:
 function _PhysicalDeviceFloatControlsProperties(denorm_behavior_independence::ShaderFloatControlsIndependence, rounding_mode_independence::ShaderFloatControlsIndependence, shader_signed_zero_inf_nan_preserve_float_16::Bool, shader_signed_zero_inf_nan_preserve_float_32::Bool, shader_signed_zero_inf_nan_preserve_float_64::Bool, shader_denorm_preserve_float_16::Bool, shader_denorm_preserve_float_32::Bool, shader_denorm_preserve_float_64::Bool, shader_denorm_flush_to_zero_float_16::Bool, shader_denorm_flush_to_zero_float_32::Bool, shader_denorm_flush_to_zero_float_64::Bool, shader_rounding_mode_rte_float_16::Bool, shader_rounding_mode_rte_float_32::Bool, shader_rounding_mode_rte_float_64::Bool, shader_rounding_mode_rtz_float_16::Bool, shader_rounding_mode_rtz_float_32::Bool, shader_rounding_mode_rtz_float_64::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceFloatControlsProperties(structure_type(VkPhysicalDeviceFloatControlsProperties), unsafe_convert(Ptr{Cvoid}, next), denorm_behavior_independence, rounding_mode_independence, shader_signed_zero_inf_nan_preserve_float_16, shader_signed_zero_inf_nan_preserve_float_32, shader_signed_zero_inf_nan_preserve_float_64, shader_denorm_preserve_float_16, shader_denorm_preserve_float_32, shader_denorm_preserve_float_64, shader_denorm_flush_to_zero_float_16, shader_denorm_flush_to_zero_float_32, shader_denorm_flush_to_zero_float_64, shader_rounding_mode_rte_float_16, shader_rounding_mode_rte_float_32, shader_rounding_mode_rte_float_64, shader_rounding_mode_rtz_float_16, shader_rounding_mode_rtz_float_32, shader_rounding_mode_rtz_float_64)
+    vks = VkPhysicalDeviceFloatControlsProperties(structure_type(VkPhysicalDeviceFloatControlsProperties), unsafe_convert(Ptr{Cvoid}, next), convert(VkShaderFloatControlsIndependence, denorm_behavior_independence), convert(VkShaderFloatControlsIndependence, rounding_mode_independence), convert(VkBool32, shader_signed_zero_inf_nan_preserve_float_16), convert(VkBool32, shader_signed_zero_inf_nan_preserve_float_32), convert(VkBool32, shader_signed_zero_inf_nan_preserve_float_64), convert(VkBool32, shader_denorm_preserve_float_16), convert(VkBool32, shader_denorm_preserve_float_32), convert(VkBool32, shader_denorm_preserve_float_64), convert(VkBool32, shader_denorm_flush_to_zero_float_16), convert(VkBool32, shader_denorm_flush_to_zero_float_32), convert(VkBool32, shader_denorm_flush_to_zero_float_64), convert(VkBool32, shader_rounding_mode_rte_float_16), convert(VkBool32, shader_rounding_mode_rte_float_32), convert(VkBool32, shader_rounding_mode_rte_float_64), convert(VkBool32, shader_rounding_mode_rtz_float_16), convert(VkBool32, shader_rounding_mode_rtz_float_32), convert(VkBool32, shader_rounding_mode_rtz_float_64))
     _PhysicalDeviceFloatControlsProperties(vks, deps)
 end
 
@@ -46093,7 +46100,7 @@ Arguments:
 function _PhysicalDeviceHostQueryResetFeatures(host_query_reset::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceHostQueryResetFeatures(structure_type(VkPhysicalDeviceHostQueryResetFeatures), unsafe_convert(Ptr{Cvoid}, next), host_query_reset)
+    vks = VkPhysicalDeviceHostQueryResetFeatures(structure_type(VkPhysicalDeviceHostQueryResetFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, host_query_reset))
     _PhysicalDeviceHostQueryResetFeatures(vks, deps)
 end
 
@@ -46111,7 +46118,7 @@ Arguments:
 
 """
 function _ShaderResourceUsageAMD(num_used_vgprs::Integer, num_used_sgprs::Integer, lds_size_per_local_work_group::Integer, lds_usage_size_in_bytes::Integer, scratch_mem_usage_in_bytes::Integer)
-    _ShaderResourceUsageAMD(VkShaderResourceUsageAMD(num_used_vgprs, num_used_sgprs, lds_size_per_local_work_group, lds_usage_size_in_bytes, scratch_mem_usage_in_bytes))
+    _ShaderResourceUsageAMD(VkShaderResourceUsageAMD(convert(UInt32, num_used_vgprs), convert(UInt32, num_used_sgprs), convert(UInt32, lds_size_per_local_work_group), convert(UInt, lds_usage_size_in_bytes), convert(UInt, scratch_mem_usage_in_bytes)))
 end
 
 """
@@ -46130,7 +46137,7 @@ Arguments:
 
 """
 function _ShaderStatisticsInfoAMD(shader_stage_mask::ShaderStageFlag, resource_usage::_ShaderResourceUsageAMD, num_physical_vgprs::Integer, num_physical_sgprs::Integer, num_available_vgprs::Integer, num_available_sgprs::Integer, compute_work_group_size::NTuple{3, UInt32})
-    _ShaderStatisticsInfoAMD(VkShaderStatisticsInfoAMD(shader_stage_mask, resource_usage.vks, num_physical_vgprs, num_physical_sgprs, num_available_vgprs, num_available_sgprs, compute_work_group_size))
+    _ShaderStatisticsInfoAMD(VkShaderStatisticsInfoAMD(convert(VkShaderStageFlags, shader_stage_mask), resource_usage.vks, convert(UInt32, num_physical_vgprs), convert(UInt32, num_physical_sgprs), convert(UInt32, num_available_vgprs), convert(UInt32, num_available_sgprs), convert(NTuple{3, UInt32}, compute_work_group_size)))
 end
 
 """
@@ -46144,7 +46151,7 @@ Arguments:
 function _DeviceQueueGlobalPriorityCreateInfo(global_priority::QueueGlobalPriority; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDeviceQueueGlobalPriorityCreateInfo(structure_type(VkDeviceQueueGlobalPriorityCreateInfo), unsafe_convert(Ptr{Cvoid}, next), global_priority)
+    vks = VkDeviceQueueGlobalPriorityCreateInfo(structure_type(VkDeviceQueueGlobalPriorityCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkQueueGlobalPriority, global_priority))
     _DeviceQueueGlobalPriorityCreateInfo(vks, deps)
 end
 
@@ -46159,23 +46166,24 @@ Arguments:
 function _PhysicalDeviceGlobalPriorityQueryFeatures(global_priority_query::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceGlobalPriorityQueryFeatures(structure_type(VkPhysicalDeviceGlobalPriorityQueryFeatures), unsafe_convert(Ptr{Cvoid}, next), global_priority_query)
+    vks = VkPhysicalDeviceGlobalPriorityQueryFeatures(structure_type(VkPhysicalDeviceGlobalPriorityQueryFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, global_priority_query))
     _PhysicalDeviceGlobalPriorityQueryFeatures(vks, deps)
 end
 
 """
 Arguments:
+- `priority_count::UInt32`
 - `priorities::NTuple{Int(VK_MAX_GLOBAL_PRIORITY_SIZE), QueueGlobalPriority}`
 - `next::Ptr{Cvoid}`: defaults to `C_NULL`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueueFamilyGlobalPriorityProperties.html)
 
 """
-function _QueueFamilyGlobalPriorityProperties(priorities::NTuple{Int(VK_MAX_GLOBAL_PRIORITY_SIZE), QueueGlobalPriority}; next = C_NULL)
+function _QueueFamilyGlobalPriorityProperties(priority_count::Integer, priorities::NTuple{Int(VK_MAX_GLOBAL_PRIORITY_SIZE), QueueGlobalPriority}; next = C_NULL)
     priority_count = pointer_length(priorities)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkQueueFamilyGlobalPriorityProperties(structure_type(VkQueueFamilyGlobalPriorityProperties), unsafe_convert(Ptr{Cvoid}, next), priority_count, priorities)
+    vks = VkQueueFamilyGlobalPriorityProperties(structure_type(VkQueueFamilyGlobalPriorityProperties), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, priority_count), convert(NTuple{Int(VK_MAX_GLOBAL_PRIORITY_SIZE), VkQueueGlobalPriority}, priorities))
     _QueueFamilyGlobalPriorityProperties(vks, deps)
 end
 
@@ -46195,7 +46203,7 @@ function _DebugUtilsObjectNameInfoEXT(object_type::ObjectType, object_handle::In
     next = cconvert(Ptr{Cvoid}, next)
     object_name = cconvert(Cstring, object_name)
     deps = Any[next, object_name]
-    vks = VkDebugUtilsObjectNameInfoEXT(structure_type(VkDebugUtilsObjectNameInfoEXT), unsafe_convert(Ptr{Cvoid}, next), object_type, object_handle, unsafe_convert(Cstring, object_name))
+    vks = VkDebugUtilsObjectNameInfoEXT(structure_type(VkDebugUtilsObjectNameInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkObjectType, object_type), convert(UInt64, object_handle), unsafe_convert(Cstring, object_name))
     _DebugUtilsObjectNameInfoEXT(vks, deps)
 end
 
@@ -46217,7 +46225,7 @@ function _DebugUtilsObjectTagInfoEXT(object_type::ObjectType, object_handle::Int
     next = cconvert(Ptr{Cvoid}, next)
     tag = cconvert(Ptr{Cvoid}, tag)
     deps = Any[next, tag]
-    vks = VkDebugUtilsObjectTagInfoEXT(structure_type(VkDebugUtilsObjectTagInfoEXT), unsafe_convert(Ptr{Cvoid}, next), object_type, object_handle, tag_name, tag_size, unsafe_convert(Ptr{Cvoid}, tag))
+    vks = VkDebugUtilsObjectTagInfoEXT(structure_type(VkDebugUtilsObjectTagInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkObjectType, object_type), convert(UInt64, object_handle), convert(UInt64, tag_name), convert(UInt, tag_size), unsafe_convert(Ptr{Cvoid}, tag))
     _DebugUtilsObjectTagInfoEXT(vks, deps)
 end
 
@@ -46236,7 +46244,7 @@ function _DebugUtilsLabelEXT(label_name::AbstractString, color::NTuple{4, Float3
     next = cconvert(Ptr{Cvoid}, next)
     label_name = cconvert(Cstring, label_name)
     deps = Any[next, label_name]
-    vks = VkDebugUtilsLabelEXT(structure_type(VkDebugUtilsLabelEXT), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Cstring, label_name), color)
+    vks = VkDebugUtilsLabelEXT(structure_type(VkDebugUtilsLabelEXT), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Cstring, label_name), convert(NTuple{4, Float32}, color))
     _DebugUtilsLabelEXT(vks, deps)
 end
 
@@ -46258,7 +46266,7 @@ function _DebugUtilsMessengerCreateInfoEXT(message_severity::DebugUtilsMessageSe
     next = cconvert(Ptr{Cvoid}, next)
     user_data = cconvert(Ptr{Cvoid}, user_data)
     deps = Any[next, user_data]
-    vks = VkDebugUtilsMessengerCreateInfoEXT(structure_type(VkDebugUtilsMessengerCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), flags, message_severity, message_type, pfn_user_callback, unsafe_convert(Ptr{Cvoid}, user_data))
+    vks = VkDebugUtilsMessengerCreateInfoEXT(structure_type(VkDebugUtilsMessengerCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDebugUtilsMessengerCreateFlagsEXT, flags), convert(VkDebugUtilsMessageSeverityFlagsEXT, message_severity), convert(VkDebugUtilsMessageTypeFlagsEXT, message_type), pfn_user_callback, unsafe_convert(Ptr{Cvoid}, user_data))
     _DebugUtilsMessengerCreateInfoEXT(vks, deps)
 end
 
@@ -46289,7 +46297,7 @@ function _DebugUtilsMessengerCallbackDataEXT(message_id_number::Integer, message
     cmd_buf_labels = cconvert(Ptr{VkDebugUtilsLabelEXT}, cmd_buf_labels)
     objects = cconvert(Ptr{VkDebugUtilsObjectNameInfoEXT}, objects)
     deps = Any[next, message_id_name, message, queue_labels, cmd_buf_labels, objects]
-    vks = VkDebugUtilsMessengerCallbackDataEXT(structure_type(VkDebugUtilsMessengerCallbackDataEXT), unsafe_convert(Ptr{Cvoid}, next), flags, unsafe_convert(Cstring, message_id_name), message_id_number, unsafe_convert(Cstring, message), queue_label_count, unsafe_convert(Ptr{VkDebugUtilsLabelEXT}, queue_labels), cmd_buf_label_count, unsafe_convert(Ptr{VkDebugUtilsLabelEXT}, cmd_buf_labels), object_count, unsafe_convert(Ptr{VkDebugUtilsObjectNameInfoEXT}, objects))
+    vks = VkDebugUtilsMessengerCallbackDataEXT(structure_type(VkDebugUtilsMessengerCallbackDataEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDebugUtilsMessengerCallbackDataFlagsEXT, flags), unsafe_convert(Cstring, message_id_name), convert(Int32, message_id_number), unsafe_convert(Cstring, message), convert(UInt32, queue_label_count), unsafe_convert(Ptr{VkDebugUtilsLabelEXT}, queue_labels), convert(UInt32, cmd_buf_label_count), unsafe_convert(Ptr{VkDebugUtilsLabelEXT}, cmd_buf_labels), convert(UInt32, object_count), unsafe_convert(Ptr{VkDebugUtilsObjectNameInfoEXT}, objects))
     _DebugUtilsMessengerCallbackDataEXT(vks, deps)
 end
 
@@ -46306,7 +46314,7 @@ Arguments:
 function _PhysicalDeviceDeviceMemoryReportFeaturesEXT(device_memory_report::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDeviceMemoryReportFeaturesEXT(structure_type(VkPhysicalDeviceDeviceMemoryReportFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), device_memory_report)
+    vks = VkPhysicalDeviceDeviceMemoryReportFeaturesEXT(structure_type(VkPhysicalDeviceDeviceMemoryReportFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, device_memory_report))
     _PhysicalDeviceDeviceMemoryReportFeaturesEXT(vks, deps)
 end
 
@@ -46326,7 +46334,7 @@ function _DeviceDeviceMemoryReportCreateInfoEXT(flags::Integer, pfn_user_callbac
     next = cconvert(Ptr{Cvoid}, next)
     user_data = cconvert(Ptr{Cvoid}, user_data)
     deps = Any[next, user_data]
-    vks = VkDeviceDeviceMemoryReportCreateInfoEXT(structure_type(VkDeviceDeviceMemoryReportCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), flags, pfn_user_callback, unsafe_convert(Ptr{Cvoid}, user_data))
+    vks = VkDeviceDeviceMemoryReportCreateInfoEXT(structure_type(VkDeviceDeviceMemoryReportCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceMemoryReportFlagsEXT, flags), pfn_user_callback, unsafe_convert(Ptr{Cvoid}, user_data))
     _DeviceDeviceMemoryReportCreateInfoEXT(vks, deps)
 end
 
@@ -46349,7 +46357,7 @@ Arguments:
 function _DeviceMemoryReportCallbackDataEXT(flags::Integer, type::DeviceMemoryReportEventTypeEXT, memory_object_id::Integer, size::Integer, object_type::ObjectType, object_handle::Integer, heap_index::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDeviceMemoryReportCallbackDataEXT(structure_type(VkDeviceMemoryReportCallbackDataEXT), unsafe_convert(Ptr{Cvoid}, next), flags, type, memory_object_id, size, object_type, object_handle, heap_index)
+    vks = VkDeviceMemoryReportCallbackDataEXT(structure_type(VkDeviceMemoryReportCallbackDataEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceMemoryReportFlagsEXT, flags), convert(VkDeviceMemoryReportEventTypeEXT, type), convert(UInt64, memory_object_id), convert(VkDeviceSize, size), convert(VkObjectType, object_type), convert(UInt64, object_handle), convert(UInt32, heap_index))
     _DeviceMemoryReportCallbackDataEXT(vks, deps)
 end
 
@@ -46368,7 +46376,7 @@ function _ImportMemoryHostPointerInfoEXT(handle_type::ExternalMemoryHandleTypeFl
     next = cconvert(Ptr{Cvoid}, next)
     host_pointer = cconvert(Ptr{Cvoid}, host_pointer)
     deps = Any[next, host_pointer]
-    vks = VkImportMemoryHostPointerInfoEXT(structure_type(VkImportMemoryHostPointerInfoEXT), unsafe_convert(Ptr{Cvoid}, next), VkExternalMemoryHandleTypeFlagBits(handle_type.val), unsafe_convert(Ptr{Cvoid}, host_pointer))
+    vks = VkImportMemoryHostPointerInfoEXT(structure_type(VkImportMemoryHostPointerInfoEXT), unsafe_convert(Ptr{Cvoid}, next), VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)), unsafe_convert(Ptr{Cvoid}, host_pointer))
     _ImportMemoryHostPointerInfoEXT(vks, deps)
 end
 
@@ -46385,7 +46393,7 @@ Arguments:
 function _MemoryHostPointerPropertiesEXT(memory_type_bits::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMemoryHostPointerPropertiesEXT(structure_type(VkMemoryHostPointerPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), memory_type_bits)
+    vks = VkMemoryHostPointerPropertiesEXT(structure_type(VkMemoryHostPointerPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, memory_type_bits))
     _MemoryHostPointerPropertiesEXT(vks, deps)
 end
 
@@ -46402,7 +46410,7 @@ Arguments:
 function _PhysicalDeviceExternalMemoryHostPropertiesEXT(min_imported_host_pointer_alignment::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceExternalMemoryHostPropertiesEXT(structure_type(VkPhysicalDeviceExternalMemoryHostPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), min_imported_host_pointer_alignment)
+    vks = VkPhysicalDeviceExternalMemoryHostPropertiesEXT(structure_type(VkPhysicalDeviceExternalMemoryHostPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceSize, min_imported_host_pointer_alignment))
     _PhysicalDeviceExternalMemoryHostPropertiesEXT(vks, deps)
 end
 
@@ -46427,7 +46435,7 @@ Arguments:
 function _PhysicalDeviceConservativeRasterizationPropertiesEXT(primitive_overestimation_size::Real, max_extra_primitive_overestimation_size::Real, extra_primitive_overestimation_size_granularity::Real, primitive_underestimation::Bool, conservative_point_and_line_rasterization::Bool, degenerate_triangles_rasterized::Bool, degenerate_lines_rasterized::Bool, fully_covered_fragment_shader_input_variable::Bool, conservative_rasterization_post_depth_coverage::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceConservativeRasterizationPropertiesEXT(structure_type(VkPhysicalDeviceConservativeRasterizationPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), primitive_overestimation_size, max_extra_primitive_overestimation_size, extra_primitive_overestimation_size_granularity, primitive_underestimation, conservative_point_and_line_rasterization, degenerate_triangles_rasterized, degenerate_lines_rasterized, fully_covered_fragment_shader_input_variable, conservative_rasterization_post_depth_coverage)
+    vks = VkPhysicalDeviceConservativeRasterizationPropertiesEXT(structure_type(VkPhysicalDeviceConservativeRasterizationPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(Float32, primitive_overestimation_size), convert(Float32, max_extra_primitive_overestimation_size), convert(Float32, extra_primitive_overestimation_size_granularity), convert(VkBool32, primitive_underestimation), convert(VkBool32, conservative_point_and_line_rasterization), convert(VkBool32, degenerate_triangles_rasterized), convert(VkBool32, degenerate_lines_rasterized), convert(VkBool32, fully_covered_fragment_shader_input_variable), convert(VkBool32, conservative_rasterization_post_depth_coverage))
     _PhysicalDeviceConservativeRasterizationPropertiesEXT(vks, deps)
 end
 
@@ -46444,7 +46452,7 @@ Arguments:
 function _CalibratedTimestampInfoKHR(time_domain::TimeDomainKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkCalibratedTimestampInfoKHR(structure_type(VkCalibratedTimestampInfoKHR), unsafe_convert(Ptr{Cvoid}, next), time_domain)
+    vks = VkCalibratedTimestampInfoKHR(structure_type(VkCalibratedTimestampInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkTimeDomainKHR, time_domain))
     _CalibratedTimestampInfoKHR(vks, deps)
 end
 
@@ -46474,7 +46482,7 @@ Arguments:
 function _PhysicalDeviceShaderCorePropertiesAMD(shader_engine_count::Integer, shader_arrays_per_engine_count::Integer, compute_units_per_shader_array::Integer, simd_per_compute_unit::Integer, wavefronts_per_simd::Integer, wavefront_size::Integer, sgprs_per_simd::Integer, min_sgpr_allocation::Integer, max_sgpr_allocation::Integer, sgpr_allocation_granularity::Integer, vgprs_per_simd::Integer, min_vgpr_allocation::Integer, max_vgpr_allocation::Integer, vgpr_allocation_granularity::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderCorePropertiesAMD(structure_type(VkPhysicalDeviceShaderCorePropertiesAMD), unsafe_convert(Ptr{Cvoid}, next), shader_engine_count, shader_arrays_per_engine_count, compute_units_per_shader_array, simd_per_compute_unit, wavefronts_per_simd, wavefront_size, sgprs_per_simd, min_sgpr_allocation, max_sgpr_allocation, sgpr_allocation_granularity, vgprs_per_simd, min_vgpr_allocation, max_vgpr_allocation, vgpr_allocation_granularity)
+    vks = VkPhysicalDeviceShaderCorePropertiesAMD(structure_type(VkPhysicalDeviceShaderCorePropertiesAMD), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, shader_engine_count), convert(UInt32, shader_arrays_per_engine_count), convert(UInt32, compute_units_per_shader_array), convert(UInt32, simd_per_compute_unit), convert(UInt32, wavefronts_per_simd), convert(UInt32, wavefront_size), convert(UInt32, sgprs_per_simd), convert(UInt32, min_sgpr_allocation), convert(UInt32, max_sgpr_allocation), convert(UInt32, sgpr_allocation_granularity), convert(UInt32, vgprs_per_simd), convert(UInt32, min_vgpr_allocation), convert(UInt32, max_vgpr_allocation), convert(UInt32, vgpr_allocation_granularity))
     _PhysicalDeviceShaderCorePropertiesAMD(vks, deps)
 end
 
@@ -46492,7 +46500,7 @@ Arguments:
 function _PhysicalDeviceShaderCoreProperties2AMD(shader_core_features::ShaderCorePropertiesFlagAMD, active_compute_unit_count::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderCoreProperties2AMD(structure_type(VkPhysicalDeviceShaderCoreProperties2AMD), unsafe_convert(Ptr{Cvoid}, next), shader_core_features, active_compute_unit_count)
+    vks = VkPhysicalDeviceShaderCoreProperties2AMD(structure_type(VkPhysicalDeviceShaderCoreProperties2AMD), unsafe_convert(Ptr{Cvoid}, next), convert(VkShaderCorePropertiesFlagsAMD, shader_core_features), convert(UInt32, active_compute_unit_count))
     _PhysicalDeviceShaderCoreProperties2AMD(vks, deps)
 end
 
@@ -46511,7 +46519,7 @@ Arguments:
 function _PipelineRasterizationConservativeStateCreateInfoEXT(conservative_rasterization_mode::ConservativeRasterizationModeEXT, extra_primitive_overestimation_size::Real; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineRasterizationConservativeStateCreateInfoEXT(structure_type(VkPipelineRasterizationConservativeStateCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), flags, conservative_rasterization_mode, extra_primitive_overestimation_size)
+    vks = VkPipelineRasterizationConservativeStateCreateInfoEXT(structure_type(VkPipelineRasterizationConservativeStateCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineRasterizationConservativeStateCreateFlagsEXT, flags), convert(VkConservativeRasterizationModeEXT, conservative_rasterization_mode), convert(Float32, extra_primitive_overestimation_size))
     _PipelineRasterizationConservativeStateCreateInfoEXT(vks, deps)
 end
 
@@ -46545,7 +46553,7 @@ Arguments:
 function _PhysicalDeviceDescriptorIndexingFeatures(shader_input_attachment_array_dynamic_indexing::Bool, shader_uniform_texel_buffer_array_dynamic_indexing::Bool, shader_storage_texel_buffer_array_dynamic_indexing::Bool, shader_uniform_buffer_array_non_uniform_indexing::Bool, shader_sampled_image_array_non_uniform_indexing::Bool, shader_storage_buffer_array_non_uniform_indexing::Bool, shader_storage_image_array_non_uniform_indexing::Bool, shader_input_attachment_array_non_uniform_indexing::Bool, shader_uniform_texel_buffer_array_non_uniform_indexing::Bool, shader_storage_texel_buffer_array_non_uniform_indexing::Bool, descriptor_binding_uniform_buffer_update_after_bind::Bool, descriptor_binding_sampled_image_update_after_bind::Bool, descriptor_binding_storage_image_update_after_bind::Bool, descriptor_binding_storage_buffer_update_after_bind::Bool, descriptor_binding_uniform_texel_buffer_update_after_bind::Bool, descriptor_binding_storage_texel_buffer_update_after_bind::Bool, descriptor_binding_update_unused_while_pending::Bool, descriptor_binding_partially_bound::Bool, descriptor_binding_variable_descriptor_count::Bool, runtime_descriptor_array::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDescriptorIndexingFeatures(structure_type(VkPhysicalDeviceDescriptorIndexingFeatures), unsafe_convert(Ptr{Cvoid}, next), shader_input_attachment_array_dynamic_indexing, shader_uniform_texel_buffer_array_dynamic_indexing, shader_storage_texel_buffer_array_dynamic_indexing, shader_uniform_buffer_array_non_uniform_indexing, shader_sampled_image_array_non_uniform_indexing, shader_storage_buffer_array_non_uniform_indexing, shader_storage_image_array_non_uniform_indexing, shader_input_attachment_array_non_uniform_indexing, shader_uniform_texel_buffer_array_non_uniform_indexing, shader_storage_texel_buffer_array_non_uniform_indexing, descriptor_binding_uniform_buffer_update_after_bind, descriptor_binding_sampled_image_update_after_bind, descriptor_binding_storage_image_update_after_bind, descriptor_binding_storage_buffer_update_after_bind, descriptor_binding_uniform_texel_buffer_update_after_bind, descriptor_binding_storage_texel_buffer_update_after_bind, descriptor_binding_update_unused_while_pending, descriptor_binding_partially_bound, descriptor_binding_variable_descriptor_count, runtime_descriptor_array)
+    vks = VkPhysicalDeviceDescriptorIndexingFeatures(structure_type(VkPhysicalDeviceDescriptorIndexingFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_input_attachment_array_dynamic_indexing), convert(VkBool32, shader_uniform_texel_buffer_array_dynamic_indexing), convert(VkBool32, shader_storage_texel_buffer_array_dynamic_indexing), convert(VkBool32, shader_uniform_buffer_array_non_uniform_indexing), convert(VkBool32, shader_sampled_image_array_non_uniform_indexing), convert(VkBool32, shader_storage_buffer_array_non_uniform_indexing), convert(VkBool32, shader_storage_image_array_non_uniform_indexing), convert(VkBool32, shader_input_attachment_array_non_uniform_indexing), convert(VkBool32, shader_uniform_texel_buffer_array_non_uniform_indexing), convert(VkBool32, shader_storage_texel_buffer_array_non_uniform_indexing), convert(VkBool32, descriptor_binding_uniform_buffer_update_after_bind), convert(VkBool32, descriptor_binding_sampled_image_update_after_bind), convert(VkBool32, descriptor_binding_storage_image_update_after_bind), convert(VkBool32, descriptor_binding_storage_buffer_update_after_bind), convert(VkBool32, descriptor_binding_uniform_texel_buffer_update_after_bind), convert(VkBool32, descriptor_binding_storage_texel_buffer_update_after_bind), convert(VkBool32, descriptor_binding_update_unused_while_pending), convert(VkBool32, descriptor_binding_partially_bound), convert(VkBool32, descriptor_binding_variable_descriptor_count), convert(VkBool32, runtime_descriptor_array))
     _PhysicalDeviceDescriptorIndexingFeatures(vks, deps)
 end
 
@@ -46582,7 +46590,7 @@ Arguments:
 function _PhysicalDeviceDescriptorIndexingProperties(max_update_after_bind_descriptors_in_all_pools::Integer, shader_uniform_buffer_array_non_uniform_indexing_native::Bool, shader_sampled_image_array_non_uniform_indexing_native::Bool, shader_storage_buffer_array_non_uniform_indexing_native::Bool, shader_storage_image_array_non_uniform_indexing_native::Bool, shader_input_attachment_array_non_uniform_indexing_native::Bool, robust_buffer_access_update_after_bind::Bool, quad_divergent_implicit_lod::Bool, max_per_stage_descriptor_update_after_bind_samplers::Integer, max_per_stage_descriptor_update_after_bind_uniform_buffers::Integer, max_per_stage_descriptor_update_after_bind_storage_buffers::Integer, max_per_stage_descriptor_update_after_bind_sampled_images::Integer, max_per_stage_descriptor_update_after_bind_storage_images::Integer, max_per_stage_descriptor_update_after_bind_input_attachments::Integer, max_per_stage_update_after_bind_resources::Integer, max_descriptor_set_update_after_bind_samplers::Integer, max_descriptor_set_update_after_bind_uniform_buffers::Integer, max_descriptor_set_update_after_bind_uniform_buffers_dynamic::Integer, max_descriptor_set_update_after_bind_storage_buffers::Integer, max_descriptor_set_update_after_bind_storage_buffers_dynamic::Integer, max_descriptor_set_update_after_bind_sampled_images::Integer, max_descriptor_set_update_after_bind_storage_images::Integer, max_descriptor_set_update_after_bind_input_attachments::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDescriptorIndexingProperties(structure_type(VkPhysicalDeviceDescriptorIndexingProperties), unsafe_convert(Ptr{Cvoid}, next), max_update_after_bind_descriptors_in_all_pools, shader_uniform_buffer_array_non_uniform_indexing_native, shader_sampled_image_array_non_uniform_indexing_native, shader_storage_buffer_array_non_uniform_indexing_native, shader_storage_image_array_non_uniform_indexing_native, shader_input_attachment_array_non_uniform_indexing_native, robust_buffer_access_update_after_bind, quad_divergent_implicit_lod, max_per_stage_descriptor_update_after_bind_samplers, max_per_stage_descriptor_update_after_bind_uniform_buffers, max_per_stage_descriptor_update_after_bind_storage_buffers, max_per_stage_descriptor_update_after_bind_sampled_images, max_per_stage_descriptor_update_after_bind_storage_images, max_per_stage_descriptor_update_after_bind_input_attachments, max_per_stage_update_after_bind_resources, max_descriptor_set_update_after_bind_samplers, max_descriptor_set_update_after_bind_uniform_buffers, max_descriptor_set_update_after_bind_uniform_buffers_dynamic, max_descriptor_set_update_after_bind_storage_buffers, max_descriptor_set_update_after_bind_storage_buffers_dynamic, max_descriptor_set_update_after_bind_sampled_images, max_descriptor_set_update_after_bind_storage_images, max_descriptor_set_update_after_bind_input_attachments)
+    vks = VkPhysicalDeviceDescriptorIndexingProperties(structure_type(VkPhysicalDeviceDescriptorIndexingProperties), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_update_after_bind_descriptors_in_all_pools), convert(VkBool32, shader_uniform_buffer_array_non_uniform_indexing_native), convert(VkBool32, shader_sampled_image_array_non_uniform_indexing_native), convert(VkBool32, shader_storage_buffer_array_non_uniform_indexing_native), convert(VkBool32, shader_storage_image_array_non_uniform_indexing_native), convert(VkBool32, shader_input_attachment_array_non_uniform_indexing_native), convert(VkBool32, robust_buffer_access_update_after_bind), convert(VkBool32, quad_divergent_implicit_lod), convert(UInt32, max_per_stage_descriptor_update_after_bind_samplers), convert(UInt32, max_per_stage_descriptor_update_after_bind_uniform_buffers), convert(UInt32, max_per_stage_descriptor_update_after_bind_storage_buffers), convert(UInt32, max_per_stage_descriptor_update_after_bind_sampled_images), convert(UInt32, max_per_stage_descriptor_update_after_bind_storage_images), convert(UInt32, max_per_stage_descriptor_update_after_bind_input_attachments), convert(UInt32, max_per_stage_update_after_bind_resources), convert(UInt32, max_descriptor_set_update_after_bind_samplers), convert(UInt32, max_descriptor_set_update_after_bind_uniform_buffers), convert(UInt32, max_descriptor_set_update_after_bind_uniform_buffers_dynamic), convert(UInt32, max_descriptor_set_update_after_bind_storage_buffers), convert(UInt32, max_descriptor_set_update_after_bind_storage_buffers_dynamic), convert(UInt32, max_descriptor_set_update_after_bind_sampled_images), convert(UInt32, max_descriptor_set_update_after_bind_storage_images), convert(UInt32, max_descriptor_set_update_after_bind_input_attachments))
     _PhysicalDeviceDescriptorIndexingProperties(vks, deps)
 end
 
@@ -46599,7 +46607,7 @@ function _DescriptorSetLayoutBindingFlagsCreateInfo(binding_flags::AbstractArray
     next = cconvert(Ptr{Cvoid}, next)
     binding_flags = cconvert(Ptr{VkDescriptorBindingFlags}, binding_flags)
     deps = Any[next, binding_flags]
-    vks = VkDescriptorSetLayoutBindingFlagsCreateInfo(structure_type(VkDescriptorSetLayoutBindingFlagsCreateInfo), unsafe_convert(Ptr{Cvoid}, next), binding_count, unsafe_convert(Ptr{VkDescriptorBindingFlags}, binding_flags))
+    vks = VkDescriptorSetLayoutBindingFlagsCreateInfo(structure_type(VkDescriptorSetLayoutBindingFlagsCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, binding_count), unsafe_convert(Ptr{VkDescriptorBindingFlags}, binding_flags))
     _DescriptorSetLayoutBindingFlagsCreateInfo(vks, deps)
 end
 
@@ -46616,7 +46624,7 @@ function _DescriptorSetVariableDescriptorCountAllocateInfo(descriptor_counts::Ab
     next = cconvert(Ptr{Cvoid}, next)
     descriptor_counts = cconvert(Ptr{UInt32}, descriptor_counts)
     deps = Any[next, descriptor_counts]
-    vks = VkDescriptorSetVariableDescriptorCountAllocateInfo(structure_type(VkDescriptorSetVariableDescriptorCountAllocateInfo), unsafe_convert(Ptr{Cvoid}, next), descriptor_set_count, unsafe_convert(Ptr{UInt32}, descriptor_counts))
+    vks = VkDescriptorSetVariableDescriptorCountAllocateInfo(structure_type(VkDescriptorSetVariableDescriptorCountAllocateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, descriptor_set_count), unsafe_convert(Ptr{UInt32}, descriptor_counts))
     _DescriptorSetVariableDescriptorCountAllocateInfo(vks, deps)
 end
 
@@ -46631,7 +46639,7 @@ Arguments:
 function _DescriptorSetVariableDescriptorCountLayoutSupport(max_variable_descriptor_count::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDescriptorSetVariableDescriptorCountLayoutSupport(structure_type(VkDescriptorSetVariableDescriptorCountLayoutSupport), unsafe_convert(Ptr{Cvoid}, next), max_variable_descriptor_count)
+    vks = VkDescriptorSetVariableDescriptorCountLayoutSupport(structure_type(VkDescriptorSetVariableDescriptorCountLayoutSupport), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_variable_descriptor_count))
     _DescriptorSetVariableDescriptorCountLayoutSupport(vks, deps)
 end
 
@@ -46654,7 +46662,7 @@ Arguments:
 function _AttachmentDescription2(format::Format, samples::SampleCountFlag, load_op::AttachmentLoadOp, store_op::AttachmentStoreOp, stencil_load_op::AttachmentLoadOp, stencil_store_op::AttachmentStoreOp, initial_layout::ImageLayout, final_layout::ImageLayout; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAttachmentDescription2(structure_type(VkAttachmentDescription2), unsafe_convert(Ptr{Cvoid}, next), flags, format, VkSampleCountFlagBits(samples.val), load_op, store_op, stencil_load_op, stencil_store_op, initial_layout, final_layout)
+    vks = VkAttachmentDescription2(structure_type(VkAttachmentDescription2), unsafe_convert(Ptr{Cvoid}, next), convert(VkAttachmentDescriptionFlags, flags), convert(VkFormat, format), VkSampleCountFlagBits(flag_value(samples)), convert(VkAttachmentLoadOp, load_op), convert(VkAttachmentStoreOp, store_op), convert(VkAttachmentLoadOp, stencil_load_op), convert(VkAttachmentStoreOp, stencil_store_op), convert(VkImageLayout, initial_layout), convert(VkImageLayout, final_layout))
     _AttachmentDescription2(vks, deps)
 end
 
@@ -46671,7 +46679,7 @@ Arguments:
 function _AttachmentReference2(attachment::Integer, layout::ImageLayout, aspect_mask::ImageAspectFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAttachmentReference2(structure_type(VkAttachmentReference2), unsafe_convert(Ptr{Cvoid}, next), attachment, layout, aspect_mask)
+    vks = VkAttachmentReference2(structure_type(VkAttachmentReference2), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, attachment), convert(VkImageLayout, layout), convert(VkImageAspectFlags, aspect_mask))
     _AttachmentReference2(vks, deps)
 end
 
@@ -46701,7 +46709,7 @@ function _SubpassDescription2(pipeline_bind_point::PipelineBindPoint, view_mask:
     depth_stencil_attachment = cconvert(Ptr{VkAttachmentReference2}, depth_stencil_attachment)
     preserve_attachments = cconvert(Ptr{UInt32}, preserve_attachments)
     deps = Any[next, input_attachments, color_attachments, resolve_attachments, depth_stencil_attachment, preserve_attachments]
-    vks = VkSubpassDescription2(structure_type(VkSubpassDescription2), unsafe_convert(Ptr{Cvoid}, next), flags, pipeline_bind_point, view_mask, input_attachment_count, unsafe_convert(Ptr{VkAttachmentReference2}, input_attachments), color_attachment_count, unsafe_convert(Ptr{VkAttachmentReference2}, color_attachments), unsafe_convert(Ptr{VkAttachmentReference2}, resolve_attachments), unsafe_convert(Ptr{VkAttachmentReference2}, depth_stencil_attachment), preserve_attachment_count, unsafe_convert(Ptr{UInt32}, preserve_attachments))
+    vks = VkSubpassDescription2(structure_type(VkSubpassDescription2), unsafe_convert(Ptr{Cvoid}, next), convert(VkSubpassDescriptionFlags, flags), convert(VkPipelineBindPoint, pipeline_bind_point), convert(UInt32, view_mask), convert(UInt32, input_attachment_count), unsafe_convert(Ptr{VkAttachmentReference2}, input_attachments), convert(UInt32, color_attachment_count), unsafe_convert(Ptr{VkAttachmentReference2}, color_attachments), unsafe_convert(Ptr{VkAttachmentReference2}, resolve_attachments), unsafe_convert(Ptr{VkAttachmentReference2}, depth_stencil_attachment), convert(UInt32, preserve_attachment_count), unsafe_convert(Ptr{UInt32}, preserve_attachments))
     _SubpassDescription2(vks, deps)
 end
 
@@ -46723,7 +46731,7 @@ Arguments:
 function _SubpassDependency2(src_subpass::Integer, dst_subpass::Integer, view_offset::Integer; next = C_NULL, src_stage_mask = 0, dst_stage_mask = 0, src_access_mask = 0, dst_access_mask = 0, dependency_flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSubpassDependency2(structure_type(VkSubpassDependency2), unsafe_convert(Ptr{Cvoid}, next), src_subpass, dst_subpass, src_stage_mask, dst_stage_mask, src_access_mask, dst_access_mask, dependency_flags, view_offset)
+    vks = VkSubpassDependency2(structure_type(VkSubpassDependency2), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, src_subpass), convert(UInt32, dst_subpass), convert(VkPipelineStageFlags, src_stage_mask), convert(VkPipelineStageFlags, dst_stage_mask), convert(VkAccessFlags, src_access_mask), convert(VkAccessFlags, dst_access_mask), convert(VkDependencyFlags, dependency_flags), convert(Int32, view_offset))
     _SubpassDependency2(vks, deps)
 end
 
@@ -46750,7 +46758,7 @@ function _RenderPassCreateInfo2(attachments::AbstractArray, subpasses::AbstractA
     dependencies = cconvert(Ptr{VkSubpassDependency2}, dependencies)
     correlated_view_masks = cconvert(Ptr{UInt32}, correlated_view_masks)
     deps = Any[next, attachments, subpasses, dependencies, correlated_view_masks]
-    vks = VkRenderPassCreateInfo2(structure_type(VkRenderPassCreateInfo2), unsafe_convert(Ptr{Cvoid}, next), flags, attachment_count, unsafe_convert(Ptr{VkAttachmentDescription2}, attachments), subpass_count, unsafe_convert(Ptr{VkSubpassDescription2}, subpasses), dependency_count, unsafe_convert(Ptr{VkSubpassDependency2}, dependencies), correlated_view_mask_count, unsafe_convert(Ptr{UInt32}, correlated_view_masks))
+    vks = VkRenderPassCreateInfo2(structure_type(VkRenderPassCreateInfo2), unsafe_convert(Ptr{Cvoid}, next), convert(VkRenderPassCreateFlags, flags), convert(UInt32, attachment_count), unsafe_convert(Ptr{VkAttachmentDescription2}, attachments), convert(UInt32, subpass_count), unsafe_convert(Ptr{VkSubpassDescription2}, subpasses), convert(UInt32, dependency_count), unsafe_convert(Ptr{VkSubpassDependency2}, dependencies), convert(UInt32, correlated_view_mask_count), unsafe_convert(Ptr{UInt32}, correlated_view_masks))
     _RenderPassCreateInfo2(vks, deps)
 end
 
@@ -46765,7 +46773,7 @@ Arguments:
 function _SubpassBeginInfo(contents::SubpassContents; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSubpassBeginInfo(structure_type(VkSubpassBeginInfo), unsafe_convert(Ptr{Cvoid}, next), contents)
+    vks = VkSubpassBeginInfo(structure_type(VkSubpassBeginInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkSubpassContents, contents))
     _SubpassBeginInfo(vks, deps)
 end
 
@@ -46794,7 +46802,7 @@ Arguments:
 function _PhysicalDeviceTimelineSemaphoreFeatures(timeline_semaphore::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceTimelineSemaphoreFeatures(structure_type(VkPhysicalDeviceTimelineSemaphoreFeatures), unsafe_convert(Ptr{Cvoid}, next), timeline_semaphore)
+    vks = VkPhysicalDeviceTimelineSemaphoreFeatures(structure_type(VkPhysicalDeviceTimelineSemaphoreFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, timeline_semaphore))
     _PhysicalDeviceTimelineSemaphoreFeatures(vks, deps)
 end
 
@@ -46809,7 +46817,7 @@ Arguments:
 function _PhysicalDeviceTimelineSemaphoreProperties(max_timeline_semaphore_value_difference::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceTimelineSemaphoreProperties(structure_type(VkPhysicalDeviceTimelineSemaphoreProperties), unsafe_convert(Ptr{Cvoid}, next), max_timeline_semaphore_value_difference)
+    vks = VkPhysicalDeviceTimelineSemaphoreProperties(structure_type(VkPhysicalDeviceTimelineSemaphoreProperties), unsafe_convert(Ptr{Cvoid}, next), convert(UInt64, max_timeline_semaphore_value_difference))
     _PhysicalDeviceTimelineSemaphoreProperties(vks, deps)
 end
 
@@ -46825,7 +46833,7 @@ Arguments:
 function _SemaphoreTypeCreateInfo(semaphore_type::SemaphoreType, initial_value::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSemaphoreTypeCreateInfo(structure_type(VkSemaphoreTypeCreateInfo), unsafe_convert(Ptr{Cvoid}, next), semaphore_type, initial_value)
+    vks = VkSemaphoreTypeCreateInfo(structure_type(VkSemaphoreTypeCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkSemaphoreType, semaphore_type), convert(UInt64, initial_value))
     _SemaphoreTypeCreateInfo(vks, deps)
 end
 
@@ -46845,7 +46853,7 @@ function _TimelineSemaphoreSubmitInfo(; next = C_NULL, wait_semaphore_values = C
     wait_semaphore_values = cconvert(Ptr{UInt64}, wait_semaphore_values)
     signal_semaphore_values = cconvert(Ptr{UInt64}, signal_semaphore_values)
     deps = Any[next, wait_semaphore_values, signal_semaphore_values]
-    vks = VkTimelineSemaphoreSubmitInfo(structure_type(VkTimelineSemaphoreSubmitInfo), unsafe_convert(Ptr{Cvoid}, next), wait_semaphore_value_count, unsafe_convert(Ptr{UInt64}, wait_semaphore_values), signal_semaphore_value_count, unsafe_convert(Ptr{UInt64}, signal_semaphore_values))
+    vks = VkTimelineSemaphoreSubmitInfo(structure_type(VkTimelineSemaphoreSubmitInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, wait_semaphore_value_count), unsafe_convert(Ptr{UInt64}, wait_semaphore_values), convert(UInt32, signal_semaphore_value_count), unsafe_convert(Ptr{UInt64}, signal_semaphore_values))
     _TimelineSemaphoreSubmitInfo(vks, deps)
 end
 
@@ -46865,7 +46873,7 @@ function _SemaphoreWaitInfo(semaphores::AbstractArray, values::AbstractArray; ne
     semaphores = cconvert(Ptr{VkSemaphore}, semaphores)
     values = cconvert(Ptr{UInt64}, values)
     deps = Any[next, semaphores, values]
-    vks = VkSemaphoreWaitInfo(structure_type(VkSemaphoreWaitInfo), unsafe_convert(Ptr{Cvoid}, next), flags, semaphore_count, unsafe_convert(Ptr{VkSemaphore}, semaphores), unsafe_convert(Ptr{UInt64}, values))
+    vks = VkSemaphoreWaitInfo(structure_type(VkSemaphoreWaitInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkSemaphoreWaitFlags, flags), convert(UInt32, semaphore_count), unsafe_convert(Ptr{VkSemaphore}, semaphores), unsafe_convert(Ptr{UInt64}, values))
     _SemaphoreWaitInfo(vks, deps)
 end
 
@@ -46881,7 +46889,7 @@ Arguments:
 function _SemaphoreSignalInfo(semaphore, value::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSemaphoreSignalInfo(structure_type(VkSemaphoreSignalInfo), unsafe_convert(Ptr{Cvoid}, next), semaphore, value)
+    vks = VkSemaphoreSignalInfo(structure_type(VkSemaphoreSignalInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkSemaphore, semaphore), convert(UInt64, value))
     _SemaphoreSignalInfo(vks, deps, semaphore)
 end
 
@@ -46894,7 +46902,7 @@ Arguments:
 
 """
 function _VertexInputBindingDivisorDescription(binding::Integer, divisor::Integer)
-    _VertexInputBindingDivisorDescription(VkVertexInputBindingDivisorDescription(binding, divisor))
+    _VertexInputBindingDivisorDescription(VkVertexInputBindingDivisorDescription(convert(UInt32, binding), convert(UInt32, divisor)))
 end
 
 """
@@ -46910,7 +46918,7 @@ function _PipelineVertexInputDivisorStateCreateInfo(vertex_binding_divisors::Abs
     next = cconvert(Ptr{Cvoid}, next)
     vertex_binding_divisors = cconvert(Ptr{VkVertexInputBindingDivisorDescription}, vertex_binding_divisors)
     deps = Any[next, vertex_binding_divisors]
-    vks = VkPipelineVertexInputDivisorStateCreateInfo(structure_type(VkPipelineVertexInputDivisorStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), vertex_binding_divisor_count, unsafe_convert(Ptr{VkVertexInputBindingDivisorDescription}, vertex_binding_divisors))
+    vks = VkPipelineVertexInputDivisorStateCreateInfo(structure_type(VkPipelineVertexInputDivisorStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, vertex_binding_divisor_count), unsafe_convert(Ptr{VkVertexInputBindingDivisorDescription}, vertex_binding_divisors))
     _PipelineVertexInputDivisorStateCreateInfo(vks, deps)
 end
 
@@ -46927,7 +46935,7 @@ Arguments:
 function _PhysicalDeviceVertexAttributeDivisorPropertiesEXT(max_vertex_attrib_divisor::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT(structure_type(VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), max_vertex_attrib_divisor)
+    vks = VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT(structure_type(VkPhysicalDeviceVertexAttributeDivisorPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_vertex_attrib_divisor))
     _PhysicalDeviceVertexAttributeDivisorPropertiesEXT(vks, deps)
 end
 
@@ -46943,7 +46951,7 @@ Arguments:
 function _PhysicalDeviceVertexAttributeDivisorProperties(max_vertex_attrib_divisor::Integer, supports_non_zero_first_instance::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceVertexAttributeDivisorProperties(structure_type(VkPhysicalDeviceVertexAttributeDivisorProperties), unsafe_convert(Ptr{Cvoid}, next), max_vertex_attrib_divisor, supports_non_zero_first_instance)
+    vks = VkPhysicalDeviceVertexAttributeDivisorProperties(structure_type(VkPhysicalDeviceVertexAttributeDivisorProperties), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_vertex_attrib_divisor), convert(VkBool32, supports_non_zero_first_instance))
     _PhysicalDeviceVertexAttributeDivisorProperties(vks, deps)
 end
 
@@ -46963,7 +46971,7 @@ Arguments:
 function _PhysicalDevicePCIBusInfoPropertiesEXT(pci_domain::Integer, pci_bus::Integer, pci_device::Integer, pci_function::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePCIBusInfoPropertiesEXT(structure_type(VkPhysicalDevicePCIBusInfoPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), pci_domain, pci_bus, pci_device, pci_function)
+    vks = VkPhysicalDevicePCIBusInfoPropertiesEXT(structure_type(VkPhysicalDevicePCIBusInfoPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, pci_domain), convert(UInt32, pci_bus), convert(UInt32, pci_device), convert(UInt32, pci_function))
     _PhysicalDevicePCIBusInfoPropertiesEXT(vks, deps)
 end
 
@@ -46980,7 +46988,7 @@ Arguments:
 function _CommandBufferInheritanceConditionalRenderingInfoEXT(conditional_rendering_enable::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkCommandBufferInheritanceConditionalRenderingInfoEXT(structure_type(VkCommandBufferInheritanceConditionalRenderingInfoEXT), unsafe_convert(Ptr{Cvoid}, next), conditional_rendering_enable)
+    vks = VkCommandBufferInheritanceConditionalRenderingInfoEXT(structure_type(VkCommandBufferInheritanceConditionalRenderingInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, conditional_rendering_enable))
     _CommandBufferInheritanceConditionalRenderingInfoEXT(vks, deps)
 end
 
@@ -46997,7 +47005,7 @@ Arguments:
 function _PhysicalDevice8BitStorageFeatures(storage_buffer_8_bit_access::Bool, uniform_and_storage_buffer_8_bit_access::Bool, storage_push_constant_8::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevice8BitStorageFeatures(structure_type(VkPhysicalDevice8BitStorageFeatures), unsafe_convert(Ptr{Cvoid}, next), storage_buffer_8_bit_access, uniform_and_storage_buffer_8_bit_access, storage_push_constant_8)
+    vks = VkPhysicalDevice8BitStorageFeatures(structure_type(VkPhysicalDevice8BitStorageFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, storage_buffer_8_bit_access), convert(VkBool32, uniform_and_storage_buffer_8_bit_access), convert(VkBool32, storage_push_constant_8))
     _PhysicalDevice8BitStorageFeatures(vks, deps)
 end
 
@@ -47015,7 +47023,7 @@ Arguments:
 function _PhysicalDeviceConditionalRenderingFeaturesEXT(conditional_rendering::Bool, inherited_conditional_rendering::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceConditionalRenderingFeaturesEXT(structure_type(VkPhysicalDeviceConditionalRenderingFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), conditional_rendering, inherited_conditional_rendering)
+    vks = VkPhysicalDeviceConditionalRenderingFeaturesEXT(structure_type(VkPhysicalDeviceConditionalRenderingFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, conditional_rendering), convert(VkBool32, inherited_conditional_rendering))
     _PhysicalDeviceConditionalRenderingFeaturesEXT(vks, deps)
 end
 
@@ -47032,7 +47040,7 @@ Arguments:
 function _PhysicalDeviceVulkanMemoryModelFeatures(vulkan_memory_model::Bool, vulkan_memory_model_device_scope::Bool, vulkan_memory_model_availability_visibility_chains::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceVulkanMemoryModelFeatures(structure_type(VkPhysicalDeviceVulkanMemoryModelFeatures), unsafe_convert(Ptr{Cvoid}, next), vulkan_memory_model, vulkan_memory_model_device_scope, vulkan_memory_model_availability_visibility_chains)
+    vks = VkPhysicalDeviceVulkanMemoryModelFeatures(structure_type(VkPhysicalDeviceVulkanMemoryModelFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, vulkan_memory_model), convert(VkBool32, vulkan_memory_model_device_scope), convert(VkBool32, vulkan_memory_model_availability_visibility_chains))
     _PhysicalDeviceVulkanMemoryModelFeatures(vks, deps)
 end
 
@@ -47048,7 +47056,7 @@ Arguments:
 function _PhysicalDeviceShaderAtomicInt64Features(shader_buffer_int_64_atomics::Bool, shader_shared_int_64_atomics::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderAtomicInt64Features(structure_type(VkPhysicalDeviceShaderAtomicInt64Features), unsafe_convert(Ptr{Cvoid}, next), shader_buffer_int_64_atomics, shader_shared_int_64_atomics)
+    vks = VkPhysicalDeviceShaderAtomicInt64Features(structure_type(VkPhysicalDeviceShaderAtomicInt64Features), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_buffer_int_64_atomics), convert(VkBool32, shader_shared_int_64_atomics))
     _PhysicalDeviceShaderAtomicInt64Features(vks, deps)
 end
 
@@ -47076,7 +47084,7 @@ Arguments:
 function _PhysicalDeviceShaderAtomicFloatFeaturesEXT(shader_buffer_float_32_atomics::Bool, shader_buffer_float_32_atomic_add::Bool, shader_buffer_float_64_atomics::Bool, shader_buffer_float_64_atomic_add::Bool, shader_shared_float_32_atomics::Bool, shader_shared_float_32_atomic_add::Bool, shader_shared_float_64_atomics::Bool, shader_shared_float_64_atomic_add::Bool, shader_image_float_32_atomics::Bool, shader_image_float_32_atomic_add::Bool, sparse_image_float_32_atomics::Bool, sparse_image_float_32_atomic_add::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderAtomicFloatFeaturesEXT(structure_type(VkPhysicalDeviceShaderAtomicFloatFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), shader_buffer_float_32_atomics, shader_buffer_float_32_atomic_add, shader_buffer_float_64_atomics, shader_buffer_float_64_atomic_add, shader_shared_float_32_atomics, shader_shared_float_32_atomic_add, shader_shared_float_64_atomics, shader_shared_float_64_atomic_add, shader_image_float_32_atomics, shader_image_float_32_atomic_add, sparse_image_float_32_atomics, sparse_image_float_32_atomic_add)
+    vks = VkPhysicalDeviceShaderAtomicFloatFeaturesEXT(structure_type(VkPhysicalDeviceShaderAtomicFloatFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_buffer_float_32_atomics), convert(VkBool32, shader_buffer_float_32_atomic_add), convert(VkBool32, shader_buffer_float_64_atomics), convert(VkBool32, shader_buffer_float_64_atomic_add), convert(VkBool32, shader_shared_float_32_atomics), convert(VkBool32, shader_shared_float_32_atomic_add), convert(VkBool32, shader_shared_float_64_atomics), convert(VkBool32, shader_shared_float_64_atomic_add), convert(VkBool32, shader_image_float_32_atomics), convert(VkBool32, shader_image_float_32_atomic_add), convert(VkBool32, sparse_image_float_32_atomics), convert(VkBool32, sparse_image_float_32_atomic_add))
     _PhysicalDeviceShaderAtomicFloatFeaturesEXT(vks, deps)
 end
 
@@ -47104,7 +47112,7 @@ Arguments:
 function _PhysicalDeviceShaderAtomicFloat2FeaturesEXT(shader_buffer_float_16_atomics::Bool, shader_buffer_float_16_atomic_add::Bool, shader_buffer_float_16_atomic_min_max::Bool, shader_buffer_float_32_atomic_min_max::Bool, shader_buffer_float_64_atomic_min_max::Bool, shader_shared_float_16_atomics::Bool, shader_shared_float_16_atomic_add::Bool, shader_shared_float_16_atomic_min_max::Bool, shader_shared_float_32_atomic_min_max::Bool, shader_shared_float_64_atomic_min_max::Bool, shader_image_float_32_atomic_min_max::Bool, sparse_image_float_32_atomic_min_max::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderAtomicFloat2FeaturesEXT(structure_type(VkPhysicalDeviceShaderAtomicFloat2FeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), shader_buffer_float_16_atomics, shader_buffer_float_16_atomic_add, shader_buffer_float_16_atomic_min_max, shader_buffer_float_32_atomic_min_max, shader_buffer_float_64_atomic_min_max, shader_shared_float_16_atomics, shader_shared_float_16_atomic_add, shader_shared_float_16_atomic_min_max, shader_shared_float_32_atomic_min_max, shader_shared_float_64_atomic_min_max, shader_image_float_32_atomic_min_max, sparse_image_float_32_atomic_min_max)
+    vks = VkPhysicalDeviceShaderAtomicFloat2FeaturesEXT(structure_type(VkPhysicalDeviceShaderAtomicFloat2FeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_buffer_float_16_atomics), convert(VkBool32, shader_buffer_float_16_atomic_add), convert(VkBool32, shader_buffer_float_16_atomic_min_max), convert(VkBool32, shader_buffer_float_32_atomic_min_max), convert(VkBool32, shader_buffer_float_64_atomic_min_max), convert(VkBool32, shader_shared_float_16_atomics), convert(VkBool32, shader_shared_float_16_atomic_add), convert(VkBool32, shader_shared_float_16_atomic_min_max), convert(VkBool32, shader_shared_float_32_atomic_min_max), convert(VkBool32, shader_shared_float_64_atomic_min_max), convert(VkBool32, shader_image_float_32_atomic_min_max), convert(VkBool32, sparse_image_float_32_atomic_min_max))
     _PhysicalDeviceShaderAtomicFloat2FeaturesEXT(vks, deps)
 end
 
@@ -47120,7 +47128,7 @@ Arguments:
 function _PhysicalDeviceVertexAttributeDivisorFeatures(vertex_attribute_instance_rate_divisor::Bool, vertex_attribute_instance_rate_zero_divisor::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceVertexAttributeDivisorFeatures(structure_type(VkPhysicalDeviceVertexAttributeDivisorFeatures), unsafe_convert(Ptr{Cvoid}, next), vertex_attribute_instance_rate_divisor, vertex_attribute_instance_rate_zero_divisor)
+    vks = VkPhysicalDeviceVertexAttributeDivisorFeatures(structure_type(VkPhysicalDeviceVertexAttributeDivisorFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, vertex_attribute_instance_rate_divisor), convert(VkBool32, vertex_attribute_instance_rate_zero_divisor))
     _PhysicalDeviceVertexAttributeDivisorFeatures(vks, deps)
 end
 
@@ -47137,7 +47145,7 @@ Arguments:
 function _QueueFamilyCheckpointPropertiesNV(checkpoint_execution_stage_mask::PipelineStageFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkQueueFamilyCheckpointPropertiesNV(structure_type(VkQueueFamilyCheckpointPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), checkpoint_execution_stage_mask)
+    vks = VkQueueFamilyCheckpointPropertiesNV(structure_type(VkQueueFamilyCheckpointPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineStageFlags, checkpoint_execution_stage_mask))
     _QueueFamilyCheckpointPropertiesNV(vks, deps)
 end
 
@@ -47156,7 +47164,7 @@ function _CheckpointDataNV(stage::PipelineStageFlag, checkpoint_marker::Ptr{Cvoi
     next = cconvert(Ptr{Cvoid}, next)
     checkpoint_marker = cconvert(Ptr{Cvoid}, checkpoint_marker)
     deps = Any[next, checkpoint_marker]
-    vks = VkCheckpointDataNV(structure_type(VkCheckpointDataNV), unsafe_convert(Ptr{Cvoid}, next), VkPipelineStageFlagBits(stage.val), unsafe_convert(Ptr{Cvoid}, checkpoint_marker))
+    vks = VkCheckpointDataNV(structure_type(VkCheckpointDataNV), unsafe_convert(Ptr{Cvoid}, next), VkPipelineStageFlagBits(flag_value(stage)), unsafe_convert(Ptr{Cvoid}, checkpoint_marker))
     _CheckpointDataNV(vks, deps)
 end
 
@@ -47174,7 +47182,7 @@ Arguments:
 function _PhysicalDeviceDepthStencilResolveProperties(supported_depth_resolve_modes::ResolveModeFlag, supported_stencil_resolve_modes::ResolveModeFlag, independent_resolve_none::Bool, independent_resolve::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDepthStencilResolveProperties(structure_type(VkPhysicalDeviceDepthStencilResolveProperties), unsafe_convert(Ptr{Cvoid}, next), supported_depth_resolve_modes, supported_stencil_resolve_modes, independent_resolve_none, independent_resolve)
+    vks = VkPhysicalDeviceDepthStencilResolveProperties(structure_type(VkPhysicalDeviceDepthStencilResolveProperties), unsafe_convert(Ptr{Cvoid}, next), convert(VkResolveModeFlags, supported_depth_resolve_modes), convert(VkResolveModeFlags, supported_stencil_resolve_modes), convert(VkBool32, independent_resolve_none), convert(VkBool32, independent_resolve))
     _PhysicalDeviceDepthStencilResolveProperties(vks, deps)
 end
 
@@ -47192,7 +47200,7 @@ function _SubpassDescriptionDepthStencilResolve(depth_resolve_mode::ResolveModeF
     next = cconvert(Ptr{Cvoid}, next)
     depth_stencil_resolve_attachment = cconvert(Ptr{VkAttachmentReference2}, depth_stencil_resolve_attachment)
     deps = Any[next, depth_stencil_resolve_attachment]
-    vks = VkSubpassDescriptionDepthStencilResolve(structure_type(VkSubpassDescriptionDepthStencilResolve), unsafe_convert(Ptr{Cvoid}, next), VkResolveModeFlagBits(depth_resolve_mode.val), VkResolveModeFlagBits(stencil_resolve_mode.val), unsafe_convert(Ptr{VkAttachmentReference2}, depth_stencil_resolve_attachment))
+    vks = VkSubpassDescriptionDepthStencilResolve(structure_type(VkSubpassDescriptionDepthStencilResolve), unsafe_convert(Ptr{Cvoid}, next), VkResolveModeFlagBits(flag_value(depth_resolve_mode)), VkResolveModeFlagBits(flag_value(stencil_resolve_mode)), unsafe_convert(Ptr{VkAttachmentReference2}, depth_stencil_resolve_attachment))
     _SubpassDescriptionDepthStencilResolve(vks, deps)
 end
 
@@ -47209,7 +47217,7 @@ Arguments:
 function _ImageViewASTCDecodeModeEXT(decode_mode::Format; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImageViewASTCDecodeModeEXT(structure_type(VkImageViewASTCDecodeModeEXT), unsafe_convert(Ptr{Cvoid}, next), decode_mode)
+    vks = VkImageViewASTCDecodeModeEXT(structure_type(VkImageViewASTCDecodeModeEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkFormat, decode_mode))
     _ImageViewASTCDecodeModeEXT(vks, deps)
 end
 
@@ -47226,7 +47234,7 @@ Arguments:
 function _PhysicalDeviceASTCDecodeFeaturesEXT(decode_mode_shared_exponent::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceASTCDecodeFeaturesEXT(structure_type(VkPhysicalDeviceASTCDecodeFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), decode_mode_shared_exponent)
+    vks = VkPhysicalDeviceASTCDecodeFeaturesEXT(structure_type(VkPhysicalDeviceASTCDecodeFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, decode_mode_shared_exponent))
     _PhysicalDeviceASTCDecodeFeaturesEXT(vks, deps)
 end
 
@@ -47244,7 +47252,7 @@ Arguments:
 function _PhysicalDeviceTransformFeedbackFeaturesEXT(transform_feedback::Bool, geometry_streams::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceTransformFeedbackFeaturesEXT(structure_type(VkPhysicalDeviceTransformFeedbackFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), transform_feedback, geometry_streams)
+    vks = VkPhysicalDeviceTransformFeedbackFeaturesEXT(structure_type(VkPhysicalDeviceTransformFeedbackFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, transform_feedback), convert(VkBool32, geometry_streams))
     _PhysicalDeviceTransformFeedbackFeaturesEXT(vks, deps)
 end
 
@@ -47270,7 +47278,7 @@ Arguments:
 function _PhysicalDeviceTransformFeedbackPropertiesEXT(max_transform_feedback_streams::Integer, max_transform_feedback_buffers::Integer, max_transform_feedback_buffer_size::Integer, max_transform_feedback_stream_data_size::Integer, max_transform_feedback_buffer_data_size::Integer, max_transform_feedback_buffer_data_stride::Integer, transform_feedback_queries::Bool, transform_feedback_streams_lines_triangles::Bool, transform_feedback_rasterization_stream_select::Bool, transform_feedback_draw::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceTransformFeedbackPropertiesEXT(structure_type(VkPhysicalDeviceTransformFeedbackPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), max_transform_feedback_streams, max_transform_feedback_buffers, max_transform_feedback_buffer_size, max_transform_feedback_stream_data_size, max_transform_feedback_buffer_data_size, max_transform_feedback_buffer_data_stride, transform_feedback_queries, transform_feedback_streams_lines_triangles, transform_feedback_rasterization_stream_select, transform_feedback_draw)
+    vks = VkPhysicalDeviceTransformFeedbackPropertiesEXT(structure_type(VkPhysicalDeviceTransformFeedbackPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_transform_feedback_streams), convert(UInt32, max_transform_feedback_buffers), convert(VkDeviceSize, max_transform_feedback_buffer_size), convert(UInt32, max_transform_feedback_stream_data_size), convert(UInt32, max_transform_feedback_buffer_data_size), convert(UInt32, max_transform_feedback_buffer_data_stride), convert(VkBool32, transform_feedback_queries), convert(VkBool32, transform_feedback_streams_lines_triangles), convert(VkBool32, transform_feedback_rasterization_stream_select), convert(VkBool32, transform_feedback_draw))
     _PhysicalDeviceTransformFeedbackPropertiesEXT(vks, deps)
 end
 
@@ -47288,7 +47296,7 @@ Arguments:
 function _PipelineRasterizationStateStreamCreateInfoEXT(rasterization_stream::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineRasterizationStateStreamCreateInfoEXT(structure_type(VkPipelineRasterizationStateStreamCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), flags, rasterization_stream)
+    vks = VkPipelineRasterizationStateStreamCreateInfoEXT(structure_type(VkPipelineRasterizationStateStreamCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineRasterizationStateStreamCreateFlagsEXT, flags), convert(UInt32, rasterization_stream))
     _PipelineRasterizationStateStreamCreateInfoEXT(vks, deps)
 end
 
@@ -47305,7 +47313,7 @@ Arguments:
 function _PhysicalDeviceRepresentativeFragmentTestFeaturesNV(representative_fragment_test::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV(structure_type(VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), representative_fragment_test)
+    vks = VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV(structure_type(VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, representative_fragment_test))
     _PhysicalDeviceRepresentativeFragmentTestFeaturesNV(vks, deps)
 end
 
@@ -47322,7 +47330,7 @@ Arguments:
 function _PipelineRepresentativeFragmentTestStateCreateInfoNV(representative_fragment_test_enable::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineRepresentativeFragmentTestStateCreateInfoNV(structure_type(VkPipelineRepresentativeFragmentTestStateCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), representative_fragment_test_enable)
+    vks = VkPipelineRepresentativeFragmentTestStateCreateInfoNV(structure_type(VkPipelineRepresentativeFragmentTestStateCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, representative_fragment_test_enable))
     _PipelineRepresentativeFragmentTestStateCreateInfoNV(vks, deps)
 end
 
@@ -47339,7 +47347,7 @@ Arguments:
 function _PhysicalDeviceExclusiveScissorFeaturesNV(exclusive_scissor::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceExclusiveScissorFeaturesNV(structure_type(VkPhysicalDeviceExclusiveScissorFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), exclusive_scissor)
+    vks = VkPhysicalDeviceExclusiveScissorFeaturesNV(structure_type(VkPhysicalDeviceExclusiveScissorFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, exclusive_scissor))
     _PhysicalDeviceExclusiveScissorFeaturesNV(vks, deps)
 end
 
@@ -47358,7 +47366,7 @@ function _PipelineViewportExclusiveScissorStateCreateInfoNV(exclusive_scissors::
     next = cconvert(Ptr{Cvoid}, next)
     exclusive_scissors = cconvert(Ptr{VkRect2D}, exclusive_scissors)
     deps = Any[next, exclusive_scissors]
-    vks = VkPipelineViewportExclusiveScissorStateCreateInfoNV(structure_type(VkPipelineViewportExclusiveScissorStateCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), exclusive_scissor_count, unsafe_convert(Ptr{VkRect2D}, exclusive_scissors))
+    vks = VkPipelineViewportExclusiveScissorStateCreateInfoNV(structure_type(VkPipelineViewportExclusiveScissorStateCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, exclusive_scissor_count), unsafe_convert(Ptr{VkRect2D}, exclusive_scissors))
     _PipelineViewportExclusiveScissorStateCreateInfoNV(vks, deps)
 end
 
@@ -47375,7 +47383,7 @@ Arguments:
 function _PhysicalDeviceCornerSampledImageFeaturesNV(corner_sampled_image::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceCornerSampledImageFeaturesNV(structure_type(VkPhysicalDeviceCornerSampledImageFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), corner_sampled_image)
+    vks = VkPhysicalDeviceCornerSampledImageFeaturesNV(structure_type(VkPhysicalDeviceCornerSampledImageFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, corner_sampled_image))
     _PhysicalDeviceCornerSampledImageFeaturesNV(vks, deps)
 end
 
@@ -47393,7 +47401,7 @@ Arguments:
 function _PhysicalDeviceComputeShaderDerivativesFeaturesKHR(compute_derivative_group_quads::Bool, compute_derivative_group_linear::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceComputeShaderDerivativesFeaturesKHR(structure_type(VkPhysicalDeviceComputeShaderDerivativesFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), compute_derivative_group_quads, compute_derivative_group_linear)
+    vks = VkPhysicalDeviceComputeShaderDerivativesFeaturesKHR(structure_type(VkPhysicalDeviceComputeShaderDerivativesFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, compute_derivative_group_quads), convert(VkBool32, compute_derivative_group_linear))
     _PhysicalDeviceComputeShaderDerivativesFeaturesKHR(vks, deps)
 end
 
@@ -47410,7 +47418,7 @@ Arguments:
 function _PhysicalDeviceComputeShaderDerivativesPropertiesKHR(mesh_and_task_shader_derivatives::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceComputeShaderDerivativesPropertiesKHR(structure_type(VkPhysicalDeviceComputeShaderDerivativesPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), mesh_and_task_shader_derivatives)
+    vks = VkPhysicalDeviceComputeShaderDerivativesPropertiesKHR(structure_type(VkPhysicalDeviceComputeShaderDerivativesPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, mesh_and_task_shader_derivatives))
     _PhysicalDeviceComputeShaderDerivativesPropertiesKHR(vks, deps)
 end
 
@@ -47427,7 +47435,7 @@ Arguments:
 function _PhysicalDeviceShaderImageFootprintFeaturesNV(image_footprint::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderImageFootprintFeaturesNV(structure_type(VkPhysicalDeviceShaderImageFootprintFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), image_footprint)
+    vks = VkPhysicalDeviceShaderImageFootprintFeaturesNV(structure_type(VkPhysicalDeviceShaderImageFootprintFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, image_footprint))
     _PhysicalDeviceShaderImageFootprintFeaturesNV(vks, deps)
 end
 
@@ -47444,7 +47452,7 @@ Arguments:
 function _PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV(dedicated_allocation_image_aliasing::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV(structure_type(VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), dedicated_allocation_image_aliasing)
+    vks = VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV(structure_type(VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, dedicated_allocation_image_aliasing))
     _PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV(vks, deps)
 end
 
@@ -47461,7 +47469,7 @@ Arguments:
 function _PhysicalDeviceCopyMemoryIndirectFeaturesNV(indirect_copy::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceCopyMemoryIndirectFeaturesNV(structure_type(VkPhysicalDeviceCopyMemoryIndirectFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), indirect_copy)
+    vks = VkPhysicalDeviceCopyMemoryIndirectFeaturesNV(structure_type(VkPhysicalDeviceCopyMemoryIndirectFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, indirect_copy))
     _PhysicalDeviceCopyMemoryIndirectFeaturesNV(vks, deps)
 end
 
@@ -47478,7 +47486,7 @@ Arguments:
 function _PhysicalDeviceCopyMemoryIndirectPropertiesNV(supported_queues::QueueFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceCopyMemoryIndirectPropertiesNV(structure_type(VkPhysicalDeviceCopyMemoryIndirectPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), supported_queues)
+    vks = VkPhysicalDeviceCopyMemoryIndirectPropertiesNV(structure_type(VkPhysicalDeviceCopyMemoryIndirectPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkQueueFlags, supported_queues))
     _PhysicalDeviceCopyMemoryIndirectPropertiesNV(vks, deps)
 end
 
@@ -47495,7 +47503,7 @@ Arguments:
 function _PhysicalDeviceMemoryDecompressionFeaturesNV(memory_decompression::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMemoryDecompressionFeaturesNV(structure_type(VkPhysicalDeviceMemoryDecompressionFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), memory_decompression)
+    vks = VkPhysicalDeviceMemoryDecompressionFeaturesNV(structure_type(VkPhysicalDeviceMemoryDecompressionFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, memory_decompression))
     _PhysicalDeviceMemoryDecompressionFeaturesNV(vks, deps)
 end
 
@@ -47513,7 +47521,7 @@ Arguments:
 function _PhysicalDeviceMemoryDecompressionPropertiesNV(decompression_methods::Integer, max_decompression_indirect_count::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMemoryDecompressionPropertiesNV(structure_type(VkPhysicalDeviceMemoryDecompressionPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), decompression_methods, max_decompression_indirect_count)
+    vks = VkPhysicalDeviceMemoryDecompressionPropertiesNV(structure_type(VkPhysicalDeviceMemoryDecompressionPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkMemoryDecompressionMethodFlagsNV, decompression_methods), convert(UInt64, max_decompression_indirect_count))
     _PhysicalDeviceMemoryDecompressionPropertiesNV(vks, deps)
 end
 
@@ -47530,7 +47538,7 @@ function _ShadingRatePaletteNV(shading_rate_palette_entries::AbstractArray)
     shading_rate_palette_entry_count = pointer_length(shading_rate_palette_entries)
     shading_rate_palette_entries = cconvert(Ptr{VkShadingRatePaletteEntryNV}, shading_rate_palette_entries)
     deps = Any[shading_rate_palette_entries]
-    vks = VkShadingRatePaletteNV(shading_rate_palette_entry_count, unsafe_convert(Ptr{VkShadingRatePaletteEntryNV}, shading_rate_palette_entries))
+    vks = VkShadingRatePaletteNV(convert(UInt32, shading_rate_palette_entry_count), unsafe_convert(Ptr{VkShadingRatePaletteEntryNV}, shading_rate_palette_entries))
     _ShadingRatePaletteNV(vks, deps)
 end
 
@@ -47550,7 +47558,7 @@ function _PipelineViewportShadingRateImageStateCreateInfoNV(shading_rate_image_e
     next = cconvert(Ptr{Cvoid}, next)
     shading_rate_palettes = cconvert(Ptr{VkShadingRatePaletteNV}, shading_rate_palettes)
     deps = Any[next, shading_rate_palettes]
-    vks = VkPipelineViewportShadingRateImageStateCreateInfoNV(structure_type(VkPipelineViewportShadingRateImageStateCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), shading_rate_image_enable, viewport_count, unsafe_convert(Ptr{VkShadingRatePaletteNV}, shading_rate_palettes))
+    vks = VkPipelineViewportShadingRateImageStateCreateInfoNV(structure_type(VkPipelineViewportShadingRateImageStateCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shading_rate_image_enable), convert(UInt32, viewport_count), unsafe_convert(Ptr{VkShadingRatePaletteNV}, shading_rate_palettes))
     _PipelineViewportShadingRateImageStateCreateInfoNV(vks, deps)
 end
 
@@ -47568,7 +47576,7 @@ Arguments:
 function _PhysicalDeviceShadingRateImageFeaturesNV(shading_rate_image::Bool, shading_rate_coarse_sample_order::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShadingRateImageFeaturesNV(structure_type(VkPhysicalDeviceShadingRateImageFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), shading_rate_image, shading_rate_coarse_sample_order)
+    vks = VkPhysicalDeviceShadingRateImageFeaturesNV(structure_type(VkPhysicalDeviceShadingRateImageFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shading_rate_image), convert(VkBool32, shading_rate_coarse_sample_order))
     _PhysicalDeviceShadingRateImageFeaturesNV(vks, deps)
 end
 
@@ -47587,7 +47595,7 @@ Arguments:
 function _PhysicalDeviceShadingRateImagePropertiesNV(shading_rate_texel_size::_Extent2D, shading_rate_palette_size::Integer, shading_rate_max_coarse_samples::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShadingRateImagePropertiesNV(structure_type(VkPhysicalDeviceShadingRateImagePropertiesNV), unsafe_convert(Ptr{Cvoid}, next), shading_rate_texel_size.vks, shading_rate_palette_size, shading_rate_max_coarse_samples)
+    vks = VkPhysicalDeviceShadingRateImagePropertiesNV(structure_type(VkPhysicalDeviceShadingRateImagePropertiesNV), unsafe_convert(Ptr{Cvoid}, next), shading_rate_texel_size.vks, convert(UInt32, shading_rate_palette_size), convert(UInt32, shading_rate_max_coarse_samples))
     _PhysicalDeviceShadingRateImagePropertiesNV(vks, deps)
 end
 
@@ -47604,7 +47612,7 @@ Arguments:
 function _PhysicalDeviceInvocationMaskFeaturesHUAWEI(invocation_mask::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceInvocationMaskFeaturesHUAWEI(structure_type(VkPhysicalDeviceInvocationMaskFeaturesHUAWEI), unsafe_convert(Ptr{Cvoid}, next), invocation_mask)
+    vks = VkPhysicalDeviceInvocationMaskFeaturesHUAWEI(structure_type(VkPhysicalDeviceInvocationMaskFeaturesHUAWEI), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, invocation_mask))
     _PhysicalDeviceInvocationMaskFeaturesHUAWEI(vks, deps)
 end
 
@@ -47620,7 +47628,7 @@ Arguments:
 
 """
 function _CoarseSampleLocationNV(pixel_x::Integer, pixel_y::Integer, sample::Integer)
-    _CoarseSampleLocationNV(VkCoarseSampleLocationNV(pixel_x, pixel_y, sample))
+    _CoarseSampleLocationNV(VkCoarseSampleLocationNV(convert(UInt32, pixel_x), convert(UInt32, pixel_y), convert(UInt32, sample)))
 end
 
 """
@@ -47638,7 +47646,7 @@ function _CoarseSampleOrderCustomNV(shading_rate::ShadingRatePaletteEntryNV, sam
     sample_location_count = pointer_length(sample_locations)
     sample_locations = cconvert(Ptr{VkCoarseSampleLocationNV}, sample_locations)
     deps = Any[sample_locations]
-    vks = VkCoarseSampleOrderCustomNV(shading_rate, sample_count, sample_location_count, unsafe_convert(Ptr{VkCoarseSampleLocationNV}, sample_locations))
+    vks = VkCoarseSampleOrderCustomNV(convert(VkShadingRatePaletteEntryNV, shading_rate), convert(UInt32, sample_count), convert(UInt32, sample_location_count), unsafe_convert(Ptr{VkCoarseSampleLocationNV}, sample_locations))
     _CoarseSampleOrderCustomNV(vks, deps)
 end
 
@@ -47658,7 +47666,7 @@ function _PipelineViewportCoarseSampleOrderStateCreateInfoNV(sample_order_type::
     next = cconvert(Ptr{Cvoid}, next)
     custom_sample_orders = cconvert(Ptr{VkCoarseSampleOrderCustomNV}, custom_sample_orders)
     deps = Any[next, custom_sample_orders]
-    vks = VkPipelineViewportCoarseSampleOrderStateCreateInfoNV(structure_type(VkPipelineViewportCoarseSampleOrderStateCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), sample_order_type, custom_sample_order_count, unsafe_convert(Ptr{VkCoarseSampleOrderCustomNV}, custom_sample_orders))
+    vks = VkPipelineViewportCoarseSampleOrderStateCreateInfoNV(structure_type(VkPipelineViewportCoarseSampleOrderStateCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkCoarseSampleOrderTypeNV, sample_order_type), convert(UInt32, custom_sample_order_count), unsafe_convert(Ptr{VkCoarseSampleOrderCustomNV}, custom_sample_orders))
     _PipelineViewportCoarseSampleOrderStateCreateInfoNV(vks, deps)
 end
 
@@ -47676,7 +47684,7 @@ Arguments:
 function _PhysicalDeviceMeshShaderFeaturesNV(task_shader::Bool, mesh_shader::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMeshShaderFeaturesNV(structure_type(VkPhysicalDeviceMeshShaderFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), task_shader, mesh_shader)
+    vks = VkPhysicalDeviceMeshShaderFeaturesNV(structure_type(VkPhysicalDeviceMeshShaderFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, task_shader), convert(VkBool32, mesh_shader))
     _PhysicalDeviceMeshShaderFeaturesNV(vks, deps)
 end
 
@@ -47705,7 +47713,7 @@ Arguments:
 function _PhysicalDeviceMeshShaderPropertiesNV(max_draw_mesh_tasks_count::Integer, max_task_work_group_invocations::Integer, max_task_work_group_size::NTuple{3, UInt32}, max_task_total_memory_size::Integer, max_task_output_count::Integer, max_mesh_work_group_invocations::Integer, max_mesh_work_group_size::NTuple{3, UInt32}, max_mesh_total_memory_size::Integer, max_mesh_output_vertices::Integer, max_mesh_output_primitives::Integer, max_mesh_multiview_view_count::Integer, mesh_output_per_vertex_granularity::Integer, mesh_output_per_primitive_granularity::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMeshShaderPropertiesNV(structure_type(VkPhysicalDeviceMeshShaderPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), max_draw_mesh_tasks_count, max_task_work_group_invocations, max_task_work_group_size, max_task_total_memory_size, max_task_output_count, max_mesh_work_group_invocations, max_mesh_work_group_size, max_mesh_total_memory_size, max_mesh_output_vertices, max_mesh_output_primitives, max_mesh_multiview_view_count, mesh_output_per_vertex_granularity, mesh_output_per_primitive_granularity)
+    vks = VkPhysicalDeviceMeshShaderPropertiesNV(structure_type(VkPhysicalDeviceMeshShaderPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_draw_mesh_tasks_count), convert(UInt32, max_task_work_group_invocations), convert(NTuple{3, UInt32}, max_task_work_group_size), convert(UInt32, max_task_total_memory_size), convert(UInt32, max_task_output_count), convert(UInt32, max_mesh_work_group_invocations), convert(NTuple{3, UInt32}, max_mesh_work_group_size), convert(UInt32, max_mesh_total_memory_size), convert(UInt32, max_mesh_output_vertices), convert(UInt32, max_mesh_output_primitives), convert(UInt32, max_mesh_multiview_view_count), convert(UInt32, mesh_output_per_vertex_granularity), convert(UInt32, mesh_output_per_primitive_granularity))
     _PhysicalDeviceMeshShaderPropertiesNV(vks, deps)
 end
 
@@ -47720,7 +47728,7 @@ Arguments:
 
 """
 function _DrawMeshTasksIndirectCommandNV(task_count::Integer, first_task::Integer)
-    _DrawMeshTasksIndirectCommandNV(VkDrawMeshTasksIndirectCommandNV(task_count, first_task))
+    _DrawMeshTasksIndirectCommandNV(VkDrawMeshTasksIndirectCommandNV(convert(UInt32, task_count), convert(UInt32, first_task)))
 end
 
 """
@@ -47740,7 +47748,7 @@ Arguments:
 function _PhysicalDeviceMeshShaderFeaturesEXT(task_shader::Bool, mesh_shader::Bool, multiview_mesh_shader::Bool, primitive_fragment_shading_rate_mesh_shader::Bool, mesh_shader_queries::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMeshShaderFeaturesEXT(structure_type(VkPhysicalDeviceMeshShaderFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), task_shader, mesh_shader, multiview_mesh_shader, primitive_fragment_shading_rate_mesh_shader, mesh_shader_queries)
+    vks = VkPhysicalDeviceMeshShaderFeaturesEXT(structure_type(VkPhysicalDeviceMeshShaderFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, task_shader), convert(VkBool32, mesh_shader), convert(VkBool32, multiview_mesh_shader), convert(VkBool32, primitive_fragment_shading_rate_mesh_shader), convert(VkBool32, mesh_shader_queries))
     _PhysicalDeviceMeshShaderFeaturesEXT(vks, deps)
 end
 
@@ -47784,7 +47792,7 @@ Arguments:
 function _PhysicalDeviceMeshShaderPropertiesEXT(max_task_work_group_total_count::Integer, max_task_work_group_count::NTuple{3, UInt32}, max_task_work_group_invocations::Integer, max_task_work_group_size::NTuple{3, UInt32}, max_task_payload_size::Integer, max_task_shared_memory_size::Integer, max_task_payload_and_shared_memory_size::Integer, max_mesh_work_group_total_count::Integer, max_mesh_work_group_count::NTuple{3, UInt32}, max_mesh_work_group_invocations::Integer, max_mesh_work_group_size::NTuple{3, UInt32}, max_mesh_shared_memory_size::Integer, max_mesh_payload_and_shared_memory_size::Integer, max_mesh_output_memory_size::Integer, max_mesh_payload_and_output_memory_size::Integer, max_mesh_output_components::Integer, max_mesh_output_vertices::Integer, max_mesh_output_primitives::Integer, max_mesh_output_layers::Integer, max_mesh_multiview_view_count::Integer, mesh_output_per_vertex_granularity::Integer, mesh_output_per_primitive_granularity::Integer, max_preferred_task_work_group_invocations::Integer, max_preferred_mesh_work_group_invocations::Integer, prefers_local_invocation_vertex_output::Bool, prefers_local_invocation_primitive_output::Bool, prefers_compact_vertex_output::Bool, prefers_compact_primitive_output::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMeshShaderPropertiesEXT(structure_type(VkPhysicalDeviceMeshShaderPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), max_task_work_group_total_count, max_task_work_group_count, max_task_work_group_invocations, max_task_work_group_size, max_task_payload_size, max_task_shared_memory_size, max_task_payload_and_shared_memory_size, max_mesh_work_group_total_count, max_mesh_work_group_count, max_mesh_work_group_invocations, max_mesh_work_group_size, max_mesh_shared_memory_size, max_mesh_payload_and_shared_memory_size, max_mesh_output_memory_size, max_mesh_payload_and_output_memory_size, max_mesh_output_components, max_mesh_output_vertices, max_mesh_output_primitives, max_mesh_output_layers, max_mesh_multiview_view_count, mesh_output_per_vertex_granularity, mesh_output_per_primitive_granularity, max_preferred_task_work_group_invocations, max_preferred_mesh_work_group_invocations, prefers_local_invocation_vertex_output, prefers_local_invocation_primitive_output, prefers_compact_vertex_output, prefers_compact_primitive_output)
+    vks = VkPhysicalDeviceMeshShaderPropertiesEXT(structure_type(VkPhysicalDeviceMeshShaderPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_task_work_group_total_count), convert(NTuple{3, UInt32}, max_task_work_group_count), convert(UInt32, max_task_work_group_invocations), convert(NTuple{3, UInt32}, max_task_work_group_size), convert(UInt32, max_task_payload_size), convert(UInt32, max_task_shared_memory_size), convert(UInt32, max_task_payload_and_shared_memory_size), convert(UInt32, max_mesh_work_group_total_count), convert(NTuple{3, UInt32}, max_mesh_work_group_count), convert(UInt32, max_mesh_work_group_invocations), convert(NTuple{3, UInt32}, max_mesh_work_group_size), convert(UInt32, max_mesh_shared_memory_size), convert(UInt32, max_mesh_payload_and_shared_memory_size), convert(UInt32, max_mesh_output_memory_size), convert(UInt32, max_mesh_payload_and_output_memory_size), convert(UInt32, max_mesh_output_components), convert(UInt32, max_mesh_output_vertices), convert(UInt32, max_mesh_output_primitives), convert(UInt32, max_mesh_output_layers), convert(UInt32, max_mesh_multiview_view_count), convert(UInt32, mesh_output_per_vertex_granularity), convert(UInt32, mesh_output_per_primitive_granularity), convert(UInt32, max_preferred_task_work_group_invocations), convert(UInt32, max_preferred_mesh_work_group_invocations), convert(VkBool32, prefers_local_invocation_vertex_output), convert(VkBool32, prefers_local_invocation_primitive_output), convert(VkBool32, prefers_compact_vertex_output), convert(VkBool32, prefers_compact_primitive_output))
     _PhysicalDeviceMeshShaderPropertiesEXT(vks, deps)
 end
 
@@ -47800,7 +47808,7 @@ Arguments:
 
 """
 function _DrawMeshTasksIndirectCommandEXT(group_count_x::Integer, group_count_y::Integer, group_count_z::Integer)
-    _DrawMeshTasksIndirectCommandEXT(VkDrawMeshTasksIndirectCommandEXT(group_count_x, group_count_y, group_count_z))
+    _DrawMeshTasksIndirectCommandEXT(VkDrawMeshTasksIndirectCommandEXT(convert(UInt32, group_count_x), convert(UInt32, group_count_y), convert(UInt32, group_count_z)))
 end
 
 """
@@ -47820,7 +47828,7 @@ Arguments:
 function _RayTracingShaderGroupCreateInfoNV(type::RayTracingShaderGroupTypeKHR, general_shader::Integer, closest_hit_shader::Integer, any_hit_shader::Integer, intersection_shader::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkRayTracingShaderGroupCreateInfoNV(structure_type(VkRayTracingShaderGroupCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), type, general_shader, closest_hit_shader, any_hit_shader, intersection_shader)
+    vks = VkRayTracingShaderGroupCreateInfoNV(structure_type(VkRayTracingShaderGroupCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkRayTracingShaderGroupTypeKHR, type), convert(UInt32, general_shader), convert(UInt32, closest_hit_shader), convert(UInt32, any_hit_shader), convert(UInt32, intersection_shader))
     _RayTracingShaderGroupCreateInfoNV(vks, deps)
 end
 
@@ -47843,7 +47851,7 @@ function _RayTracingShaderGroupCreateInfoKHR(type::RayTracingShaderGroupTypeKHR,
     next = cconvert(Ptr{Cvoid}, next)
     shader_group_capture_replay_handle = cconvert(Ptr{Cvoid}, shader_group_capture_replay_handle)
     deps = Any[next, shader_group_capture_replay_handle]
-    vks = VkRayTracingShaderGroupCreateInfoKHR(structure_type(VkRayTracingShaderGroupCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), type, general_shader, closest_hit_shader, any_hit_shader, intersection_shader, unsafe_convert(Ptr{Cvoid}, shader_group_capture_replay_handle))
+    vks = VkRayTracingShaderGroupCreateInfoKHR(structure_type(VkRayTracingShaderGroupCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkRayTracingShaderGroupTypeKHR, type), convert(UInt32, general_shader), convert(UInt32, closest_hit_shader), convert(UInt32, any_hit_shader), convert(UInt32, intersection_shader), unsafe_convert(Ptr{Cvoid}, shader_group_capture_replay_handle))
     _RayTracingShaderGroupCreateInfoKHR(vks, deps)
 end
 
@@ -47870,7 +47878,7 @@ function _RayTracingPipelineCreateInfoNV(stages::AbstractArray, groups::Abstract
     stages = cconvert(Ptr{VkPipelineShaderStageCreateInfo}, stages)
     groups = cconvert(Ptr{VkRayTracingShaderGroupCreateInfoNV}, groups)
     deps = Any[next, stages, groups]
-    vks = VkRayTracingPipelineCreateInfoNV(structure_type(VkRayTracingPipelineCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), flags, stage_count, unsafe_convert(Ptr{VkPipelineShaderStageCreateInfo}, stages), group_count, unsafe_convert(Ptr{VkRayTracingShaderGroupCreateInfoNV}, groups), max_recursion_depth, layout, base_pipeline_handle, base_pipeline_index)
+    vks = VkRayTracingPipelineCreateInfoNV(structure_type(VkRayTracingPipelineCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineCreateFlags, flags), convert(UInt32, stage_count), unsafe_convert(Ptr{VkPipelineShaderStageCreateInfo}, stages), convert(UInt32, group_count), unsafe_convert(Ptr{VkRayTracingShaderGroupCreateInfoNV}, groups), convert(UInt32, max_recursion_depth), convert(VkPipelineLayout, layout), convert(VkPipeline, base_pipeline_handle), convert(Int32, base_pipeline_index))
     _RayTracingPipelineCreateInfoNV(vks, deps, layout, base_pipeline_handle)
 end
 
@@ -47903,7 +47911,7 @@ function _RayTracingPipelineCreateInfoKHR(stages::AbstractArray, groups::Abstrac
     library_interface = cconvert(Ptr{VkRayTracingPipelineInterfaceCreateInfoKHR}, library_interface)
     dynamic_state = cconvert(Ptr{VkPipelineDynamicStateCreateInfo}, dynamic_state)
     deps = Any[next, stages, groups, library_info, library_interface, dynamic_state]
-    vks = VkRayTracingPipelineCreateInfoKHR(structure_type(VkRayTracingPipelineCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), flags, stage_count, unsafe_convert(Ptr{VkPipelineShaderStageCreateInfo}, stages), group_count, unsafe_convert(Ptr{VkRayTracingShaderGroupCreateInfoKHR}, groups), max_pipeline_ray_recursion_depth, unsafe_convert(Ptr{VkPipelineLibraryCreateInfoKHR}, library_info), unsafe_convert(Ptr{VkRayTracingPipelineInterfaceCreateInfoKHR}, library_interface), unsafe_convert(Ptr{VkPipelineDynamicStateCreateInfo}, dynamic_state), layout, base_pipeline_handle, base_pipeline_index)
+    vks = VkRayTracingPipelineCreateInfoKHR(structure_type(VkRayTracingPipelineCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineCreateFlags, flags), convert(UInt32, stage_count), unsafe_convert(Ptr{VkPipelineShaderStageCreateInfo}, stages), convert(UInt32, group_count), unsafe_convert(Ptr{VkRayTracingShaderGroupCreateInfoKHR}, groups), convert(UInt32, max_pipeline_ray_recursion_depth), unsafe_convert(Ptr{VkPipelineLibraryCreateInfoKHR}, library_info), unsafe_convert(Ptr{VkRayTracingPipelineInterfaceCreateInfoKHR}, library_interface), unsafe_convert(Ptr{VkPipelineDynamicStateCreateInfo}, dynamic_state), convert(VkPipelineLayout, layout), convert(VkPipeline, base_pipeline_handle), convert(Int32, base_pipeline_index))
     _RayTracingPipelineCreateInfoKHR(vks, deps, layout, base_pipeline_handle)
 end
 
@@ -47930,7 +47938,7 @@ Arguments:
 function _GeometryTrianglesNV(vertex_offset::Integer, vertex_count::Integer, vertex_stride::Integer, vertex_format::Format, index_offset::Integer, index_count::Integer, index_type::IndexType, transform_offset::Integer; next = C_NULL, vertex_data = C_NULL, index_data = C_NULL, transform_data = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkGeometryTrianglesNV(structure_type(VkGeometryTrianglesNV), unsafe_convert(Ptr{Cvoid}, next), vertex_data, vertex_offset, vertex_count, vertex_stride, vertex_format, index_data, index_offset, index_count, index_type, transform_data, transform_offset)
+    vks = VkGeometryTrianglesNV(structure_type(VkGeometryTrianglesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBuffer, vertex_data), convert(VkDeviceSize, vertex_offset), convert(UInt32, vertex_count), convert(VkDeviceSize, vertex_stride), convert(VkFormat, vertex_format), convert(VkBuffer, index_data), convert(VkDeviceSize, index_offset), convert(UInt32, index_count), convert(VkIndexType, index_type), convert(VkBuffer, transform_data), convert(VkDeviceSize, transform_offset))
     _GeometryTrianglesNV(vks, deps, vertex_data, index_data, transform_data)
 end
 
@@ -47950,7 +47958,7 @@ Arguments:
 function _GeometryAABBNV(num_aab_bs::Integer, stride::Integer, offset::Integer; next = C_NULL, aabb_data = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkGeometryAABBNV(structure_type(VkGeometryAABBNV), unsafe_convert(Ptr{Cvoid}, next), aabb_data, num_aab_bs, stride, offset)
+    vks = VkGeometryAABBNV(structure_type(VkGeometryAABBNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBuffer, aabb_data), convert(UInt32, num_aab_bs), convert(UInt32, stride), convert(VkDeviceSize, offset))
     _GeometryAABBNV(vks, deps, aabb_data)
 end
 
@@ -47983,7 +47991,7 @@ Arguments:
 function _GeometryNV(geometry_type::GeometryTypeKHR, geometry::_GeometryDataNV; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkGeometryNV(structure_type(VkGeometryNV), unsafe_convert(Ptr{Cvoid}, next), geometry_type, geometry.vks, flags)
+    vks = VkGeometryNV(structure_type(VkGeometryNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkGeometryTypeKHR, geometry_type), geometry.vks, convert(VkGeometryFlagsKHR, flags))
     _GeometryNV(vks, deps)
 end
 
@@ -48005,7 +48013,7 @@ function _AccelerationStructureInfoNV(type::VkAccelerationStructureTypeNV, geome
     next = cconvert(Ptr{Cvoid}, next)
     geometries = cconvert(Ptr{VkGeometryNV}, geometries)
     deps = Any[next, geometries]
-    vks = VkAccelerationStructureInfoNV(structure_type(VkAccelerationStructureInfoNV), unsafe_convert(Ptr{Cvoid}, next), type, flags, instance_count, geometry_count, unsafe_convert(Ptr{VkGeometryNV}, geometries))
+    vks = VkAccelerationStructureInfoNV(structure_type(VkAccelerationStructureInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkAccelerationStructureTypeNV, type), convert(VkBuildAccelerationStructureFlagsNV, flags), convert(UInt32, instance_count), convert(UInt32, geometry_count), unsafe_convert(Ptr{VkGeometryNV}, geometries))
     _AccelerationStructureInfoNV(vks, deps)
 end
 
@@ -48023,7 +48031,7 @@ Arguments:
 function _AccelerationStructureCreateInfoNV(compacted_size::Integer, info::_AccelerationStructureInfoNV; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAccelerationStructureCreateInfoNV(structure_type(VkAccelerationStructureCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), compacted_size, info.vks)
+    vks = VkAccelerationStructureCreateInfoNV(structure_type(VkAccelerationStructureCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceSize, compacted_size), info.vks)
     _AccelerationStructureCreateInfoNV(vks, deps)
 end
 
@@ -48045,7 +48053,7 @@ function _BindAccelerationStructureMemoryInfoNV(acceleration_structure, memory, 
     next = cconvert(Ptr{Cvoid}, next)
     device_indices = cconvert(Ptr{UInt32}, device_indices)
     deps = Any[next, device_indices]
-    vks = VkBindAccelerationStructureMemoryInfoNV(structure_type(VkBindAccelerationStructureMemoryInfoNV), unsafe_convert(Ptr{Cvoid}, next), acceleration_structure, memory, memory_offset, device_index_count, unsafe_convert(Ptr{UInt32}, device_indices))
+    vks = VkBindAccelerationStructureMemoryInfoNV(structure_type(VkBindAccelerationStructureMemoryInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkAccelerationStructureNV, acceleration_structure), convert(VkDeviceMemory, memory), convert(VkDeviceSize, memory_offset), convert(UInt32, device_index_count), unsafe_convert(Ptr{UInt32}, device_indices))
     _BindAccelerationStructureMemoryInfoNV(vks, deps, acceleration_structure, memory)
 end
 
@@ -48064,7 +48072,7 @@ function _WriteDescriptorSetAccelerationStructureKHR(acceleration_structures::Ab
     next = cconvert(Ptr{Cvoid}, next)
     acceleration_structures = cconvert(Ptr{VkAccelerationStructureKHR}, acceleration_structures)
     deps = Any[next, acceleration_structures]
-    vks = VkWriteDescriptorSetAccelerationStructureKHR(structure_type(VkWriteDescriptorSetAccelerationStructureKHR), unsafe_convert(Ptr{Cvoid}, next), acceleration_structure_count, unsafe_convert(Ptr{VkAccelerationStructureKHR}, acceleration_structures))
+    vks = VkWriteDescriptorSetAccelerationStructureKHR(structure_type(VkWriteDescriptorSetAccelerationStructureKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, acceleration_structure_count), unsafe_convert(Ptr{VkAccelerationStructureKHR}, acceleration_structures))
     _WriteDescriptorSetAccelerationStructureKHR(vks, deps)
 end
 
@@ -48083,7 +48091,7 @@ function _WriteDescriptorSetAccelerationStructureNV(acceleration_structures::Abs
     next = cconvert(Ptr{Cvoid}, next)
     acceleration_structures = cconvert(Ptr{VkAccelerationStructureNV}, acceleration_structures)
     deps = Any[next, acceleration_structures]
-    vks = VkWriteDescriptorSetAccelerationStructureNV(structure_type(VkWriteDescriptorSetAccelerationStructureNV), unsafe_convert(Ptr{Cvoid}, next), acceleration_structure_count, unsafe_convert(Ptr{VkAccelerationStructureNV}, acceleration_structures))
+    vks = VkWriteDescriptorSetAccelerationStructureNV(structure_type(VkWriteDescriptorSetAccelerationStructureNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, acceleration_structure_count), unsafe_convert(Ptr{VkAccelerationStructureNV}, acceleration_structures))
     _WriteDescriptorSetAccelerationStructureNV(vks, deps)
 end
 
@@ -48101,7 +48109,7 @@ Arguments:
 function _AccelerationStructureMemoryRequirementsInfoNV(type::AccelerationStructureMemoryRequirementsTypeNV, acceleration_structure; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAccelerationStructureMemoryRequirementsInfoNV(structure_type(VkAccelerationStructureMemoryRequirementsInfoNV), unsafe_convert(Ptr{Cvoid}, next), type, acceleration_structure)
+    vks = VkAccelerationStructureMemoryRequirementsInfoNV(structure_type(VkAccelerationStructureMemoryRequirementsInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkAccelerationStructureMemoryRequirementsTypeNV, type), convert(VkAccelerationStructureNV, acceleration_structure))
     _AccelerationStructureMemoryRequirementsInfoNV(vks, deps, acceleration_structure)
 end
 
@@ -48122,7 +48130,7 @@ Arguments:
 function _PhysicalDeviceAccelerationStructureFeaturesKHR(acceleration_structure::Bool, acceleration_structure_capture_replay::Bool, acceleration_structure_indirect_build::Bool, acceleration_structure_host_commands::Bool, descriptor_binding_acceleration_structure_update_after_bind::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceAccelerationStructureFeaturesKHR(structure_type(VkPhysicalDeviceAccelerationStructureFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), acceleration_structure, acceleration_structure_capture_replay, acceleration_structure_indirect_build, acceleration_structure_host_commands, descriptor_binding_acceleration_structure_update_after_bind)
+    vks = VkPhysicalDeviceAccelerationStructureFeaturesKHR(structure_type(VkPhysicalDeviceAccelerationStructureFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, acceleration_structure), convert(VkBool32, acceleration_structure_capture_replay), convert(VkBool32, acceleration_structure_indirect_build), convert(VkBool32, acceleration_structure_host_commands), convert(VkBool32, descriptor_binding_acceleration_structure_update_after_bind))
     _PhysicalDeviceAccelerationStructureFeaturesKHR(vks, deps)
 end
 
@@ -48143,7 +48151,7 @@ Arguments:
 function _PhysicalDeviceRayTracingPipelineFeaturesKHR(ray_tracing_pipeline::Bool, ray_tracing_pipeline_shader_group_handle_capture_replay::Bool, ray_tracing_pipeline_shader_group_handle_capture_replay_mixed::Bool, ray_tracing_pipeline_trace_rays_indirect::Bool, ray_traversal_primitive_culling::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceRayTracingPipelineFeaturesKHR(structure_type(VkPhysicalDeviceRayTracingPipelineFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), ray_tracing_pipeline, ray_tracing_pipeline_shader_group_handle_capture_replay, ray_tracing_pipeline_shader_group_handle_capture_replay_mixed, ray_tracing_pipeline_trace_rays_indirect, ray_traversal_primitive_culling)
+    vks = VkPhysicalDeviceRayTracingPipelineFeaturesKHR(structure_type(VkPhysicalDeviceRayTracingPipelineFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, ray_tracing_pipeline), convert(VkBool32, ray_tracing_pipeline_shader_group_handle_capture_replay), convert(VkBool32, ray_tracing_pipeline_shader_group_handle_capture_replay_mixed), convert(VkBool32, ray_tracing_pipeline_trace_rays_indirect), convert(VkBool32, ray_traversal_primitive_culling))
     _PhysicalDeviceRayTracingPipelineFeaturesKHR(vks, deps)
 end
 
@@ -48160,7 +48168,7 @@ Arguments:
 function _PhysicalDeviceRayQueryFeaturesKHR(ray_query::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceRayQueryFeaturesKHR(structure_type(VkPhysicalDeviceRayQueryFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), ray_query)
+    vks = VkPhysicalDeviceRayQueryFeaturesKHR(structure_type(VkPhysicalDeviceRayQueryFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, ray_query))
     _PhysicalDeviceRayQueryFeaturesKHR(vks, deps)
 end
 
@@ -48184,7 +48192,7 @@ Arguments:
 function _PhysicalDeviceAccelerationStructurePropertiesKHR(max_geometry_count::Integer, max_instance_count::Integer, max_primitive_count::Integer, max_per_stage_descriptor_acceleration_structures::Integer, max_per_stage_descriptor_update_after_bind_acceleration_structures::Integer, max_descriptor_set_acceleration_structures::Integer, max_descriptor_set_update_after_bind_acceleration_structures::Integer, min_acceleration_structure_scratch_offset_alignment::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceAccelerationStructurePropertiesKHR(structure_type(VkPhysicalDeviceAccelerationStructurePropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), max_geometry_count, max_instance_count, max_primitive_count, max_per_stage_descriptor_acceleration_structures, max_per_stage_descriptor_update_after_bind_acceleration_structures, max_descriptor_set_acceleration_structures, max_descriptor_set_update_after_bind_acceleration_structures, min_acceleration_structure_scratch_offset_alignment)
+    vks = VkPhysicalDeviceAccelerationStructurePropertiesKHR(structure_type(VkPhysicalDeviceAccelerationStructurePropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt64, max_geometry_count), convert(UInt64, max_instance_count), convert(UInt64, max_primitive_count), convert(UInt32, max_per_stage_descriptor_acceleration_structures), convert(UInt32, max_per_stage_descriptor_update_after_bind_acceleration_structures), convert(UInt32, max_descriptor_set_acceleration_structures), convert(UInt32, max_descriptor_set_update_after_bind_acceleration_structures), convert(UInt32, min_acceleration_structure_scratch_offset_alignment))
     _PhysicalDeviceAccelerationStructurePropertiesKHR(vks, deps)
 end
 
@@ -48208,7 +48216,7 @@ Arguments:
 function _PhysicalDeviceRayTracingPipelinePropertiesKHR(shader_group_handle_size::Integer, max_ray_recursion_depth::Integer, max_shader_group_stride::Integer, shader_group_base_alignment::Integer, shader_group_handle_capture_replay_size::Integer, max_ray_dispatch_invocation_count::Integer, shader_group_handle_alignment::Integer, max_ray_hit_attribute_size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceRayTracingPipelinePropertiesKHR(structure_type(VkPhysicalDeviceRayTracingPipelinePropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), shader_group_handle_size, max_ray_recursion_depth, max_shader_group_stride, shader_group_base_alignment, shader_group_handle_capture_replay_size, max_ray_dispatch_invocation_count, shader_group_handle_alignment, max_ray_hit_attribute_size)
+    vks = VkPhysicalDeviceRayTracingPipelinePropertiesKHR(structure_type(VkPhysicalDeviceRayTracingPipelinePropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, shader_group_handle_size), convert(UInt32, max_ray_recursion_depth), convert(UInt32, max_shader_group_stride), convert(UInt32, shader_group_base_alignment), convert(UInt32, shader_group_handle_capture_replay_size), convert(UInt32, max_ray_dispatch_invocation_count), convert(UInt32, shader_group_handle_alignment), convert(UInt32, max_ray_hit_attribute_size))
     _PhysicalDeviceRayTracingPipelinePropertiesKHR(vks, deps)
 end
 
@@ -48232,7 +48240,7 @@ Arguments:
 function _PhysicalDeviceRayTracingPropertiesNV(shader_group_handle_size::Integer, max_recursion_depth::Integer, max_shader_group_stride::Integer, shader_group_base_alignment::Integer, max_geometry_count::Integer, max_instance_count::Integer, max_triangle_count::Integer, max_descriptor_set_acceleration_structures::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceRayTracingPropertiesNV(structure_type(VkPhysicalDeviceRayTracingPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), shader_group_handle_size, max_recursion_depth, max_shader_group_stride, shader_group_base_alignment, max_geometry_count, max_instance_count, max_triangle_count, max_descriptor_set_acceleration_structures)
+    vks = VkPhysicalDeviceRayTracingPropertiesNV(structure_type(VkPhysicalDeviceRayTracingPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, shader_group_handle_size), convert(UInt32, max_recursion_depth), convert(UInt32, max_shader_group_stride), convert(UInt32, shader_group_base_alignment), convert(UInt64, max_geometry_count), convert(UInt64, max_instance_count), convert(UInt64, max_triangle_count), convert(UInt32, max_descriptor_set_acceleration_structures))
     _PhysicalDeviceRayTracingPropertiesNV(vks, deps)
 end
 
@@ -48248,7 +48256,7 @@ Arguments:
 
 """
 function _StridedDeviceAddressRegionKHR(stride::Integer, size::Integer; device_address = 0)
-    _StridedDeviceAddressRegionKHR(VkStridedDeviceAddressRegionKHR(device_address, stride, size))
+    _StridedDeviceAddressRegionKHR(VkStridedDeviceAddressRegionKHR(convert(VkDeviceAddress, device_address), convert(VkDeviceSize, stride), convert(VkDeviceSize, size)))
 end
 
 """
@@ -48263,7 +48271,7 @@ Arguments:
 
 """
 function _TraceRaysIndirectCommandKHR(width::Integer, height::Integer, depth::Integer)
-    _TraceRaysIndirectCommandKHR(VkTraceRaysIndirectCommandKHR(width, height, depth))
+    _TraceRaysIndirectCommandKHR(VkTraceRaysIndirectCommandKHR(convert(UInt32, width), convert(UInt32, height), convert(UInt32, depth)))
 end
 
 """
@@ -48289,7 +48297,7 @@ Arguments:
 
 """
 function _TraceRaysIndirectCommand2KHR(raygen_shader_record_address::Integer, raygen_shader_record_size::Integer, miss_shader_binding_table_address::Integer, miss_shader_binding_table_size::Integer, miss_shader_binding_table_stride::Integer, hit_shader_binding_table_address::Integer, hit_shader_binding_table_size::Integer, hit_shader_binding_table_stride::Integer, callable_shader_binding_table_address::Integer, callable_shader_binding_table_size::Integer, callable_shader_binding_table_stride::Integer, width::Integer, height::Integer, depth::Integer)
-    _TraceRaysIndirectCommand2KHR(VkTraceRaysIndirectCommand2KHR(raygen_shader_record_address, raygen_shader_record_size, miss_shader_binding_table_address, miss_shader_binding_table_size, miss_shader_binding_table_stride, hit_shader_binding_table_address, hit_shader_binding_table_size, hit_shader_binding_table_stride, callable_shader_binding_table_address, callable_shader_binding_table_size, callable_shader_binding_table_stride, width, height, depth))
+    _TraceRaysIndirectCommand2KHR(VkTraceRaysIndirectCommand2KHR(convert(VkDeviceAddress, raygen_shader_record_address), convert(VkDeviceSize, raygen_shader_record_size), convert(VkDeviceAddress, miss_shader_binding_table_address), convert(VkDeviceSize, miss_shader_binding_table_size), convert(VkDeviceSize, miss_shader_binding_table_stride), convert(VkDeviceAddress, hit_shader_binding_table_address), convert(VkDeviceSize, hit_shader_binding_table_size), convert(VkDeviceSize, hit_shader_binding_table_stride), convert(VkDeviceAddress, callable_shader_binding_table_address), convert(VkDeviceSize, callable_shader_binding_table_size), convert(VkDeviceSize, callable_shader_binding_table_stride), convert(UInt32, width), convert(UInt32, height), convert(UInt32, depth)))
 end
 
 """
@@ -48306,7 +48314,7 @@ Arguments:
 function _PhysicalDeviceRayTracingMaintenance1FeaturesKHR(ray_tracing_maintenance_1::Bool, ray_tracing_pipeline_trace_rays_indirect_2::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceRayTracingMaintenance1FeaturesKHR(structure_type(VkPhysicalDeviceRayTracingMaintenance1FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), ray_tracing_maintenance_1, ray_tracing_pipeline_trace_rays_indirect_2)
+    vks = VkPhysicalDeviceRayTracingMaintenance1FeaturesKHR(structure_type(VkPhysicalDeviceRayTracingMaintenance1FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, ray_tracing_maintenance_1), convert(VkBool32, ray_tracing_pipeline_trace_rays_indirect_2))
     _PhysicalDeviceRayTracingMaintenance1FeaturesKHR(vks, deps)
 end
 
@@ -48325,7 +48333,7 @@ function _DrmFormatModifierPropertiesListEXT(; next = C_NULL, drm_format_modifie
     next = cconvert(Ptr{Cvoid}, next)
     drm_format_modifier_properties = cconvert(Ptr{VkDrmFormatModifierPropertiesEXT}, drm_format_modifier_properties)
     deps = Any[next, drm_format_modifier_properties]
-    vks = VkDrmFormatModifierPropertiesListEXT(structure_type(VkDrmFormatModifierPropertiesListEXT), unsafe_convert(Ptr{Cvoid}, next), drm_format_modifier_count, unsafe_convert(Ptr{VkDrmFormatModifierPropertiesEXT}, drm_format_modifier_properties))
+    vks = VkDrmFormatModifierPropertiesListEXT(structure_type(VkDrmFormatModifierPropertiesListEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, drm_format_modifier_count), unsafe_convert(Ptr{VkDrmFormatModifierPropertiesEXT}, drm_format_modifier_properties))
     _DrmFormatModifierPropertiesListEXT(vks, deps)
 end
 
@@ -48341,7 +48349,7 @@ Arguments:
 
 """
 function _DrmFormatModifierPropertiesEXT(drm_format_modifier::Integer, drm_format_modifier_plane_count::Integer, drm_format_modifier_tiling_features::FormatFeatureFlag)
-    _DrmFormatModifierPropertiesEXT(VkDrmFormatModifierPropertiesEXT(drm_format_modifier, drm_format_modifier_plane_count, drm_format_modifier_tiling_features))
+    _DrmFormatModifierPropertiesEXT(VkDrmFormatModifierPropertiesEXT(convert(UInt64, drm_format_modifier), convert(UInt32, drm_format_modifier_plane_count), convert(VkFormatFeatureFlags, drm_format_modifier_tiling_features)))
 end
 
 """
@@ -48361,7 +48369,7 @@ function _PhysicalDeviceImageDrmFormatModifierInfoEXT(drm_format_modifier::Integ
     next = cconvert(Ptr{Cvoid}, next)
     queue_family_indices = cconvert(Ptr{UInt32}, queue_family_indices)
     deps = Any[next, queue_family_indices]
-    vks = VkPhysicalDeviceImageDrmFormatModifierInfoEXT(structure_type(VkPhysicalDeviceImageDrmFormatModifierInfoEXT), unsafe_convert(Ptr{Cvoid}, next), drm_format_modifier, sharing_mode, queue_family_index_count, unsafe_convert(Ptr{UInt32}, queue_family_indices))
+    vks = VkPhysicalDeviceImageDrmFormatModifierInfoEXT(structure_type(VkPhysicalDeviceImageDrmFormatModifierInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt64, drm_format_modifier), convert(VkSharingMode, sharing_mode), convert(UInt32, queue_family_index_count), unsafe_convert(Ptr{UInt32}, queue_family_indices))
     _PhysicalDeviceImageDrmFormatModifierInfoEXT(vks, deps)
 end
 
@@ -48380,7 +48388,7 @@ function _ImageDrmFormatModifierListCreateInfoEXT(drm_format_modifiers::Abstract
     next = cconvert(Ptr{Cvoid}, next)
     drm_format_modifiers = cconvert(Ptr{UInt64}, drm_format_modifiers)
     deps = Any[next, drm_format_modifiers]
-    vks = VkImageDrmFormatModifierListCreateInfoEXT(structure_type(VkImageDrmFormatModifierListCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), drm_format_modifier_count, unsafe_convert(Ptr{UInt64}, drm_format_modifiers))
+    vks = VkImageDrmFormatModifierListCreateInfoEXT(structure_type(VkImageDrmFormatModifierListCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, drm_format_modifier_count), unsafe_convert(Ptr{UInt64}, drm_format_modifiers))
     _ImageDrmFormatModifierListCreateInfoEXT(vks, deps)
 end
 
@@ -48400,7 +48408,7 @@ function _ImageDrmFormatModifierExplicitCreateInfoEXT(drm_format_modifier::Integ
     next = cconvert(Ptr{Cvoid}, next)
     plane_layouts = cconvert(Ptr{VkSubresourceLayout}, plane_layouts)
     deps = Any[next, plane_layouts]
-    vks = VkImageDrmFormatModifierExplicitCreateInfoEXT(structure_type(VkImageDrmFormatModifierExplicitCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), drm_format_modifier, drm_format_modifier_plane_count, unsafe_convert(Ptr{VkSubresourceLayout}, plane_layouts))
+    vks = VkImageDrmFormatModifierExplicitCreateInfoEXT(structure_type(VkImageDrmFormatModifierExplicitCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt64, drm_format_modifier), convert(UInt32, drm_format_modifier_plane_count), unsafe_convert(Ptr{VkSubresourceLayout}, plane_layouts))
     _ImageDrmFormatModifierExplicitCreateInfoEXT(vks, deps)
 end
 
@@ -48417,7 +48425,7 @@ Arguments:
 function _ImageDrmFormatModifierPropertiesEXT(drm_format_modifier::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImageDrmFormatModifierPropertiesEXT(structure_type(VkImageDrmFormatModifierPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), drm_format_modifier)
+    vks = VkImageDrmFormatModifierPropertiesEXT(structure_type(VkImageDrmFormatModifierPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt64, drm_format_modifier))
     _ImageDrmFormatModifierPropertiesEXT(vks, deps)
 end
 
@@ -48432,7 +48440,7 @@ Arguments:
 function _ImageStencilUsageCreateInfo(stencil_usage::ImageUsageFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImageStencilUsageCreateInfo(structure_type(VkImageStencilUsageCreateInfo), unsafe_convert(Ptr{Cvoid}, next), stencil_usage)
+    vks = VkImageStencilUsageCreateInfo(structure_type(VkImageStencilUsageCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkImageUsageFlags, stencil_usage))
     _ImageStencilUsageCreateInfo(vks, deps)
 end
 
@@ -48449,7 +48457,7 @@ Arguments:
 function _DeviceMemoryOverallocationCreateInfoAMD(overallocation_behavior::MemoryOverallocationBehaviorAMD; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDeviceMemoryOverallocationCreateInfoAMD(structure_type(VkDeviceMemoryOverallocationCreateInfoAMD), unsafe_convert(Ptr{Cvoid}, next), overallocation_behavior)
+    vks = VkDeviceMemoryOverallocationCreateInfoAMD(structure_type(VkDeviceMemoryOverallocationCreateInfoAMD), unsafe_convert(Ptr{Cvoid}, next), convert(VkMemoryOverallocationBehaviorAMD, overallocation_behavior))
     _DeviceMemoryOverallocationCreateInfoAMD(vks, deps)
 end
 
@@ -48468,7 +48476,7 @@ Arguments:
 function _PhysicalDeviceFragmentDensityMapFeaturesEXT(fragment_density_map::Bool, fragment_density_map_dynamic::Bool, fragment_density_map_non_subsampled_images::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceFragmentDensityMapFeaturesEXT(structure_type(VkPhysicalDeviceFragmentDensityMapFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), fragment_density_map, fragment_density_map_dynamic, fragment_density_map_non_subsampled_images)
+    vks = VkPhysicalDeviceFragmentDensityMapFeaturesEXT(structure_type(VkPhysicalDeviceFragmentDensityMapFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, fragment_density_map), convert(VkBool32, fragment_density_map_dynamic), convert(VkBool32, fragment_density_map_non_subsampled_images))
     _PhysicalDeviceFragmentDensityMapFeaturesEXT(vks, deps)
 end
 
@@ -48485,7 +48493,7 @@ Arguments:
 function _PhysicalDeviceFragmentDensityMap2FeaturesEXT(fragment_density_map_deferred::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceFragmentDensityMap2FeaturesEXT(structure_type(VkPhysicalDeviceFragmentDensityMap2FeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), fragment_density_map_deferred)
+    vks = VkPhysicalDeviceFragmentDensityMap2FeaturesEXT(structure_type(VkPhysicalDeviceFragmentDensityMap2FeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, fragment_density_map_deferred))
     _PhysicalDeviceFragmentDensityMap2FeaturesEXT(vks, deps)
 end
 
@@ -48502,7 +48510,7 @@ Arguments:
 function _PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT(fragment_density_map_offset::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceFragmentDensityMapOffsetFeaturesEXT(structure_type(VkPhysicalDeviceFragmentDensityMapOffsetFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), fragment_density_map_offset)
+    vks = VkPhysicalDeviceFragmentDensityMapOffsetFeaturesEXT(structure_type(VkPhysicalDeviceFragmentDensityMapOffsetFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, fragment_density_map_offset))
     _PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT(vks, deps)
 end
 
@@ -48521,7 +48529,7 @@ Arguments:
 function _PhysicalDeviceFragmentDensityMapPropertiesEXT(min_fragment_density_texel_size::_Extent2D, max_fragment_density_texel_size::_Extent2D, fragment_density_invocations::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceFragmentDensityMapPropertiesEXT(structure_type(VkPhysicalDeviceFragmentDensityMapPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), min_fragment_density_texel_size.vks, max_fragment_density_texel_size.vks, fragment_density_invocations)
+    vks = VkPhysicalDeviceFragmentDensityMapPropertiesEXT(structure_type(VkPhysicalDeviceFragmentDensityMapPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), min_fragment_density_texel_size.vks, max_fragment_density_texel_size.vks, convert(VkBool32, fragment_density_invocations))
     _PhysicalDeviceFragmentDensityMapPropertiesEXT(vks, deps)
 end
 
@@ -48541,7 +48549,7 @@ Arguments:
 function _PhysicalDeviceFragmentDensityMap2PropertiesEXT(subsampled_loads::Bool, subsampled_coarse_reconstruction_early_access::Bool, max_subsampled_array_layers::Integer, max_descriptor_set_subsampled_samplers::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceFragmentDensityMap2PropertiesEXT(structure_type(VkPhysicalDeviceFragmentDensityMap2PropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), subsampled_loads, subsampled_coarse_reconstruction_early_access, max_subsampled_array_layers, max_descriptor_set_subsampled_samplers)
+    vks = VkPhysicalDeviceFragmentDensityMap2PropertiesEXT(structure_type(VkPhysicalDeviceFragmentDensityMap2PropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, subsampled_loads), convert(VkBool32, subsampled_coarse_reconstruction_early_access), convert(UInt32, max_subsampled_array_layers), convert(UInt32, max_descriptor_set_subsampled_samplers))
     _PhysicalDeviceFragmentDensityMap2PropertiesEXT(vks, deps)
 end
 
@@ -48594,7 +48602,7 @@ function _RenderPassFragmentDensityMapOffsetEndInfoEXT(fragment_density_offsets:
     next = cconvert(Ptr{Cvoid}, next)
     fragment_density_offsets = cconvert(Ptr{VkOffset2D}, fragment_density_offsets)
     deps = Any[next, fragment_density_offsets]
-    vks = VkRenderPassFragmentDensityMapOffsetEndInfoEXT(structure_type(VkRenderPassFragmentDensityMapOffsetEndInfoEXT), unsafe_convert(Ptr{Cvoid}, next), fragment_density_offset_count, unsafe_convert(Ptr{VkOffset2D}, fragment_density_offsets))
+    vks = VkRenderPassFragmentDensityMapOffsetEndInfoEXT(structure_type(VkRenderPassFragmentDensityMapOffsetEndInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, fragment_density_offset_count), unsafe_convert(Ptr{VkOffset2D}, fragment_density_offsets))
     _RenderPassFragmentDensityMapOffsetEndInfoEXT(vks, deps)
 end
 
@@ -48609,7 +48617,7 @@ Arguments:
 function _PhysicalDeviceScalarBlockLayoutFeatures(scalar_block_layout::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceScalarBlockLayoutFeatures(structure_type(VkPhysicalDeviceScalarBlockLayoutFeatures), unsafe_convert(Ptr{Cvoid}, next), scalar_block_layout)
+    vks = VkPhysicalDeviceScalarBlockLayoutFeatures(structure_type(VkPhysicalDeviceScalarBlockLayoutFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, scalar_block_layout))
     _PhysicalDeviceScalarBlockLayoutFeatures(vks, deps)
 end
 
@@ -48626,7 +48634,7 @@ Arguments:
 function _SurfaceProtectedCapabilitiesKHR(supports_protected::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSurfaceProtectedCapabilitiesKHR(structure_type(VkSurfaceProtectedCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), supports_protected)
+    vks = VkSurfaceProtectedCapabilitiesKHR(structure_type(VkSurfaceProtectedCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, supports_protected))
     _SurfaceProtectedCapabilitiesKHR(vks, deps)
 end
 
@@ -48641,7 +48649,7 @@ Arguments:
 function _PhysicalDeviceUniformBufferStandardLayoutFeatures(uniform_buffer_standard_layout::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceUniformBufferStandardLayoutFeatures(structure_type(VkPhysicalDeviceUniformBufferStandardLayoutFeatures), unsafe_convert(Ptr{Cvoid}, next), uniform_buffer_standard_layout)
+    vks = VkPhysicalDeviceUniformBufferStandardLayoutFeatures(structure_type(VkPhysicalDeviceUniformBufferStandardLayoutFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, uniform_buffer_standard_layout))
     _PhysicalDeviceUniformBufferStandardLayoutFeatures(vks, deps)
 end
 
@@ -48658,7 +48666,7 @@ Arguments:
 function _PhysicalDeviceDepthClipEnableFeaturesEXT(depth_clip_enable::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDepthClipEnableFeaturesEXT(structure_type(VkPhysicalDeviceDepthClipEnableFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), depth_clip_enable)
+    vks = VkPhysicalDeviceDepthClipEnableFeaturesEXT(structure_type(VkPhysicalDeviceDepthClipEnableFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, depth_clip_enable))
     _PhysicalDeviceDepthClipEnableFeaturesEXT(vks, deps)
 end
 
@@ -48676,7 +48684,7 @@ Arguments:
 function _PipelineRasterizationDepthClipStateCreateInfoEXT(depth_clip_enable::Bool; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineRasterizationDepthClipStateCreateInfoEXT(structure_type(VkPipelineRasterizationDepthClipStateCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), flags, depth_clip_enable)
+    vks = VkPipelineRasterizationDepthClipStateCreateInfoEXT(structure_type(VkPipelineRasterizationDepthClipStateCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineRasterizationDepthClipStateCreateFlagsEXT, flags), convert(VkBool32, depth_clip_enable))
     _PipelineRasterizationDepthClipStateCreateInfoEXT(vks, deps)
 end
 
@@ -48694,7 +48702,7 @@ Arguments:
 function _PhysicalDeviceMemoryBudgetPropertiesEXT(heap_budget::NTuple{Int(VK_MAX_MEMORY_HEAPS), UInt64}, heap_usage::NTuple{Int(VK_MAX_MEMORY_HEAPS), UInt64}; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMemoryBudgetPropertiesEXT(structure_type(VkPhysicalDeviceMemoryBudgetPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), heap_budget, heap_usage)
+    vks = VkPhysicalDeviceMemoryBudgetPropertiesEXT(structure_type(VkPhysicalDeviceMemoryBudgetPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(NTuple{Int(VK_MAX_MEMORY_HEAPS), VkDeviceSize}, heap_budget), convert(NTuple{Int(VK_MAX_MEMORY_HEAPS), VkDeviceSize}, heap_usage))
     _PhysicalDeviceMemoryBudgetPropertiesEXT(vks, deps)
 end
 
@@ -48711,7 +48719,7 @@ Arguments:
 function _PhysicalDeviceMemoryPriorityFeaturesEXT(memory_priority::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMemoryPriorityFeaturesEXT(structure_type(VkPhysicalDeviceMemoryPriorityFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), memory_priority)
+    vks = VkPhysicalDeviceMemoryPriorityFeaturesEXT(structure_type(VkPhysicalDeviceMemoryPriorityFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, memory_priority))
     _PhysicalDeviceMemoryPriorityFeaturesEXT(vks, deps)
 end
 
@@ -48728,7 +48736,7 @@ Arguments:
 function _MemoryPriorityAllocateInfoEXT(priority::Real; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMemoryPriorityAllocateInfoEXT(structure_type(VkMemoryPriorityAllocateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), priority)
+    vks = VkMemoryPriorityAllocateInfoEXT(structure_type(VkMemoryPriorityAllocateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(Float32, priority))
     _MemoryPriorityAllocateInfoEXT(vks, deps)
 end
 
@@ -48745,7 +48753,7 @@ Arguments:
 function _PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT(pageable_device_local_memory::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePageableDeviceLocalMemoryFeaturesEXT(structure_type(VkPhysicalDevicePageableDeviceLocalMemoryFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), pageable_device_local_memory)
+    vks = VkPhysicalDevicePageableDeviceLocalMemoryFeaturesEXT(structure_type(VkPhysicalDevicePageableDeviceLocalMemoryFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, pageable_device_local_memory))
     _PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT(vks, deps)
 end
 
@@ -48762,7 +48770,7 @@ Arguments:
 function _PhysicalDeviceBufferDeviceAddressFeatures(buffer_device_address::Bool, buffer_device_address_capture_replay::Bool, buffer_device_address_multi_device::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceBufferDeviceAddressFeatures(structure_type(VkPhysicalDeviceBufferDeviceAddressFeatures), unsafe_convert(Ptr{Cvoid}, next), buffer_device_address, buffer_device_address_capture_replay, buffer_device_address_multi_device)
+    vks = VkPhysicalDeviceBufferDeviceAddressFeatures(structure_type(VkPhysicalDeviceBufferDeviceAddressFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, buffer_device_address), convert(VkBool32, buffer_device_address_capture_replay), convert(VkBool32, buffer_device_address_multi_device))
     _PhysicalDeviceBufferDeviceAddressFeatures(vks, deps)
 end
 
@@ -48781,7 +48789,7 @@ Arguments:
 function _PhysicalDeviceBufferDeviceAddressFeaturesEXT(buffer_device_address::Bool, buffer_device_address_capture_replay::Bool, buffer_device_address_multi_device::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceBufferDeviceAddressFeaturesEXT(structure_type(VkPhysicalDeviceBufferDeviceAddressFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), buffer_device_address, buffer_device_address_capture_replay, buffer_device_address_multi_device)
+    vks = VkPhysicalDeviceBufferDeviceAddressFeaturesEXT(structure_type(VkPhysicalDeviceBufferDeviceAddressFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, buffer_device_address), convert(VkBool32, buffer_device_address_capture_replay), convert(VkBool32, buffer_device_address_multi_device))
     _PhysicalDeviceBufferDeviceAddressFeaturesEXT(vks, deps)
 end
 
@@ -48796,7 +48804,7 @@ Arguments:
 function _BufferDeviceAddressInfo(buffer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkBufferDeviceAddressInfo(structure_type(VkBufferDeviceAddressInfo), unsafe_convert(Ptr{Cvoid}, next), buffer)
+    vks = VkBufferDeviceAddressInfo(structure_type(VkBufferDeviceAddressInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkBuffer, buffer))
     _BufferDeviceAddressInfo(vks, deps, buffer)
 end
 
@@ -48811,7 +48819,7 @@ Arguments:
 function _BufferOpaqueCaptureAddressCreateInfo(opaque_capture_address::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkBufferOpaqueCaptureAddressCreateInfo(structure_type(VkBufferOpaqueCaptureAddressCreateInfo), unsafe_convert(Ptr{Cvoid}, next), opaque_capture_address)
+    vks = VkBufferOpaqueCaptureAddressCreateInfo(structure_type(VkBufferOpaqueCaptureAddressCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt64, opaque_capture_address))
     _BufferOpaqueCaptureAddressCreateInfo(vks, deps)
 end
 
@@ -48828,7 +48836,7 @@ Arguments:
 function _BufferDeviceAddressCreateInfoEXT(device_address::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkBufferDeviceAddressCreateInfoEXT(structure_type(VkBufferDeviceAddressCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), device_address)
+    vks = VkBufferDeviceAddressCreateInfoEXT(structure_type(VkBufferDeviceAddressCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceAddress, device_address))
     _BufferDeviceAddressCreateInfoEXT(vks, deps)
 end
 
@@ -48845,7 +48853,7 @@ Arguments:
 function _PhysicalDeviceImageViewImageFormatInfoEXT(image_view_type::ImageViewType; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceImageViewImageFormatInfoEXT(structure_type(VkPhysicalDeviceImageViewImageFormatInfoEXT), unsafe_convert(Ptr{Cvoid}, next), image_view_type)
+    vks = VkPhysicalDeviceImageViewImageFormatInfoEXT(structure_type(VkPhysicalDeviceImageViewImageFormatInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkImageViewType, image_view_type))
     _PhysicalDeviceImageViewImageFormatInfoEXT(vks, deps)
 end
 
@@ -48863,7 +48871,7 @@ Arguments:
 function _FilterCubicImageViewImageFormatPropertiesEXT(filter_cubic::Bool, filter_cubic_minmax::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkFilterCubicImageViewImageFormatPropertiesEXT(structure_type(VkFilterCubicImageViewImageFormatPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), filter_cubic, filter_cubic_minmax)
+    vks = VkFilterCubicImageViewImageFormatPropertiesEXT(structure_type(VkFilterCubicImageViewImageFormatPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, filter_cubic), convert(VkBool32, filter_cubic_minmax))
     _FilterCubicImageViewImageFormatPropertiesEXT(vks, deps)
 end
 
@@ -48878,7 +48886,7 @@ Arguments:
 function _PhysicalDeviceImagelessFramebufferFeatures(imageless_framebuffer::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceImagelessFramebufferFeatures(structure_type(VkPhysicalDeviceImagelessFramebufferFeatures), unsafe_convert(Ptr{Cvoid}, next), imageless_framebuffer)
+    vks = VkPhysicalDeviceImagelessFramebufferFeatures(structure_type(VkPhysicalDeviceImagelessFramebufferFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, imageless_framebuffer))
     _PhysicalDeviceImagelessFramebufferFeatures(vks, deps)
 end
 
@@ -48895,7 +48903,7 @@ function _FramebufferAttachmentsCreateInfo(attachment_image_infos::AbstractArray
     next = cconvert(Ptr{Cvoid}, next)
     attachment_image_infos = cconvert(Ptr{VkFramebufferAttachmentImageInfo}, attachment_image_infos)
     deps = Any[next, attachment_image_infos]
-    vks = VkFramebufferAttachmentsCreateInfo(structure_type(VkFramebufferAttachmentsCreateInfo), unsafe_convert(Ptr{Cvoid}, next), attachment_image_info_count, unsafe_convert(Ptr{VkFramebufferAttachmentImageInfo}, attachment_image_infos))
+    vks = VkFramebufferAttachmentsCreateInfo(structure_type(VkFramebufferAttachmentsCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, attachment_image_info_count), unsafe_convert(Ptr{VkFramebufferAttachmentImageInfo}, attachment_image_infos))
     _FramebufferAttachmentsCreateInfo(vks, deps)
 end
 
@@ -48917,7 +48925,7 @@ function _FramebufferAttachmentImageInfo(usage::ImageUsageFlag, width::Integer, 
     next = cconvert(Ptr{Cvoid}, next)
     view_formats = cconvert(Ptr{VkFormat}, view_formats)
     deps = Any[next, view_formats]
-    vks = VkFramebufferAttachmentImageInfo(structure_type(VkFramebufferAttachmentImageInfo), unsafe_convert(Ptr{Cvoid}, next), flags, usage, width, height, layer_count, view_format_count, unsafe_convert(Ptr{VkFormat}, view_formats))
+    vks = VkFramebufferAttachmentImageInfo(structure_type(VkFramebufferAttachmentImageInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkImageCreateFlags, flags), convert(VkImageUsageFlags, usage), convert(UInt32, width), convert(UInt32, height), convert(UInt32, layer_count), convert(UInt32, view_format_count), unsafe_convert(Ptr{VkFormat}, view_formats))
     _FramebufferAttachmentImageInfo(vks, deps)
 end
 
@@ -48934,7 +48942,7 @@ function _RenderPassAttachmentBeginInfo(attachments::AbstractArray; next = C_NUL
     next = cconvert(Ptr{Cvoid}, next)
     attachments = cconvert(Ptr{VkImageView}, attachments)
     deps = Any[next, attachments]
-    vks = VkRenderPassAttachmentBeginInfo(structure_type(VkRenderPassAttachmentBeginInfo), unsafe_convert(Ptr{Cvoid}, next), attachment_count, unsafe_convert(Ptr{VkImageView}, attachments))
+    vks = VkRenderPassAttachmentBeginInfo(structure_type(VkRenderPassAttachmentBeginInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, attachment_count), unsafe_convert(Ptr{VkImageView}, attachments))
     _RenderPassAttachmentBeginInfo(vks, deps)
 end
 
@@ -48949,7 +48957,7 @@ Arguments:
 function _PhysicalDeviceTextureCompressionASTCHDRFeatures(texture_compression_astc_hdr::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceTextureCompressionASTCHDRFeatures(structure_type(VkPhysicalDeviceTextureCompressionASTCHDRFeatures), unsafe_convert(Ptr{Cvoid}, next), texture_compression_astc_hdr)
+    vks = VkPhysicalDeviceTextureCompressionASTCHDRFeatures(structure_type(VkPhysicalDeviceTextureCompressionASTCHDRFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, texture_compression_astc_hdr))
     _PhysicalDeviceTextureCompressionASTCHDRFeatures(vks, deps)
 end
 
@@ -48967,7 +48975,7 @@ Arguments:
 function _PhysicalDeviceCooperativeMatrixFeaturesNV(cooperative_matrix::Bool, cooperative_matrix_robust_buffer_access::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceCooperativeMatrixFeaturesNV(structure_type(VkPhysicalDeviceCooperativeMatrixFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), cooperative_matrix, cooperative_matrix_robust_buffer_access)
+    vks = VkPhysicalDeviceCooperativeMatrixFeaturesNV(structure_type(VkPhysicalDeviceCooperativeMatrixFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, cooperative_matrix), convert(VkBool32, cooperative_matrix_robust_buffer_access))
     _PhysicalDeviceCooperativeMatrixFeaturesNV(vks, deps)
 end
 
@@ -48984,7 +48992,7 @@ Arguments:
 function _PhysicalDeviceCooperativeMatrixPropertiesNV(cooperative_matrix_supported_stages::ShaderStageFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceCooperativeMatrixPropertiesNV(structure_type(VkPhysicalDeviceCooperativeMatrixPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), cooperative_matrix_supported_stages)
+    vks = VkPhysicalDeviceCooperativeMatrixPropertiesNV(structure_type(VkPhysicalDeviceCooperativeMatrixPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkShaderStageFlags, cooperative_matrix_supported_stages))
     _PhysicalDeviceCooperativeMatrixPropertiesNV(vks, deps)
 end
 
@@ -49008,7 +49016,7 @@ Arguments:
 function _CooperativeMatrixPropertiesNV(m_size::Integer, n_size::Integer, k_size::Integer, a_type::VkComponentTypeNV, b_type::VkComponentTypeNV, c_type::VkComponentTypeNV, d_type::VkComponentTypeNV, scope::VkScopeNV; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkCooperativeMatrixPropertiesNV(structure_type(VkCooperativeMatrixPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), m_size, n_size, k_size, a_type, b_type, c_type, d_type, scope)
+    vks = VkCooperativeMatrixPropertiesNV(structure_type(VkCooperativeMatrixPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, m_size), convert(UInt32, n_size), convert(UInt32, k_size), convert(VkComponentTypeNV, a_type), convert(VkComponentTypeNV, b_type), convert(VkComponentTypeNV, c_type), convert(VkComponentTypeNV, d_type), convert(VkScopeNV, scope))
     _CooperativeMatrixPropertiesNV(vks, deps)
 end
 
@@ -49025,7 +49033,7 @@ Arguments:
 function _PhysicalDeviceYcbcrImageArraysFeaturesEXT(ycbcr_image_arrays::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceYcbcrImageArraysFeaturesEXT(structure_type(VkPhysicalDeviceYcbcrImageArraysFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), ycbcr_image_arrays)
+    vks = VkPhysicalDeviceYcbcrImageArraysFeaturesEXT(structure_type(VkPhysicalDeviceYcbcrImageArraysFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, ycbcr_image_arrays))
     _PhysicalDeviceYcbcrImageArraysFeaturesEXT(vks, deps)
 end
 
@@ -49044,7 +49052,7 @@ Arguments:
 function _ImageViewHandleInfoNVX(image_view, descriptor_type::DescriptorType; next = C_NULL, sampler = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImageViewHandleInfoNVX(structure_type(VkImageViewHandleInfoNVX), unsafe_convert(Ptr{Cvoid}, next), image_view, descriptor_type, sampler)
+    vks = VkImageViewHandleInfoNVX(structure_type(VkImageViewHandleInfoNVX), unsafe_convert(Ptr{Cvoid}, next), convert(VkImageView, image_view), convert(VkDescriptorType, descriptor_type), convert(VkSampler, sampler))
     _ImageViewHandleInfoNVX(vks, deps, image_view, sampler)
 end
 
@@ -49062,7 +49070,7 @@ Arguments:
 function _ImageViewAddressPropertiesNVX(device_address::Integer, size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImageViewAddressPropertiesNVX(structure_type(VkImageViewAddressPropertiesNVX), unsafe_convert(Ptr{Cvoid}, next), device_address, size)
+    vks = VkImageViewAddressPropertiesNVX(structure_type(VkImageViewAddressPropertiesNVX), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceAddress, device_address), convert(VkDeviceSize, size))
     _ImageViewAddressPropertiesNVX(vks, deps)
 end
 
@@ -49075,7 +49083,7 @@ Arguments:
 
 """
 function _PipelineCreationFeedback(flags::PipelineCreationFeedbackFlag, duration::Integer)
-    _PipelineCreationFeedback(VkPipelineCreationFeedback(flags, duration))
+    _PipelineCreationFeedback(VkPipelineCreationFeedback(convert(VkPipelineCreationFeedbackFlags, flags), convert(UInt64, duration)))
 end
 
 """
@@ -49093,7 +49101,7 @@ function _PipelineCreationFeedbackCreateInfo(pipeline_creation_feedback::_Pipeli
     pipeline_creation_feedback = cconvert(Ptr{VkPipelineCreationFeedback}, pipeline_creation_feedback)
     pipeline_stage_creation_feedbacks = cconvert(Ptr{Ptr{VkPipelineCreationFeedback}}, pipeline_stage_creation_feedbacks)
     deps = Any[next, pipeline_creation_feedback, pipeline_stage_creation_feedbacks]
-    vks = VkPipelineCreationFeedbackCreateInfo(structure_type(VkPipelineCreationFeedbackCreateInfo), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{VkPipelineCreationFeedback}, pipeline_creation_feedback), pipeline_stage_creation_feedback_count, unsafe_convert(Ptr{Ptr{VkPipelineCreationFeedback}}, pipeline_stage_creation_feedbacks))
+    vks = VkPipelineCreationFeedbackCreateInfo(structure_type(VkPipelineCreationFeedbackCreateInfo), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{VkPipelineCreationFeedback}, pipeline_creation_feedback), convert(UInt32, pipeline_stage_creation_feedback_count), unsafe_convert(Ptr{Ptr{VkPipelineCreationFeedback}}, pipeline_stage_creation_feedbacks))
     _PipelineCreationFeedbackCreateInfo(vks, deps)
 end
 
@@ -49110,7 +49118,7 @@ Arguments:
 function _PhysicalDevicePresentBarrierFeaturesNV(present_barrier::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePresentBarrierFeaturesNV(structure_type(VkPhysicalDevicePresentBarrierFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), present_barrier)
+    vks = VkPhysicalDevicePresentBarrierFeaturesNV(structure_type(VkPhysicalDevicePresentBarrierFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, present_barrier))
     _PhysicalDevicePresentBarrierFeaturesNV(vks, deps)
 end
 
@@ -49127,7 +49135,7 @@ Arguments:
 function _SurfaceCapabilitiesPresentBarrierNV(present_barrier_supported::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSurfaceCapabilitiesPresentBarrierNV(structure_type(VkSurfaceCapabilitiesPresentBarrierNV), unsafe_convert(Ptr{Cvoid}, next), present_barrier_supported)
+    vks = VkSurfaceCapabilitiesPresentBarrierNV(structure_type(VkSurfaceCapabilitiesPresentBarrierNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, present_barrier_supported))
     _SurfaceCapabilitiesPresentBarrierNV(vks, deps)
 end
 
@@ -49144,7 +49152,7 @@ Arguments:
 function _SwapchainPresentBarrierCreateInfoNV(present_barrier_enable::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSwapchainPresentBarrierCreateInfoNV(structure_type(VkSwapchainPresentBarrierCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), present_barrier_enable)
+    vks = VkSwapchainPresentBarrierCreateInfoNV(structure_type(VkSwapchainPresentBarrierCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, present_barrier_enable))
     _SwapchainPresentBarrierCreateInfoNV(vks, deps)
 end
 
@@ -49162,7 +49170,7 @@ Arguments:
 function _PhysicalDevicePerformanceQueryFeaturesKHR(performance_counter_query_pools::Bool, performance_counter_multiple_query_pools::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePerformanceQueryFeaturesKHR(structure_type(VkPhysicalDevicePerformanceQueryFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), performance_counter_query_pools, performance_counter_multiple_query_pools)
+    vks = VkPhysicalDevicePerformanceQueryFeaturesKHR(structure_type(VkPhysicalDevicePerformanceQueryFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, performance_counter_query_pools), convert(VkBool32, performance_counter_multiple_query_pools))
     _PhysicalDevicePerformanceQueryFeaturesKHR(vks, deps)
 end
 
@@ -49179,7 +49187,7 @@ Arguments:
 function _PhysicalDevicePerformanceQueryPropertiesKHR(allow_command_buffer_query_copies::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePerformanceQueryPropertiesKHR(structure_type(VkPhysicalDevicePerformanceQueryPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), allow_command_buffer_query_copies)
+    vks = VkPhysicalDevicePerformanceQueryPropertiesKHR(structure_type(VkPhysicalDevicePerformanceQueryPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, allow_command_buffer_query_copies))
     _PhysicalDevicePerformanceQueryPropertiesKHR(vks, deps)
 end
 
@@ -49199,7 +49207,7 @@ Arguments:
 function _PerformanceCounterKHR(unit::PerformanceCounterUnitKHR, scope::PerformanceCounterScopeKHR, storage::PerformanceCounterStorageKHR, uuid::NTuple{Int(VK_UUID_SIZE), UInt8}; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPerformanceCounterKHR(structure_type(VkPerformanceCounterKHR), unsafe_convert(Ptr{Cvoid}, next), unit, scope, storage, uuid)
+    vks = VkPerformanceCounterKHR(structure_type(VkPerformanceCounterKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkPerformanceCounterUnitKHR, unit), convert(VkPerformanceCounterScopeKHR, scope), convert(VkPerformanceCounterStorageKHR, storage), convert(NTuple{Int(VK_UUID_SIZE), UInt8}, uuid))
     _PerformanceCounterKHR(vks, deps)
 end
 
@@ -49219,7 +49227,7 @@ Arguments:
 function _PerformanceCounterDescriptionKHR(name::AbstractString, category::AbstractString, description::AbstractString; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPerformanceCounterDescriptionKHR(structure_type(VkPerformanceCounterDescriptionKHR), unsafe_convert(Ptr{Cvoid}, next), flags, name, category, description)
+    vks = VkPerformanceCounterDescriptionKHR(structure_type(VkPerformanceCounterDescriptionKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkPerformanceCounterDescriptionFlagsKHR, flags), convert(NTuple{Int(VK_MAX_DESCRIPTION_SIZE), Char}, name), convert(NTuple{Int(VK_MAX_DESCRIPTION_SIZE), Char}, category), convert(NTuple{Int(VK_MAX_DESCRIPTION_SIZE), Char}, description))
     _PerformanceCounterDescriptionKHR(vks, deps)
 end
 
@@ -49239,7 +49247,7 @@ function _QueryPoolPerformanceCreateInfoKHR(queue_family_index::Integer, counter
     next = cconvert(Ptr{Cvoid}, next)
     counter_indices = cconvert(Ptr{UInt32}, counter_indices)
     deps = Any[next, counter_indices]
-    vks = VkQueryPoolPerformanceCreateInfoKHR(structure_type(VkQueryPoolPerformanceCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), queue_family_index, counter_index_count, unsafe_convert(Ptr{UInt32}, counter_indices))
+    vks = VkQueryPoolPerformanceCreateInfoKHR(structure_type(VkQueryPoolPerformanceCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, queue_family_index), convert(UInt32, counter_index_count), unsafe_convert(Ptr{UInt32}, counter_indices))
     _QueryPoolPerformanceCreateInfoKHR(vks, deps)
 end
 
@@ -49257,7 +49265,7 @@ Arguments:
 function _AcquireProfilingLockInfoKHR(timeout::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAcquireProfilingLockInfoKHR(structure_type(VkAcquireProfilingLockInfoKHR), unsafe_convert(Ptr{Cvoid}, next), flags, timeout)
+    vks = VkAcquireProfilingLockInfoKHR(structure_type(VkAcquireProfilingLockInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkAcquireProfilingLockFlagsKHR, flags), convert(UInt64, timeout))
     _AcquireProfilingLockInfoKHR(vks, deps)
 end
 
@@ -49274,7 +49282,7 @@ Arguments:
 function _PerformanceQuerySubmitInfoKHR(counter_pass_index::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPerformanceQuerySubmitInfoKHR(structure_type(VkPerformanceQuerySubmitInfoKHR), unsafe_convert(Ptr{Cvoid}, next), counter_pass_index)
+    vks = VkPerformanceQuerySubmitInfoKHR(structure_type(VkPerformanceQuerySubmitInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, counter_pass_index))
     _PerformanceQuerySubmitInfoKHR(vks, deps)
 end
 
@@ -49291,7 +49299,7 @@ Arguments:
 function _HeadlessSurfaceCreateInfoEXT(; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkHeadlessSurfaceCreateInfoEXT(structure_type(VkHeadlessSurfaceCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), flags)
+    vks = VkHeadlessSurfaceCreateInfoEXT(structure_type(VkHeadlessSurfaceCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkHeadlessSurfaceCreateFlagsEXT, flags))
     _HeadlessSurfaceCreateInfoEXT(vks, deps)
 end
 
@@ -49308,7 +49316,7 @@ Arguments:
 function _PhysicalDeviceCoverageReductionModeFeaturesNV(coverage_reduction_mode::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceCoverageReductionModeFeaturesNV(structure_type(VkPhysicalDeviceCoverageReductionModeFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), coverage_reduction_mode)
+    vks = VkPhysicalDeviceCoverageReductionModeFeaturesNV(structure_type(VkPhysicalDeviceCoverageReductionModeFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, coverage_reduction_mode))
     _PhysicalDeviceCoverageReductionModeFeaturesNV(vks, deps)
 end
 
@@ -49326,7 +49334,7 @@ Arguments:
 function _PipelineCoverageReductionStateCreateInfoNV(coverage_reduction_mode::CoverageReductionModeNV; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineCoverageReductionStateCreateInfoNV(structure_type(VkPipelineCoverageReductionStateCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), flags, coverage_reduction_mode)
+    vks = VkPipelineCoverageReductionStateCreateInfoNV(structure_type(VkPipelineCoverageReductionStateCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineCoverageReductionStateCreateFlagsNV, flags), convert(VkCoverageReductionModeNV, coverage_reduction_mode))
     _PipelineCoverageReductionStateCreateInfoNV(vks, deps)
 end
 
@@ -49346,7 +49354,7 @@ Arguments:
 function _FramebufferMixedSamplesCombinationNV(coverage_reduction_mode::CoverageReductionModeNV, rasterization_samples::SampleCountFlag, depth_stencil_samples::SampleCountFlag, color_samples::SampleCountFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkFramebufferMixedSamplesCombinationNV(structure_type(VkFramebufferMixedSamplesCombinationNV), unsafe_convert(Ptr{Cvoid}, next), coverage_reduction_mode, VkSampleCountFlagBits(rasterization_samples.val), depth_stencil_samples, color_samples)
+    vks = VkFramebufferMixedSamplesCombinationNV(structure_type(VkFramebufferMixedSamplesCombinationNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkCoverageReductionModeNV, coverage_reduction_mode), VkSampleCountFlagBits(flag_value(rasterization_samples)), convert(VkSampleCountFlags, depth_stencil_samples), convert(VkSampleCountFlags, color_samples))
     _FramebufferMixedSamplesCombinationNV(vks, deps)
 end
 
@@ -49363,7 +49371,7 @@ Arguments:
 function _PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(shader_integer_functions_2::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(structure_type(VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL), unsafe_convert(Ptr{Cvoid}, next), shader_integer_functions_2)
+    vks = VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(structure_type(VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_integer_functions_2))
     _PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL(vks, deps)
 end
 
@@ -49378,7 +49386,7 @@ Arguments:
 
 """
 function _PerformanceValueINTEL(type::PerformanceValueTypeINTEL, data::_PerformanceValueDataINTEL)
-    _PerformanceValueINTEL(VkPerformanceValueINTEL(type, data.vks))
+    _PerformanceValueINTEL(VkPerformanceValueINTEL(convert(VkPerformanceValueTypeINTEL, type), data.vks))
 end
 
 """
@@ -49412,7 +49420,7 @@ Arguments:
 function _QueryPoolPerformanceQueryCreateInfoINTEL(performance_counters_sampling::QueryPoolSamplingModeINTEL; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkQueryPoolPerformanceQueryCreateInfoINTEL(structure_type(VkQueryPoolPerformanceQueryCreateInfoINTEL), unsafe_convert(Ptr{Cvoid}, next), performance_counters_sampling)
+    vks = VkQueryPoolPerformanceQueryCreateInfoINTEL(structure_type(VkQueryPoolPerformanceQueryCreateInfoINTEL), unsafe_convert(Ptr{Cvoid}, next), convert(VkQueryPoolSamplingModeINTEL, performance_counters_sampling))
     _QueryPoolPerformanceQueryCreateInfoINTEL(vks, deps)
 end
 
@@ -49429,7 +49437,7 @@ Arguments:
 function _PerformanceMarkerInfoINTEL(marker::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPerformanceMarkerInfoINTEL(structure_type(VkPerformanceMarkerInfoINTEL), unsafe_convert(Ptr{Cvoid}, next), marker)
+    vks = VkPerformanceMarkerInfoINTEL(structure_type(VkPerformanceMarkerInfoINTEL), unsafe_convert(Ptr{Cvoid}, next), convert(UInt64, marker))
     _PerformanceMarkerInfoINTEL(vks, deps)
 end
 
@@ -49446,7 +49454,7 @@ Arguments:
 function _PerformanceStreamMarkerInfoINTEL(marker::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPerformanceStreamMarkerInfoINTEL(structure_type(VkPerformanceStreamMarkerInfoINTEL), unsafe_convert(Ptr{Cvoid}, next), marker)
+    vks = VkPerformanceStreamMarkerInfoINTEL(structure_type(VkPerformanceStreamMarkerInfoINTEL), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, marker))
     _PerformanceStreamMarkerInfoINTEL(vks, deps)
 end
 
@@ -49465,7 +49473,7 @@ Arguments:
 function _PerformanceOverrideInfoINTEL(type::PerformanceOverrideTypeINTEL, enable::Bool, parameter::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPerformanceOverrideInfoINTEL(structure_type(VkPerformanceOverrideInfoINTEL), unsafe_convert(Ptr{Cvoid}, next), type, enable, parameter)
+    vks = VkPerformanceOverrideInfoINTEL(structure_type(VkPerformanceOverrideInfoINTEL), unsafe_convert(Ptr{Cvoid}, next), convert(VkPerformanceOverrideTypeINTEL, type), convert(VkBool32, enable), convert(UInt64, parameter))
     _PerformanceOverrideInfoINTEL(vks, deps)
 end
 
@@ -49482,7 +49490,7 @@ Arguments:
 function _PerformanceConfigurationAcquireInfoINTEL(type::PerformanceConfigurationTypeINTEL; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPerformanceConfigurationAcquireInfoINTEL(structure_type(VkPerformanceConfigurationAcquireInfoINTEL), unsafe_convert(Ptr{Cvoid}, next), type)
+    vks = VkPerformanceConfigurationAcquireInfoINTEL(structure_type(VkPerformanceConfigurationAcquireInfoINTEL), unsafe_convert(Ptr{Cvoid}, next), convert(VkPerformanceConfigurationTypeINTEL, type))
     _PerformanceConfigurationAcquireInfoINTEL(vks, deps)
 end
 
@@ -49500,7 +49508,7 @@ Arguments:
 function _PhysicalDeviceShaderClockFeaturesKHR(shader_subgroup_clock::Bool, shader_device_clock::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderClockFeaturesKHR(structure_type(VkPhysicalDeviceShaderClockFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), shader_subgroup_clock, shader_device_clock)
+    vks = VkPhysicalDeviceShaderClockFeaturesKHR(structure_type(VkPhysicalDeviceShaderClockFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_subgroup_clock), convert(VkBool32, shader_device_clock))
     _PhysicalDeviceShaderClockFeaturesKHR(vks, deps)
 end
 
@@ -49515,7 +49523,7 @@ Arguments:
 function _PhysicalDeviceIndexTypeUint8Features(index_type_uint_8::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceIndexTypeUint8Features(structure_type(VkPhysicalDeviceIndexTypeUint8Features), unsafe_convert(Ptr{Cvoid}, next), index_type_uint_8)
+    vks = VkPhysicalDeviceIndexTypeUint8Features(structure_type(VkPhysicalDeviceIndexTypeUint8Features), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, index_type_uint_8))
     _PhysicalDeviceIndexTypeUint8Features(vks, deps)
 end
 
@@ -49533,7 +49541,7 @@ Arguments:
 function _PhysicalDeviceShaderSMBuiltinsPropertiesNV(shader_sm_count::Integer, shader_warps_per_sm::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderSMBuiltinsPropertiesNV(structure_type(VkPhysicalDeviceShaderSMBuiltinsPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), shader_sm_count, shader_warps_per_sm)
+    vks = VkPhysicalDeviceShaderSMBuiltinsPropertiesNV(structure_type(VkPhysicalDeviceShaderSMBuiltinsPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, shader_sm_count), convert(UInt32, shader_warps_per_sm))
     _PhysicalDeviceShaderSMBuiltinsPropertiesNV(vks, deps)
 end
 
@@ -49550,7 +49558,7 @@ Arguments:
 function _PhysicalDeviceShaderSMBuiltinsFeaturesNV(shader_sm_builtins::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderSMBuiltinsFeaturesNV(structure_type(VkPhysicalDeviceShaderSMBuiltinsFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), shader_sm_builtins)
+    vks = VkPhysicalDeviceShaderSMBuiltinsFeaturesNV(structure_type(VkPhysicalDeviceShaderSMBuiltinsFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_sm_builtins))
     _PhysicalDeviceShaderSMBuiltinsFeaturesNV(vks, deps)
 end
 
@@ -49569,7 +49577,7 @@ Arguments:
 function _PhysicalDeviceFragmentShaderInterlockFeaturesEXT(fragment_shader_sample_interlock::Bool, fragment_shader_pixel_interlock::Bool, fragment_shader_shading_rate_interlock::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT(structure_type(VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), fragment_shader_sample_interlock, fragment_shader_pixel_interlock, fragment_shader_shading_rate_interlock)
+    vks = VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT(structure_type(VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, fragment_shader_sample_interlock), convert(VkBool32, fragment_shader_pixel_interlock), convert(VkBool32, fragment_shader_shading_rate_interlock))
     _PhysicalDeviceFragmentShaderInterlockFeaturesEXT(vks, deps)
 end
 
@@ -49584,7 +49592,7 @@ Arguments:
 function _PhysicalDeviceSeparateDepthStencilLayoutsFeatures(separate_depth_stencil_layouts::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures(structure_type(VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures), unsafe_convert(Ptr{Cvoid}, next), separate_depth_stencil_layouts)
+    vks = VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures(structure_type(VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, separate_depth_stencil_layouts))
     _PhysicalDeviceSeparateDepthStencilLayoutsFeatures(vks, deps)
 end
 
@@ -49599,7 +49607,7 @@ Arguments:
 function _AttachmentReferenceStencilLayout(stencil_layout::ImageLayout; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAttachmentReferenceStencilLayout(structure_type(VkAttachmentReferenceStencilLayout), unsafe_convert(Ptr{Cvoid}, next), stencil_layout)
+    vks = VkAttachmentReferenceStencilLayout(structure_type(VkAttachmentReferenceStencilLayout), unsafe_convert(Ptr{Cvoid}, next), convert(VkImageLayout, stencil_layout))
     _AttachmentReferenceStencilLayout(vks, deps)
 end
 
@@ -49617,7 +49625,7 @@ Arguments:
 function _PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT(primitive_topology_list_restart::Bool, primitive_topology_patch_list_restart::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePrimitiveTopologyListRestartFeaturesEXT(structure_type(VkPhysicalDevicePrimitiveTopologyListRestartFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), primitive_topology_list_restart, primitive_topology_patch_list_restart)
+    vks = VkPhysicalDevicePrimitiveTopologyListRestartFeaturesEXT(structure_type(VkPhysicalDevicePrimitiveTopologyListRestartFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, primitive_topology_list_restart), convert(VkBool32, primitive_topology_patch_list_restart))
     _PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT(vks, deps)
 end
 
@@ -49633,7 +49641,7 @@ Arguments:
 function _AttachmentDescriptionStencilLayout(stencil_initial_layout::ImageLayout, stencil_final_layout::ImageLayout; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAttachmentDescriptionStencilLayout(structure_type(VkAttachmentDescriptionStencilLayout), unsafe_convert(Ptr{Cvoid}, next), stencil_initial_layout, stencil_final_layout)
+    vks = VkAttachmentDescriptionStencilLayout(structure_type(VkAttachmentDescriptionStencilLayout), unsafe_convert(Ptr{Cvoid}, next), convert(VkImageLayout, stencil_initial_layout), convert(VkImageLayout, stencil_final_layout))
     _AttachmentDescriptionStencilLayout(vks, deps)
 end
 
@@ -49650,7 +49658,7 @@ Arguments:
 function _PhysicalDevicePipelineExecutablePropertiesFeaturesKHR(pipeline_executable_info::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR(structure_type(VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), pipeline_executable_info)
+    vks = VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR(structure_type(VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, pipeline_executable_info))
     _PhysicalDevicePipelineExecutablePropertiesFeaturesKHR(vks, deps)
 end
 
@@ -49667,7 +49675,7 @@ Arguments:
 function _PipelineInfoKHR(pipeline; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineInfoKHR(structure_type(VkPipelineInfoKHR), unsafe_convert(Ptr{Cvoid}, next), pipeline)
+    vks = VkPipelineInfoKHR(structure_type(VkPipelineInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipeline, pipeline))
     _PipelineInfoKHR(vks, deps, pipeline)
 end
 
@@ -49687,7 +49695,7 @@ Arguments:
 function _PipelineExecutablePropertiesKHR(stages::ShaderStageFlag, name::AbstractString, description::AbstractString, subgroup_size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineExecutablePropertiesKHR(structure_type(VkPipelineExecutablePropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), stages, name, description, subgroup_size)
+    vks = VkPipelineExecutablePropertiesKHR(structure_type(VkPipelineExecutablePropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkShaderStageFlags, stages), convert(NTuple{Int(VK_MAX_DESCRIPTION_SIZE), Char}, name), convert(NTuple{Int(VK_MAX_DESCRIPTION_SIZE), Char}, description), convert(UInt32, subgroup_size))
     _PipelineExecutablePropertiesKHR(vks, deps)
 end
 
@@ -49705,7 +49713,7 @@ Arguments:
 function _PipelineExecutableInfoKHR(pipeline, executable_index::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineExecutableInfoKHR(structure_type(VkPipelineExecutableInfoKHR), unsafe_convert(Ptr{Cvoid}, next), pipeline, executable_index)
+    vks = VkPipelineExecutableInfoKHR(structure_type(VkPipelineExecutableInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipeline, pipeline), convert(UInt32, executable_index))
     _PipelineExecutableInfoKHR(vks, deps, pipeline)
 end
 
@@ -49725,7 +49733,7 @@ Arguments:
 function _PipelineExecutableStatisticKHR(name::AbstractString, description::AbstractString, format::PipelineExecutableStatisticFormatKHR, value::_PipelineExecutableStatisticValueKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineExecutableStatisticKHR(structure_type(VkPipelineExecutableStatisticKHR), unsafe_convert(Ptr{Cvoid}, next), name, description, format, value.vks)
+    vks = VkPipelineExecutableStatisticKHR(structure_type(VkPipelineExecutableStatisticKHR), unsafe_convert(Ptr{Cvoid}, next), convert(NTuple{Int(VK_MAX_DESCRIPTION_SIZE), Char}, name), convert(NTuple{Int(VK_MAX_DESCRIPTION_SIZE), Char}, description), convert(VkPipelineExecutableStatisticFormatKHR, format), value.vks)
     _PipelineExecutableStatisticKHR(vks, deps)
 end
 
@@ -49747,7 +49755,7 @@ function _PipelineExecutableInternalRepresentationKHR(name::AbstractString, desc
     next = cconvert(Ptr{Cvoid}, next)
     data = cconvert(Ptr{Cvoid}, data)
     deps = Any[next, data]
-    vks = VkPipelineExecutableInternalRepresentationKHR(structure_type(VkPipelineExecutableInternalRepresentationKHR), unsafe_convert(Ptr{Cvoid}, next), name, description, is_text, data_size, unsafe_convert(Ptr{Cvoid}, data))
+    vks = VkPipelineExecutableInternalRepresentationKHR(structure_type(VkPipelineExecutableInternalRepresentationKHR), unsafe_convert(Ptr{Cvoid}, next), convert(NTuple{Int(VK_MAX_DESCRIPTION_SIZE), Char}, name), convert(NTuple{Int(VK_MAX_DESCRIPTION_SIZE), Char}, description), convert(VkBool32, is_text), convert(UInt, data_size), unsafe_convert(Ptr{Cvoid}, data))
     _PipelineExecutableInternalRepresentationKHR(vks, deps)
 end
 
@@ -49762,7 +49770,7 @@ Arguments:
 function _PhysicalDeviceShaderDemoteToHelperInvocationFeatures(shader_demote_to_helper_invocation::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderDemoteToHelperInvocationFeatures(structure_type(VkPhysicalDeviceShaderDemoteToHelperInvocationFeatures), unsafe_convert(Ptr{Cvoid}, next), shader_demote_to_helper_invocation)
+    vks = VkPhysicalDeviceShaderDemoteToHelperInvocationFeatures(structure_type(VkPhysicalDeviceShaderDemoteToHelperInvocationFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_demote_to_helper_invocation))
     _PhysicalDeviceShaderDemoteToHelperInvocationFeatures(vks, deps)
 end
 
@@ -49779,7 +49787,7 @@ Arguments:
 function _PhysicalDeviceTexelBufferAlignmentFeaturesEXT(texel_buffer_alignment::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT(structure_type(VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), texel_buffer_alignment)
+    vks = VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT(structure_type(VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, texel_buffer_alignment))
     _PhysicalDeviceTexelBufferAlignmentFeaturesEXT(vks, deps)
 end
 
@@ -49797,7 +49805,7 @@ Arguments:
 function _PhysicalDeviceTexelBufferAlignmentProperties(storage_texel_buffer_offset_alignment_bytes::Integer, storage_texel_buffer_offset_single_texel_alignment::Bool, uniform_texel_buffer_offset_alignment_bytes::Integer, uniform_texel_buffer_offset_single_texel_alignment::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceTexelBufferAlignmentProperties(structure_type(VkPhysicalDeviceTexelBufferAlignmentProperties), unsafe_convert(Ptr{Cvoid}, next), storage_texel_buffer_offset_alignment_bytes, storage_texel_buffer_offset_single_texel_alignment, uniform_texel_buffer_offset_alignment_bytes, uniform_texel_buffer_offset_single_texel_alignment)
+    vks = VkPhysicalDeviceTexelBufferAlignmentProperties(structure_type(VkPhysicalDeviceTexelBufferAlignmentProperties), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceSize, storage_texel_buffer_offset_alignment_bytes), convert(VkBool32, storage_texel_buffer_offset_single_texel_alignment), convert(VkDeviceSize, uniform_texel_buffer_offset_alignment_bytes), convert(VkBool32, uniform_texel_buffer_offset_single_texel_alignment))
     _PhysicalDeviceTexelBufferAlignmentProperties(vks, deps)
 end
 
@@ -49813,7 +49821,7 @@ Arguments:
 function _PhysicalDeviceSubgroupSizeControlFeatures(subgroup_size_control::Bool, compute_full_subgroups::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceSubgroupSizeControlFeatures(structure_type(VkPhysicalDeviceSubgroupSizeControlFeatures), unsafe_convert(Ptr{Cvoid}, next), subgroup_size_control, compute_full_subgroups)
+    vks = VkPhysicalDeviceSubgroupSizeControlFeatures(structure_type(VkPhysicalDeviceSubgroupSizeControlFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, subgroup_size_control), convert(VkBool32, compute_full_subgroups))
     _PhysicalDeviceSubgroupSizeControlFeatures(vks, deps)
 end
 
@@ -49831,7 +49839,7 @@ Arguments:
 function _PhysicalDeviceSubgroupSizeControlProperties(min_subgroup_size::Integer, max_subgroup_size::Integer, max_compute_workgroup_subgroups::Integer, required_subgroup_size_stages::ShaderStageFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceSubgroupSizeControlProperties(structure_type(VkPhysicalDeviceSubgroupSizeControlProperties), unsafe_convert(Ptr{Cvoid}, next), min_subgroup_size, max_subgroup_size, max_compute_workgroup_subgroups, required_subgroup_size_stages)
+    vks = VkPhysicalDeviceSubgroupSizeControlProperties(structure_type(VkPhysicalDeviceSubgroupSizeControlProperties), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, min_subgroup_size), convert(UInt32, max_subgroup_size), convert(UInt32, max_compute_workgroup_subgroups), convert(VkShaderStageFlags, required_subgroup_size_stages))
     _PhysicalDeviceSubgroupSizeControlProperties(vks, deps)
 end
 
@@ -49846,7 +49854,7 @@ Arguments:
 function _PipelineShaderStageRequiredSubgroupSizeCreateInfo(required_subgroup_size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineShaderStageRequiredSubgroupSizeCreateInfo(structure_type(VkPipelineShaderStageRequiredSubgroupSizeCreateInfo), unsafe_convert(Ptr{Cvoid}, next), required_subgroup_size)
+    vks = VkPipelineShaderStageRequiredSubgroupSizeCreateInfo(structure_type(VkPipelineShaderStageRequiredSubgroupSizeCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, required_subgroup_size))
     _PipelineShaderStageRequiredSubgroupSizeCreateInfo(vks, deps)
 end
 
@@ -49864,7 +49872,7 @@ Arguments:
 function _SubpassShadingPipelineCreateInfoHUAWEI(render_pass, subpass::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSubpassShadingPipelineCreateInfoHUAWEI(structure_type(VkSubpassShadingPipelineCreateInfoHUAWEI), unsafe_convert(Ptr{Cvoid}, next), render_pass, subpass)
+    vks = VkSubpassShadingPipelineCreateInfoHUAWEI(structure_type(VkSubpassShadingPipelineCreateInfoHUAWEI), unsafe_convert(Ptr{Cvoid}, next), convert(VkRenderPass, render_pass), convert(UInt32, subpass))
     _SubpassShadingPipelineCreateInfoHUAWEI(vks, deps, render_pass)
 end
 
@@ -49881,7 +49889,7 @@ Arguments:
 function _PhysicalDeviceSubpassShadingPropertiesHUAWEI(max_subpass_shading_workgroup_size_aspect_ratio::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceSubpassShadingPropertiesHUAWEI(structure_type(VkPhysicalDeviceSubpassShadingPropertiesHUAWEI), unsafe_convert(Ptr{Cvoid}, next), max_subpass_shading_workgroup_size_aspect_ratio)
+    vks = VkPhysicalDeviceSubpassShadingPropertiesHUAWEI(structure_type(VkPhysicalDeviceSubpassShadingPropertiesHUAWEI), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_subpass_shading_workgroup_size_aspect_ratio))
     _PhysicalDeviceSubpassShadingPropertiesHUAWEI(vks, deps)
 end
 
@@ -49901,7 +49909,7 @@ Arguments:
 function _PhysicalDeviceClusterCullingShaderPropertiesHUAWEI(max_work_group_count::NTuple{3, UInt32}, max_work_group_size::NTuple{3, UInt32}, max_output_cluster_count::Integer, indirect_buffer_offset_alignment::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceClusterCullingShaderPropertiesHUAWEI(structure_type(VkPhysicalDeviceClusterCullingShaderPropertiesHUAWEI), unsafe_convert(Ptr{Cvoid}, next), max_work_group_count, max_work_group_size, max_output_cluster_count, indirect_buffer_offset_alignment)
+    vks = VkPhysicalDeviceClusterCullingShaderPropertiesHUAWEI(structure_type(VkPhysicalDeviceClusterCullingShaderPropertiesHUAWEI), unsafe_convert(Ptr{Cvoid}, next), convert(NTuple{3, UInt32}, max_work_group_count), convert(NTuple{3, UInt32}, max_work_group_size), convert(UInt32, max_output_cluster_count), convert(VkDeviceSize, indirect_buffer_offset_alignment))
     _PhysicalDeviceClusterCullingShaderPropertiesHUAWEI(vks, deps)
 end
 
@@ -49916,7 +49924,7 @@ Arguments:
 function _MemoryOpaqueCaptureAddressAllocateInfo(opaque_capture_address::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMemoryOpaqueCaptureAddressAllocateInfo(structure_type(VkMemoryOpaqueCaptureAddressAllocateInfo), unsafe_convert(Ptr{Cvoid}, next), opaque_capture_address)
+    vks = VkMemoryOpaqueCaptureAddressAllocateInfo(structure_type(VkMemoryOpaqueCaptureAddressAllocateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt64, opaque_capture_address))
     _MemoryOpaqueCaptureAddressAllocateInfo(vks, deps)
 end
 
@@ -49931,7 +49939,7 @@ Arguments:
 function _DeviceMemoryOpaqueCaptureAddressInfo(memory; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDeviceMemoryOpaqueCaptureAddressInfo(structure_type(VkDeviceMemoryOpaqueCaptureAddressInfo), unsafe_convert(Ptr{Cvoid}, next), memory)
+    vks = VkDeviceMemoryOpaqueCaptureAddressInfo(structure_type(VkDeviceMemoryOpaqueCaptureAddressInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceMemory, memory))
     _DeviceMemoryOpaqueCaptureAddressInfo(vks, deps, memory)
 end
 
@@ -49951,7 +49959,7 @@ Arguments:
 function _PhysicalDeviceLineRasterizationFeatures(rectangular_lines::Bool, bresenham_lines::Bool, smooth_lines::Bool, stippled_rectangular_lines::Bool, stippled_bresenham_lines::Bool, stippled_smooth_lines::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceLineRasterizationFeatures(structure_type(VkPhysicalDeviceLineRasterizationFeatures), unsafe_convert(Ptr{Cvoid}, next), rectangular_lines, bresenham_lines, smooth_lines, stippled_rectangular_lines, stippled_bresenham_lines, stippled_smooth_lines)
+    vks = VkPhysicalDeviceLineRasterizationFeatures(structure_type(VkPhysicalDeviceLineRasterizationFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, rectangular_lines), convert(VkBool32, bresenham_lines), convert(VkBool32, smooth_lines), convert(VkBool32, stippled_rectangular_lines), convert(VkBool32, stippled_bresenham_lines), convert(VkBool32, stippled_smooth_lines))
     _PhysicalDeviceLineRasterizationFeatures(vks, deps)
 end
 
@@ -49966,7 +49974,7 @@ Arguments:
 function _PhysicalDeviceLineRasterizationProperties(line_sub_pixel_precision_bits::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceLineRasterizationProperties(structure_type(VkPhysicalDeviceLineRasterizationProperties), unsafe_convert(Ptr{Cvoid}, next), line_sub_pixel_precision_bits)
+    vks = VkPhysicalDeviceLineRasterizationProperties(structure_type(VkPhysicalDeviceLineRasterizationProperties), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, line_sub_pixel_precision_bits))
     _PhysicalDeviceLineRasterizationProperties(vks, deps)
 end
 
@@ -49984,7 +49992,7 @@ Arguments:
 function _PipelineRasterizationLineStateCreateInfo(line_rasterization_mode::LineRasterizationMode, stippled_line_enable::Bool, line_stipple_factor::Integer, line_stipple_pattern::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineRasterizationLineStateCreateInfo(structure_type(VkPipelineRasterizationLineStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), line_rasterization_mode, stippled_line_enable, line_stipple_factor, line_stipple_pattern)
+    vks = VkPipelineRasterizationLineStateCreateInfo(structure_type(VkPipelineRasterizationLineStateCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkLineRasterizationMode, line_rasterization_mode), convert(VkBool32, stippled_line_enable), convert(UInt32, line_stipple_factor), convert(UInt16, line_stipple_pattern))
     _PipelineRasterizationLineStateCreateInfo(vks, deps)
 end
 
@@ -49999,7 +50007,7 @@ Arguments:
 function _PhysicalDevicePipelineCreationCacheControlFeatures(pipeline_creation_cache_control::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePipelineCreationCacheControlFeatures(structure_type(VkPhysicalDevicePipelineCreationCacheControlFeatures), unsafe_convert(Ptr{Cvoid}, next), pipeline_creation_cache_control)
+    vks = VkPhysicalDevicePipelineCreationCacheControlFeatures(structure_type(VkPhysicalDevicePipelineCreationCacheControlFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, pipeline_creation_cache_control))
     _PhysicalDevicePipelineCreationCacheControlFeatures(vks, deps)
 end
 
@@ -50025,7 +50033,7 @@ Arguments:
 function _PhysicalDeviceVulkan11Features(storage_buffer_16_bit_access::Bool, uniform_and_storage_buffer_16_bit_access::Bool, storage_push_constant_16::Bool, storage_input_output_16::Bool, multiview::Bool, multiview_geometry_shader::Bool, multiview_tessellation_shader::Bool, variable_pointers_storage_buffer::Bool, variable_pointers::Bool, protected_memory::Bool, sampler_ycbcr_conversion::Bool, shader_draw_parameters::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceVulkan11Features(structure_type(VkPhysicalDeviceVulkan11Features), unsafe_convert(Ptr{Cvoid}, next), storage_buffer_16_bit_access, uniform_and_storage_buffer_16_bit_access, storage_push_constant_16, storage_input_output_16, multiview, multiview_geometry_shader, multiview_tessellation_shader, variable_pointers_storage_buffer, variable_pointers, protected_memory, sampler_ycbcr_conversion, shader_draw_parameters)
+    vks = VkPhysicalDeviceVulkan11Features(structure_type(VkPhysicalDeviceVulkan11Features), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, storage_buffer_16_bit_access), convert(VkBool32, uniform_and_storage_buffer_16_bit_access), convert(VkBool32, storage_push_constant_16), convert(VkBool32, storage_input_output_16), convert(VkBool32, multiview), convert(VkBool32, multiview_geometry_shader), convert(VkBool32, multiview_tessellation_shader), convert(VkBool32, variable_pointers_storage_buffer), convert(VkBool32, variable_pointers), convert(VkBool32, protected_memory), convert(VkBool32, sampler_ycbcr_conversion), convert(VkBool32, shader_draw_parameters))
     _PhysicalDeviceVulkan11Features(vks, deps)
 end
 
@@ -50054,7 +50062,7 @@ Arguments:
 function _PhysicalDeviceVulkan11Properties(device_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}, driver_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}, device_luid::NTuple{Int(VK_LUID_SIZE), UInt8}, device_node_mask::Integer, device_luid_valid::Bool, subgroup_size::Integer, subgroup_supported_stages::ShaderStageFlag, subgroup_supported_operations::SubgroupFeatureFlag, subgroup_quad_operations_in_all_stages::Bool, point_clipping_behavior::PointClippingBehavior, max_multiview_view_count::Integer, max_multiview_instance_index::Integer, protected_no_fault::Bool, max_per_set_descriptors::Integer, max_memory_allocation_size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceVulkan11Properties(structure_type(VkPhysicalDeviceVulkan11Properties), unsafe_convert(Ptr{Cvoid}, next), device_uuid, driver_uuid, device_luid, device_node_mask, device_luid_valid, subgroup_size, subgroup_supported_stages, subgroup_supported_operations, subgroup_quad_operations_in_all_stages, point_clipping_behavior, max_multiview_view_count, max_multiview_instance_index, protected_no_fault, max_per_set_descriptors, max_memory_allocation_size)
+    vks = VkPhysicalDeviceVulkan11Properties(structure_type(VkPhysicalDeviceVulkan11Properties), unsafe_convert(Ptr{Cvoid}, next), convert(NTuple{Int(VK_UUID_SIZE), UInt8}, device_uuid), convert(NTuple{Int(VK_UUID_SIZE), UInt8}, driver_uuid), convert(NTuple{Int(VK_LUID_SIZE), UInt8}, device_luid), convert(UInt32, device_node_mask), convert(VkBool32, device_luid_valid), convert(UInt32, subgroup_size), convert(VkShaderStageFlags, subgroup_supported_stages), convert(VkSubgroupFeatureFlags, subgroup_supported_operations), convert(VkBool32, subgroup_quad_operations_in_all_stages), convert(VkPointClippingBehavior, point_clipping_behavior), convert(UInt32, max_multiview_view_count), convert(UInt32, max_multiview_instance_index), convert(VkBool32, protected_no_fault), convert(UInt32, max_per_set_descriptors), convert(VkDeviceSize, max_memory_allocation_size))
     _PhysicalDeviceVulkan11Properties(vks, deps)
 end
 
@@ -50115,7 +50123,7 @@ Arguments:
 function _PhysicalDeviceVulkan12Features(sampler_mirror_clamp_to_edge::Bool, draw_indirect_count::Bool, storage_buffer_8_bit_access::Bool, uniform_and_storage_buffer_8_bit_access::Bool, storage_push_constant_8::Bool, shader_buffer_int_64_atomics::Bool, shader_shared_int_64_atomics::Bool, shader_float_16::Bool, shader_int_8::Bool, descriptor_indexing::Bool, shader_input_attachment_array_dynamic_indexing::Bool, shader_uniform_texel_buffer_array_dynamic_indexing::Bool, shader_storage_texel_buffer_array_dynamic_indexing::Bool, shader_uniform_buffer_array_non_uniform_indexing::Bool, shader_sampled_image_array_non_uniform_indexing::Bool, shader_storage_buffer_array_non_uniform_indexing::Bool, shader_storage_image_array_non_uniform_indexing::Bool, shader_input_attachment_array_non_uniform_indexing::Bool, shader_uniform_texel_buffer_array_non_uniform_indexing::Bool, shader_storage_texel_buffer_array_non_uniform_indexing::Bool, descriptor_binding_uniform_buffer_update_after_bind::Bool, descriptor_binding_sampled_image_update_after_bind::Bool, descriptor_binding_storage_image_update_after_bind::Bool, descriptor_binding_storage_buffer_update_after_bind::Bool, descriptor_binding_uniform_texel_buffer_update_after_bind::Bool, descriptor_binding_storage_texel_buffer_update_after_bind::Bool, descriptor_binding_update_unused_while_pending::Bool, descriptor_binding_partially_bound::Bool, descriptor_binding_variable_descriptor_count::Bool, runtime_descriptor_array::Bool, sampler_filter_minmax::Bool, scalar_block_layout::Bool, imageless_framebuffer::Bool, uniform_buffer_standard_layout::Bool, shader_subgroup_extended_types::Bool, separate_depth_stencil_layouts::Bool, host_query_reset::Bool, timeline_semaphore::Bool, buffer_device_address::Bool, buffer_device_address_capture_replay::Bool, buffer_device_address_multi_device::Bool, vulkan_memory_model::Bool, vulkan_memory_model_device_scope::Bool, vulkan_memory_model_availability_visibility_chains::Bool, shader_output_viewport_index::Bool, shader_output_layer::Bool, subgroup_broadcast_dynamic_id::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceVulkan12Features(structure_type(VkPhysicalDeviceVulkan12Features), unsafe_convert(Ptr{Cvoid}, next), sampler_mirror_clamp_to_edge, draw_indirect_count, storage_buffer_8_bit_access, uniform_and_storage_buffer_8_bit_access, storage_push_constant_8, shader_buffer_int_64_atomics, shader_shared_int_64_atomics, shader_float_16, shader_int_8, descriptor_indexing, shader_input_attachment_array_dynamic_indexing, shader_uniform_texel_buffer_array_dynamic_indexing, shader_storage_texel_buffer_array_dynamic_indexing, shader_uniform_buffer_array_non_uniform_indexing, shader_sampled_image_array_non_uniform_indexing, shader_storage_buffer_array_non_uniform_indexing, shader_storage_image_array_non_uniform_indexing, shader_input_attachment_array_non_uniform_indexing, shader_uniform_texel_buffer_array_non_uniform_indexing, shader_storage_texel_buffer_array_non_uniform_indexing, descriptor_binding_uniform_buffer_update_after_bind, descriptor_binding_sampled_image_update_after_bind, descriptor_binding_storage_image_update_after_bind, descriptor_binding_storage_buffer_update_after_bind, descriptor_binding_uniform_texel_buffer_update_after_bind, descriptor_binding_storage_texel_buffer_update_after_bind, descriptor_binding_update_unused_while_pending, descriptor_binding_partially_bound, descriptor_binding_variable_descriptor_count, runtime_descriptor_array, sampler_filter_minmax, scalar_block_layout, imageless_framebuffer, uniform_buffer_standard_layout, shader_subgroup_extended_types, separate_depth_stencil_layouts, host_query_reset, timeline_semaphore, buffer_device_address, buffer_device_address_capture_replay, buffer_device_address_multi_device, vulkan_memory_model, vulkan_memory_model_device_scope, vulkan_memory_model_availability_visibility_chains, shader_output_viewport_index, shader_output_layer, subgroup_broadcast_dynamic_id)
+    vks = VkPhysicalDeviceVulkan12Features(structure_type(VkPhysicalDeviceVulkan12Features), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, sampler_mirror_clamp_to_edge), convert(VkBool32, draw_indirect_count), convert(VkBool32, storage_buffer_8_bit_access), convert(VkBool32, uniform_and_storage_buffer_8_bit_access), convert(VkBool32, storage_push_constant_8), convert(VkBool32, shader_buffer_int_64_atomics), convert(VkBool32, shader_shared_int_64_atomics), convert(VkBool32, shader_float_16), convert(VkBool32, shader_int_8), convert(VkBool32, descriptor_indexing), convert(VkBool32, shader_input_attachment_array_dynamic_indexing), convert(VkBool32, shader_uniform_texel_buffer_array_dynamic_indexing), convert(VkBool32, shader_storage_texel_buffer_array_dynamic_indexing), convert(VkBool32, shader_uniform_buffer_array_non_uniform_indexing), convert(VkBool32, shader_sampled_image_array_non_uniform_indexing), convert(VkBool32, shader_storage_buffer_array_non_uniform_indexing), convert(VkBool32, shader_storage_image_array_non_uniform_indexing), convert(VkBool32, shader_input_attachment_array_non_uniform_indexing), convert(VkBool32, shader_uniform_texel_buffer_array_non_uniform_indexing), convert(VkBool32, shader_storage_texel_buffer_array_non_uniform_indexing), convert(VkBool32, descriptor_binding_uniform_buffer_update_after_bind), convert(VkBool32, descriptor_binding_sampled_image_update_after_bind), convert(VkBool32, descriptor_binding_storage_image_update_after_bind), convert(VkBool32, descriptor_binding_storage_buffer_update_after_bind), convert(VkBool32, descriptor_binding_uniform_texel_buffer_update_after_bind), convert(VkBool32, descriptor_binding_storage_texel_buffer_update_after_bind), convert(VkBool32, descriptor_binding_update_unused_while_pending), convert(VkBool32, descriptor_binding_partially_bound), convert(VkBool32, descriptor_binding_variable_descriptor_count), convert(VkBool32, runtime_descriptor_array), convert(VkBool32, sampler_filter_minmax), convert(VkBool32, scalar_block_layout), convert(VkBool32, imageless_framebuffer), convert(VkBool32, uniform_buffer_standard_layout), convert(VkBool32, shader_subgroup_extended_types), convert(VkBool32, separate_depth_stencil_layouts), convert(VkBool32, host_query_reset), convert(VkBool32, timeline_semaphore), convert(VkBool32, buffer_device_address), convert(VkBool32, buffer_device_address_capture_replay), convert(VkBool32, buffer_device_address_multi_device), convert(VkBool32, vulkan_memory_model), convert(VkBool32, vulkan_memory_model_device_scope), convert(VkBool32, vulkan_memory_model_availability_visibility_chains), convert(VkBool32, shader_output_viewport_index), convert(VkBool32, shader_output_layer), convert(VkBool32, subgroup_broadcast_dynamic_id))
     _PhysicalDeviceVulkan12Features(vks, deps)
 end
 
@@ -50181,7 +50189,7 @@ Arguments:
 function _PhysicalDeviceVulkan12Properties(driver_id::DriverId, driver_name::AbstractString, driver_info::AbstractString, conformance_version::_ConformanceVersion, denorm_behavior_independence::ShaderFloatControlsIndependence, rounding_mode_independence::ShaderFloatControlsIndependence, shader_signed_zero_inf_nan_preserve_float_16::Bool, shader_signed_zero_inf_nan_preserve_float_32::Bool, shader_signed_zero_inf_nan_preserve_float_64::Bool, shader_denorm_preserve_float_16::Bool, shader_denorm_preserve_float_32::Bool, shader_denorm_preserve_float_64::Bool, shader_denorm_flush_to_zero_float_16::Bool, shader_denorm_flush_to_zero_float_32::Bool, shader_denorm_flush_to_zero_float_64::Bool, shader_rounding_mode_rte_float_16::Bool, shader_rounding_mode_rte_float_32::Bool, shader_rounding_mode_rte_float_64::Bool, shader_rounding_mode_rtz_float_16::Bool, shader_rounding_mode_rtz_float_32::Bool, shader_rounding_mode_rtz_float_64::Bool, max_update_after_bind_descriptors_in_all_pools::Integer, shader_uniform_buffer_array_non_uniform_indexing_native::Bool, shader_sampled_image_array_non_uniform_indexing_native::Bool, shader_storage_buffer_array_non_uniform_indexing_native::Bool, shader_storage_image_array_non_uniform_indexing_native::Bool, shader_input_attachment_array_non_uniform_indexing_native::Bool, robust_buffer_access_update_after_bind::Bool, quad_divergent_implicit_lod::Bool, max_per_stage_descriptor_update_after_bind_samplers::Integer, max_per_stage_descriptor_update_after_bind_uniform_buffers::Integer, max_per_stage_descriptor_update_after_bind_storage_buffers::Integer, max_per_stage_descriptor_update_after_bind_sampled_images::Integer, max_per_stage_descriptor_update_after_bind_storage_images::Integer, max_per_stage_descriptor_update_after_bind_input_attachments::Integer, max_per_stage_update_after_bind_resources::Integer, max_descriptor_set_update_after_bind_samplers::Integer, max_descriptor_set_update_after_bind_uniform_buffers::Integer, max_descriptor_set_update_after_bind_uniform_buffers_dynamic::Integer, max_descriptor_set_update_after_bind_storage_buffers::Integer, max_descriptor_set_update_after_bind_storage_buffers_dynamic::Integer, max_descriptor_set_update_after_bind_sampled_images::Integer, max_descriptor_set_update_after_bind_storage_images::Integer, max_descriptor_set_update_after_bind_input_attachments::Integer, supported_depth_resolve_modes::ResolveModeFlag, supported_stencil_resolve_modes::ResolveModeFlag, independent_resolve_none::Bool, independent_resolve::Bool, filter_minmax_single_component_formats::Bool, filter_minmax_image_component_mapping::Bool, max_timeline_semaphore_value_difference::Integer; next = C_NULL, framebuffer_integer_color_sample_counts = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceVulkan12Properties(structure_type(VkPhysicalDeviceVulkan12Properties), unsafe_convert(Ptr{Cvoid}, next), driver_id, driver_name, driver_info, conformance_version.vks, denorm_behavior_independence, rounding_mode_independence, shader_signed_zero_inf_nan_preserve_float_16, shader_signed_zero_inf_nan_preserve_float_32, shader_signed_zero_inf_nan_preserve_float_64, shader_denorm_preserve_float_16, shader_denorm_preserve_float_32, shader_denorm_preserve_float_64, shader_denorm_flush_to_zero_float_16, shader_denorm_flush_to_zero_float_32, shader_denorm_flush_to_zero_float_64, shader_rounding_mode_rte_float_16, shader_rounding_mode_rte_float_32, shader_rounding_mode_rte_float_64, shader_rounding_mode_rtz_float_16, shader_rounding_mode_rtz_float_32, shader_rounding_mode_rtz_float_64, max_update_after_bind_descriptors_in_all_pools, shader_uniform_buffer_array_non_uniform_indexing_native, shader_sampled_image_array_non_uniform_indexing_native, shader_storage_buffer_array_non_uniform_indexing_native, shader_storage_image_array_non_uniform_indexing_native, shader_input_attachment_array_non_uniform_indexing_native, robust_buffer_access_update_after_bind, quad_divergent_implicit_lod, max_per_stage_descriptor_update_after_bind_samplers, max_per_stage_descriptor_update_after_bind_uniform_buffers, max_per_stage_descriptor_update_after_bind_storage_buffers, max_per_stage_descriptor_update_after_bind_sampled_images, max_per_stage_descriptor_update_after_bind_storage_images, max_per_stage_descriptor_update_after_bind_input_attachments, max_per_stage_update_after_bind_resources, max_descriptor_set_update_after_bind_samplers, max_descriptor_set_update_after_bind_uniform_buffers, max_descriptor_set_update_after_bind_uniform_buffers_dynamic, max_descriptor_set_update_after_bind_storage_buffers, max_descriptor_set_update_after_bind_storage_buffers_dynamic, max_descriptor_set_update_after_bind_sampled_images, max_descriptor_set_update_after_bind_storage_images, max_descriptor_set_update_after_bind_input_attachments, supported_depth_resolve_modes, supported_stencil_resolve_modes, independent_resolve_none, independent_resolve, filter_minmax_single_component_formats, filter_minmax_image_component_mapping, max_timeline_semaphore_value_difference, framebuffer_integer_color_sample_counts)
+    vks = VkPhysicalDeviceVulkan12Properties(structure_type(VkPhysicalDeviceVulkan12Properties), unsafe_convert(Ptr{Cvoid}, next), convert(VkDriverId, driver_id), convert(NTuple{Int(VK_MAX_DRIVER_NAME_SIZE), Char}, driver_name), convert(NTuple{Int(VK_MAX_DRIVER_INFO_SIZE), Char}, driver_info), conformance_version.vks, convert(VkShaderFloatControlsIndependence, denorm_behavior_independence), convert(VkShaderFloatControlsIndependence, rounding_mode_independence), convert(VkBool32, shader_signed_zero_inf_nan_preserve_float_16), convert(VkBool32, shader_signed_zero_inf_nan_preserve_float_32), convert(VkBool32, shader_signed_zero_inf_nan_preserve_float_64), convert(VkBool32, shader_denorm_preserve_float_16), convert(VkBool32, shader_denorm_preserve_float_32), convert(VkBool32, shader_denorm_preserve_float_64), convert(VkBool32, shader_denorm_flush_to_zero_float_16), convert(VkBool32, shader_denorm_flush_to_zero_float_32), convert(VkBool32, shader_denorm_flush_to_zero_float_64), convert(VkBool32, shader_rounding_mode_rte_float_16), convert(VkBool32, shader_rounding_mode_rte_float_32), convert(VkBool32, shader_rounding_mode_rte_float_64), convert(VkBool32, shader_rounding_mode_rtz_float_16), convert(VkBool32, shader_rounding_mode_rtz_float_32), convert(VkBool32, shader_rounding_mode_rtz_float_64), convert(UInt32, max_update_after_bind_descriptors_in_all_pools), convert(VkBool32, shader_uniform_buffer_array_non_uniform_indexing_native), convert(VkBool32, shader_sampled_image_array_non_uniform_indexing_native), convert(VkBool32, shader_storage_buffer_array_non_uniform_indexing_native), convert(VkBool32, shader_storage_image_array_non_uniform_indexing_native), convert(VkBool32, shader_input_attachment_array_non_uniform_indexing_native), convert(VkBool32, robust_buffer_access_update_after_bind), convert(VkBool32, quad_divergent_implicit_lod), convert(UInt32, max_per_stage_descriptor_update_after_bind_samplers), convert(UInt32, max_per_stage_descriptor_update_after_bind_uniform_buffers), convert(UInt32, max_per_stage_descriptor_update_after_bind_storage_buffers), convert(UInt32, max_per_stage_descriptor_update_after_bind_sampled_images), convert(UInt32, max_per_stage_descriptor_update_after_bind_storage_images), convert(UInt32, max_per_stage_descriptor_update_after_bind_input_attachments), convert(UInt32, max_per_stage_update_after_bind_resources), convert(UInt32, max_descriptor_set_update_after_bind_samplers), convert(UInt32, max_descriptor_set_update_after_bind_uniform_buffers), convert(UInt32, max_descriptor_set_update_after_bind_uniform_buffers_dynamic), convert(UInt32, max_descriptor_set_update_after_bind_storage_buffers), convert(UInt32, max_descriptor_set_update_after_bind_storage_buffers_dynamic), convert(UInt32, max_descriptor_set_update_after_bind_sampled_images), convert(UInt32, max_descriptor_set_update_after_bind_storage_images), convert(UInt32, max_descriptor_set_update_after_bind_input_attachments), convert(VkResolveModeFlags, supported_depth_resolve_modes), convert(VkResolveModeFlags, supported_stencil_resolve_modes), convert(VkBool32, independent_resolve_none), convert(VkBool32, independent_resolve), convert(VkBool32, filter_minmax_single_component_formats), convert(VkBool32, filter_minmax_image_component_mapping), convert(UInt64, max_timeline_semaphore_value_difference), convert(VkSampleCountFlags, framebuffer_integer_color_sample_counts))
     _PhysicalDeviceVulkan12Properties(vks, deps)
 end
 
@@ -50210,7 +50218,7 @@ Arguments:
 function _PhysicalDeviceVulkan13Features(robust_image_access::Bool, inline_uniform_block::Bool, descriptor_binding_inline_uniform_block_update_after_bind::Bool, pipeline_creation_cache_control::Bool, private_data::Bool, shader_demote_to_helper_invocation::Bool, shader_terminate_invocation::Bool, subgroup_size_control::Bool, compute_full_subgroups::Bool, synchronization2::Bool, texture_compression_astc_hdr::Bool, shader_zero_initialize_workgroup_memory::Bool, dynamic_rendering::Bool, shader_integer_dot_product::Bool, maintenance4::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceVulkan13Features(structure_type(VkPhysicalDeviceVulkan13Features), unsafe_convert(Ptr{Cvoid}, next), robust_image_access, inline_uniform_block, descriptor_binding_inline_uniform_block_update_after_bind, pipeline_creation_cache_control, private_data, shader_demote_to_helper_invocation, shader_terminate_invocation, subgroup_size_control, compute_full_subgroups, synchronization2, texture_compression_astc_hdr, shader_zero_initialize_workgroup_memory, dynamic_rendering, shader_integer_dot_product, maintenance4)
+    vks = VkPhysicalDeviceVulkan13Features(structure_type(VkPhysicalDeviceVulkan13Features), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, robust_image_access), convert(VkBool32, inline_uniform_block), convert(VkBool32, descriptor_binding_inline_uniform_block_update_after_bind), convert(VkBool32, pipeline_creation_cache_control), convert(VkBool32, private_data), convert(VkBool32, shader_demote_to_helper_invocation), convert(VkBool32, shader_terminate_invocation), convert(VkBool32, subgroup_size_control), convert(VkBool32, compute_full_subgroups), convert(VkBool32, synchronization2), convert(VkBool32, texture_compression_astc_hdr), convert(VkBool32, shader_zero_initialize_workgroup_memory), convert(VkBool32, dynamic_rendering), convert(VkBool32, shader_integer_dot_product), convert(VkBool32, maintenance4))
     _PhysicalDeviceVulkan13Features(vks, deps)
 end
 
@@ -50269,7 +50277,7 @@ Arguments:
 function _PhysicalDeviceVulkan13Properties(min_subgroup_size::Integer, max_subgroup_size::Integer, max_compute_workgroup_subgroups::Integer, required_subgroup_size_stages::ShaderStageFlag, max_inline_uniform_block_size::Integer, max_per_stage_descriptor_inline_uniform_blocks::Integer, max_per_stage_descriptor_update_after_bind_inline_uniform_blocks::Integer, max_descriptor_set_inline_uniform_blocks::Integer, max_descriptor_set_update_after_bind_inline_uniform_blocks::Integer, max_inline_uniform_total_size::Integer, integer_dot_product_8_bit_unsigned_accelerated::Bool, integer_dot_product_8_bit_signed_accelerated::Bool, integer_dot_product_8_bit_mixed_signedness_accelerated::Bool, integer_dot_product_8_bit_packed_unsigned_accelerated::Bool, integer_dot_product_8_bit_packed_signed_accelerated::Bool, integer_dot_product_8_bit_packed_mixed_signedness_accelerated::Bool, integer_dot_product_16_bit_unsigned_accelerated::Bool, integer_dot_product_16_bit_signed_accelerated::Bool, integer_dot_product_16_bit_mixed_signedness_accelerated::Bool, integer_dot_product_32_bit_unsigned_accelerated::Bool, integer_dot_product_32_bit_signed_accelerated::Bool, integer_dot_product_32_bit_mixed_signedness_accelerated::Bool, integer_dot_product_64_bit_unsigned_accelerated::Bool, integer_dot_product_64_bit_signed_accelerated::Bool, integer_dot_product_64_bit_mixed_signedness_accelerated::Bool, integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated::Bool, integer_dot_product_accumulating_saturating_8_bit_signed_accelerated::Bool, integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated::Bool, integer_dot_product_accumulating_saturating_8_bit_packed_unsigned_accelerated::Bool, integer_dot_product_accumulating_saturating_8_bit_packed_signed_accelerated::Bool, integer_dot_product_accumulating_saturating_8_bit_packed_mixed_signedness_accelerated::Bool, integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated::Bool, integer_dot_product_accumulating_saturating_16_bit_signed_accelerated::Bool, integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated::Bool, integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated::Bool, integer_dot_product_accumulating_saturating_32_bit_signed_accelerated::Bool, integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated::Bool, integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated::Bool, integer_dot_product_accumulating_saturating_64_bit_signed_accelerated::Bool, integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated::Bool, storage_texel_buffer_offset_alignment_bytes::Integer, storage_texel_buffer_offset_single_texel_alignment::Bool, uniform_texel_buffer_offset_alignment_bytes::Integer, uniform_texel_buffer_offset_single_texel_alignment::Bool, max_buffer_size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceVulkan13Properties(structure_type(VkPhysicalDeviceVulkan13Properties), unsafe_convert(Ptr{Cvoid}, next), min_subgroup_size, max_subgroup_size, max_compute_workgroup_subgroups, required_subgroup_size_stages, max_inline_uniform_block_size, max_per_stage_descriptor_inline_uniform_blocks, max_per_stage_descriptor_update_after_bind_inline_uniform_blocks, max_descriptor_set_inline_uniform_blocks, max_descriptor_set_update_after_bind_inline_uniform_blocks, max_inline_uniform_total_size, integer_dot_product_8_bit_unsigned_accelerated, integer_dot_product_8_bit_signed_accelerated, integer_dot_product_8_bit_mixed_signedness_accelerated, integer_dot_product_8_bit_packed_unsigned_accelerated, integer_dot_product_8_bit_packed_signed_accelerated, integer_dot_product_8_bit_packed_mixed_signedness_accelerated, integer_dot_product_16_bit_unsigned_accelerated, integer_dot_product_16_bit_signed_accelerated, integer_dot_product_16_bit_mixed_signedness_accelerated, integer_dot_product_32_bit_unsigned_accelerated, integer_dot_product_32_bit_signed_accelerated, integer_dot_product_32_bit_mixed_signedness_accelerated, integer_dot_product_64_bit_unsigned_accelerated, integer_dot_product_64_bit_signed_accelerated, integer_dot_product_64_bit_mixed_signedness_accelerated, integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated, integer_dot_product_accumulating_saturating_8_bit_signed_accelerated, integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated, integer_dot_product_accumulating_saturating_8_bit_packed_unsigned_accelerated, integer_dot_product_accumulating_saturating_8_bit_packed_signed_accelerated, integer_dot_product_accumulating_saturating_8_bit_packed_mixed_signedness_accelerated, integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated, integer_dot_product_accumulating_saturating_16_bit_signed_accelerated, integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated, integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated, integer_dot_product_accumulating_saturating_32_bit_signed_accelerated, integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated, integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated, integer_dot_product_accumulating_saturating_64_bit_signed_accelerated, integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated, storage_texel_buffer_offset_alignment_bytes, storage_texel_buffer_offset_single_texel_alignment, uniform_texel_buffer_offset_alignment_bytes, uniform_texel_buffer_offset_single_texel_alignment, max_buffer_size)
+    vks = VkPhysicalDeviceVulkan13Properties(structure_type(VkPhysicalDeviceVulkan13Properties), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, min_subgroup_size), convert(UInt32, max_subgroup_size), convert(UInt32, max_compute_workgroup_subgroups), convert(VkShaderStageFlags, required_subgroup_size_stages), convert(UInt32, max_inline_uniform_block_size), convert(UInt32, max_per_stage_descriptor_inline_uniform_blocks), convert(UInt32, max_per_stage_descriptor_update_after_bind_inline_uniform_blocks), convert(UInt32, max_descriptor_set_inline_uniform_blocks), convert(UInt32, max_descriptor_set_update_after_bind_inline_uniform_blocks), convert(UInt32, max_inline_uniform_total_size), convert(VkBool32, integer_dot_product_8_bit_unsigned_accelerated), convert(VkBool32, integer_dot_product_8_bit_signed_accelerated), convert(VkBool32, integer_dot_product_8_bit_mixed_signedness_accelerated), convert(VkBool32, integer_dot_product_8_bit_packed_unsigned_accelerated), convert(VkBool32, integer_dot_product_8_bit_packed_signed_accelerated), convert(VkBool32, integer_dot_product_8_bit_packed_mixed_signedness_accelerated), convert(VkBool32, integer_dot_product_16_bit_unsigned_accelerated), convert(VkBool32, integer_dot_product_16_bit_signed_accelerated), convert(VkBool32, integer_dot_product_16_bit_mixed_signedness_accelerated), convert(VkBool32, integer_dot_product_32_bit_unsigned_accelerated), convert(VkBool32, integer_dot_product_32_bit_signed_accelerated), convert(VkBool32, integer_dot_product_32_bit_mixed_signedness_accelerated), convert(VkBool32, integer_dot_product_64_bit_unsigned_accelerated), convert(VkBool32, integer_dot_product_64_bit_signed_accelerated), convert(VkBool32, integer_dot_product_64_bit_mixed_signedness_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_8_bit_signed_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_8_bit_packed_unsigned_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_8_bit_packed_signed_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_8_bit_packed_mixed_signedness_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_16_bit_signed_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_32_bit_signed_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_64_bit_signed_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated), convert(VkDeviceSize, storage_texel_buffer_offset_alignment_bytes), convert(VkBool32, storage_texel_buffer_offset_single_texel_alignment), convert(VkDeviceSize, uniform_texel_buffer_offset_alignment_bytes), convert(VkBool32, uniform_texel_buffer_offset_single_texel_alignment), convert(VkDeviceSize, max_buffer_size))
     _PhysicalDeviceVulkan13Properties(vks, deps)
 end
 
@@ -50304,7 +50312,7 @@ Arguments:
 function _PhysicalDeviceVulkan14Features(global_priority_query::Bool, shader_subgroup_rotate::Bool, shader_subgroup_rotate_clustered::Bool, shader_float_controls_2::Bool, shader_expect_assume::Bool, rectangular_lines::Bool, bresenham_lines::Bool, smooth_lines::Bool, stippled_rectangular_lines::Bool, stippled_bresenham_lines::Bool, stippled_smooth_lines::Bool, vertex_attribute_instance_rate_divisor::Bool, vertex_attribute_instance_rate_zero_divisor::Bool, index_type_uint_8::Bool, dynamic_rendering_local_read::Bool, maintenance5::Bool, maintenance6::Bool, pipeline_protected_access::Bool, pipeline_robustness::Bool, host_image_copy::Bool, push_descriptor::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceVulkan14Features(structure_type(VkPhysicalDeviceVulkan14Features), unsafe_convert(Ptr{Cvoid}, next), global_priority_query, shader_subgroup_rotate, shader_subgroup_rotate_clustered, shader_float_controls_2, shader_expect_assume, rectangular_lines, bresenham_lines, smooth_lines, stippled_rectangular_lines, stippled_bresenham_lines, stippled_smooth_lines, vertex_attribute_instance_rate_divisor, vertex_attribute_instance_rate_zero_divisor, index_type_uint_8, dynamic_rendering_local_read, maintenance5, maintenance6, pipeline_protected_access, pipeline_robustness, host_image_copy, push_descriptor)
+    vks = VkPhysicalDeviceVulkan14Features(structure_type(VkPhysicalDeviceVulkan14Features), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, global_priority_query), convert(VkBool32, shader_subgroup_rotate), convert(VkBool32, shader_subgroup_rotate_clustered), convert(VkBool32, shader_float_controls_2), convert(VkBool32, shader_expect_assume), convert(VkBool32, rectangular_lines), convert(VkBool32, bresenham_lines), convert(VkBool32, smooth_lines), convert(VkBool32, stippled_rectangular_lines), convert(VkBool32, stippled_bresenham_lines), convert(VkBool32, stippled_smooth_lines), convert(VkBool32, vertex_attribute_instance_rate_divisor), convert(VkBool32, vertex_attribute_instance_rate_zero_divisor), convert(VkBool32, index_type_uint_8), convert(VkBool32, dynamic_rendering_local_read), convert(VkBool32, maintenance5), convert(VkBool32, maintenance6), convert(VkBool32, pipeline_protected_access), convert(VkBool32, pipeline_robustness), convert(VkBool32, host_image_copy), convert(VkBool32, push_descriptor))
     _PhysicalDeviceVulkan14Features(vks, deps)
 end
 
@@ -50345,7 +50353,7 @@ function _PhysicalDeviceVulkan14Properties(line_sub_pixel_precision_bits::Intege
     copy_src_layouts = cconvert(Ptr{VkImageLayout}, copy_src_layouts)
     copy_dst_layouts = cconvert(Ptr{VkImageLayout}, copy_dst_layouts)
     deps = Any[next, copy_src_layouts, copy_dst_layouts]
-    vks = VkPhysicalDeviceVulkan14Properties(structure_type(VkPhysicalDeviceVulkan14Properties), unsafe_convert(Ptr{Cvoid}, next), line_sub_pixel_precision_bits, max_vertex_attrib_divisor, supports_non_zero_first_instance, max_push_descriptors, dynamic_rendering_local_read_depth_stencil_attachments, dynamic_rendering_local_read_multisampled_attachments, early_fragment_multisample_coverage_after_sample_counting, early_fragment_sample_mask_test_before_sample_counting, depth_stencil_swizzle_one_support, polygon_mode_point_size, non_strict_single_pixel_wide_lines_use_parallelogram, non_strict_wide_lines_use_parallelogram, block_texel_view_compatible_multiple_layers, max_combined_image_sampler_descriptor_count, fragment_shading_rate_clamp_combiner_inputs, default_robustness_storage_buffers, default_robustness_uniform_buffers, default_robustness_vertex_inputs, default_robustness_images, copy_src_layout_count, unsafe_convert(Ptr{VkImageLayout}, copy_src_layouts), copy_dst_layout_count, unsafe_convert(Ptr{VkImageLayout}, copy_dst_layouts), optimal_tiling_layout_uuid, identical_memory_type_requirements)
+    vks = VkPhysicalDeviceVulkan14Properties(structure_type(VkPhysicalDeviceVulkan14Properties), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, line_sub_pixel_precision_bits), convert(UInt32, max_vertex_attrib_divisor), convert(VkBool32, supports_non_zero_first_instance), convert(UInt32, max_push_descriptors), convert(VkBool32, dynamic_rendering_local_read_depth_stencil_attachments), convert(VkBool32, dynamic_rendering_local_read_multisampled_attachments), convert(VkBool32, early_fragment_multisample_coverage_after_sample_counting), convert(VkBool32, early_fragment_sample_mask_test_before_sample_counting), convert(VkBool32, depth_stencil_swizzle_one_support), convert(VkBool32, polygon_mode_point_size), convert(VkBool32, non_strict_single_pixel_wide_lines_use_parallelogram), convert(VkBool32, non_strict_wide_lines_use_parallelogram), convert(VkBool32, block_texel_view_compatible_multiple_layers), convert(UInt32, max_combined_image_sampler_descriptor_count), convert(VkBool32, fragment_shading_rate_clamp_combiner_inputs), convert(VkPipelineRobustnessBufferBehavior, default_robustness_storage_buffers), convert(VkPipelineRobustnessBufferBehavior, default_robustness_uniform_buffers), convert(VkPipelineRobustnessBufferBehavior, default_robustness_vertex_inputs), convert(VkPipelineRobustnessImageBehavior, default_robustness_images), convert(UInt32, copy_src_layout_count), unsafe_convert(Ptr{VkImageLayout}, copy_src_layouts), convert(UInt32, copy_dst_layout_count), unsafe_convert(Ptr{VkImageLayout}, copy_dst_layouts), convert(NTuple{Int(VK_UUID_SIZE), UInt8}, optimal_tiling_layout_uuid), convert(VkBool32, identical_memory_type_requirements))
     _PhysicalDeviceVulkan14Properties(vks, deps)
 end
 
@@ -50362,7 +50370,7 @@ Arguments:
 function _PipelineCompilerControlCreateInfoAMD(; next = C_NULL, compiler_control_flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineCompilerControlCreateInfoAMD(structure_type(VkPipelineCompilerControlCreateInfoAMD), unsafe_convert(Ptr{Cvoid}, next), compiler_control_flags)
+    vks = VkPipelineCompilerControlCreateInfoAMD(structure_type(VkPipelineCompilerControlCreateInfoAMD), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineCompilerControlFlagsAMD, compiler_control_flags))
     _PipelineCompilerControlCreateInfoAMD(vks, deps)
 end
 
@@ -50379,7 +50387,7 @@ Arguments:
 function _PhysicalDeviceCoherentMemoryFeaturesAMD(device_coherent_memory::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceCoherentMemoryFeaturesAMD(structure_type(VkPhysicalDeviceCoherentMemoryFeaturesAMD), unsafe_convert(Ptr{Cvoid}, next), device_coherent_memory)
+    vks = VkPhysicalDeviceCoherentMemoryFeaturesAMD(structure_type(VkPhysicalDeviceCoherentMemoryFeaturesAMD), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, device_coherent_memory))
     _PhysicalDeviceCoherentMemoryFeaturesAMD(vks, deps)
 end
 
@@ -50398,7 +50406,7 @@ Arguments:
 function _PhysicalDeviceToolProperties(name::AbstractString, version::AbstractString, purposes::ToolPurposeFlag, description::AbstractString, layer::AbstractString; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceToolProperties(structure_type(VkPhysicalDeviceToolProperties), unsafe_convert(Ptr{Cvoid}, next), name, version, purposes, description, layer)
+    vks = VkPhysicalDeviceToolProperties(structure_type(VkPhysicalDeviceToolProperties), unsafe_convert(Ptr{Cvoid}, next), convert(NTuple{Int(VK_MAX_EXTENSION_NAME_SIZE), Char}, name), convert(NTuple{Int(VK_MAX_EXTENSION_NAME_SIZE), Char}, version), convert(VkToolPurposeFlags, purposes), convert(NTuple{Int(VK_MAX_DESCRIPTION_SIZE), Char}, description), convert(NTuple{Int(VK_MAX_EXTENSION_NAME_SIZE), Char}, layer))
     _PhysicalDeviceToolProperties(vks, deps)
 end
 
@@ -50416,7 +50424,7 @@ Arguments:
 function _SamplerCustomBorderColorCreateInfoEXT(custom_border_color::_ClearColorValue, format::Format; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSamplerCustomBorderColorCreateInfoEXT(structure_type(VkSamplerCustomBorderColorCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), custom_border_color.vks, format)
+    vks = VkSamplerCustomBorderColorCreateInfoEXT(structure_type(VkSamplerCustomBorderColorCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), custom_border_color.vks, convert(VkFormat, format))
     _SamplerCustomBorderColorCreateInfoEXT(vks, deps)
 end
 
@@ -50433,7 +50441,7 @@ Arguments:
 function _PhysicalDeviceCustomBorderColorPropertiesEXT(max_custom_border_color_samplers::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceCustomBorderColorPropertiesEXT(structure_type(VkPhysicalDeviceCustomBorderColorPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), max_custom_border_color_samplers)
+    vks = VkPhysicalDeviceCustomBorderColorPropertiesEXT(structure_type(VkPhysicalDeviceCustomBorderColorPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_custom_border_color_samplers))
     _PhysicalDeviceCustomBorderColorPropertiesEXT(vks, deps)
 end
 
@@ -50451,7 +50459,7 @@ Arguments:
 function _PhysicalDeviceCustomBorderColorFeaturesEXT(custom_border_colors::Bool, custom_border_color_without_format::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceCustomBorderColorFeaturesEXT(structure_type(VkPhysicalDeviceCustomBorderColorFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), custom_border_colors, custom_border_color_without_format)
+    vks = VkPhysicalDeviceCustomBorderColorFeaturesEXT(structure_type(VkPhysicalDeviceCustomBorderColorFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, custom_border_colors), convert(VkBool32, custom_border_color_without_format))
     _PhysicalDeviceCustomBorderColorFeaturesEXT(vks, deps)
 end
 
@@ -50469,7 +50477,7 @@ Arguments:
 function _SamplerBorderColorComponentMappingCreateInfoEXT(components::_ComponentMapping, srgb::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSamplerBorderColorComponentMappingCreateInfoEXT(structure_type(VkSamplerBorderColorComponentMappingCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), components.vks, srgb)
+    vks = VkSamplerBorderColorComponentMappingCreateInfoEXT(structure_type(VkSamplerBorderColorComponentMappingCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), components.vks, convert(VkBool32, srgb))
     _SamplerBorderColorComponentMappingCreateInfoEXT(vks, deps)
 end
 
@@ -50487,7 +50495,7 @@ Arguments:
 function _PhysicalDeviceBorderColorSwizzleFeaturesEXT(border_color_swizzle::Bool, border_color_swizzle_from_image::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceBorderColorSwizzleFeaturesEXT(structure_type(VkPhysicalDeviceBorderColorSwizzleFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), border_color_swizzle, border_color_swizzle_from_image)
+    vks = VkPhysicalDeviceBorderColorSwizzleFeaturesEXT(structure_type(VkPhysicalDeviceBorderColorSwizzleFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, border_color_swizzle), convert(VkBool32, border_color_swizzle_from_image))
     _PhysicalDeviceBorderColorSwizzleFeaturesEXT(vks, deps)
 end
 
@@ -50510,7 +50518,7 @@ Arguments:
 function _AccelerationStructureGeometryTrianglesDataKHR(vertex_format::Format, vertex_data::_DeviceOrHostAddressConstKHR, vertex_stride::Integer, max_vertex::Integer, index_type::IndexType, index_data::_DeviceOrHostAddressConstKHR, transform_data::_DeviceOrHostAddressConstKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAccelerationStructureGeometryTrianglesDataKHR(structure_type(VkAccelerationStructureGeometryTrianglesDataKHR), unsafe_convert(Ptr{Cvoid}, next), vertex_format, vertex_data.vks, vertex_stride, max_vertex, index_type, index_data.vks, transform_data.vks)
+    vks = VkAccelerationStructureGeometryTrianglesDataKHR(structure_type(VkAccelerationStructureGeometryTrianglesDataKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkFormat, vertex_format), vertex_data.vks, convert(VkDeviceSize, vertex_stride), convert(UInt32, max_vertex), convert(VkIndexType, index_type), index_data.vks, transform_data.vks)
     _AccelerationStructureGeometryTrianglesDataKHR(vks, deps)
 end
 
@@ -50528,7 +50536,7 @@ Arguments:
 function _AccelerationStructureGeometryAabbsDataKHR(data::_DeviceOrHostAddressConstKHR, stride::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAccelerationStructureGeometryAabbsDataKHR(structure_type(VkAccelerationStructureGeometryAabbsDataKHR), unsafe_convert(Ptr{Cvoid}, next), data.vks, stride)
+    vks = VkAccelerationStructureGeometryAabbsDataKHR(structure_type(VkAccelerationStructureGeometryAabbsDataKHR), unsafe_convert(Ptr{Cvoid}, next), data.vks, convert(VkDeviceSize, stride))
     _AccelerationStructureGeometryAabbsDataKHR(vks, deps)
 end
 
@@ -50546,7 +50554,7 @@ Arguments:
 function _AccelerationStructureGeometryInstancesDataKHR(array_of_pointers::Bool, data::_DeviceOrHostAddressConstKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAccelerationStructureGeometryInstancesDataKHR(structure_type(VkAccelerationStructureGeometryInstancesDataKHR), unsafe_convert(Ptr{Cvoid}, next), array_of_pointers, data.vks)
+    vks = VkAccelerationStructureGeometryInstancesDataKHR(structure_type(VkAccelerationStructureGeometryInstancesDataKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, array_of_pointers), data.vks)
     _AccelerationStructureGeometryInstancesDataKHR(vks, deps)
 end
 
@@ -50573,7 +50581,7 @@ Arguments:
 function _AccelerationStructureGeometryLinearSweptSpheresDataNV(vertex_format::Format, vertex_data::_DeviceOrHostAddressConstKHR, vertex_stride::Integer, radius_format::Format, radius_data::_DeviceOrHostAddressConstKHR, radius_stride::Integer, index_type::IndexType, index_data::_DeviceOrHostAddressConstKHR, index_stride::Integer, indexing_mode::RayTracingLssIndexingModeNV, end_caps_mode::RayTracingLssPrimitiveEndCapsModeNV; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAccelerationStructureGeometryLinearSweptSpheresDataNV(structure_type(VkAccelerationStructureGeometryLinearSweptSpheresDataNV), unsafe_convert(Ptr{Cvoid}, next), vertex_format, vertex_data.vks, vertex_stride, radius_format, radius_data.vks, radius_stride, index_type, index_data.vks, index_stride, indexing_mode, end_caps_mode)
+    vks = VkAccelerationStructureGeometryLinearSweptSpheresDataNV(structure_type(VkAccelerationStructureGeometryLinearSweptSpheresDataNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkFormat, vertex_format), vertex_data.vks, convert(VkDeviceSize, vertex_stride), convert(VkFormat, radius_format), radius_data.vks, convert(VkDeviceSize, radius_stride), convert(VkIndexType, index_type), index_data.vks, convert(VkDeviceSize, index_stride), convert(VkRayTracingLssIndexingModeNV, indexing_mode), convert(VkRayTracingLssPrimitiveEndCapsModeNV, end_caps_mode))
     _AccelerationStructureGeometryLinearSweptSpheresDataNV(vks, deps)
 end
 
@@ -50598,7 +50606,7 @@ Arguments:
 function _AccelerationStructureGeometrySpheresDataNV(vertex_format::Format, vertex_data::_DeviceOrHostAddressConstKHR, vertex_stride::Integer, radius_format::Format, radius_data::_DeviceOrHostAddressConstKHR, radius_stride::Integer, index_type::IndexType, index_data::_DeviceOrHostAddressConstKHR, index_stride::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAccelerationStructureGeometrySpheresDataNV(structure_type(VkAccelerationStructureGeometrySpheresDataNV), unsafe_convert(Ptr{Cvoid}, next), vertex_format, vertex_data.vks, vertex_stride, radius_format, radius_data.vks, radius_stride, index_type, index_data.vks, index_stride)
+    vks = VkAccelerationStructureGeometrySpheresDataNV(structure_type(VkAccelerationStructureGeometrySpheresDataNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkFormat, vertex_format), vertex_data.vks, convert(VkDeviceSize, vertex_stride), convert(VkFormat, radius_format), radius_data.vks, convert(VkDeviceSize, radius_stride), convert(VkIndexType, index_type), index_data.vks, convert(VkDeviceSize, index_stride))
     _AccelerationStructureGeometrySpheresDataNV(vks, deps)
 end
 
@@ -50617,7 +50625,7 @@ Arguments:
 function _AccelerationStructureGeometryKHR(geometry_type::GeometryTypeKHR, geometry::_AccelerationStructureGeometryDataKHR; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAccelerationStructureGeometryKHR(structure_type(VkAccelerationStructureGeometryKHR), unsafe_convert(Ptr{Cvoid}, next), geometry_type, geometry.vks, flags)
+    vks = VkAccelerationStructureGeometryKHR(structure_type(VkAccelerationStructureGeometryKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkGeometryTypeKHR, geometry_type), geometry.vks, convert(VkGeometryFlagsKHR, flags))
     _AccelerationStructureGeometryKHR(vks, deps)
 end
 
@@ -50644,7 +50652,7 @@ function _AccelerationStructureBuildGeometryInfoKHR(type::AccelerationStructureT
     geometries = cconvert(Ptr{VkAccelerationStructureGeometryKHR}, geometries)
     geometries_2 = cconvert(Ptr{Ptr{VkAccelerationStructureGeometryKHR}}, geometries_2)
     deps = Any[next, geometries, geometries_2]
-    vks = VkAccelerationStructureBuildGeometryInfoKHR(structure_type(VkAccelerationStructureBuildGeometryInfoKHR), unsafe_convert(Ptr{Cvoid}, next), type, flags, mode, src_acceleration_structure, dst_acceleration_structure, geometry_count, unsafe_convert(Ptr{VkAccelerationStructureGeometryKHR}, geometries), unsafe_convert(Ptr{Ptr{VkAccelerationStructureGeometryKHR}}, geometries), scratch_data.vks)
+    vks = VkAccelerationStructureBuildGeometryInfoKHR(structure_type(VkAccelerationStructureBuildGeometryInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkAccelerationStructureTypeKHR, type), convert(VkBuildAccelerationStructureFlagsKHR, flags), convert(VkBuildAccelerationStructureModeKHR, mode), convert(VkAccelerationStructureKHR, src_acceleration_structure), convert(VkAccelerationStructureKHR, dst_acceleration_structure), convert(UInt32, geometry_count), unsafe_convert(Ptr{VkAccelerationStructureGeometryKHR}, geometries), unsafe_convert(Ptr{Ptr{VkAccelerationStructureGeometryKHR}}, geometries), scratch_data.vks)
     _AccelerationStructureBuildGeometryInfoKHR(vks, deps, src_acceleration_structure, dst_acceleration_structure)
 end
 
@@ -50661,7 +50669,7 @@ Arguments:
 
 """
 function _AccelerationStructureBuildRangeInfoKHR(primitive_count::Integer, primitive_offset::Integer, first_vertex::Integer, transform_offset::Integer)
-    _AccelerationStructureBuildRangeInfoKHR(VkAccelerationStructureBuildRangeInfoKHR(primitive_count, primitive_offset, first_vertex, transform_offset))
+    _AccelerationStructureBuildRangeInfoKHR(VkAccelerationStructureBuildRangeInfoKHR(convert(UInt32, primitive_count), convert(UInt32, primitive_offset), convert(UInt32, first_vertex), convert(UInt32, transform_offset)))
 end
 
 """
@@ -50682,7 +50690,7 @@ Arguments:
 function _AccelerationStructureCreateInfoKHR(buffer, offset::Integer, size::Integer, type::AccelerationStructureTypeKHR; next = C_NULL, create_flags = 0, device_address = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAccelerationStructureCreateInfoKHR(structure_type(VkAccelerationStructureCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), create_flags, buffer, offset, size, type, device_address)
+    vks = VkAccelerationStructureCreateInfoKHR(structure_type(VkAccelerationStructureCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkAccelerationStructureCreateFlagsKHR, create_flags), convert(VkBuffer, buffer), convert(VkDeviceSize, offset), convert(VkDeviceSize, size), convert(VkAccelerationStructureTypeKHR, type), convert(VkDeviceAddress, device_address))
     _AccelerationStructureCreateInfoKHR(vks, deps, buffer)
 end
 
@@ -50701,7 +50709,7 @@ Arguments:
 
 """
 function _AabbPositionsKHR(min_x::Real, min_y::Real, min_z::Real, max_x::Real, max_y::Real, max_z::Real)
-    _AabbPositionsKHR(VkAabbPositionsKHR(min_x, min_y, min_z, max_x, max_y, max_z))
+    _AabbPositionsKHR(VkAabbPositionsKHR(convert(Float32, min_x), convert(Float32, min_y), convert(Float32, min_z), convert(Float32, max_x), convert(Float32, max_y), convert(Float32, max_z)))
 end
 
 """
@@ -50714,7 +50722,7 @@ Arguments:
 
 """
 function _TransformMatrixKHR(matrix::NTuple{3, NTuple{4, Float32}})
-    _TransformMatrixKHR(VkTransformMatrixKHR(matrix))
+    _TransformMatrixKHR(VkTransformMatrixKHR(convert(NTuple{3, NTuple{4, Float32}}, matrix)))
 end
 
 """
@@ -50732,7 +50740,7 @@ Arguments:
 
 """
 function _AccelerationStructureInstanceKHR(transform::_TransformMatrixKHR, instance_custom_index::Integer, mask::Integer, instance_shader_binding_table_record_offset::Integer, acceleration_structure_reference::Integer; flags = 0)
-    _AccelerationStructureInstanceKHR(VkAccelerationStructureInstanceKHR(transform.vks, instance_custom_index, mask, instance_shader_binding_table_record_offset, flags, acceleration_structure_reference))
+    _AccelerationStructureInstanceKHR(VkAccelerationStructureInstanceKHR(transform.vks, convert(UInt32, instance_custom_index), convert(UInt32, mask), convert(UInt32, instance_shader_binding_table_record_offset), convert(VkGeometryInstanceFlagsKHR, flags), convert(UInt64, acceleration_structure_reference)))
 end
 
 """
@@ -50748,7 +50756,7 @@ Arguments:
 function _AccelerationStructureDeviceAddressInfoKHR(acceleration_structure; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAccelerationStructureDeviceAddressInfoKHR(structure_type(VkAccelerationStructureDeviceAddressInfoKHR), unsafe_convert(Ptr{Cvoid}, next), acceleration_structure)
+    vks = VkAccelerationStructureDeviceAddressInfoKHR(structure_type(VkAccelerationStructureDeviceAddressInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkAccelerationStructureKHR, acceleration_structure))
     _AccelerationStructureDeviceAddressInfoKHR(vks, deps, acceleration_structure)
 end
 
@@ -50785,7 +50793,7 @@ Arguments:
 function _CopyAccelerationStructureInfoKHR(src, dst, mode::CopyAccelerationStructureModeKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkCopyAccelerationStructureInfoKHR(structure_type(VkCopyAccelerationStructureInfoKHR), unsafe_convert(Ptr{Cvoid}, next), src, dst, mode)
+    vks = VkCopyAccelerationStructureInfoKHR(structure_type(VkCopyAccelerationStructureInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkAccelerationStructureKHR, src), convert(VkAccelerationStructureKHR, dst), convert(VkCopyAccelerationStructureModeKHR, mode))
     _CopyAccelerationStructureInfoKHR(vks, deps, src, dst)
 end
 
@@ -50804,7 +50812,7 @@ Arguments:
 function _CopyAccelerationStructureToMemoryInfoKHR(src, dst::_DeviceOrHostAddressKHR, mode::CopyAccelerationStructureModeKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkCopyAccelerationStructureToMemoryInfoKHR(structure_type(VkCopyAccelerationStructureToMemoryInfoKHR), unsafe_convert(Ptr{Cvoid}, next), src, dst.vks, mode)
+    vks = VkCopyAccelerationStructureToMemoryInfoKHR(structure_type(VkCopyAccelerationStructureToMemoryInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkAccelerationStructureKHR, src), dst.vks, convert(VkCopyAccelerationStructureModeKHR, mode))
     _CopyAccelerationStructureToMemoryInfoKHR(vks, deps, src)
 end
 
@@ -50823,7 +50831,7 @@ Arguments:
 function _CopyMemoryToAccelerationStructureInfoKHR(src::_DeviceOrHostAddressConstKHR, dst, mode::CopyAccelerationStructureModeKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkCopyMemoryToAccelerationStructureInfoKHR(structure_type(VkCopyMemoryToAccelerationStructureInfoKHR), unsafe_convert(Ptr{Cvoid}, next), src.vks, dst, mode)
+    vks = VkCopyMemoryToAccelerationStructureInfoKHR(structure_type(VkCopyMemoryToAccelerationStructureInfoKHR), unsafe_convert(Ptr{Cvoid}, next), src.vks, convert(VkAccelerationStructureKHR, dst), convert(VkCopyAccelerationStructureModeKHR, mode))
     _CopyMemoryToAccelerationStructureInfoKHR(vks, deps, dst)
 end
 
@@ -50841,7 +50849,7 @@ Arguments:
 function _RayTracingPipelineInterfaceCreateInfoKHR(max_pipeline_ray_payload_size::Integer, max_pipeline_ray_hit_attribute_size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkRayTracingPipelineInterfaceCreateInfoKHR(structure_type(VkRayTracingPipelineInterfaceCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), max_pipeline_ray_payload_size, max_pipeline_ray_hit_attribute_size)
+    vks = VkRayTracingPipelineInterfaceCreateInfoKHR(structure_type(VkRayTracingPipelineInterfaceCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_pipeline_ray_payload_size), convert(UInt32, max_pipeline_ray_hit_attribute_size))
     _RayTracingPipelineInterfaceCreateInfoKHR(vks, deps)
 end
 
@@ -50860,7 +50868,7 @@ function _PipelineLibraryCreateInfoKHR(libraries::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     libraries = cconvert(Ptr{VkPipeline}, libraries)
     deps = Any[next, libraries]
-    vks = VkPipelineLibraryCreateInfoKHR(structure_type(VkPipelineLibraryCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), library_count, unsafe_convert(Ptr{VkPipeline}, libraries))
+    vks = VkPipelineLibraryCreateInfoKHR(structure_type(VkPipelineLibraryCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, library_count), unsafe_convert(Ptr{VkPipeline}, libraries))
     _PipelineLibraryCreateInfoKHR(vks, deps)
 end
 
@@ -50877,7 +50885,7 @@ Arguments:
 function _PhysicalDeviceExtendedDynamicStateFeaturesEXT(extended_dynamic_state::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceExtendedDynamicStateFeaturesEXT(structure_type(VkPhysicalDeviceExtendedDynamicStateFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), extended_dynamic_state)
+    vks = VkPhysicalDeviceExtendedDynamicStateFeaturesEXT(structure_type(VkPhysicalDeviceExtendedDynamicStateFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, extended_dynamic_state))
     _PhysicalDeviceExtendedDynamicStateFeaturesEXT(vks, deps)
 end
 
@@ -50896,7 +50904,7 @@ Arguments:
 function _PhysicalDeviceExtendedDynamicState2FeaturesEXT(extended_dynamic_state_2::Bool, extended_dynamic_state_2_logic_op::Bool, extended_dynamic_state_2_patch_control_points::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceExtendedDynamicState2FeaturesEXT(structure_type(VkPhysicalDeviceExtendedDynamicState2FeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), extended_dynamic_state_2, extended_dynamic_state_2_logic_op, extended_dynamic_state_2_patch_control_points)
+    vks = VkPhysicalDeviceExtendedDynamicState2FeaturesEXT(structure_type(VkPhysicalDeviceExtendedDynamicState2FeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, extended_dynamic_state_2), convert(VkBool32, extended_dynamic_state_2_logic_op), convert(VkBool32, extended_dynamic_state_2_patch_control_points))
     _PhysicalDeviceExtendedDynamicState2FeaturesEXT(vks, deps)
 end
 
@@ -50943,7 +50951,7 @@ Arguments:
 function _PhysicalDeviceExtendedDynamicState3FeaturesEXT(extended_dynamic_state_3_tessellation_domain_origin::Bool, extended_dynamic_state_3_depth_clamp_enable::Bool, extended_dynamic_state_3_polygon_mode::Bool, extended_dynamic_state_3_rasterization_samples::Bool, extended_dynamic_state_3_sample_mask::Bool, extended_dynamic_state_3_alpha_to_coverage_enable::Bool, extended_dynamic_state_3_alpha_to_one_enable::Bool, extended_dynamic_state_3_logic_op_enable::Bool, extended_dynamic_state_3_color_blend_enable::Bool, extended_dynamic_state_3_color_blend_equation::Bool, extended_dynamic_state_3_color_write_mask::Bool, extended_dynamic_state_3_rasterization_stream::Bool, extended_dynamic_state_3_conservative_rasterization_mode::Bool, extended_dynamic_state_3_extra_primitive_overestimation_size::Bool, extended_dynamic_state_3_depth_clip_enable::Bool, extended_dynamic_state_3_sample_locations_enable::Bool, extended_dynamic_state_3_color_blend_advanced::Bool, extended_dynamic_state_3_provoking_vertex_mode::Bool, extended_dynamic_state_3_line_rasterization_mode::Bool, extended_dynamic_state_3_line_stipple_enable::Bool, extended_dynamic_state_3_depth_clip_negative_one_to_one::Bool, extended_dynamic_state_3_viewport_w_scaling_enable::Bool, extended_dynamic_state_3_viewport_swizzle::Bool, extended_dynamic_state_3_coverage_to_color_enable::Bool, extended_dynamic_state_3_coverage_to_color_location::Bool, extended_dynamic_state_3_coverage_modulation_mode::Bool, extended_dynamic_state_3_coverage_modulation_table_enable::Bool, extended_dynamic_state_3_coverage_modulation_table::Bool, extended_dynamic_state_3_coverage_reduction_mode::Bool, extended_dynamic_state_3_representative_fragment_test_enable::Bool, extended_dynamic_state_3_shading_rate_image_enable::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceExtendedDynamicState3FeaturesEXT(structure_type(VkPhysicalDeviceExtendedDynamicState3FeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), extended_dynamic_state_3_tessellation_domain_origin, extended_dynamic_state_3_depth_clamp_enable, extended_dynamic_state_3_polygon_mode, extended_dynamic_state_3_rasterization_samples, extended_dynamic_state_3_sample_mask, extended_dynamic_state_3_alpha_to_coverage_enable, extended_dynamic_state_3_alpha_to_one_enable, extended_dynamic_state_3_logic_op_enable, extended_dynamic_state_3_color_blend_enable, extended_dynamic_state_3_color_blend_equation, extended_dynamic_state_3_color_write_mask, extended_dynamic_state_3_rasterization_stream, extended_dynamic_state_3_conservative_rasterization_mode, extended_dynamic_state_3_extra_primitive_overestimation_size, extended_dynamic_state_3_depth_clip_enable, extended_dynamic_state_3_sample_locations_enable, extended_dynamic_state_3_color_blend_advanced, extended_dynamic_state_3_provoking_vertex_mode, extended_dynamic_state_3_line_rasterization_mode, extended_dynamic_state_3_line_stipple_enable, extended_dynamic_state_3_depth_clip_negative_one_to_one, extended_dynamic_state_3_viewport_w_scaling_enable, extended_dynamic_state_3_viewport_swizzle, extended_dynamic_state_3_coverage_to_color_enable, extended_dynamic_state_3_coverage_to_color_location, extended_dynamic_state_3_coverage_modulation_mode, extended_dynamic_state_3_coverage_modulation_table_enable, extended_dynamic_state_3_coverage_modulation_table, extended_dynamic_state_3_coverage_reduction_mode, extended_dynamic_state_3_representative_fragment_test_enable, extended_dynamic_state_3_shading_rate_image_enable)
+    vks = VkPhysicalDeviceExtendedDynamicState3FeaturesEXT(structure_type(VkPhysicalDeviceExtendedDynamicState3FeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, extended_dynamic_state_3_tessellation_domain_origin), convert(VkBool32, extended_dynamic_state_3_depth_clamp_enable), convert(VkBool32, extended_dynamic_state_3_polygon_mode), convert(VkBool32, extended_dynamic_state_3_rasterization_samples), convert(VkBool32, extended_dynamic_state_3_sample_mask), convert(VkBool32, extended_dynamic_state_3_alpha_to_coverage_enable), convert(VkBool32, extended_dynamic_state_3_alpha_to_one_enable), convert(VkBool32, extended_dynamic_state_3_logic_op_enable), convert(VkBool32, extended_dynamic_state_3_color_blend_enable), convert(VkBool32, extended_dynamic_state_3_color_blend_equation), convert(VkBool32, extended_dynamic_state_3_color_write_mask), convert(VkBool32, extended_dynamic_state_3_rasterization_stream), convert(VkBool32, extended_dynamic_state_3_conservative_rasterization_mode), convert(VkBool32, extended_dynamic_state_3_extra_primitive_overestimation_size), convert(VkBool32, extended_dynamic_state_3_depth_clip_enable), convert(VkBool32, extended_dynamic_state_3_sample_locations_enable), convert(VkBool32, extended_dynamic_state_3_color_blend_advanced), convert(VkBool32, extended_dynamic_state_3_provoking_vertex_mode), convert(VkBool32, extended_dynamic_state_3_line_rasterization_mode), convert(VkBool32, extended_dynamic_state_3_line_stipple_enable), convert(VkBool32, extended_dynamic_state_3_depth_clip_negative_one_to_one), convert(VkBool32, extended_dynamic_state_3_viewport_w_scaling_enable), convert(VkBool32, extended_dynamic_state_3_viewport_swizzle), convert(VkBool32, extended_dynamic_state_3_coverage_to_color_enable), convert(VkBool32, extended_dynamic_state_3_coverage_to_color_location), convert(VkBool32, extended_dynamic_state_3_coverage_modulation_mode), convert(VkBool32, extended_dynamic_state_3_coverage_modulation_table_enable), convert(VkBool32, extended_dynamic_state_3_coverage_modulation_table), convert(VkBool32, extended_dynamic_state_3_coverage_reduction_mode), convert(VkBool32, extended_dynamic_state_3_representative_fragment_test_enable), convert(VkBool32, extended_dynamic_state_3_shading_rate_image_enable))
     _PhysicalDeviceExtendedDynamicState3FeaturesEXT(vks, deps)
 end
 
@@ -50960,7 +50968,7 @@ Arguments:
 function _PhysicalDeviceExtendedDynamicState3PropertiesEXT(dynamic_primitive_topology_unrestricted::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceExtendedDynamicState3PropertiesEXT(structure_type(VkPhysicalDeviceExtendedDynamicState3PropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), dynamic_primitive_topology_unrestricted)
+    vks = VkPhysicalDeviceExtendedDynamicState3PropertiesEXT(structure_type(VkPhysicalDeviceExtendedDynamicState3PropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, dynamic_primitive_topology_unrestricted))
     _PhysicalDeviceExtendedDynamicState3PropertiesEXT(vks, deps)
 end
 
@@ -50979,7 +50987,7 @@ Arguments:
 
 """
 function _ColorBlendEquationEXT(src_color_blend_factor::BlendFactor, dst_color_blend_factor::BlendFactor, color_blend_op::BlendOp, src_alpha_blend_factor::BlendFactor, dst_alpha_blend_factor::BlendFactor, alpha_blend_op::BlendOp)
-    _ColorBlendEquationEXT(VkColorBlendEquationEXT(src_color_blend_factor, dst_color_blend_factor, color_blend_op, src_alpha_blend_factor, dst_alpha_blend_factor, alpha_blend_op))
+    _ColorBlendEquationEXT(VkColorBlendEquationEXT(convert(VkBlendFactor, src_color_blend_factor), convert(VkBlendFactor, dst_color_blend_factor), convert(VkBlendOp, color_blend_op), convert(VkBlendFactor, src_alpha_blend_factor), convert(VkBlendFactor, dst_alpha_blend_factor), convert(VkBlendOp, alpha_blend_op)))
 end
 
 """
@@ -50996,7 +51004,7 @@ Arguments:
 
 """
 function _ColorBlendAdvancedEXT(advanced_blend_op::BlendOp, src_premultiplied::Bool, dst_premultiplied::Bool, blend_overlap::BlendOverlapEXT, clamp_results::Bool)
-    _ColorBlendAdvancedEXT(VkColorBlendAdvancedEXT(advanced_blend_op, src_premultiplied, dst_premultiplied, blend_overlap, clamp_results))
+    _ColorBlendAdvancedEXT(VkColorBlendAdvancedEXT(convert(VkBlendOp, advanced_blend_op), convert(VkBool32, src_premultiplied), convert(VkBool32, dst_premultiplied), convert(VkBlendOverlapEXT, blend_overlap), convert(VkBool32, clamp_results)))
 end
 
 """
@@ -51012,7 +51020,7 @@ Arguments:
 function _RenderPassTransformBeginInfoQCOM(transform::SurfaceTransformFlagKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkRenderPassTransformBeginInfoQCOM(structure_type(VkRenderPassTransformBeginInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), VkSurfaceTransformFlagBitsKHR(transform.val))
+    vks = VkRenderPassTransformBeginInfoQCOM(structure_type(VkRenderPassTransformBeginInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), VkSurfaceTransformFlagBitsKHR(flag_value(transform)))
     _RenderPassTransformBeginInfoQCOM(vks, deps)
 end
 
@@ -51029,7 +51037,7 @@ Arguments:
 function _CopyCommandTransformInfoQCOM(transform::SurfaceTransformFlagKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkCopyCommandTransformInfoQCOM(structure_type(VkCopyCommandTransformInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), VkSurfaceTransformFlagBitsKHR(transform.val))
+    vks = VkCopyCommandTransformInfoQCOM(structure_type(VkCopyCommandTransformInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), VkSurfaceTransformFlagBitsKHR(flag_value(transform)))
     _CopyCommandTransformInfoQCOM(vks, deps)
 end
 
@@ -51047,7 +51055,7 @@ Arguments:
 function _CommandBufferInheritanceRenderPassTransformInfoQCOM(transform::SurfaceTransformFlagKHR, render_area::_Rect2D; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkCommandBufferInheritanceRenderPassTransformInfoQCOM(structure_type(VkCommandBufferInheritanceRenderPassTransformInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), VkSurfaceTransformFlagBitsKHR(transform.val), render_area.vks)
+    vks = VkCommandBufferInheritanceRenderPassTransformInfoQCOM(structure_type(VkCommandBufferInheritanceRenderPassTransformInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), VkSurfaceTransformFlagBitsKHR(flag_value(transform)), render_area.vks)
     _CommandBufferInheritanceRenderPassTransformInfoQCOM(vks, deps)
 end
 
@@ -51064,7 +51072,7 @@ Arguments:
 function _PhysicalDevicePartitionedAccelerationStructureFeaturesNV(partitioned_acceleration_structure::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePartitionedAccelerationStructureFeaturesNV(structure_type(VkPhysicalDevicePartitionedAccelerationStructureFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), partitioned_acceleration_structure)
+    vks = VkPhysicalDevicePartitionedAccelerationStructureFeaturesNV(structure_type(VkPhysicalDevicePartitionedAccelerationStructureFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, partitioned_acceleration_structure))
     _PhysicalDevicePartitionedAccelerationStructureFeaturesNV(vks, deps)
 end
 
@@ -51081,7 +51089,7 @@ Arguments:
 function _PhysicalDevicePartitionedAccelerationStructurePropertiesNV(max_partition_count::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePartitionedAccelerationStructurePropertiesNV(structure_type(VkPhysicalDevicePartitionedAccelerationStructurePropertiesNV), unsafe_convert(Ptr{Cvoid}, next), max_partition_count)
+    vks = VkPhysicalDevicePartitionedAccelerationStructurePropertiesNV(structure_type(VkPhysicalDevicePartitionedAccelerationStructurePropertiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_partition_count))
     _PhysicalDevicePartitionedAccelerationStructurePropertiesNV(vks, deps)
 end
 
@@ -51097,7 +51105,7 @@ Arguments:
 
 """
 function _BuildPartitionedAccelerationStructureIndirectCommandNV(op_type::PartitionedAccelerationStructureOpTypeNV, arg_count::Integer, arg_data::_StridedDeviceAddressNV)
-    _BuildPartitionedAccelerationStructureIndirectCommandNV(VkBuildPartitionedAccelerationStructureIndirectCommandNV(op_type, arg_count, arg_data.vks))
+    _BuildPartitionedAccelerationStructureIndirectCommandNV(VkBuildPartitionedAccelerationStructureIndirectCommandNV(convert(VkPartitionedAccelerationStructureOpTypeNV, op_type), convert(UInt32, arg_count), arg_data.vks))
 end
 
 """
@@ -51113,7 +51121,7 @@ Arguments:
 function _PartitionedAccelerationStructureFlagsNV(enable_partition_translation::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPartitionedAccelerationStructureFlagsNV(structure_type(VkPartitionedAccelerationStructureFlagsNV), unsafe_convert(Ptr{Cvoid}, next), enable_partition_translation)
+    vks = VkPartitionedAccelerationStructureFlagsNV(structure_type(VkPartitionedAccelerationStructureFlagsNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, enable_partition_translation))
     _PartitionedAccelerationStructureFlagsNV(vks, deps)
 end
 
@@ -51135,7 +51143,7 @@ Arguments:
 
 """
 function _PartitionedAccelerationStructureWriteInstanceDataNV(transform::_TransformMatrixKHR, explicit_aabb::NTuple{6, Float32}, instance_id::Integer, instance_mask::Integer, instance_contribution_to_hit_group_index::Integer, instance_index::Integer, partition_index::Integer, acceleration_structure::Integer; instance_flags = 0)
-    _PartitionedAccelerationStructureWriteInstanceDataNV(VkPartitionedAccelerationStructureWriteInstanceDataNV(transform.vks, explicit_aabb, instance_id, instance_mask, instance_contribution_to_hit_group_index, instance_flags, instance_index, partition_index, acceleration_structure))
+    _PartitionedAccelerationStructureWriteInstanceDataNV(VkPartitionedAccelerationStructureWriteInstanceDataNV(transform.vks, convert(NTuple{6, Float32}, explicit_aabb), convert(UInt32, instance_id), convert(UInt32, instance_mask), convert(UInt32, instance_contribution_to_hit_group_index), convert(VkPartitionedAccelerationStructureInstanceFlagsNV, instance_flags), convert(UInt32, instance_index), convert(UInt32, partition_index), convert(VkDeviceAddress, acceleration_structure)))
 end
 
 """
@@ -51150,7 +51158,7 @@ Arguments:
 
 """
 function _PartitionedAccelerationStructureUpdateInstanceDataNV(instance_index::Integer, instance_contribution_to_hit_group_index::Integer, acceleration_structure::Integer)
-    _PartitionedAccelerationStructureUpdateInstanceDataNV(VkPartitionedAccelerationStructureUpdateInstanceDataNV(instance_index, instance_contribution_to_hit_group_index, acceleration_structure))
+    _PartitionedAccelerationStructureUpdateInstanceDataNV(VkPartitionedAccelerationStructureUpdateInstanceDataNV(convert(UInt32, instance_index), convert(UInt32, instance_contribution_to_hit_group_index), convert(VkDeviceAddress, acceleration_structure)))
 end
 
 """
@@ -51164,7 +51172,7 @@ Arguments:
 
 """
 function _PartitionedAccelerationStructureWritePartitionTranslationDataNV(partition_index::Integer, partition_translation::NTuple{3, Float32})
-    _PartitionedAccelerationStructureWritePartitionTranslationDataNV(VkPartitionedAccelerationStructureWritePartitionTranslationDataNV(partition_index, partition_translation))
+    _PartitionedAccelerationStructureWritePartitionTranslationDataNV(VkPartitionedAccelerationStructureWritePartitionTranslationDataNV(convert(UInt32, partition_index), convert(NTuple{3, Float32}, partition_translation)))
 end
 
 """
@@ -51182,7 +51190,7 @@ function _WriteDescriptorSetPartitionedAccelerationStructureNV(acceleration_stru
     next = cconvert(Ptr{Cvoid}, next)
     acceleration_structures = cconvert(Ptr{VkDeviceAddress}, acceleration_structures)
     deps = Any[next, acceleration_structures]
-    vks = VkWriteDescriptorSetPartitionedAccelerationStructureNV(structure_type(VkWriteDescriptorSetPartitionedAccelerationStructureNV), unsafe_convert(Ptr{Cvoid}, next), acceleration_structure_count, unsafe_convert(Ptr{VkDeviceAddress}, acceleration_structures))
+    vks = VkWriteDescriptorSetPartitionedAccelerationStructureNV(structure_type(VkWriteDescriptorSetPartitionedAccelerationStructureNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, acceleration_structure_count), unsafe_convert(Ptr{VkDeviceAddress}, acceleration_structures))
     _WriteDescriptorSetPartitionedAccelerationStructureNV(vks, deps)
 end
 
@@ -51203,7 +51211,7 @@ Arguments:
 function _PartitionedAccelerationStructureInstancesInputNV(instance_count::Integer, max_instance_per_partition_count::Integer, partition_count::Integer, max_instance_in_global_partition_count::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPartitionedAccelerationStructureInstancesInputNV(structure_type(VkPartitionedAccelerationStructureInstancesInputNV), unsafe_convert(Ptr{Cvoid}, next), flags, instance_count, max_instance_per_partition_count, partition_count, max_instance_in_global_partition_count)
+    vks = VkPartitionedAccelerationStructureInstancesInputNV(structure_type(VkPartitionedAccelerationStructureInstancesInputNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBuildAccelerationStructureFlagsKHR, flags), convert(UInt32, instance_count), convert(UInt32, max_instance_per_partition_count), convert(UInt32, partition_count), convert(UInt32, max_instance_in_global_partition_count))
     _PartitionedAccelerationStructureInstancesInputNV(vks, deps)
 end
 
@@ -51225,7 +51233,7 @@ Arguments:
 function _BuildPartitionedAccelerationStructureInfoNV(input::_PartitionedAccelerationStructureInstancesInputNV, src_acceleration_structure_data::Integer, dst_acceleration_structure_data::Integer, scratch_data::Integer, src_infos::Integer, src_infos_count::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkBuildPartitionedAccelerationStructureInfoNV(structure_type(VkBuildPartitionedAccelerationStructureInfoNV), unsafe_convert(Ptr{Cvoid}, next), input.vks, src_acceleration_structure_data, dst_acceleration_structure_data, scratch_data, src_infos, src_infos_count)
+    vks = VkBuildPartitionedAccelerationStructureInfoNV(structure_type(VkBuildPartitionedAccelerationStructureInfoNV), unsafe_convert(Ptr{Cvoid}, next), input.vks, convert(VkDeviceAddress, src_acceleration_structure_data), convert(VkDeviceAddress, dst_acceleration_structure_data), convert(VkDeviceAddress, scratch_data), convert(VkDeviceAddress, src_infos), convert(VkDeviceAddress, src_infos_count))
     _BuildPartitionedAccelerationStructureInfoNV(vks, deps)
 end
 
@@ -51242,7 +51250,7 @@ Arguments:
 function _PhysicalDeviceDiagnosticsConfigFeaturesNV(diagnostics_config::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDiagnosticsConfigFeaturesNV(structure_type(VkPhysicalDeviceDiagnosticsConfigFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), diagnostics_config)
+    vks = VkPhysicalDeviceDiagnosticsConfigFeaturesNV(structure_type(VkPhysicalDeviceDiagnosticsConfigFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, diagnostics_config))
     _PhysicalDeviceDiagnosticsConfigFeaturesNV(vks, deps)
 end
 
@@ -51259,7 +51267,7 @@ Arguments:
 function _DeviceDiagnosticsConfigCreateInfoNV(; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDeviceDiagnosticsConfigCreateInfoNV(structure_type(VkDeviceDiagnosticsConfigCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), flags)
+    vks = VkDeviceDiagnosticsConfigCreateInfoNV(structure_type(VkDeviceDiagnosticsConfigCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceDiagnosticsConfigFlagsNV, flags))
     _DeviceDiagnosticsConfigCreateInfoNV(vks, deps)
 end
 
@@ -51274,7 +51282,7 @@ Arguments:
 function _PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures(shader_zero_initialize_workgroup_memory::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeatures(structure_type(VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeatures), unsafe_convert(Ptr{Cvoid}, next), shader_zero_initialize_workgroup_memory)
+    vks = VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeatures(structure_type(VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_zero_initialize_workgroup_memory))
     _PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures(vks, deps)
 end
 
@@ -51291,7 +51299,7 @@ Arguments:
 function _PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR(shader_subgroup_uniform_control_flow::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR(structure_type(VkPhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), shader_subgroup_uniform_control_flow)
+    vks = VkPhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR(structure_type(VkPhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_subgroup_uniform_control_flow))
     _PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR(vks, deps)
 end
 
@@ -51310,7 +51318,7 @@ Arguments:
 function _PhysicalDeviceRobustness2FeaturesKHR(robust_buffer_access_2::Bool, robust_image_access_2::Bool, null_descriptor::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceRobustness2FeaturesKHR(structure_type(VkPhysicalDeviceRobustness2FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), robust_buffer_access_2, robust_image_access_2, null_descriptor)
+    vks = VkPhysicalDeviceRobustness2FeaturesKHR(structure_type(VkPhysicalDeviceRobustness2FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, robust_buffer_access_2), convert(VkBool32, robust_image_access_2), convert(VkBool32, null_descriptor))
     _PhysicalDeviceRobustness2FeaturesKHR(vks, deps)
 end
 
@@ -51328,7 +51336,7 @@ Arguments:
 function _PhysicalDeviceRobustness2PropertiesKHR(robust_storage_buffer_access_size_alignment::Integer, robust_uniform_buffer_access_size_alignment::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceRobustness2PropertiesKHR(structure_type(VkPhysicalDeviceRobustness2PropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), robust_storage_buffer_access_size_alignment, robust_uniform_buffer_access_size_alignment)
+    vks = VkPhysicalDeviceRobustness2PropertiesKHR(structure_type(VkPhysicalDeviceRobustness2PropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceSize, robust_storage_buffer_access_size_alignment), convert(VkDeviceSize, robust_uniform_buffer_access_size_alignment))
     _PhysicalDeviceRobustness2PropertiesKHR(vks, deps)
 end
 
@@ -51343,7 +51351,7 @@ Arguments:
 function _PhysicalDeviceImageRobustnessFeatures(robust_image_access::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceImageRobustnessFeatures(structure_type(VkPhysicalDeviceImageRobustnessFeatures), unsafe_convert(Ptr{Cvoid}, next), robust_image_access)
+    vks = VkPhysicalDeviceImageRobustnessFeatures(structure_type(VkPhysicalDeviceImageRobustnessFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, robust_image_access))
     _PhysicalDeviceImageRobustnessFeatures(vks, deps)
 end
 
@@ -51363,7 +51371,7 @@ Arguments:
 function _PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR(workgroup_memory_explicit_layout::Bool, workgroup_memory_explicit_layout_scalar_block_layout::Bool, workgroup_memory_explicit_layout_8_bit_access::Bool, workgroup_memory_explicit_layout_16_bit_access::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR(structure_type(VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), workgroup_memory_explicit_layout, workgroup_memory_explicit_layout_scalar_block_layout, workgroup_memory_explicit_layout_8_bit_access, workgroup_memory_explicit_layout_16_bit_access)
+    vks = VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR(structure_type(VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, workgroup_memory_explicit_layout), convert(VkBool32, workgroup_memory_explicit_layout_scalar_block_layout), convert(VkBool32, workgroup_memory_explicit_layout_8_bit_access), convert(VkBool32, workgroup_memory_explicit_layout_16_bit_access))
     _PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR(vks, deps)
 end
 
@@ -51381,7 +51389,7 @@ Arguments:
 function _PhysicalDevice4444FormatsFeaturesEXT(format_a4r4g4b4::Bool, format_a4b4g4r4::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevice4444FormatsFeaturesEXT(structure_type(VkPhysicalDevice4444FormatsFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), format_a4r4g4b4, format_a4b4g4r4)
+    vks = VkPhysicalDevice4444FormatsFeaturesEXT(structure_type(VkPhysicalDevice4444FormatsFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, format_a4r4g4b4), convert(VkBool32, format_a4b4g4r4))
     _PhysicalDevice4444FormatsFeaturesEXT(vks, deps)
 end
 
@@ -51398,7 +51406,7 @@ Arguments:
 function _PhysicalDeviceSubpassShadingFeaturesHUAWEI(subpass_shading::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceSubpassShadingFeaturesHUAWEI(structure_type(VkPhysicalDeviceSubpassShadingFeaturesHUAWEI), unsafe_convert(Ptr{Cvoid}, next), subpass_shading)
+    vks = VkPhysicalDeviceSubpassShadingFeaturesHUAWEI(structure_type(VkPhysicalDeviceSubpassShadingFeaturesHUAWEI), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, subpass_shading))
     _PhysicalDeviceSubpassShadingFeaturesHUAWEI(vks, deps)
 end
 
@@ -51416,7 +51424,7 @@ Arguments:
 function _PhysicalDeviceClusterCullingShaderFeaturesHUAWEI(clusterculling_shader::Bool, multiview_cluster_culling_shader::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceClusterCullingShaderFeaturesHUAWEI(structure_type(VkPhysicalDeviceClusterCullingShaderFeaturesHUAWEI), unsafe_convert(Ptr{Cvoid}, next), clusterculling_shader, multiview_cluster_culling_shader)
+    vks = VkPhysicalDeviceClusterCullingShaderFeaturesHUAWEI(structure_type(VkPhysicalDeviceClusterCullingShaderFeaturesHUAWEI), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, clusterculling_shader), convert(VkBool32, multiview_cluster_culling_shader))
     _PhysicalDeviceClusterCullingShaderFeaturesHUAWEI(vks, deps)
 end
 
@@ -51433,7 +51441,7 @@ Arguments:
 function _PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI(cluster_shading_rate::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI(structure_type(VkPhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI), unsafe_convert(Ptr{Cvoid}, next), cluster_shading_rate)
+    vks = VkPhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI(structure_type(VkPhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, cluster_shading_rate))
     _PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI(vks, deps)
 end
 
@@ -51450,7 +51458,7 @@ Arguments:
 function _BufferCopy2(src_offset::Integer, dst_offset::Integer, size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkBufferCopy2(structure_type(VkBufferCopy2), unsafe_convert(Ptr{Cvoid}, next), src_offset, dst_offset, size)
+    vks = VkBufferCopy2(structure_type(VkBufferCopy2), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceSize, src_offset), convert(VkDeviceSize, dst_offset), convert(VkDeviceSize, size))
     _BufferCopy2(vks, deps)
 end
 
@@ -51507,7 +51515,7 @@ Arguments:
 function _BufferImageCopy2(buffer_offset::Integer, buffer_row_length::Integer, buffer_image_height::Integer, image_subresource::_ImageSubresourceLayers, image_offset::_Offset3D, image_extent::_Extent3D; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkBufferImageCopy2(structure_type(VkBufferImageCopy2), unsafe_convert(Ptr{Cvoid}, next), buffer_offset, buffer_row_length, buffer_image_height, image_subresource.vks, image_offset.vks, image_extent.vks)
+    vks = VkBufferImageCopy2(structure_type(VkBufferImageCopy2), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceSize, buffer_offset), convert(UInt32, buffer_row_length), convert(UInt32, buffer_image_height), image_subresource.vks, image_offset.vks, image_extent.vks)
     _BufferImageCopy2(vks, deps)
 end
 
@@ -51545,7 +51553,7 @@ function _CopyBufferInfo2(src_buffer, dst_buffer, regions::AbstractArray; next =
     next = cconvert(Ptr{Cvoid}, next)
     regions = cconvert(Ptr{VkBufferCopy2}, regions)
     deps = Any[next, regions]
-    vks = VkCopyBufferInfo2(structure_type(VkCopyBufferInfo2), unsafe_convert(Ptr{Cvoid}, next), src_buffer, dst_buffer, region_count, unsafe_convert(Ptr{VkBufferCopy2}, regions))
+    vks = VkCopyBufferInfo2(structure_type(VkCopyBufferInfo2), unsafe_convert(Ptr{Cvoid}, next), convert(VkBuffer, src_buffer), convert(VkBuffer, dst_buffer), convert(UInt32, region_count), unsafe_convert(Ptr{VkBufferCopy2}, regions))
     _CopyBufferInfo2(vks, deps, src_buffer, dst_buffer)
 end
 
@@ -51566,7 +51574,7 @@ function _CopyImageInfo2(src_image, src_image_layout::ImageLayout, dst_image, ds
     next = cconvert(Ptr{Cvoid}, next)
     regions = cconvert(Ptr{VkImageCopy2}, regions)
     deps = Any[next, regions]
-    vks = VkCopyImageInfo2(structure_type(VkCopyImageInfo2), unsafe_convert(Ptr{Cvoid}, next), src_image, src_image_layout, dst_image, dst_image_layout, region_count, unsafe_convert(Ptr{VkImageCopy2}, regions))
+    vks = VkCopyImageInfo2(structure_type(VkCopyImageInfo2), unsafe_convert(Ptr{Cvoid}, next), convert(VkImage, src_image), convert(VkImageLayout, src_image_layout), convert(VkImage, dst_image), convert(VkImageLayout, dst_image_layout), convert(UInt32, region_count), unsafe_convert(Ptr{VkImageCopy2}, regions))
     _CopyImageInfo2(vks, deps, src_image, dst_image)
 end
 
@@ -51588,7 +51596,7 @@ function _BlitImageInfo2(src_image, src_image_layout::ImageLayout, dst_image, ds
     next = cconvert(Ptr{Cvoid}, next)
     regions = cconvert(Ptr{VkImageBlit2}, regions)
     deps = Any[next, regions]
-    vks = VkBlitImageInfo2(structure_type(VkBlitImageInfo2), unsafe_convert(Ptr{Cvoid}, next), src_image, src_image_layout, dst_image, dst_image_layout, region_count, unsafe_convert(Ptr{VkImageBlit2}, regions), filter)
+    vks = VkBlitImageInfo2(structure_type(VkBlitImageInfo2), unsafe_convert(Ptr{Cvoid}, next), convert(VkImage, src_image), convert(VkImageLayout, src_image_layout), convert(VkImage, dst_image), convert(VkImageLayout, dst_image_layout), convert(UInt32, region_count), unsafe_convert(Ptr{VkImageBlit2}, regions), convert(VkFilter, filter))
     _BlitImageInfo2(vks, deps, src_image, dst_image)
 end
 
@@ -51608,7 +51616,7 @@ function _CopyBufferToImageInfo2(src_buffer, dst_image, dst_image_layout::ImageL
     next = cconvert(Ptr{Cvoid}, next)
     regions = cconvert(Ptr{VkBufferImageCopy2}, regions)
     deps = Any[next, regions]
-    vks = VkCopyBufferToImageInfo2(structure_type(VkCopyBufferToImageInfo2), unsafe_convert(Ptr{Cvoid}, next), src_buffer, dst_image, dst_image_layout, region_count, unsafe_convert(Ptr{VkBufferImageCopy2}, regions))
+    vks = VkCopyBufferToImageInfo2(structure_type(VkCopyBufferToImageInfo2), unsafe_convert(Ptr{Cvoid}, next), convert(VkBuffer, src_buffer), convert(VkImage, dst_image), convert(VkImageLayout, dst_image_layout), convert(UInt32, region_count), unsafe_convert(Ptr{VkBufferImageCopy2}, regions))
     _CopyBufferToImageInfo2(vks, deps, src_buffer, dst_image)
 end
 
@@ -51628,7 +51636,7 @@ function _CopyImageToBufferInfo2(src_image, src_image_layout::ImageLayout, dst_b
     next = cconvert(Ptr{Cvoid}, next)
     regions = cconvert(Ptr{VkBufferImageCopy2}, regions)
     deps = Any[next, regions]
-    vks = VkCopyImageToBufferInfo2(structure_type(VkCopyImageToBufferInfo2), unsafe_convert(Ptr{Cvoid}, next), src_image, src_image_layout, dst_buffer, region_count, unsafe_convert(Ptr{VkBufferImageCopy2}, regions))
+    vks = VkCopyImageToBufferInfo2(structure_type(VkCopyImageToBufferInfo2), unsafe_convert(Ptr{Cvoid}, next), convert(VkImage, src_image), convert(VkImageLayout, src_image_layout), convert(VkBuffer, dst_buffer), convert(UInt32, region_count), unsafe_convert(Ptr{VkBufferImageCopy2}, regions))
     _CopyImageToBufferInfo2(vks, deps, src_image, dst_buffer)
 end
 
@@ -51649,7 +51657,7 @@ function _ResolveImageInfo2(src_image, src_image_layout::ImageLayout, dst_image,
     next = cconvert(Ptr{Cvoid}, next)
     regions = cconvert(Ptr{VkImageResolve2}, regions)
     deps = Any[next, regions]
-    vks = VkResolveImageInfo2(structure_type(VkResolveImageInfo2), unsafe_convert(Ptr{Cvoid}, next), src_image, src_image_layout, dst_image, dst_image_layout, region_count, unsafe_convert(Ptr{VkImageResolve2}, regions))
+    vks = VkResolveImageInfo2(structure_type(VkResolveImageInfo2), unsafe_convert(Ptr{Cvoid}, next), convert(VkImage, src_image), convert(VkImageLayout, src_image_layout), convert(VkImage, dst_image), convert(VkImageLayout, dst_image_layout), convert(UInt32, region_count), unsafe_convert(Ptr{VkImageResolve2}, regions))
     _ResolveImageInfo2(vks, deps, src_image, dst_image)
 end
 
@@ -51667,7 +51675,7 @@ Arguments:
 function _PhysicalDeviceShaderImageAtomicInt64FeaturesEXT(shader_image_int_64_atomics::Bool, sparse_image_int_64_atomics::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT(structure_type(VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), shader_image_int_64_atomics, sparse_image_int_64_atomics)
+    vks = VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT(structure_type(VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_image_int_64_atomics), convert(VkBool32, sparse_image_int_64_atomics))
     _PhysicalDeviceShaderImageAtomicInt64FeaturesEXT(vks, deps)
 end
 
@@ -51723,7 +51731,7 @@ Arguments:
 function _PhysicalDeviceFragmentShadingRateFeaturesKHR(pipeline_fragment_shading_rate::Bool, primitive_fragment_shading_rate::Bool, attachment_fragment_shading_rate::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceFragmentShadingRateFeaturesKHR(structure_type(VkPhysicalDeviceFragmentShadingRateFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), pipeline_fragment_shading_rate, primitive_fragment_shading_rate, attachment_fragment_shading_rate)
+    vks = VkPhysicalDeviceFragmentShadingRateFeaturesKHR(structure_type(VkPhysicalDeviceFragmentShadingRateFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, pipeline_fragment_shading_rate), convert(VkBool32, primitive_fragment_shading_rate), convert(VkBool32, attachment_fragment_shading_rate))
     _PhysicalDeviceFragmentShadingRateFeaturesKHR(vks, deps)
 end
 
@@ -51756,7 +51764,7 @@ Arguments:
 function _PhysicalDeviceFragmentShadingRatePropertiesKHR(min_fragment_shading_rate_attachment_texel_size::_Extent2D, max_fragment_shading_rate_attachment_texel_size::_Extent2D, max_fragment_shading_rate_attachment_texel_size_aspect_ratio::Integer, primitive_fragment_shading_rate_with_multiple_viewports::Bool, layered_shading_rate_attachments::Bool, fragment_shading_rate_non_trivial_combiner_ops::Bool, max_fragment_size::_Extent2D, max_fragment_size_aspect_ratio::Integer, max_fragment_shading_rate_coverage_samples::Integer, max_fragment_shading_rate_rasterization_samples::SampleCountFlag, fragment_shading_rate_with_shader_depth_stencil_writes::Bool, fragment_shading_rate_with_sample_mask::Bool, fragment_shading_rate_with_shader_sample_mask::Bool, fragment_shading_rate_with_conservative_rasterization::Bool, fragment_shading_rate_with_fragment_shader_interlock::Bool, fragment_shading_rate_with_custom_sample_locations::Bool, fragment_shading_rate_strict_multiply_combiner::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceFragmentShadingRatePropertiesKHR(structure_type(VkPhysicalDeviceFragmentShadingRatePropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), min_fragment_shading_rate_attachment_texel_size.vks, max_fragment_shading_rate_attachment_texel_size.vks, max_fragment_shading_rate_attachment_texel_size_aspect_ratio, primitive_fragment_shading_rate_with_multiple_viewports, layered_shading_rate_attachments, fragment_shading_rate_non_trivial_combiner_ops, max_fragment_size.vks, max_fragment_size_aspect_ratio, max_fragment_shading_rate_coverage_samples, VkSampleCountFlagBits(max_fragment_shading_rate_rasterization_samples.val), fragment_shading_rate_with_shader_depth_stencil_writes, fragment_shading_rate_with_sample_mask, fragment_shading_rate_with_shader_sample_mask, fragment_shading_rate_with_conservative_rasterization, fragment_shading_rate_with_fragment_shader_interlock, fragment_shading_rate_with_custom_sample_locations, fragment_shading_rate_strict_multiply_combiner)
+    vks = VkPhysicalDeviceFragmentShadingRatePropertiesKHR(structure_type(VkPhysicalDeviceFragmentShadingRatePropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), min_fragment_shading_rate_attachment_texel_size.vks, max_fragment_shading_rate_attachment_texel_size.vks, convert(UInt32, max_fragment_shading_rate_attachment_texel_size_aspect_ratio), convert(VkBool32, primitive_fragment_shading_rate_with_multiple_viewports), convert(VkBool32, layered_shading_rate_attachments), convert(VkBool32, fragment_shading_rate_non_trivial_combiner_ops), max_fragment_size.vks, convert(UInt32, max_fragment_size_aspect_ratio), convert(UInt32, max_fragment_shading_rate_coverage_samples), VkSampleCountFlagBits(flag_value(max_fragment_shading_rate_rasterization_samples)), convert(VkBool32, fragment_shading_rate_with_shader_depth_stencil_writes), convert(VkBool32, fragment_shading_rate_with_sample_mask), convert(VkBool32, fragment_shading_rate_with_shader_sample_mask), convert(VkBool32, fragment_shading_rate_with_conservative_rasterization), convert(VkBool32, fragment_shading_rate_with_fragment_shader_interlock), convert(VkBool32, fragment_shading_rate_with_custom_sample_locations), convert(VkBool32, fragment_shading_rate_strict_multiply_combiner))
     _PhysicalDeviceFragmentShadingRatePropertiesKHR(vks, deps)
 end
 
@@ -51774,7 +51782,7 @@ Arguments:
 function _PhysicalDeviceFragmentShadingRateKHR(sample_counts::SampleCountFlag, fragment_size::_Extent2D; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceFragmentShadingRateKHR(structure_type(VkPhysicalDeviceFragmentShadingRateKHR), unsafe_convert(Ptr{Cvoid}, next), sample_counts, fragment_size.vks)
+    vks = VkPhysicalDeviceFragmentShadingRateKHR(structure_type(VkPhysicalDeviceFragmentShadingRateKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkSampleCountFlags, sample_counts), fragment_size.vks)
     _PhysicalDeviceFragmentShadingRateKHR(vks, deps)
 end
 
@@ -51789,7 +51797,7 @@ Arguments:
 function _PhysicalDeviceShaderTerminateInvocationFeatures(shader_terminate_invocation::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderTerminateInvocationFeatures(structure_type(VkPhysicalDeviceShaderTerminateInvocationFeatures), unsafe_convert(Ptr{Cvoid}, next), shader_terminate_invocation)
+    vks = VkPhysicalDeviceShaderTerminateInvocationFeatures(structure_type(VkPhysicalDeviceShaderTerminateInvocationFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_terminate_invocation))
     _PhysicalDeviceShaderTerminateInvocationFeatures(vks, deps)
 end
 
@@ -51808,7 +51816,7 @@ Arguments:
 function _PhysicalDeviceFragmentShadingRateEnumsFeaturesNV(fragment_shading_rate_enums::Bool, supersample_fragment_shading_rates::Bool, no_invocation_fragment_shading_rates::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV(structure_type(VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), fragment_shading_rate_enums, supersample_fragment_shading_rates, no_invocation_fragment_shading_rates)
+    vks = VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV(structure_type(VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, fragment_shading_rate_enums), convert(VkBool32, supersample_fragment_shading_rates), convert(VkBool32, no_invocation_fragment_shading_rates))
     _PhysicalDeviceFragmentShadingRateEnumsFeaturesNV(vks, deps)
 end
 
@@ -51825,7 +51833,7 @@ Arguments:
 function _PhysicalDeviceFragmentShadingRateEnumsPropertiesNV(max_fragment_shading_rate_invocation_count::SampleCountFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV(structure_type(VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), VkSampleCountFlagBits(max_fragment_shading_rate_invocation_count.val))
+    vks = VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV(structure_type(VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), VkSampleCountFlagBits(flag_value(max_fragment_shading_rate_invocation_count)))
     _PhysicalDeviceFragmentShadingRateEnumsPropertiesNV(vks, deps)
 end
 
@@ -51844,7 +51852,7 @@ Arguments:
 function _PipelineFragmentShadingRateEnumStateCreateInfoNV(shading_rate_type::FragmentShadingRateTypeNV, shading_rate::FragmentShadingRateNV, combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineFragmentShadingRateEnumStateCreateInfoNV(structure_type(VkPipelineFragmentShadingRateEnumStateCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), shading_rate_type, shading_rate, to_vk(NTuple{2, VkFragmentShadingRateCombinerOpKHR}, combiner_ops))
+    vks = VkPipelineFragmentShadingRateEnumStateCreateInfoNV(structure_type(VkPipelineFragmentShadingRateEnumStateCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkFragmentShadingRateTypeNV, shading_rate_type), convert(VkFragmentShadingRateNV, shading_rate), to_vk(NTuple{2, VkFragmentShadingRateCombinerOpKHR}, combiner_ops))
     _PipelineFragmentShadingRateEnumStateCreateInfoNV(vks, deps)
 end
 
@@ -51863,7 +51871,7 @@ Arguments:
 function _AccelerationStructureBuildSizesInfoKHR(acceleration_structure_size::Integer, update_scratch_size::Integer, build_scratch_size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAccelerationStructureBuildSizesInfoKHR(structure_type(VkAccelerationStructureBuildSizesInfoKHR), unsafe_convert(Ptr{Cvoid}, next), acceleration_structure_size, update_scratch_size, build_scratch_size)
+    vks = VkAccelerationStructureBuildSizesInfoKHR(structure_type(VkAccelerationStructureBuildSizesInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceSize, acceleration_structure_size), convert(VkDeviceSize, update_scratch_size), convert(VkDeviceSize, build_scratch_size))
     _AccelerationStructureBuildSizesInfoKHR(vks, deps)
 end
 
@@ -51881,7 +51889,7 @@ Arguments:
 function _PhysicalDeviceImage2DViewOf3DFeaturesEXT(image_2_d_view_of_3_d::Bool, sampler_2_d_view_of_3_d::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceImage2DViewOf3DFeaturesEXT(structure_type(VkPhysicalDeviceImage2DViewOf3DFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), image_2_d_view_of_3_d, sampler_2_d_view_of_3_d)
+    vks = VkPhysicalDeviceImage2DViewOf3DFeaturesEXT(structure_type(VkPhysicalDeviceImage2DViewOf3DFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, image_2_d_view_of_3_d), convert(VkBool32, sampler_2_d_view_of_3_d))
     _PhysicalDeviceImage2DViewOf3DFeaturesEXT(vks, deps)
 end
 
@@ -51898,7 +51906,7 @@ Arguments:
 function _PhysicalDeviceImageSlicedViewOf3DFeaturesEXT(image_sliced_view_of_3_d::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceImageSlicedViewOf3DFeaturesEXT(structure_type(VkPhysicalDeviceImageSlicedViewOf3DFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), image_sliced_view_of_3_d)
+    vks = VkPhysicalDeviceImageSlicedViewOf3DFeaturesEXT(structure_type(VkPhysicalDeviceImageSlicedViewOf3DFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, image_sliced_view_of_3_d))
     _PhysicalDeviceImageSlicedViewOf3DFeaturesEXT(vks, deps)
 end
 
@@ -51915,7 +51923,7 @@ Arguments:
 function _PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT(attachment_feedback_loop_dynamic_state::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT(structure_type(VkPhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), attachment_feedback_loop_dynamic_state)
+    vks = VkPhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT(structure_type(VkPhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, attachment_feedback_loop_dynamic_state))
     _PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT(vks, deps)
 end
 
@@ -51932,7 +51940,7 @@ Arguments:
 function _PhysicalDeviceLegacyVertexAttributesFeaturesEXT(legacy_vertex_attributes::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceLegacyVertexAttributesFeaturesEXT(structure_type(VkPhysicalDeviceLegacyVertexAttributesFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), legacy_vertex_attributes)
+    vks = VkPhysicalDeviceLegacyVertexAttributesFeaturesEXT(structure_type(VkPhysicalDeviceLegacyVertexAttributesFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, legacy_vertex_attributes))
     _PhysicalDeviceLegacyVertexAttributesFeaturesEXT(vks, deps)
 end
 
@@ -51949,7 +51957,7 @@ Arguments:
 function _PhysicalDeviceLegacyVertexAttributesPropertiesEXT(native_unaligned_performance::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceLegacyVertexAttributesPropertiesEXT(structure_type(VkPhysicalDeviceLegacyVertexAttributesPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), native_unaligned_performance)
+    vks = VkPhysicalDeviceLegacyVertexAttributesPropertiesEXT(structure_type(VkPhysicalDeviceLegacyVertexAttributesPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, native_unaligned_performance))
     _PhysicalDeviceLegacyVertexAttributesPropertiesEXT(vks, deps)
 end
 
@@ -51966,7 +51974,7 @@ Arguments:
 function _PhysicalDeviceMutableDescriptorTypeFeaturesEXT(mutable_descriptor_type::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMutableDescriptorTypeFeaturesEXT(structure_type(VkPhysicalDeviceMutableDescriptorTypeFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), mutable_descriptor_type)
+    vks = VkPhysicalDeviceMutableDescriptorTypeFeaturesEXT(structure_type(VkPhysicalDeviceMutableDescriptorTypeFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, mutable_descriptor_type))
     _PhysicalDeviceMutableDescriptorTypeFeaturesEXT(vks, deps)
 end
 
@@ -51983,7 +51991,7 @@ function _MutableDescriptorTypeListEXT(descriptor_types::AbstractArray)
     descriptor_type_count = pointer_length(descriptor_types)
     descriptor_types = cconvert(Ptr{VkDescriptorType}, descriptor_types)
     deps = Any[descriptor_types]
-    vks = VkMutableDescriptorTypeListEXT(descriptor_type_count, unsafe_convert(Ptr{VkDescriptorType}, descriptor_types))
+    vks = VkMutableDescriptorTypeListEXT(convert(UInt32, descriptor_type_count), unsafe_convert(Ptr{VkDescriptorType}, descriptor_types))
     _MutableDescriptorTypeListEXT(vks, deps)
 end
 
@@ -52002,7 +52010,7 @@ function _MutableDescriptorTypeCreateInfoEXT(mutable_descriptor_type_lists::Abst
     next = cconvert(Ptr{Cvoid}, next)
     mutable_descriptor_type_lists = cconvert(Ptr{VkMutableDescriptorTypeListEXT}, mutable_descriptor_type_lists)
     deps = Any[next, mutable_descriptor_type_lists]
-    vks = VkMutableDescriptorTypeCreateInfoEXT(structure_type(VkMutableDescriptorTypeCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), mutable_descriptor_type_list_count, unsafe_convert(Ptr{VkMutableDescriptorTypeListEXT}, mutable_descriptor_type_lists))
+    vks = VkMutableDescriptorTypeCreateInfoEXT(structure_type(VkMutableDescriptorTypeCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, mutable_descriptor_type_list_count), unsafe_convert(Ptr{VkMutableDescriptorTypeListEXT}, mutable_descriptor_type_lists))
     _MutableDescriptorTypeCreateInfoEXT(vks, deps)
 end
 
@@ -52019,7 +52027,7 @@ Arguments:
 function _PhysicalDeviceDepthClipControlFeaturesEXT(depth_clip_control::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDepthClipControlFeaturesEXT(structure_type(VkPhysicalDeviceDepthClipControlFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), depth_clip_control)
+    vks = VkPhysicalDeviceDepthClipControlFeaturesEXT(structure_type(VkPhysicalDeviceDepthClipControlFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, depth_clip_control))
     _PhysicalDeviceDepthClipControlFeaturesEXT(vks, deps)
 end
 
@@ -52036,7 +52044,7 @@ Arguments:
 function _PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT(zero_initialize_device_memory::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT(structure_type(VkPhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), zero_initialize_device_memory)
+    vks = VkPhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT(structure_type(VkPhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, zero_initialize_device_memory))
     _PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT(vks, deps)
 end
 
@@ -52054,7 +52062,7 @@ Arguments:
 function _PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT(device_generated_commands::Bool, dynamic_generated_pipeline_layout::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDeviceGeneratedCommandsFeaturesEXT(structure_type(VkPhysicalDeviceDeviceGeneratedCommandsFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), device_generated_commands, dynamic_generated_pipeline_layout)
+    vks = VkPhysicalDeviceDeviceGeneratedCommandsFeaturesEXT(structure_type(VkPhysicalDeviceDeviceGeneratedCommandsFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, device_generated_commands), convert(VkBool32, dynamic_generated_pipeline_layout))
     _PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT(vks, deps)
 end
 
@@ -52082,7 +52090,7 @@ Arguments:
 function _PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT(max_indirect_pipeline_count::Integer, max_indirect_shader_object_count::Integer, max_indirect_sequence_count::Integer, max_indirect_commands_token_count::Integer, max_indirect_commands_token_offset::Integer, max_indirect_commands_indirect_stride::Integer, supported_indirect_commands_input_modes::IndirectCommandsInputModeFlagEXT, supported_indirect_commands_shader_stages::ShaderStageFlag, supported_indirect_commands_shader_stages_pipeline_binding::ShaderStageFlag, supported_indirect_commands_shader_stages_shader_binding::ShaderStageFlag, device_generated_commands_transform_feedback::Bool, device_generated_commands_multi_draw_indirect_count::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDeviceGeneratedCommandsPropertiesEXT(structure_type(VkPhysicalDeviceDeviceGeneratedCommandsPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), max_indirect_pipeline_count, max_indirect_shader_object_count, max_indirect_sequence_count, max_indirect_commands_token_count, max_indirect_commands_token_offset, max_indirect_commands_indirect_stride, supported_indirect_commands_input_modes, supported_indirect_commands_shader_stages, supported_indirect_commands_shader_stages_pipeline_binding, supported_indirect_commands_shader_stages_shader_binding, device_generated_commands_transform_feedback, device_generated_commands_multi_draw_indirect_count)
+    vks = VkPhysicalDeviceDeviceGeneratedCommandsPropertiesEXT(structure_type(VkPhysicalDeviceDeviceGeneratedCommandsPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_indirect_pipeline_count), convert(UInt32, max_indirect_shader_object_count), convert(UInt32, max_indirect_sequence_count), convert(UInt32, max_indirect_commands_token_count), convert(UInt32, max_indirect_commands_token_offset), convert(UInt32, max_indirect_commands_indirect_stride), convert(VkIndirectCommandsInputModeFlagsEXT, supported_indirect_commands_input_modes), convert(VkShaderStageFlags, supported_indirect_commands_shader_stages), convert(VkShaderStageFlags, supported_indirect_commands_shader_stages_pipeline_binding), convert(VkShaderStageFlags, supported_indirect_commands_shader_stages_shader_binding), convert(VkBool32, device_generated_commands_transform_feedback), convert(VkBool32, device_generated_commands_multi_draw_indirect_count))
     _PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT(vks, deps)
 end
 
@@ -52099,7 +52107,7 @@ Arguments:
 function _GeneratedCommandsPipelineInfoEXT(pipeline; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkGeneratedCommandsPipelineInfoEXT(structure_type(VkGeneratedCommandsPipelineInfoEXT), unsafe_convert(Ptr{Cvoid}, next), pipeline)
+    vks = VkGeneratedCommandsPipelineInfoEXT(structure_type(VkGeneratedCommandsPipelineInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipeline, pipeline))
     _GeneratedCommandsPipelineInfoEXT(vks, deps, pipeline)
 end
 
@@ -52118,7 +52126,7 @@ function _GeneratedCommandsShaderInfoEXT(shaders::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     shaders = cconvert(Ptr{VkShaderEXT}, shaders)
     deps = Any[next, shaders]
-    vks = VkGeneratedCommandsShaderInfoEXT(structure_type(VkGeneratedCommandsShaderInfoEXT), unsafe_convert(Ptr{Cvoid}, next), shader_count, unsafe_convert(Ptr{VkShaderEXT}, shaders))
+    vks = VkGeneratedCommandsShaderInfoEXT(structure_type(VkGeneratedCommandsShaderInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, shader_count), unsafe_convert(Ptr{VkShaderEXT}, shaders))
     _GeneratedCommandsShaderInfoEXT(vks, deps)
 end
 
@@ -52138,7 +52146,7 @@ Arguments:
 function _GeneratedCommandsMemoryRequirementsInfoEXT(indirect_commands_layout, max_sequence_count::Integer, max_draw_count::Integer; next = C_NULL, indirect_execution_set = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkGeneratedCommandsMemoryRequirementsInfoEXT(structure_type(VkGeneratedCommandsMemoryRequirementsInfoEXT), unsafe_convert(Ptr{Cvoid}, next), indirect_execution_set, indirect_commands_layout, max_sequence_count, max_draw_count)
+    vks = VkGeneratedCommandsMemoryRequirementsInfoEXT(structure_type(VkGeneratedCommandsMemoryRequirementsInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkIndirectExecutionSetEXT, indirect_execution_set), convert(VkIndirectCommandsLayoutEXT, indirect_commands_layout), convert(UInt32, max_sequence_count), convert(UInt32, max_draw_count))
     _GeneratedCommandsMemoryRequirementsInfoEXT(vks, deps, indirect_execution_set, indirect_commands_layout)
 end
 
@@ -52156,7 +52164,7 @@ Arguments:
 function _IndirectExecutionSetPipelineInfoEXT(initial_pipeline, max_pipeline_count::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkIndirectExecutionSetPipelineInfoEXT(structure_type(VkIndirectExecutionSetPipelineInfoEXT), unsafe_convert(Ptr{Cvoid}, next), initial_pipeline, max_pipeline_count)
+    vks = VkIndirectExecutionSetPipelineInfoEXT(structure_type(VkIndirectExecutionSetPipelineInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipeline, initial_pipeline), convert(UInt32, max_pipeline_count))
     _IndirectExecutionSetPipelineInfoEXT(vks, deps, initial_pipeline)
 end
 
@@ -52175,7 +52183,7 @@ function _IndirectExecutionSetShaderLayoutInfoEXT(set_layouts::AbstractArray; ne
     next = cconvert(Ptr{Cvoid}, next)
     set_layouts = cconvert(Ptr{VkDescriptorSetLayout}, set_layouts)
     deps = Any[next, set_layouts]
-    vks = VkIndirectExecutionSetShaderLayoutInfoEXT(structure_type(VkIndirectExecutionSetShaderLayoutInfoEXT), unsafe_convert(Ptr{Cvoid}, next), set_layout_count, unsafe_convert(Ptr{VkDescriptorSetLayout}, set_layouts))
+    vks = VkIndirectExecutionSetShaderLayoutInfoEXT(structure_type(VkIndirectExecutionSetShaderLayoutInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, set_layout_count), unsafe_convert(Ptr{VkDescriptorSetLayout}, set_layouts))
     _IndirectExecutionSetShaderLayoutInfoEXT(vks, deps)
 end
 
@@ -52200,7 +52208,7 @@ function _IndirectExecutionSetShaderInfoEXT(initial_shaders::AbstractArray, max_
     set_layout_infos = cconvert(Ptr{VkIndirectExecutionSetShaderLayoutInfoEXT}, set_layout_infos)
     push_constant_ranges = cconvert(Ptr{VkPushConstantRange}, push_constant_ranges)
     deps = Any[next, initial_shaders, set_layout_infos, push_constant_ranges]
-    vks = VkIndirectExecutionSetShaderInfoEXT(structure_type(VkIndirectExecutionSetShaderInfoEXT), unsafe_convert(Ptr{Cvoid}, next), shader_count, unsafe_convert(Ptr{VkShaderEXT}, initial_shaders), unsafe_convert(Ptr{VkIndirectExecutionSetShaderLayoutInfoEXT}, set_layout_infos), max_shader_count, push_constant_range_count, unsafe_convert(Ptr{VkPushConstantRange}, push_constant_ranges))
+    vks = VkIndirectExecutionSetShaderInfoEXT(structure_type(VkIndirectExecutionSetShaderInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, shader_count), unsafe_convert(Ptr{VkShaderEXT}, initial_shaders), unsafe_convert(Ptr{VkIndirectExecutionSetShaderLayoutInfoEXT}, set_layout_infos), convert(UInt32, max_shader_count), convert(UInt32, push_constant_range_count), unsafe_convert(Ptr{VkPushConstantRange}, push_constant_ranges))
     _IndirectExecutionSetShaderInfoEXT(vks, deps)
 end
 
@@ -52218,7 +52226,7 @@ Arguments:
 function _IndirectExecutionSetCreateInfoEXT(type::IndirectExecutionSetInfoTypeEXT, info::_IndirectExecutionSetInfoEXT; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkIndirectExecutionSetCreateInfoEXT(structure_type(VkIndirectExecutionSetCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), type, info.vks)
+    vks = VkIndirectExecutionSetCreateInfoEXT(structure_type(VkIndirectExecutionSetCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkIndirectExecutionSetInfoTypeEXT, type), info.vks)
     _IndirectExecutionSetCreateInfoEXT(vks, deps)
 end
 
@@ -52244,7 +52252,7 @@ Arguments:
 function _GeneratedCommandsInfoEXT(shader_stages::ShaderStageFlag, indirect_commands_layout, indirect_address::Integer, indirect_address_size::Integer, preprocess_size::Integer, max_sequence_count::Integer, max_draw_count::Integer; next = C_NULL, indirect_execution_set = C_NULL, preprocess_address = 0, sequence_count_address = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkGeneratedCommandsInfoEXT(structure_type(VkGeneratedCommandsInfoEXT), unsafe_convert(Ptr{Cvoid}, next), shader_stages, indirect_execution_set, indirect_commands_layout, indirect_address, indirect_address_size, preprocess_address, preprocess_size, max_sequence_count, sequence_count_address, max_draw_count)
+    vks = VkGeneratedCommandsInfoEXT(structure_type(VkGeneratedCommandsInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkShaderStageFlags, shader_stages), convert(VkIndirectExecutionSetEXT, indirect_execution_set), convert(VkIndirectCommandsLayoutEXT, indirect_commands_layout), convert(VkDeviceAddress, indirect_address), convert(VkDeviceSize, indirect_address_size), convert(VkDeviceAddress, preprocess_address), convert(VkDeviceSize, preprocess_size), convert(UInt32, max_sequence_count), convert(VkDeviceAddress, sequence_count_address), convert(UInt32, max_draw_count))
     _GeneratedCommandsInfoEXT(vks, deps, indirect_execution_set, indirect_commands_layout)
 end
 
@@ -52262,7 +52270,7 @@ Arguments:
 function _WriteIndirectExecutionSetPipelineEXT(index::Integer, pipeline; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkWriteIndirectExecutionSetPipelineEXT(structure_type(VkWriteIndirectExecutionSetPipelineEXT), unsafe_convert(Ptr{Cvoid}, next), index, pipeline)
+    vks = VkWriteIndirectExecutionSetPipelineEXT(structure_type(VkWriteIndirectExecutionSetPipelineEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, index), convert(VkPipeline, pipeline))
     _WriteIndirectExecutionSetPipelineEXT(vks, deps, pipeline)
 end
 
@@ -52280,7 +52288,7 @@ Arguments:
 function _WriteIndirectExecutionSetShaderEXT(index::Integer, shader; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkWriteIndirectExecutionSetShaderEXT(structure_type(VkWriteIndirectExecutionSetShaderEXT), unsafe_convert(Ptr{Cvoid}, next), index, shader)
+    vks = VkWriteIndirectExecutionSetShaderEXT(structure_type(VkWriteIndirectExecutionSetShaderEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, index), convert(VkShaderEXT, shader))
     _WriteIndirectExecutionSetShaderEXT(vks, deps, shader)
 end
 
@@ -52303,7 +52311,7 @@ function _IndirectCommandsLayoutCreateInfoEXT(shader_stages::ShaderStageFlag, in
     next = cconvert(Ptr{Cvoid}, next)
     tokens = cconvert(Ptr{VkIndirectCommandsLayoutTokenEXT}, tokens)
     deps = Any[next, tokens]
-    vks = VkIndirectCommandsLayoutCreateInfoEXT(structure_type(VkIndirectCommandsLayoutCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), flags, shader_stages, indirect_stride, pipeline_layout, token_count, unsafe_convert(Ptr{VkIndirectCommandsLayoutTokenEXT}, tokens))
+    vks = VkIndirectCommandsLayoutCreateInfoEXT(structure_type(VkIndirectCommandsLayoutCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkIndirectCommandsLayoutUsageFlagsEXT, flags), convert(VkShaderStageFlags, shader_stages), convert(UInt32, indirect_stride), convert(VkPipelineLayout, pipeline_layout), convert(UInt32, token_count), unsafe_convert(Ptr{VkIndirectCommandsLayoutTokenEXT}, tokens))
     _IndirectCommandsLayoutCreateInfoEXT(vks, deps, pipeline_layout)
 end
 
@@ -52322,7 +52330,7 @@ Arguments:
 function _IndirectCommandsLayoutTokenEXT(type::IndirectCommandsTokenTypeEXT, data::_IndirectCommandsTokenDataEXT, offset::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkIndirectCommandsLayoutTokenEXT(structure_type(VkIndirectCommandsLayoutTokenEXT), unsafe_convert(Ptr{Cvoid}, next), type, data.vks, offset)
+    vks = VkIndirectCommandsLayoutTokenEXT(structure_type(VkIndirectCommandsLayoutTokenEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkIndirectCommandsTokenTypeEXT, type), data.vks, convert(UInt32, offset))
     _IndirectCommandsLayoutTokenEXT(vks, deps)
 end
 
@@ -52338,7 +52346,7 @@ Arguments:
 
 """
 function _DrawIndirectCountIndirectCommandEXT(buffer_address::Integer, stride::Integer, command_count::Integer)
-    _DrawIndirectCountIndirectCommandEXT(VkDrawIndirectCountIndirectCommandEXT(buffer_address, stride, command_count))
+    _DrawIndirectCountIndirectCommandEXT(VkDrawIndirectCountIndirectCommandEXT(convert(VkDeviceAddress, buffer_address), convert(UInt32, stride), convert(UInt32, command_count)))
 end
 
 """
@@ -52351,7 +52359,7 @@ Arguments:
 
 """
 function _IndirectCommandsVertexBufferTokenEXT(vertex_binding_unit::Integer)
-    _IndirectCommandsVertexBufferTokenEXT(VkIndirectCommandsVertexBufferTokenEXT(vertex_binding_unit))
+    _IndirectCommandsVertexBufferTokenEXT(VkIndirectCommandsVertexBufferTokenEXT(convert(UInt32, vertex_binding_unit)))
 end
 
 """
@@ -52366,7 +52374,7 @@ Arguments:
 
 """
 function _BindVertexBufferIndirectCommandEXT(buffer_address::Integer, size::Integer, stride::Integer)
-    _BindVertexBufferIndirectCommandEXT(VkBindVertexBufferIndirectCommandEXT(buffer_address, size, stride))
+    _BindVertexBufferIndirectCommandEXT(VkBindVertexBufferIndirectCommandEXT(convert(VkDeviceAddress, buffer_address), convert(UInt32, size), convert(UInt32, stride)))
 end
 
 """
@@ -52379,7 +52387,7 @@ Arguments:
 
 """
 function _IndirectCommandsIndexBufferTokenEXT(mode::IndirectCommandsInputModeFlagEXT)
-    _IndirectCommandsIndexBufferTokenEXT(VkIndirectCommandsIndexBufferTokenEXT(VkIndirectCommandsInputModeFlagBitsEXT(mode.val)))
+    _IndirectCommandsIndexBufferTokenEXT(VkIndirectCommandsIndexBufferTokenEXT(VkIndirectCommandsInputModeFlagBitsEXT(flag_value(mode))))
 end
 
 """
@@ -52394,7 +52402,7 @@ Arguments:
 
 """
 function _BindIndexBufferIndirectCommandEXT(buffer_address::Integer, size::Integer, index_type::IndexType)
-    _BindIndexBufferIndirectCommandEXT(VkBindIndexBufferIndirectCommandEXT(buffer_address, size, index_type))
+    _BindIndexBufferIndirectCommandEXT(VkBindIndexBufferIndirectCommandEXT(convert(VkDeviceAddress, buffer_address), convert(UInt32, size), convert(VkIndexType, index_type)))
 end
 
 """
@@ -52421,7 +52429,7 @@ Arguments:
 
 """
 function _IndirectCommandsExecutionSetTokenEXT(type::IndirectExecutionSetInfoTypeEXT, shader_stages::ShaderStageFlag)
-    _IndirectCommandsExecutionSetTokenEXT(VkIndirectCommandsExecutionSetTokenEXT(type, shader_stages))
+    _IndirectCommandsExecutionSetTokenEXT(VkIndirectCommandsExecutionSetTokenEXT(convert(VkIndirectExecutionSetInfoTypeEXT, type), convert(VkShaderStageFlags, shader_stages)))
 end
 
 """
@@ -52437,7 +52445,7 @@ Arguments:
 function _PipelineViewportDepthClipControlCreateInfoEXT(negative_one_to_one::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineViewportDepthClipControlCreateInfoEXT(structure_type(VkPipelineViewportDepthClipControlCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), negative_one_to_one)
+    vks = VkPipelineViewportDepthClipControlCreateInfoEXT(structure_type(VkPipelineViewportDepthClipControlCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, negative_one_to_one))
     _PipelineViewportDepthClipControlCreateInfoEXT(vks, deps)
 end
 
@@ -52454,7 +52462,7 @@ Arguments:
 function _PhysicalDeviceDepthClampControlFeaturesEXT(depth_clamp_control::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDepthClampControlFeaturesEXT(structure_type(VkPhysicalDeviceDepthClampControlFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), depth_clamp_control)
+    vks = VkPhysicalDeviceDepthClampControlFeaturesEXT(structure_type(VkPhysicalDeviceDepthClampControlFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, depth_clamp_control))
     _PhysicalDeviceDepthClampControlFeaturesEXT(vks, deps)
 end
 
@@ -52473,7 +52481,7 @@ function _PipelineViewportDepthClampControlCreateInfoEXT(depth_clamp_mode::Depth
     next = cconvert(Ptr{Cvoid}, next)
     depth_clamp_range = cconvert(Ptr{VkDepthClampRangeEXT}, depth_clamp_range)
     deps = Any[next, depth_clamp_range]
-    vks = VkPipelineViewportDepthClampControlCreateInfoEXT(structure_type(VkPipelineViewportDepthClampControlCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), depth_clamp_mode, unsafe_convert(Ptr{VkDepthClampRangeEXT}, depth_clamp_range))
+    vks = VkPipelineViewportDepthClampControlCreateInfoEXT(structure_type(VkPipelineViewportDepthClampControlCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDepthClampModeEXT, depth_clamp_mode), unsafe_convert(Ptr{VkDepthClampRangeEXT}, depth_clamp_range))
     _PipelineViewportDepthClampControlCreateInfoEXT(vks, deps)
 end
 
@@ -52490,7 +52498,7 @@ Arguments:
 function _PhysicalDeviceVertexInputDynamicStateFeaturesEXT(vertex_input_dynamic_state::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT(structure_type(VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), vertex_input_dynamic_state)
+    vks = VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT(structure_type(VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, vertex_input_dynamic_state))
     _PhysicalDeviceVertexInputDynamicStateFeaturesEXT(vks, deps)
 end
 
@@ -52507,7 +52515,7 @@ Arguments:
 function _PhysicalDeviceExternalMemoryRDMAFeaturesNV(external_memory_rdma::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceExternalMemoryRDMAFeaturesNV(structure_type(VkPhysicalDeviceExternalMemoryRDMAFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), external_memory_rdma)
+    vks = VkPhysicalDeviceExternalMemoryRDMAFeaturesNV(structure_type(VkPhysicalDeviceExternalMemoryRDMAFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, external_memory_rdma))
     _PhysicalDeviceExternalMemoryRDMAFeaturesNV(vks, deps)
 end
 
@@ -52524,7 +52532,7 @@ Arguments:
 function _PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR(shader_relaxed_extended_instruction::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR(structure_type(VkPhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), shader_relaxed_extended_instruction)
+    vks = VkPhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR(structure_type(VkPhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_relaxed_extended_instruction))
     _PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR(vks, deps)
 end
 
@@ -52544,7 +52552,7 @@ Arguments:
 function _VertexInputBindingDescription2EXT(binding::Integer, stride::Integer, input_rate::VertexInputRate, divisor::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVertexInputBindingDescription2EXT(structure_type(VkVertexInputBindingDescription2EXT), unsafe_convert(Ptr{Cvoid}, next), binding, stride, input_rate, divisor)
+    vks = VkVertexInputBindingDescription2EXT(structure_type(VkVertexInputBindingDescription2EXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, binding), convert(UInt32, stride), convert(VkVertexInputRate, input_rate), convert(UInt32, divisor))
     _VertexInputBindingDescription2EXT(vks, deps)
 end
 
@@ -52564,7 +52572,7 @@ Arguments:
 function _VertexInputAttributeDescription2EXT(location::Integer, binding::Integer, format::Format, offset::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVertexInputAttributeDescription2EXT(structure_type(VkVertexInputAttributeDescription2EXT), unsafe_convert(Ptr{Cvoid}, next), location, binding, format, offset)
+    vks = VkVertexInputAttributeDescription2EXT(structure_type(VkVertexInputAttributeDescription2EXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, location), convert(UInt32, binding), convert(VkFormat, format), convert(UInt32, offset))
     _VertexInputAttributeDescription2EXT(vks, deps)
 end
 
@@ -52581,7 +52589,7 @@ Arguments:
 function _PhysicalDeviceColorWriteEnableFeaturesEXT(color_write_enable::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceColorWriteEnableFeaturesEXT(structure_type(VkPhysicalDeviceColorWriteEnableFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), color_write_enable)
+    vks = VkPhysicalDeviceColorWriteEnableFeaturesEXT(structure_type(VkPhysicalDeviceColorWriteEnableFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, color_write_enable))
     _PhysicalDeviceColorWriteEnableFeaturesEXT(vks, deps)
 end
 
@@ -52600,7 +52608,7 @@ function _PipelineColorWriteCreateInfoEXT(color_write_enables::AbstractArray; ne
     next = cconvert(Ptr{Cvoid}, next)
     color_write_enables = cconvert(Ptr{VkBool32}, color_write_enables)
     deps = Any[next, color_write_enables]
-    vks = VkPipelineColorWriteCreateInfoEXT(structure_type(VkPipelineColorWriteCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), attachment_count, unsafe_convert(Ptr{VkBool32}, color_write_enables))
+    vks = VkPipelineColorWriteCreateInfoEXT(structure_type(VkPipelineColorWriteCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, attachment_count), unsafe_convert(Ptr{VkBool32}, color_write_enables))
     _PipelineColorWriteCreateInfoEXT(vks, deps)
 end
 
@@ -52618,7 +52626,7 @@ Arguments:
 function _MemoryBarrier2(; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMemoryBarrier2(structure_type(VkMemoryBarrier2), unsafe_convert(Ptr{Cvoid}, next), src_stage_mask, src_access_mask, dst_stage_mask, dst_access_mask)
+    vks = VkMemoryBarrier2(structure_type(VkMemoryBarrier2), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineStageFlags2, src_stage_mask), convert(VkAccessFlags2, src_access_mask), convert(VkPipelineStageFlags2, dst_stage_mask), convert(VkAccessFlags2, dst_access_mask))
     _MemoryBarrier2(vks, deps)
 end
 
@@ -52642,7 +52650,7 @@ Arguments:
 function _ImageMemoryBarrier2(old_layout::ImageLayout, new_layout::ImageLayout, src_queue_family_index::Integer, dst_queue_family_index::Integer, image, subresource_range::_ImageSubresourceRange; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImageMemoryBarrier2(structure_type(VkImageMemoryBarrier2), unsafe_convert(Ptr{Cvoid}, next), src_stage_mask, src_access_mask, dst_stage_mask, dst_access_mask, old_layout, new_layout, src_queue_family_index, dst_queue_family_index, image, subresource_range.vks)
+    vks = VkImageMemoryBarrier2(structure_type(VkImageMemoryBarrier2), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineStageFlags2, src_stage_mask), convert(VkAccessFlags2, src_access_mask), convert(VkPipelineStageFlags2, dst_stage_mask), convert(VkAccessFlags2, dst_access_mask), convert(VkImageLayout, old_layout), convert(VkImageLayout, new_layout), convert(UInt32, src_queue_family_index), convert(UInt32, dst_queue_family_index), convert(VkImage, image), subresource_range.vks)
     _ImageMemoryBarrier2(vks, deps, image)
 end
 
@@ -52665,7 +52673,7 @@ Arguments:
 function _BufferMemoryBarrier2(src_queue_family_index::Integer, dst_queue_family_index::Integer, buffer, offset::Integer, size::Integer; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkBufferMemoryBarrier2(structure_type(VkBufferMemoryBarrier2), unsafe_convert(Ptr{Cvoid}, next), src_stage_mask, src_access_mask, dst_stage_mask, dst_access_mask, src_queue_family_index, dst_queue_family_index, buffer, offset, size)
+    vks = VkBufferMemoryBarrier2(structure_type(VkBufferMemoryBarrier2), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineStageFlags2, src_stage_mask), convert(VkAccessFlags2, src_access_mask), convert(VkPipelineStageFlags2, dst_stage_mask), convert(VkAccessFlags2, dst_access_mask), convert(UInt32, src_queue_family_index), convert(UInt32, dst_queue_family_index), convert(VkBuffer, buffer), convert(VkDeviceSize, offset), convert(VkDeviceSize, size))
     _BufferMemoryBarrier2(vks, deps, buffer)
 end
 
@@ -52683,7 +52691,7 @@ Arguments:
 function _MemoryBarrierAccessFlags3KHR(; next = C_NULL, src_access_mask_3 = 0, dst_access_mask_3 = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMemoryBarrierAccessFlags3KHR(structure_type(VkMemoryBarrierAccessFlags3KHR), unsafe_convert(Ptr{Cvoid}, next), src_access_mask_3, dst_access_mask_3)
+    vks = VkMemoryBarrierAccessFlags3KHR(structure_type(VkMemoryBarrierAccessFlags3KHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkAccessFlags3KHR, src_access_mask_3), convert(VkAccessFlags3KHR, dst_access_mask_3))
     _MemoryBarrierAccessFlags3KHR(vks, deps)
 end
 
@@ -52707,7 +52715,7 @@ function _DependencyInfo(memory_barriers::AbstractArray, buffer_memory_barriers:
     buffer_memory_barriers = cconvert(Ptr{VkBufferMemoryBarrier2}, buffer_memory_barriers)
     image_memory_barriers = cconvert(Ptr{VkImageMemoryBarrier2}, image_memory_barriers)
     deps = Any[next, memory_barriers, buffer_memory_barriers, image_memory_barriers]
-    vks = VkDependencyInfo(structure_type(VkDependencyInfo), unsafe_convert(Ptr{Cvoid}, next), dependency_flags, memory_barrier_count, unsafe_convert(Ptr{VkMemoryBarrier2}, memory_barriers), buffer_memory_barrier_count, unsafe_convert(Ptr{VkBufferMemoryBarrier2}, buffer_memory_barriers), image_memory_barrier_count, unsafe_convert(Ptr{VkImageMemoryBarrier2}, image_memory_barriers))
+    vks = VkDependencyInfo(structure_type(VkDependencyInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkDependencyFlags, dependency_flags), convert(UInt32, memory_barrier_count), unsafe_convert(Ptr{VkMemoryBarrier2}, memory_barriers), convert(UInt32, buffer_memory_barrier_count), unsafe_convert(Ptr{VkBufferMemoryBarrier2}, buffer_memory_barriers), convert(UInt32, image_memory_barrier_count), unsafe_convert(Ptr{VkImageMemoryBarrier2}, image_memory_barriers))
     _DependencyInfo(vks, deps)
 end
 
@@ -52725,7 +52733,7 @@ Arguments:
 function _SemaphoreSubmitInfo(semaphore, value::Integer, device_index::Integer; next = C_NULL, stage_mask = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSemaphoreSubmitInfo(structure_type(VkSemaphoreSubmitInfo), unsafe_convert(Ptr{Cvoid}, next), semaphore, value, stage_mask, device_index)
+    vks = VkSemaphoreSubmitInfo(structure_type(VkSemaphoreSubmitInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkSemaphore, semaphore), convert(UInt64, value), convert(VkPipelineStageFlags2, stage_mask), convert(UInt32, device_index))
     _SemaphoreSubmitInfo(vks, deps, semaphore)
 end
 
@@ -52741,7 +52749,7 @@ Arguments:
 function _CommandBufferSubmitInfo(command_buffer, device_mask::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkCommandBufferSubmitInfo(structure_type(VkCommandBufferSubmitInfo), unsafe_convert(Ptr{Cvoid}, next), command_buffer, device_mask)
+    vks = VkCommandBufferSubmitInfo(structure_type(VkCommandBufferSubmitInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkCommandBuffer, command_buffer), convert(UInt32, device_mask))
     _CommandBufferSubmitInfo(vks, deps, command_buffer)
 end
 
@@ -52765,7 +52773,7 @@ function _SubmitInfo2(wait_semaphore_infos::AbstractArray, command_buffer_infos:
     command_buffer_infos = cconvert(Ptr{VkCommandBufferSubmitInfo}, command_buffer_infos)
     signal_semaphore_infos = cconvert(Ptr{VkSemaphoreSubmitInfo}, signal_semaphore_infos)
     deps = Any[next, wait_semaphore_infos, command_buffer_infos, signal_semaphore_infos]
-    vks = VkSubmitInfo2(structure_type(VkSubmitInfo2), unsafe_convert(Ptr{Cvoid}, next), flags, wait_semaphore_info_count, unsafe_convert(Ptr{VkSemaphoreSubmitInfo}, wait_semaphore_infos), command_buffer_info_count, unsafe_convert(Ptr{VkCommandBufferSubmitInfo}, command_buffer_infos), signal_semaphore_info_count, unsafe_convert(Ptr{VkSemaphoreSubmitInfo}, signal_semaphore_infos))
+    vks = VkSubmitInfo2(structure_type(VkSubmitInfo2), unsafe_convert(Ptr{Cvoid}, next), convert(VkSubmitFlags, flags), convert(UInt32, wait_semaphore_info_count), unsafe_convert(Ptr{VkSemaphoreSubmitInfo}, wait_semaphore_infos), convert(UInt32, command_buffer_info_count), unsafe_convert(Ptr{VkCommandBufferSubmitInfo}, command_buffer_infos), convert(UInt32, signal_semaphore_info_count), unsafe_convert(Ptr{VkSemaphoreSubmitInfo}, signal_semaphore_infos))
     _SubmitInfo2(vks, deps)
 end
 
@@ -52782,7 +52790,7 @@ Arguments:
 function _QueueFamilyCheckpointProperties2NV(checkpoint_execution_stage_mask::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkQueueFamilyCheckpointProperties2NV(structure_type(VkQueueFamilyCheckpointProperties2NV), unsafe_convert(Ptr{Cvoid}, next), checkpoint_execution_stage_mask)
+    vks = VkQueueFamilyCheckpointProperties2NV(structure_type(VkQueueFamilyCheckpointProperties2NV), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineStageFlags2, checkpoint_execution_stage_mask))
     _QueueFamilyCheckpointProperties2NV(vks, deps)
 end
 
@@ -52801,7 +52809,7 @@ function _CheckpointData2NV(stage::Integer, checkpoint_marker::Ptr{Cvoid}; next 
     next = cconvert(Ptr{Cvoid}, next)
     checkpoint_marker = cconvert(Ptr{Cvoid}, checkpoint_marker)
     deps = Any[next, checkpoint_marker]
-    vks = VkCheckpointData2NV(structure_type(VkCheckpointData2NV), unsafe_convert(Ptr{Cvoid}, next), stage, unsafe_convert(Ptr{Cvoid}, checkpoint_marker))
+    vks = VkCheckpointData2NV(structure_type(VkCheckpointData2NV), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineStageFlags2, stage), unsafe_convert(Ptr{Cvoid}, checkpoint_marker))
     _CheckpointData2NV(vks, deps)
 end
 
@@ -52816,7 +52824,7 @@ Arguments:
 function _PhysicalDeviceSynchronization2Features(synchronization2::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceSynchronization2Features(structure_type(VkPhysicalDeviceSynchronization2Features), unsafe_convert(Ptr{Cvoid}, next), synchronization2)
+    vks = VkPhysicalDeviceSynchronization2Features(structure_type(VkPhysicalDeviceSynchronization2Features), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, synchronization2))
     _PhysicalDeviceSynchronization2Features(vks, deps)
 end
 
@@ -52834,7 +52842,7 @@ Arguments:
 function _PhysicalDeviceUnifiedImageLayoutsFeaturesKHR(unified_image_layouts::Bool, unified_image_layouts_video::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceUnifiedImageLayoutsFeaturesKHR(structure_type(VkPhysicalDeviceUnifiedImageLayoutsFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), unified_image_layouts, unified_image_layouts_video)
+    vks = VkPhysicalDeviceUnifiedImageLayoutsFeaturesKHR(structure_type(VkPhysicalDeviceUnifiedImageLayoutsFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, unified_image_layouts), convert(VkBool32, unified_image_layouts_video))
     _PhysicalDeviceUnifiedImageLayoutsFeaturesKHR(vks, deps)
 end
 
@@ -52849,7 +52857,7 @@ Arguments:
 function _PhysicalDeviceHostImageCopyFeatures(host_image_copy::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceHostImageCopyFeatures(structure_type(VkPhysicalDeviceHostImageCopyFeatures), unsafe_convert(Ptr{Cvoid}, next), host_image_copy)
+    vks = VkPhysicalDeviceHostImageCopyFeatures(structure_type(VkPhysicalDeviceHostImageCopyFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, host_image_copy))
     _PhysicalDeviceHostImageCopyFeatures(vks, deps)
 end
 
@@ -52871,7 +52879,7 @@ function _PhysicalDeviceHostImageCopyProperties(identical_memory_type_requiremen
     copy_src_layouts = cconvert(Ptr{VkImageLayout}, copy_src_layouts)
     copy_dst_layouts = cconvert(Ptr{VkImageLayout}, copy_dst_layouts)
     deps = Any[next, copy_src_layouts, copy_dst_layouts]
-    vks = VkPhysicalDeviceHostImageCopyProperties(structure_type(VkPhysicalDeviceHostImageCopyProperties), unsafe_convert(Ptr{Cvoid}, next), copy_src_layout_count, unsafe_convert(Ptr{VkImageLayout}, copy_src_layouts), copy_dst_layout_count, unsafe_convert(Ptr{VkImageLayout}, copy_dst_layouts), optimal_tiling_layout_uuid, identical_memory_type_requirements)
+    vks = VkPhysicalDeviceHostImageCopyProperties(structure_type(VkPhysicalDeviceHostImageCopyProperties), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, copy_src_layout_count), unsafe_convert(Ptr{VkImageLayout}, copy_src_layouts), convert(UInt32, copy_dst_layout_count), unsafe_convert(Ptr{VkImageLayout}, copy_dst_layouts), convert(NTuple{Int(VK_UUID_SIZE), UInt8}, optimal_tiling_layout_uuid), convert(VkBool32, identical_memory_type_requirements))
     _PhysicalDeviceHostImageCopyProperties(vks, deps)
 end
 
@@ -52892,7 +52900,7 @@ function _MemoryToImageCopy(host_pointer::Ptr{Cvoid}, memory_row_length::Integer
     next = cconvert(Ptr{Cvoid}, next)
     host_pointer = cconvert(Ptr{Cvoid}, host_pointer)
     deps = Any[next, host_pointer]
-    vks = VkMemoryToImageCopy(structure_type(VkMemoryToImageCopy), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{Cvoid}, host_pointer), memory_row_length, memory_image_height, image_subresource.vks, image_offset.vks, image_extent.vks)
+    vks = VkMemoryToImageCopy(structure_type(VkMemoryToImageCopy), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{Cvoid}, host_pointer), convert(UInt32, memory_row_length), convert(UInt32, memory_image_height), image_subresource.vks, image_offset.vks, image_extent.vks)
     _MemoryToImageCopy(vks, deps)
 end
 
@@ -52913,7 +52921,7 @@ function _ImageToMemoryCopy(host_pointer::Ptr{Cvoid}, memory_row_length::Integer
     next = cconvert(Ptr{Cvoid}, next)
     host_pointer = cconvert(Ptr{Cvoid}, host_pointer)
     deps = Any[next, host_pointer]
-    vks = VkImageToMemoryCopy(structure_type(VkImageToMemoryCopy), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{Cvoid}, host_pointer), memory_row_length, memory_image_height, image_subresource.vks, image_offset.vks, image_extent.vks)
+    vks = VkImageToMemoryCopy(structure_type(VkImageToMemoryCopy), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{Cvoid}, host_pointer), convert(UInt32, memory_row_length), convert(UInt32, memory_image_height), image_subresource.vks, image_offset.vks, image_extent.vks)
     _ImageToMemoryCopy(vks, deps)
 end
 
@@ -52933,7 +52941,7 @@ function _CopyMemoryToImageInfo(dst_image, dst_image_layout::ImageLayout, region
     next = cconvert(Ptr{Cvoid}, next)
     regions = cconvert(Ptr{VkMemoryToImageCopy}, regions)
     deps = Any[next, regions]
-    vks = VkCopyMemoryToImageInfo(structure_type(VkCopyMemoryToImageInfo), unsafe_convert(Ptr{Cvoid}, next), flags, dst_image, dst_image_layout, region_count, unsafe_convert(Ptr{VkMemoryToImageCopy}, regions))
+    vks = VkCopyMemoryToImageInfo(structure_type(VkCopyMemoryToImageInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkHostImageCopyFlags, flags), convert(VkImage, dst_image), convert(VkImageLayout, dst_image_layout), convert(UInt32, region_count), unsafe_convert(Ptr{VkMemoryToImageCopy}, regions))
     _CopyMemoryToImageInfo(vks, deps, dst_image)
 end
 
@@ -52953,7 +52961,7 @@ function _CopyImageToMemoryInfo(src_image, src_image_layout::ImageLayout, region
     next = cconvert(Ptr{Cvoid}, next)
     regions = cconvert(Ptr{VkImageToMemoryCopy}, regions)
     deps = Any[next, regions]
-    vks = VkCopyImageToMemoryInfo(structure_type(VkCopyImageToMemoryInfo), unsafe_convert(Ptr{Cvoid}, next), flags, src_image, src_image_layout, region_count, unsafe_convert(Ptr{VkImageToMemoryCopy}, regions))
+    vks = VkCopyImageToMemoryInfo(structure_type(VkCopyImageToMemoryInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkHostImageCopyFlags, flags), convert(VkImage, src_image), convert(VkImageLayout, src_image_layout), convert(UInt32, region_count), unsafe_convert(Ptr{VkImageToMemoryCopy}, regions))
     _CopyImageToMemoryInfo(vks, deps, src_image)
 end
 
@@ -52975,7 +52983,7 @@ function _CopyImageToImageInfo(src_image, src_image_layout::ImageLayout, dst_ima
     next = cconvert(Ptr{Cvoid}, next)
     regions = cconvert(Ptr{VkImageCopy2}, regions)
     deps = Any[next, regions]
-    vks = VkCopyImageToImageInfo(structure_type(VkCopyImageToImageInfo), unsafe_convert(Ptr{Cvoid}, next), flags, src_image, src_image_layout, dst_image, dst_image_layout, region_count, unsafe_convert(Ptr{VkImageCopy2}, regions))
+    vks = VkCopyImageToImageInfo(structure_type(VkCopyImageToImageInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkHostImageCopyFlags, flags), convert(VkImage, src_image), convert(VkImageLayout, src_image_layout), convert(VkImage, dst_image), convert(VkImageLayout, dst_image_layout), convert(UInt32, region_count), unsafe_convert(Ptr{VkImageCopy2}, regions))
     _CopyImageToImageInfo(vks, deps, src_image, dst_image)
 end
 
@@ -52993,7 +53001,7 @@ Arguments:
 function _HostImageLayoutTransitionInfo(image, old_layout::ImageLayout, new_layout::ImageLayout, subresource_range::_ImageSubresourceRange; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkHostImageLayoutTransitionInfo(structure_type(VkHostImageLayoutTransitionInfo), unsafe_convert(Ptr{Cvoid}, next), image, old_layout, new_layout, subresource_range.vks)
+    vks = VkHostImageLayoutTransitionInfo(structure_type(VkHostImageLayoutTransitionInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkImage, image), convert(VkImageLayout, old_layout), convert(VkImageLayout, new_layout), subresource_range.vks)
     _HostImageLayoutTransitionInfo(vks, deps, image)
 end
 
@@ -53008,7 +53016,7 @@ Arguments:
 function _SubresourceHostMemcpySize(size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSubresourceHostMemcpySize(structure_type(VkSubresourceHostMemcpySize), unsafe_convert(Ptr{Cvoid}, next), size)
+    vks = VkSubresourceHostMemcpySize(structure_type(VkSubresourceHostMemcpySize), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceSize, size))
     _SubresourceHostMemcpySize(vks, deps)
 end
 
@@ -53024,7 +53032,7 @@ Arguments:
 function _HostImageCopyDevicePerformanceQuery(optimal_device_access::Bool, identical_memory_layout::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkHostImageCopyDevicePerformanceQuery(structure_type(VkHostImageCopyDevicePerformanceQuery), unsafe_convert(Ptr{Cvoid}, next), optimal_device_access, identical_memory_layout)
+    vks = VkHostImageCopyDevicePerformanceQuery(structure_type(VkHostImageCopyDevicePerformanceQuery), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, optimal_device_access), convert(VkBool32, identical_memory_layout))
     _HostImageCopyDevicePerformanceQuery(vks, deps)
 end
 
@@ -53043,7 +53051,7 @@ Arguments:
 function _PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT(primitives_generated_query::Bool, primitives_generated_query_with_rasterizer_discard::Bool, primitives_generated_query_with_non_zero_streams::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePrimitivesGeneratedQueryFeaturesEXT(structure_type(VkPhysicalDevicePrimitivesGeneratedQueryFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), primitives_generated_query, primitives_generated_query_with_rasterizer_discard, primitives_generated_query_with_non_zero_streams)
+    vks = VkPhysicalDevicePrimitivesGeneratedQueryFeaturesEXT(structure_type(VkPhysicalDevicePrimitivesGeneratedQueryFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, primitives_generated_query), convert(VkBool32, primitives_generated_query_with_rasterizer_discard), convert(VkBool32, primitives_generated_query_with_non_zero_streams))
     _PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT(vks, deps)
 end
 
@@ -53060,7 +53068,7 @@ Arguments:
 function _PhysicalDeviceLegacyDitheringFeaturesEXT(legacy_dithering::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceLegacyDitheringFeaturesEXT(structure_type(VkPhysicalDeviceLegacyDitheringFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), legacy_dithering)
+    vks = VkPhysicalDeviceLegacyDitheringFeaturesEXT(structure_type(VkPhysicalDeviceLegacyDitheringFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, legacy_dithering))
     _PhysicalDeviceLegacyDitheringFeaturesEXT(vks, deps)
 end
 
@@ -53077,7 +53085,7 @@ Arguments:
 function _PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT(multisampled_render_to_single_sampled::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT(structure_type(VkPhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), multisampled_render_to_single_sampled)
+    vks = VkPhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT(structure_type(VkPhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, multisampled_render_to_single_sampled))
     _PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT(vks, deps)
 end
 
@@ -53094,7 +53102,7 @@ Arguments:
 function _SurfaceCapabilitiesPresentId2KHR(present_id_2_supported::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSurfaceCapabilitiesPresentId2KHR(structure_type(VkSurfaceCapabilitiesPresentId2KHR), unsafe_convert(Ptr{Cvoid}, next), present_id_2_supported)
+    vks = VkSurfaceCapabilitiesPresentId2KHR(structure_type(VkSurfaceCapabilitiesPresentId2KHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, present_id_2_supported))
     _SurfaceCapabilitiesPresentId2KHR(vks, deps)
 end
 
@@ -53111,7 +53119,7 @@ Arguments:
 function _SurfaceCapabilitiesPresentWait2KHR(present_wait_2_supported::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSurfaceCapabilitiesPresentWait2KHR(structure_type(VkSurfaceCapabilitiesPresentWait2KHR), unsafe_convert(Ptr{Cvoid}, next), present_wait_2_supported)
+    vks = VkSurfaceCapabilitiesPresentWait2KHR(structure_type(VkSurfaceCapabilitiesPresentWait2KHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, present_wait_2_supported))
     _SurfaceCapabilitiesPresentWait2KHR(vks, deps)
 end
 
@@ -53128,7 +53136,7 @@ Arguments:
 function _SubpassResolvePerformanceQueryEXT(optimal::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSubpassResolvePerformanceQueryEXT(structure_type(VkSubpassResolvePerformanceQueryEXT), unsafe_convert(Ptr{Cvoid}, next), optimal)
+    vks = VkSubpassResolvePerformanceQueryEXT(structure_type(VkSubpassResolvePerformanceQueryEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, optimal))
     _SubpassResolvePerformanceQueryEXT(vks, deps)
 end
 
@@ -53146,7 +53154,7 @@ Arguments:
 function _MultisampledRenderToSingleSampledInfoEXT(multisampled_render_to_single_sampled_enable::Bool, rasterization_samples::SampleCountFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMultisampledRenderToSingleSampledInfoEXT(structure_type(VkMultisampledRenderToSingleSampledInfoEXT), unsafe_convert(Ptr{Cvoid}, next), multisampled_render_to_single_sampled_enable, VkSampleCountFlagBits(rasterization_samples.val))
+    vks = VkMultisampledRenderToSingleSampledInfoEXT(structure_type(VkMultisampledRenderToSingleSampledInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, multisampled_render_to_single_sampled_enable), VkSampleCountFlagBits(flag_value(rasterization_samples)))
     _MultisampledRenderToSingleSampledInfoEXT(vks, deps)
 end
 
@@ -53161,7 +53169,7 @@ Arguments:
 function _PhysicalDevicePipelineProtectedAccessFeatures(pipeline_protected_access::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePipelineProtectedAccessFeatures(structure_type(VkPhysicalDevicePipelineProtectedAccessFeatures), unsafe_convert(Ptr{Cvoid}, next), pipeline_protected_access)
+    vks = VkPhysicalDevicePipelineProtectedAccessFeatures(structure_type(VkPhysicalDevicePipelineProtectedAccessFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, pipeline_protected_access))
     _PhysicalDevicePipelineProtectedAccessFeatures(vks, deps)
 end
 
@@ -53178,7 +53186,7 @@ Arguments:
 function _QueueFamilyVideoPropertiesKHR(video_codec_operations::VideoCodecOperationFlagKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkQueueFamilyVideoPropertiesKHR(structure_type(VkQueueFamilyVideoPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), video_codec_operations)
+    vks = VkQueueFamilyVideoPropertiesKHR(structure_type(VkQueueFamilyVideoPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoCodecOperationFlagsKHR, video_codec_operations))
     _QueueFamilyVideoPropertiesKHR(vks, deps)
 end
 
@@ -53195,7 +53203,7 @@ Arguments:
 function _QueueFamilyQueryResultStatusPropertiesKHR(query_result_status_support::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkQueueFamilyQueryResultStatusPropertiesKHR(structure_type(VkQueueFamilyQueryResultStatusPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), query_result_status_support)
+    vks = VkQueueFamilyQueryResultStatusPropertiesKHR(structure_type(VkQueueFamilyQueryResultStatusPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, query_result_status_support))
     _QueueFamilyQueryResultStatusPropertiesKHR(vks, deps)
 end
 
@@ -53214,7 +53222,7 @@ function _VideoProfileListInfoKHR(profiles::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     profiles = cconvert(Ptr{VkVideoProfileInfoKHR}, profiles)
     deps = Any[next, profiles]
-    vks = VkVideoProfileListInfoKHR(structure_type(VkVideoProfileListInfoKHR), unsafe_convert(Ptr{Cvoid}, next), profile_count, unsafe_convert(Ptr{VkVideoProfileInfoKHR}, profiles))
+    vks = VkVideoProfileListInfoKHR(structure_type(VkVideoProfileListInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, profile_count), unsafe_convert(Ptr{VkVideoProfileInfoKHR}, profiles))
     _VideoProfileListInfoKHR(vks, deps)
 end
 
@@ -53231,7 +53239,7 @@ Arguments:
 function _PhysicalDeviceVideoFormatInfoKHR(image_usage::ImageUsageFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceVideoFormatInfoKHR(structure_type(VkPhysicalDeviceVideoFormatInfoKHR), unsafe_convert(Ptr{Cvoid}, next), image_usage)
+    vks = VkPhysicalDeviceVideoFormatInfoKHR(structure_type(VkPhysicalDeviceVideoFormatInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkImageUsageFlags, image_usage))
     _PhysicalDeviceVideoFormatInfoKHR(vks, deps)
 end
 
@@ -53253,7 +53261,7 @@ Arguments:
 function _VideoFormatPropertiesKHR(format::Format, component_mapping::_ComponentMapping, image_create_flags::ImageCreateFlag, image_type::ImageType, image_tiling::ImageTiling, image_usage_flags::ImageUsageFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoFormatPropertiesKHR(structure_type(VkVideoFormatPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), format, component_mapping.vks, image_create_flags, image_type, image_tiling, image_usage_flags)
+    vks = VkVideoFormatPropertiesKHR(structure_type(VkVideoFormatPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkFormat, format), component_mapping.vks, convert(VkImageCreateFlags, image_create_flags), convert(VkImageType, image_type), convert(VkImageTiling, image_tiling), convert(VkImageUsageFlags, image_usage_flags))
     _VideoFormatPropertiesKHR(vks, deps)
 end
 
@@ -53288,7 +53296,7 @@ Arguments:
 function _VideoEncodeH264QuantizationMapCapabilitiesKHR(min_qp_delta::Integer, max_qp_delta::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeH264QuantizationMapCapabilitiesKHR(structure_type(VkVideoEncodeH264QuantizationMapCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), min_qp_delta, max_qp_delta)
+    vks = VkVideoEncodeH264QuantizationMapCapabilitiesKHR(structure_type(VkVideoEncodeH264QuantizationMapCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(Int32, min_qp_delta), convert(Int32, max_qp_delta))
     _VideoEncodeH264QuantizationMapCapabilitiesKHR(vks, deps)
 end
 
@@ -53306,7 +53314,7 @@ Arguments:
 function _VideoEncodeH265QuantizationMapCapabilitiesKHR(min_qp_delta::Integer, max_qp_delta::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeH265QuantizationMapCapabilitiesKHR(structure_type(VkVideoEncodeH265QuantizationMapCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), min_qp_delta, max_qp_delta)
+    vks = VkVideoEncodeH265QuantizationMapCapabilitiesKHR(structure_type(VkVideoEncodeH265QuantizationMapCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(Int32, min_qp_delta), convert(Int32, max_qp_delta))
     _VideoEncodeH265QuantizationMapCapabilitiesKHR(vks, deps)
 end
 
@@ -53324,7 +53332,7 @@ Arguments:
 function _VideoEncodeAV1QuantizationMapCapabilitiesKHR(min_q_index_delta::Integer, max_q_index_delta::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeAV1QuantizationMapCapabilitiesKHR(structure_type(VkVideoEncodeAV1QuantizationMapCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), min_q_index_delta, max_q_index_delta)
+    vks = VkVideoEncodeAV1QuantizationMapCapabilitiesKHR(structure_type(VkVideoEncodeAV1QuantizationMapCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(Int32, min_q_index_delta), convert(Int32, max_q_index_delta))
     _VideoEncodeAV1QuantizationMapCapabilitiesKHR(vks, deps)
 end
 
@@ -53358,7 +53366,7 @@ Arguments:
 function _VideoFormatH265QuantizationMapPropertiesKHR(compatible_ctb_sizes::VideoEncodeH265CtbSizeFlagKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoFormatH265QuantizationMapPropertiesKHR(structure_type(VkVideoFormatH265QuantizationMapPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), compatible_ctb_sizes)
+    vks = VkVideoFormatH265QuantizationMapPropertiesKHR(structure_type(VkVideoFormatH265QuantizationMapPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoEncodeH265CtbSizeFlagsKHR, compatible_ctb_sizes))
     _VideoFormatH265QuantizationMapPropertiesKHR(vks, deps)
 end
 
@@ -53375,7 +53383,7 @@ Arguments:
 function _VideoFormatAV1QuantizationMapPropertiesKHR(compatible_superblock_sizes::VideoEncodeAV1SuperblockSizeFlagKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoFormatAV1QuantizationMapPropertiesKHR(structure_type(VkVideoFormatAV1QuantizationMapPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), compatible_superblock_sizes)
+    vks = VkVideoFormatAV1QuantizationMapPropertiesKHR(structure_type(VkVideoFormatAV1QuantizationMapPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoEncodeAV1SuperblockSizeFlagsKHR, compatible_superblock_sizes))
     _VideoFormatAV1QuantizationMapPropertiesKHR(vks, deps)
 end
 
@@ -53395,7 +53403,7 @@ Arguments:
 function _VideoProfileInfoKHR(video_codec_operation::VideoCodecOperationFlagKHR, chroma_subsampling::VideoChromaSubsamplingFlagKHR, luma_bit_depth::VideoComponentBitDepthFlagKHR; next = C_NULL, chroma_bit_depth = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoProfileInfoKHR(structure_type(VkVideoProfileInfoKHR), unsafe_convert(Ptr{Cvoid}, next), VkVideoCodecOperationFlagBitsKHR(video_codec_operation.val), chroma_subsampling, luma_bit_depth, chroma_bit_depth)
+    vks = VkVideoProfileInfoKHR(structure_type(VkVideoProfileInfoKHR), unsafe_convert(Ptr{Cvoid}, next), VkVideoCodecOperationFlagBitsKHR(flag_value(video_codec_operation)), convert(VkVideoChromaSubsamplingFlagsKHR, chroma_subsampling), convert(VkVideoComponentBitDepthFlagsKHR, luma_bit_depth), convert(VkVideoComponentBitDepthFlagsKHR, chroma_bit_depth))
     _VideoProfileInfoKHR(vks, deps)
 end
 
@@ -53420,7 +53428,7 @@ Arguments:
 function _VideoCapabilitiesKHR(flags::VideoCapabilityFlagKHR, min_bitstream_buffer_offset_alignment::Integer, min_bitstream_buffer_size_alignment::Integer, picture_access_granularity::_Extent2D, min_coded_extent::_Extent2D, max_coded_extent::_Extent2D, max_dpb_slots::Integer, max_active_reference_pictures::Integer, std_header_version::_ExtensionProperties; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoCapabilitiesKHR(structure_type(VkVideoCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), flags, min_bitstream_buffer_offset_alignment, min_bitstream_buffer_size_alignment, picture_access_granularity.vks, min_coded_extent.vks, max_coded_extent.vks, max_dpb_slots, max_active_reference_pictures, std_header_version.vks)
+    vks = VkVideoCapabilitiesKHR(structure_type(VkVideoCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoCapabilityFlagsKHR, flags), convert(VkDeviceSize, min_bitstream_buffer_offset_alignment), convert(VkDeviceSize, min_bitstream_buffer_size_alignment), picture_access_granularity.vks, min_coded_extent.vks, max_coded_extent.vks, convert(UInt32, max_dpb_slots), convert(UInt32, max_active_reference_pictures), std_header_version.vks)
     _VideoCapabilitiesKHR(vks, deps)
 end
 
@@ -53438,7 +53446,7 @@ Arguments:
 function _VideoSessionMemoryRequirementsKHR(memory_bind_index::Integer, memory_requirements::_MemoryRequirements; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoSessionMemoryRequirementsKHR(structure_type(VkVideoSessionMemoryRequirementsKHR), unsafe_convert(Ptr{Cvoid}, next), memory_bind_index, memory_requirements.vks)
+    vks = VkVideoSessionMemoryRequirementsKHR(structure_type(VkVideoSessionMemoryRequirementsKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, memory_bind_index), memory_requirements.vks)
     _VideoSessionMemoryRequirementsKHR(vks, deps)
 end
 
@@ -53458,7 +53466,7 @@ Arguments:
 function _BindVideoSessionMemoryInfoKHR(memory_bind_index::Integer, memory, memory_offset::Integer, memory_size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkBindVideoSessionMemoryInfoKHR(structure_type(VkBindVideoSessionMemoryInfoKHR), unsafe_convert(Ptr{Cvoid}, next), memory_bind_index, memory, memory_offset, memory_size)
+    vks = VkBindVideoSessionMemoryInfoKHR(structure_type(VkBindVideoSessionMemoryInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, memory_bind_index), convert(VkDeviceMemory, memory), convert(VkDeviceSize, memory_offset), convert(VkDeviceSize, memory_size))
     _BindVideoSessionMemoryInfoKHR(vks, deps, memory)
 end
 
@@ -53478,7 +53486,7 @@ Arguments:
 function _VideoPictureResourceInfoKHR(coded_offset::_Offset2D, coded_extent::_Extent2D, base_array_layer::Integer, image_view_binding; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoPictureResourceInfoKHR(structure_type(VkVideoPictureResourceInfoKHR), unsafe_convert(Ptr{Cvoid}, next), coded_offset.vks, coded_extent.vks, base_array_layer, image_view_binding)
+    vks = VkVideoPictureResourceInfoKHR(structure_type(VkVideoPictureResourceInfoKHR), unsafe_convert(Ptr{Cvoid}, next), coded_offset.vks, coded_extent.vks, convert(UInt32, base_array_layer), convert(VkImageView, image_view_binding))
     _VideoPictureResourceInfoKHR(vks, deps, image_view_binding)
 end
 
@@ -53497,7 +53505,7 @@ function _VideoReferenceSlotInfoKHR(slot_index::Integer; next = C_NULL, picture_
     next = cconvert(Ptr{Cvoid}, next)
     picture_resource = cconvert(Ptr{VkVideoPictureResourceInfoKHR}, picture_resource)
     deps = Any[next, picture_resource]
-    vks = VkVideoReferenceSlotInfoKHR(structure_type(VkVideoReferenceSlotInfoKHR), unsafe_convert(Ptr{Cvoid}, next), slot_index, unsafe_convert(Ptr{VkVideoPictureResourceInfoKHR}, picture_resource))
+    vks = VkVideoReferenceSlotInfoKHR(structure_type(VkVideoReferenceSlotInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(Int32, slot_index), unsafe_convert(Ptr{VkVideoPictureResourceInfoKHR}, picture_resource))
     _VideoReferenceSlotInfoKHR(vks, deps)
 end
 
@@ -53514,7 +53522,7 @@ Arguments:
 function _VideoDecodeCapabilitiesKHR(flags::VideoDecodeCapabilityFlagKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoDecodeCapabilitiesKHR(structure_type(VkVideoDecodeCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), flags)
+    vks = VkVideoDecodeCapabilitiesKHR(structure_type(VkVideoDecodeCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoDecodeCapabilityFlagsKHR, flags))
     _VideoDecodeCapabilitiesKHR(vks, deps)
 end
 
@@ -53531,7 +53539,7 @@ Arguments:
 function _VideoDecodeUsageInfoKHR(; next = C_NULL, video_usage_hints = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoDecodeUsageInfoKHR(structure_type(VkVideoDecodeUsageInfoKHR), unsafe_convert(Ptr{Cvoid}, next), video_usage_hints)
+    vks = VkVideoDecodeUsageInfoKHR(structure_type(VkVideoDecodeUsageInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoDecodeUsageFlagsKHR, video_usage_hints))
     _VideoDecodeUsageInfoKHR(vks, deps)
 end
 
@@ -53557,7 +53565,7 @@ function _VideoDecodeInfoKHR(src_buffer, src_buffer_offset::Integer, src_buffer_
     setup_reference_slot = cconvert(Ptr{VkVideoReferenceSlotInfoKHR}, setup_reference_slot)
     reference_slots = cconvert(Ptr{VkVideoReferenceSlotInfoKHR}, reference_slots)
     deps = Any[next, setup_reference_slot, reference_slots]
-    vks = VkVideoDecodeInfoKHR(structure_type(VkVideoDecodeInfoKHR), unsafe_convert(Ptr{Cvoid}, next), flags, src_buffer, src_buffer_offset, src_buffer_range, dst_picture_resource.vks, unsafe_convert(Ptr{VkVideoReferenceSlotInfoKHR}, setup_reference_slot), reference_slot_count, unsafe_convert(Ptr{VkVideoReferenceSlotInfoKHR}, reference_slots))
+    vks = VkVideoDecodeInfoKHR(structure_type(VkVideoDecodeInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoDecodeFlagsKHR, flags), convert(VkBuffer, src_buffer), convert(VkDeviceSize, src_buffer_offset), convert(VkDeviceSize, src_buffer_range), dst_picture_resource.vks, unsafe_convert(Ptr{VkVideoReferenceSlotInfoKHR}, setup_reference_slot), convert(UInt32, reference_slot_count), unsafe_convert(Ptr{VkVideoReferenceSlotInfoKHR}, reference_slots))
     _VideoDecodeInfoKHR(vks, deps, src_buffer)
 end
 
@@ -53574,7 +53582,7 @@ Arguments:
 function _PhysicalDeviceVideoMaintenance1FeaturesKHR(video_maintenance_1::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceVideoMaintenance1FeaturesKHR(structure_type(VkPhysicalDeviceVideoMaintenance1FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), video_maintenance_1)
+    vks = VkPhysicalDeviceVideoMaintenance1FeaturesKHR(structure_type(VkPhysicalDeviceVideoMaintenance1FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, video_maintenance_1))
     _PhysicalDeviceVideoMaintenance1FeaturesKHR(vks, deps)
 end
 
@@ -53591,7 +53599,7 @@ Arguments:
 function _PhysicalDeviceVideoMaintenance2FeaturesKHR(video_maintenance_2::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceVideoMaintenance2FeaturesKHR(structure_type(VkPhysicalDeviceVideoMaintenance2FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), video_maintenance_2)
+    vks = VkPhysicalDeviceVideoMaintenance2FeaturesKHR(structure_type(VkPhysicalDeviceVideoMaintenance2FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, video_maintenance_2))
     _PhysicalDeviceVideoMaintenance2FeaturesKHR(vks, deps)
 end
 
@@ -53610,7 +53618,7 @@ Arguments:
 function _VideoInlineQueryInfoKHR(first_query::Integer, query_count::Integer; next = C_NULL, query_pool = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoInlineQueryInfoKHR(structure_type(VkVideoInlineQueryInfoKHR), unsafe_convert(Ptr{Cvoid}, next), query_pool, first_query, query_count)
+    vks = VkVideoInlineQueryInfoKHR(structure_type(VkVideoInlineQueryInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkQueryPool, query_pool), convert(UInt32, first_query), convert(UInt32, query_count))
     _VideoInlineQueryInfoKHR(vks, deps, query_pool)
 end
 
@@ -53628,7 +53636,7 @@ Arguments:
 function _VideoDecodeH264ProfileInfoKHR(std_profile_idc::StdVideoH264ProfileIdc; next = C_NULL, picture_layout = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoDecodeH264ProfileInfoKHR(structure_type(VkVideoDecodeH264ProfileInfoKHR), unsafe_convert(Ptr{Cvoid}, next), std_profile_idc, VkVideoDecodeH264PictureLayoutFlagBitsKHR(picture_layout.val))
+    vks = VkVideoDecodeH264ProfileInfoKHR(structure_type(VkVideoDecodeH264ProfileInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(StdVideoH264ProfileIdc, std_profile_idc), VkVideoDecodeH264PictureLayoutFlagBitsKHR(flag_value(picture_layout)))
     _VideoDecodeH264ProfileInfoKHR(vks, deps)
 end
 
@@ -53646,7 +53654,7 @@ Arguments:
 function _VideoDecodeH264CapabilitiesKHR(max_level_idc::StdVideoH264LevelIdc, field_offset_granularity::_Offset2D; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoDecodeH264CapabilitiesKHR(structure_type(VkVideoDecodeH264CapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), max_level_idc, field_offset_granularity.vks)
+    vks = VkVideoDecodeH264CapabilitiesKHR(structure_type(VkVideoDecodeH264CapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(StdVideoH264LevelIdc, max_level_idc), field_offset_granularity.vks)
     _VideoDecodeH264CapabilitiesKHR(vks, deps)
 end
 
@@ -53668,7 +53676,7 @@ function _VideoDecodeH264SessionParametersAddInfoKHR(std_sp_ss::AbstractArray, s
     std_sp_ss = cconvert(Ptr{StdVideoH264SequenceParameterSet}, std_sp_ss)
     std_pp_ss = cconvert(Ptr{StdVideoH264PictureParameterSet}, std_pp_ss)
     deps = Any[next, std_sp_ss, std_pp_ss]
-    vks = VkVideoDecodeH264SessionParametersAddInfoKHR(structure_type(VkVideoDecodeH264SessionParametersAddInfoKHR), unsafe_convert(Ptr{Cvoid}, next), std_sps_count, unsafe_convert(Ptr{StdVideoH264SequenceParameterSet}, std_sp_ss), std_pps_count, unsafe_convert(Ptr{StdVideoH264PictureParameterSet}, std_pp_ss))
+    vks = VkVideoDecodeH264SessionParametersAddInfoKHR(structure_type(VkVideoDecodeH264SessionParametersAddInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, std_sps_count), unsafe_convert(Ptr{StdVideoH264SequenceParameterSet}, std_sp_ss), convert(UInt32, std_pps_count), unsafe_convert(Ptr{StdVideoH264PictureParameterSet}, std_pp_ss))
     _VideoDecodeH264SessionParametersAddInfoKHR(vks, deps)
 end
 
@@ -53688,7 +53696,7 @@ function _VideoDecodeH264SessionParametersCreateInfoKHR(max_std_sps_count::Integ
     next = cconvert(Ptr{Cvoid}, next)
     parameters_add_info = cconvert(Ptr{VkVideoDecodeH264SessionParametersAddInfoKHR}, parameters_add_info)
     deps = Any[next, parameters_add_info]
-    vks = VkVideoDecodeH264SessionParametersCreateInfoKHR(structure_type(VkVideoDecodeH264SessionParametersCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), max_std_sps_count, max_std_pps_count, unsafe_convert(Ptr{VkVideoDecodeH264SessionParametersAddInfoKHR}, parameters_add_info))
+    vks = VkVideoDecodeH264SessionParametersCreateInfoKHR(structure_type(VkVideoDecodeH264SessionParametersCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_std_sps_count), convert(UInt32, max_std_pps_count), unsafe_convert(Ptr{VkVideoDecodeH264SessionParametersAddInfoKHR}, parameters_add_info))
     _VideoDecodeH264SessionParametersCreateInfoKHR(vks, deps)
 end
 
@@ -53729,7 +53737,7 @@ function _VideoDecodeH264PictureInfoKHR(std_picture_info::StdVideoDecodeH264Pict
     std_picture_info = cconvert(Ptr{StdVideoDecodeH264PictureInfo}, std_picture_info)
     slice_offsets = cconvert(Ptr{UInt32}, slice_offsets)
     deps = Any[next, std_picture_info, slice_offsets]
-    vks = VkVideoDecodeH264PictureInfoKHR(structure_type(VkVideoDecodeH264PictureInfoKHR), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{StdVideoDecodeH264PictureInfo}, std_picture_info), slice_count, unsafe_convert(Ptr{UInt32}, slice_offsets))
+    vks = VkVideoDecodeH264PictureInfoKHR(structure_type(VkVideoDecodeH264PictureInfoKHR), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{StdVideoDecodeH264PictureInfo}, std_picture_info), convert(UInt32, slice_count), unsafe_convert(Ptr{UInt32}, slice_offsets))
     _VideoDecodeH264PictureInfoKHR(vks, deps)
 end
 
@@ -53764,7 +53772,7 @@ Arguments:
 function _VideoDecodeH265ProfileInfoKHR(std_profile_idc::StdVideoH265ProfileIdc; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoDecodeH265ProfileInfoKHR(structure_type(VkVideoDecodeH265ProfileInfoKHR), unsafe_convert(Ptr{Cvoid}, next), std_profile_idc)
+    vks = VkVideoDecodeH265ProfileInfoKHR(structure_type(VkVideoDecodeH265ProfileInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(StdVideoH265ProfileIdc, std_profile_idc))
     _VideoDecodeH265ProfileInfoKHR(vks, deps)
 end
 
@@ -53781,7 +53789,7 @@ Arguments:
 function _VideoDecodeH265CapabilitiesKHR(max_level_idc::StdVideoH265LevelIdc; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoDecodeH265CapabilitiesKHR(structure_type(VkVideoDecodeH265CapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), max_level_idc)
+    vks = VkVideoDecodeH265CapabilitiesKHR(structure_type(VkVideoDecodeH265CapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(StdVideoH265LevelIdc, max_level_idc))
     _VideoDecodeH265CapabilitiesKHR(vks, deps)
 end
 
@@ -53806,7 +53814,7 @@ function _VideoDecodeH265SessionParametersAddInfoKHR(std_vp_ss::AbstractArray, s
     std_sp_ss = cconvert(Ptr{StdVideoH265SequenceParameterSet}, std_sp_ss)
     std_pp_ss = cconvert(Ptr{StdVideoH265PictureParameterSet}, std_pp_ss)
     deps = Any[next, std_vp_ss, std_sp_ss, std_pp_ss]
-    vks = VkVideoDecodeH265SessionParametersAddInfoKHR(structure_type(VkVideoDecodeH265SessionParametersAddInfoKHR), unsafe_convert(Ptr{Cvoid}, next), std_vps_count, unsafe_convert(Ptr{StdVideoH265VideoParameterSet}, std_vp_ss), std_sps_count, unsafe_convert(Ptr{StdVideoH265SequenceParameterSet}, std_sp_ss), std_pps_count, unsafe_convert(Ptr{StdVideoH265PictureParameterSet}, std_pp_ss))
+    vks = VkVideoDecodeH265SessionParametersAddInfoKHR(structure_type(VkVideoDecodeH265SessionParametersAddInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, std_vps_count), unsafe_convert(Ptr{StdVideoH265VideoParameterSet}, std_vp_ss), convert(UInt32, std_sps_count), unsafe_convert(Ptr{StdVideoH265SequenceParameterSet}, std_sp_ss), convert(UInt32, std_pps_count), unsafe_convert(Ptr{StdVideoH265PictureParameterSet}, std_pp_ss))
     _VideoDecodeH265SessionParametersAddInfoKHR(vks, deps)
 end
 
@@ -53827,7 +53835,7 @@ function _VideoDecodeH265SessionParametersCreateInfoKHR(max_std_vps_count::Integ
     next = cconvert(Ptr{Cvoid}, next)
     parameters_add_info = cconvert(Ptr{VkVideoDecodeH265SessionParametersAddInfoKHR}, parameters_add_info)
     deps = Any[next, parameters_add_info]
-    vks = VkVideoDecodeH265SessionParametersCreateInfoKHR(structure_type(VkVideoDecodeH265SessionParametersCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), max_std_vps_count, max_std_sps_count, max_std_pps_count, unsafe_convert(Ptr{VkVideoDecodeH265SessionParametersAddInfoKHR}, parameters_add_info))
+    vks = VkVideoDecodeH265SessionParametersCreateInfoKHR(structure_type(VkVideoDecodeH265SessionParametersCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_std_vps_count), convert(UInt32, max_std_sps_count), convert(UInt32, max_std_pps_count), unsafe_convert(Ptr{VkVideoDecodeH265SessionParametersAddInfoKHR}, parameters_add_info))
     _VideoDecodeH265SessionParametersCreateInfoKHR(vks, deps)
 end
 
@@ -53870,7 +53878,7 @@ function _VideoDecodeH265PictureInfoKHR(std_picture_info::StdVideoDecodeH265Pict
     std_picture_info = cconvert(Ptr{StdVideoDecodeH265PictureInfo}, std_picture_info)
     slice_segment_offsets = cconvert(Ptr{UInt32}, slice_segment_offsets)
     deps = Any[next, std_picture_info, slice_segment_offsets]
-    vks = VkVideoDecodeH265PictureInfoKHR(structure_type(VkVideoDecodeH265PictureInfoKHR), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{StdVideoDecodeH265PictureInfo}, std_picture_info), slice_segment_count, unsafe_convert(Ptr{UInt32}, slice_segment_offsets))
+    vks = VkVideoDecodeH265PictureInfoKHR(structure_type(VkVideoDecodeH265PictureInfoKHR), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{StdVideoDecodeH265PictureInfo}, std_picture_info), convert(UInt32, slice_segment_count), unsafe_convert(Ptr{UInt32}, slice_segment_offsets))
     _VideoDecodeH265PictureInfoKHR(vks, deps)
 end
 
@@ -53905,7 +53913,7 @@ Arguments:
 function _PhysicalDeviceVideoDecodeVP9FeaturesKHR(video_decode_vp_9::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceVideoDecodeVP9FeaturesKHR(structure_type(VkPhysicalDeviceVideoDecodeVP9FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), video_decode_vp_9)
+    vks = VkPhysicalDeviceVideoDecodeVP9FeaturesKHR(structure_type(VkPhysicalDeviceVideoDecodeVP9FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, video_decode_vp_9))
     _PhysicalDeviceVideoDecodeVP9FeaturesKHR(vks, deps)
 end
 
@@ -53922,7 +53930,7 @@ Arguments:
 function _VideoDecodeVP9ProfileInfoKHR(std_profile::StdVideoVP9Profile; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoDecodeVP9ProfileInfoKHR(structure_type(VkVideoDecodeVP9ProfileInfoKHR), unsafe_convert(Ptr{Cvoid}, next), std_profile)
+    vks = VkVideoDecodeVP9ProfileInfoKHR(structure_type(VkVideoDecodeVP9ProfileInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(StdVideoVP9Profile, std_profile))
     _VideoDecodeVP9ProfileInfoKHR(vks, deps)
 end
 
@@ -53939,7 +53947,7 @@ Arguments:
 function _VideoDecodeVP9CapabilitiesKHR(max_level::StdVideoVP9Level; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoDecodeVP9CapabilitiesKHR(structure_type(VkVideoDecodeVP9CapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), max_level)
+    vks = VkVideoDecodeVP9CapabilitiesKHR(structure_type(VkVideoDecodeVP9CapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(StdVideoVP9Level, max_level))
     _VideoDecodeVP9CapabilitiesKHR(vks, deps)
 end
 
@@ -53961,7 +53969,7 @@ function _VideoDecodeVP9PictureInfoKHR(std_picture_info::StdVideoDecodeVP9Pictur
     next = cconvert(Ptr{Cvoid}, next)
     std_picture_info = cconvert(Ptr{StdVideoDecodeVP9PictureInfo}, std_picture_info)
     deps = Any[next, std_picture_info]
-    vks = VkVideoDecodeVP9PictureInfoKHR(structure_type(VkVideoDecodeVP9PictureInfoKHR), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{StdVideoDecodeVP9PictureInfo}, std_picture_info), reference_name_slot_indices, uncompressed_header_offset, compressed_header_offset, tiles_offset)
+    vks = VkVideoDecodeVP9PictureInfoKHR(structure_type(VkVideoDecodeVP9PictureInfoKHR), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{StdVideoDecodeVP9PictureInfo}, std_picture_info), convert(NTuple{Int(VK_MAX_VIDEO_VP9_REFERENCES_PER_FRAME_KHR), Int32}, reference_name_slot_indices), convert(UInt32, uncompressed_header_offset), convert(UInt32, compressed_header_offset), convert(UInt32, tiles_offset))
     _VideoDecodeVP9PictureInfoKHR(vks, deps)
 end
 
@@ -53979,7 +53987,7 @@ Arguments:
 function _VideoDecodeAV1ProfileInfoKHR(std_profile::StdVideoAV1Profile, film_grain_support::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoDecodeAV1ProfileInfoKHR(structure_type(VkVideoDecodeAV1ProfileInfoKHR), unsafe_convert(Ptr{Cvoid}, next), std_profile, film_grain_support)
+    vks = VkVideoDecodeAV1ProfileInfoKHR(structure_type(VkVideoDecodeAV1ProfileInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(StdVideoAV1Profile, std_profile), convert(VkBool32, film_grain_support))
     _VideoDecodeAV1ProfileInfoKHR(vks, deps)
 end
 
@@ -53996,7 +54004,7 @@ Arguments:
 function _VideoDecodeAV1CapabilitiesKHR(max_level::StdVideoAV1Level; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoDecodeAV1CapabilitiesKHR(structure_type(VkVideoDecodeAV1CapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), max_level)
+    vks = VkVideoDecodeAV1CapabilitiesKHR(structure_type(VkVideoDecodeAV1CapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(StdVideoAV1Level, max_level))
     _VideoDecodeAV1CapabilitiesKHR(vks, deps)
 end
 
@@ -54057,7 +54065,7 @@ function _VideoDecodeAV1PictureInfoKHR(std_picture_info::StdVideoDecodeAV1Pictur
     tile_offsets = cconvert(Ptr{UInt32}, tile_offsets)
     tile_sizes = cconvert(Ptr{UInt32}, tile_sizes)
     deps = Any[next, std_picture_info, tile_offsets, tile_sizes]
-    vks = VkVideoDecodeAV1PictureInfoKHR(structure_type(VkVideoDecodeAV1PictureInfoKHR), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{StdVideoDecodeAV1PictureInfo}, std_picture_info), reference_name_slot_indices, frame_header_offset, tile_count, unsafe_convert(Ptr{UInt32}, tile_offsets), unsafe_convert(Ptr{UInt32}, tile_sizes))
+    vks = VkVideoDecodeAV1PictureInfoKHR(structure_type(VkVideoDecodeAV1PictureInfoKHR), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{StdVideoDecodeAV1PictureInfo}, std_picture_info), convert(NTuple{Int(VK_MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR), Int32}, reference_name_slot_indices), convert(UInt32, frame_header_offset), convert(UInt32, tile_count), unsafe_convert(Ptr{UInt32}, tile_offsets), unsafe_convert(Ptr{UInt32}, tile_sizes))
     _VideoDecodeAV1PictureInfoKHR(vks, deps)
 end
 
@@ -54102,7 +54110,7 @@ function _VideoSessionCreateInfoKHR(queue_family_index::Integer, video_profile::
     video_profile = cconvert(Ptr{VkVideoProfileInfoKHR}, video_profile)
     std_header_version = cconvert(Ptr{VkExtensionProperties}, std_header_version)
     deps = Any[next, video_profile, std_header_version]
-    vks = VkVideoSessionCreateInfoKHR(structure_type(VkVideoSessionCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), queue_family_index, flags, unsafe_convert(Ptr{VkVideoProfileInfoKHR}, video_profile), picture_format, max_coded_extent.vks, reference_picture_format, max_dpb_slots, max_active_reference_pictures, unsafe_convert(Ptr{VkExtensionProperties}, std_header_version))
+    vks = VkVideoSessionCreateInfoKHR(structure_type(VkVideoSessionCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, queue_family_index), convert(VkVideoSessionCreateFlagsKHR, flags), unsafe_convert(Ptr{VkVideoProfileInfoKHR}, video_profile), convert(VkFormat, picture_format), max_coded_extent.vks, convert(VkFormat, reference_picture_format), convert(UInt32, max_dpb_slots), convert(UInt32, max_active_reference_pictures), unsafe_convert(Ptr{VkExtensionProperties}, std_header_version))
     _VideoSessionCreateInfoKHR(vks, deps)
 end
 
@@ -54121,7 +54129,7 @@ Arguments:
 function _VideoSessionParametersCreateInfoKHR(video_session; next = C_NULL, flags = 0, video_session_parameters_template = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoSessionParametersCreateInfoKHR(structure_type(VkVideoSessionParametersCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), flags, video_session_parameters_template, video_session)
+    vks = VkVideoSessionParametersCreateInfoKHR(structure_type(VkVideoSessionParametersCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoSessionParametersCreateFlagsKHR, flags), convert(VkVideoSessionParametersKHR, video_session_parameters_template), convert(VkVideoSessionKHR, video_session))
     _VideoSessionParametersCreateInfoKHR(vks, deps, video_session_parameters_template, video_session)
 end
 
@@ -54138,7 +54146,7 @@ Arguments:
 function _VideoSessionParametersUpdateInfoKHR(update_sequence_count::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoSessionParametersUpdateInfoKHR(structure_type(VkVideoSessionParametersUpdateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), update_sequence_count)
+    vks = VkVideoSessionParametersUpdateInfoKHR(structure_type(VkVideoSessionParametersUpdateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, update_sequence_count))
     _VideoSessionParametersUpdateInfoKHR(vks, deps)
 end
 
@@ -54155,7 +54163,7 @@ Arguments:
 function _VideoEncodeSessionParametersGetInfoKHR(video_session_parameters; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeSessionParametersGetInfoKHR(structure_type(VkVideoEncodeSessionParametersGetInfoKHR), unsafe_convert(Ptr{Cvoid}, next), video_session_parameters)
+    vks = VkVideoEncodeSessionParametersGetInfoKHR(structure_type(VkVideoEncodeSessionParametersGetInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoSessionParametersKHR, video_session_parameters))
     _VideoEncodeSessionParametersGetInfoKHR(vks, deps, video_session_parameters)
 end
 
@@ -54172,7 +54180,7 @@ Arguments:
 function _VideoEncodeSessionParametersFeedbackInfoKHR(has_overrides::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeSessionParametersFeedbackInfoKHR(structure_type(VkVideoEncodeSessionParametersFeedbackInfoKHR), unsafe_convert(Ptr{Cvoid}, next), has_overrides)
+    vks = VkVideoEncodeSessionParametersFeedbackInfoKHR(structure_type(VkVideoEncodeSessionParametersFeedbackInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, has_overrides))
     _VideoEncodeSessionParametersFeedbackInfoKHR(vks, deps)
 end
 
@@ -54194,7 +54202,7 @@ function _VideoBeginCodingInfoKHR(video_session, reference_slots::AbstractArray;
     next = cconvert(Ptr{Cvoid}, next)
     reference_slots = cconvert(Ptr{VkVideoReferenceSlotInfoKHR}, reference_slots)
     deps = Any[next, reference_slots]
-    vks = VkVideoBeginCodingInfoKHR(structure_type(VkVideoBeginCodingInfoKHR), unsafe_convert(Ptr{Cvoid}, next), flags, video_session, video_session_parameters, reference_slot_count, unsafe_convert(Ptr{VkVideoReferenceSlotInfoKHR}, reference_slots))
+    vks = VkVideoBeginCodingInfoKHR(structure_type(VkVideoBeginCodingInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoBeginCodingFlagsKHR, flags), convert(VkVideoSessionKHR, video_session), convert(VkVideoSessionParametersKHR, video_session_parameters), convert(UInt32, reference_slot_count), unsafe_convert(Ptr{VkVideoReferenceSlotInfoKHR}, reference_slots))
     _VideoBeginCodingInfoKHR(vks, deps, video_session, video_session_parameters)
 end
 
@@ -54211,7 +54219,7 @@ Arguments:
 function _VideoEndCodingInfoKHR(; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEndCodingInfoKHR(structure_type(VkVideoEndCodingInfoKHR), unsafe_convert(Ptr{Cvoid}, next), flags)
+    vks = VkVideoEndCodingInfoKHR(structure_type(VkVideoEndCodingInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoEndCodingFlagsKHR, flags))
     _VideoEndCodingInfoKHR(vks, deps)
 end
 
@@ -54228,7 +54236,7 @@ Arguments:
 function _VideoCodingControlInfoKHR(; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoCodingControlInfoKHR(structure_type(VkVideoCodingControlInfoKHR), unsafe_convert(Ptr{Cvoid}, next), flags)
+    vks = VkVideoCodingControlInfoKHR(structure_type(VkVideoCodingControlInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoCodingControlFlagsKHR, flags))
     _VideoCodingControlInfoKHR(vks, deps)
 end
 
@@ -54247,7 +54255,7 @@ Arguments:
 function _VideoEncodeUsageInfoKHR(; next = C_NULL, video_usage_hints = 0, video_content_hints = 0, tuning_mode = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeUsageInfoKHR(structure_type(VkVideoEncodeUsageInfoKHR), unsafe_convert(Ptr{Cvoid}, next), video_usage_hints, video_content_hints, tuning_mode)
+    vks = VkVideoEncodeUsageInfoKHR(structure_type(VkVideoEncodeUsageInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoEncodeUsageFlagsKHR, video_usage_hints), convert(VkVideoEncodeContentFlagsKHR, video_content_hints), convert(VkVideoEncodeTuningModeKHR, tuning_mode))
     _VideoEncodeUsageInfoKHR(vks, deps)
 end
 
@@ -54274,7 +54282,7 @@ function _VideoEncodeInfoKHR(dst_buffer, dst_buffer_offset::Integer, dst_buffer_
     setup_reference_slot = cconvert(Ptr{VkVideoReferenceSlotInfoKHR}, setup_reference_slot)
     reference_slots = cconvert(Ptr{VkVideoReferenceSlotInfoKHR}, reference_slots)
     deps = Any[next, setup_reference_slot, reference_slots]
-    vks = VkVideoEncodeInfoKHR(structure_type(VkVideoEncodeInfoKHR), unsafe_convert(Ptr{Cvoid}, next), flags, dst_buffer, dst_buffer_offset, dst_buffer_range, src_picture_resource.vks, unsafe_convert(Ptr{VkVideoReferenceSlotInfoKHR}, setup_reference_slot), reference_slot_count, unsafe_convert(Ptr{VkVideoReferenceSlotInfoKHR}, reference_slots), preceding_externally_encoded_bytes)
+    vks = VkVideoEncodeInfoKHR(structure_type(VkVideoEncodeInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoEncodeFlagsKHR, flags), convert(VkBuffer, dst_buffer), convert(VkDeviceSize, dst_buffer_offset), convert(VkDeviceSize, dst_buffer_range), src_picture_resource.vks, unsafe_convert(Ptr{VkVideoReferenceSlotInfoKHR}, setup_reference_slot), convert(UInt32, reference_slot_count), unsafe_convert(Ptr{VkVideoReferenceSlotInfoKHR}, reference_slots), convert(UInt32, preceding_externally_encoded_bytes))
     _VideoEncodeInfoKHR(vks, deps, dst_buffer)
 end
 
@@ -54292,7 +54300,7 @@ Arguments:
 function _VideoEncodeQuantizationMapInfoKHR(quantization_map_extent::_Extent2D; next = C_NULL, quantization_map = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeQuantizationMapInfoKHR(structure_type(VkVideoEncodeQuantizationMapInfoKHR), unsafe_convert(Ptr{Cvoid}, next), quantization_map, quantization_map_extent.vks)
+    vks = VkVideoEncodeQuantizationMapInfoKHR(structure_type(VkVideoEncodeQuantizationMapInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkImageView, quantization_map), quantization_map_extent.vks)
     _VideoEncodeQuantizationMapInfoKHR(vks, deps, quantization_map)
 end
 
@@ -54326,7 +54334,7 @@ Arguments:
 function _PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR(video_encode_quantization_map::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR(structure_type(VkPhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), video_encode_quantization_map)
+    vks = VkPhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR(structure_type(VkPhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, video_encode_quantization_map))
     _PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR(vks, deps)
 end
 
@@ -54343,7 +54351,7 @@ Arguments:
 function _QueryPoolVideoEncodeFeedbackCreateInfoKHR(encode_feedback_flags::VideoEncodeFeedbackFlagKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkQueryPoolVideoEncodeFeedbackCreateInfoKHR(structure_type(VkQueryPoolVideoEncodeFeedbackCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), encode_feedback_flags)
+    vks = VkQueryPoolVideoEncodeFeedbackCreateInfoKHR(structure_type(VkQueryPoolVideoEncodeFeedbackCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoEncodeFeedbackFlagsKHR, encode_feedback_flags))
     _QueryPoolVideoEncodeFeedbackCreateInfoKHR(vks, deps)
 end
 
@@ -54360,7 +54368,7 @@ Arguments:
 function _VideoEncodeQualityLevelInfoKHR(quality_level::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeQualityLevelInfoKHR(structure_type(VkVideoEncodeQualityLevelInfoKHR), unsafe_convert(Ptr{Cvoid}, next), quality_level)
+    vks = VkVideoEncodeQualityLevelInfoKHR(structure_type(VkVideoEncodeQualityLevelInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, quality_level))
     _VideoEncodeQualityLevelInfoKHR(vks, deps)
 end
 
@@ -54379,7 +54387,7 @@ function _PhysicalDeviceVideoEncodeQualityLevelInfoKHR(video_profile::_VideoProf
     next = cconvert(Ptr{Cvoid}, next)
     video_profile = cconvert(Ptr{VkVideoProfileInfoKHR}, video_profile)
     deps = Any[next, video_profile]
-    vks = VkPhysicalDeviceVideoEncodeQualityLevelInfoKHR(structure_type(VkPhysicalDeviceVideoEncodeQualityLevelInfoKHR), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{VkVideoProfileInfoKHR}, video_profile), quality_level)
+    vks = VkPhysicalDeviceVideoEncodeQualityLevelInfoKHR(structure_type(VkPhysicalDeviceVideoEncodeQualityLevelInfoKHR), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{VkVideoProfileInfoKHR}, video_profile), convert(UInt32, quality_level))
     _PhysicalDeviceVideoEncodeQualityLevelInfoKHR(vks, deps)
 end
 
@@ -54397,7 +54405,7 @@ Arguments:
 function _VideoEncodeQualityLevelPropertiesKHR(preferred_rate_control_mode::VideoEncodeRateControlModeFlagKHR, preferred_rate_control_layer_count::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeQualityLevelPropertiesKHR(structure_type(VkVideoEncodeQualityLevelPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), VkVideoEncodeRateControlModeFlagBitsKHR(preferred_rate_control_mode.val), preferred_rate_control_layer_count)
+    vks = VkVideoEncodeQualityLevelPropertiesKHR(structure_type(VkVideoEncodeQualityLevelPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), VkVideoEncodeRateControlModeFlagBitsKHR(flag_value(preferred_rate_control_mode)), convert(UInt32, preferred_rate_control_layer_count))
     _VideoEncodeQualityLevelPropertiesKHR(vks, deps)
 end
 
@@ -54420,7 +54428,7 @@ function _VideoEncodeRateControlInfoKHR(flags::Integer, rate_control_mode::Video
     next = cconvert(Ptr{Cvoid}, next)
     layers = cconvert(Ptr{VkVideoEncodeRateControlLayerInfoKHR}, layers)
     deps = Any[next, layers]
-    vks = VkVideoEncodeRateControlInfoKHR(structure_type(VkVideoEncodeRateControlInfoKHR), unsafe_convert(Ptr{Cvoid}, next), flags, VkVideoEncodeRateControlModeFlagBitsKHR(rate_control_mode.val), layer_count, unsafe_convert(Ptr{VkVideoEncodeRateControlLayerInfoKHR}, layers), virtual_buffer_size_in_ms, initial_virtual_buffer_size_in_ms)
+    vks = VkVideoEncodeRateControlInfoKHR(structure_type(VkVideoEncodeRateControlInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoEncodeRateControlFlagsKHR, flags), VkVideoEncodeRateControlModeFlagBitsKHR(flag_value(rate_control_mode)), convert(UInt32, layer_count), unsafe_convert(Ptr{VkVideoEncodeRateControlLayerInfoKHR}, layers), convert(UInt32, virtual_buffer_size_in_ms), convert(UInt32, initial_virtual_buffer_size_in_ms))
     _VideoEncodeRateControlInfoKHR(vks, deps)
 end
 
@@ -54440,7 +54448,7 @@ Arguments:
 function _VideoEncodeRateControlLayerInfoKHR(average_bitrate::Integer, max_bitrate::Integer, frame_rate_numerator::Integer, frame_rate_denominator::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeRateControlLayerInfoKHR(structure_type(VkVideoEncodeRateControlLayerInfoKHR), unsafe_convert(Ptr{Cvoid}, next), average_bitrate, max_bitrate, frame_rate_numerator, frame_rate_denominator)
+    vks = VkVideoEncodeRateControlLayerInfoKHR(structure_type(VkVideoEncodeRateControlLayerInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt64, average_bitrate), convert(UInt64, max_bitrate), convert(UInt32, frame_rate_numerator), convert(UInt32, frame_rate_denominator))
     _VideoEncodeRateControlLayerInfoKHR(vks, deps)
 end
 
@@ -54463,7 +54471,7 @@ Arguments:
 function _VideoEncodeCapabilitiesKHR(flags::VideoEncodeCapabilityFlagKHR, rate_control_modes::VideoEncodeRateControlModeFlagKHR, max_rate_control_layers::Integer, max_bitrate::Integer, max_quality_levels::Integer, encode_input_picture_granularity::_Extent2D, supported_encode_feedback_flags::VideoEncodeFeedbackFlagKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeCapabilitiesKHR(structure_type(VkVideoEncodeCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), flags, rate_control_modes, max_rate_control_layers, max_bitrate, max_quality_levels, encode_input_picture_granularity.vks, supported_encode_feedback_flags)
+    vks = VkVideoEncodeCapabilitiesKHR(structure_type(VkVideoEncodeCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoEncodeCapabilityFlagsKHR, flags), convert(VkVideoEncodeRateControlModeFlagsKHR, rate_control_modes), convert(UInt32, max_rate_control_layers), convert(UInt64, max_bitrate), convert(UInt32, max_quality_levels), encode_input_picture_granularity.vks, convert(VkVideoEncodeFeedbackFlagsKHR, supported_encode_feedback_flags))
     _VideoEncodeCapabilitiesKHR(vks, deps)
 end
 
@@ -54492,7 +54500,7 @@ Arguments:
 function _VideoEncodeH264CapabilitiesKHR(flags::VideoEncodeH264CapabilityFlagKHR, max_level_idc::StdVideoH264LevelIdc, max_slice_count::Integer, max_p_picture_l_0_reference_count::Integer, max_b_picture_l_0_reference_count::Integer, max_l_1_reference_count::Integer, max_temporal_layer_count::Integer, expect_dyadic_temporal_layer_pattern::Bool, min_qp::Integer, max_qp::Integer, prefers_gop_remaining_frames::Bool, requires_gop_remaining_frames::Bool, std_syntax_flags::VideoEncodeH264StdFlagKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeH264CapabilitiesKHR(structure_type(VkVideoEncodeH264CapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), flags, max_level_idc, max_slice_count, max_p_picture_l_0_reference_count, max_b_picture_l_0_reference_count, max_l_1_reference_count, max_temporal_layer_count, expect_dyadic_temporal_layer_pattern, min_qp, max_qp, prefers_gop_remaining_frames, requires_gop_remaining_frames, std_syntax_flags)
+    vks = VkVideoEncodeH264CapabilitiesKHR(structure_type(VkVideoEncodeH264CapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoEncodeH264CapabilityFlagsKHR, flags), convert(StdVideoH264LevelIdc, max_level_idc), convert(UInt32, max_slice_count), convert(UInt32, max_p_picture_l_0_reference_count), convert(UInt32, max_b_picture_l_0_reference_count), convert(UInt32, max_l_1_reference_count), convert(UInt32, max_temporal_layer_count), convert(VkBool32, expect_dyadic_temporal_layer_pattern), convert(Int32, min_qp), convert(Int32, max_qp), convert(VkBool32, prefers_gop_remaining_frames), convert(VkBool32, requires_gop_remaining_frames), convert(VkVideoEncodeH264StdFlagsKHR, std_syntax_flags))
     _VideoEncodeH264CapabilitiesKHR(vks, deps)
 end
 
@@ -54517,7 +54525,7 @@ Arguments:
 function _VideoEncodeH264QualityLevelPropertiesKHR(preferred_rate_control_flags::VideoEncodeH264RateControlFlagKHR, preferred_gop_frame_count::Integer, preferred_idr_period::Integer, preferred_consecutive_b_frame_count::Integer, preferred_temporal_layer_count::Integer, preferred_constant_qp::_VideoEncodeH264QpKHR, preferred_max_l_0_reference_count::Integer, preferred_max_l_1_reference_count::Integer, preferred_std_entropy_coding_mode_flag::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeH264QualityLevelPropertiesKHR(structure_type(VkVideoEncodeH264QualityLevelPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), preferred_rate_control_flags, preferred_gop_frame_count, preferred_idr_period, preferred_consecutive_b_frame_count, preferred_temporal_layer_count, preferred_constant_qp.vks, preferred_max_l_0_reference_count, preferred_max_l_1_reference_count, preferred_std_entropy_coding_mode_flag)
+    vks = VkVideoEncodeH264QualityLevelPropertiesKHR(structure_type(VkVideoEncodeH264QualityLevelPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoEncodeH264RateControlFlagsKHR, preferred_rate_control_flags), convert(UInt32, preferred_gop_frame_count), convert(UInt32, preferred_idr_period), convert(UInt32, preferred_consecutive_b_frame_count), convert(UInt32, preferred_temporal_layer_count), preferred_constant_qp.vks, convert(UInt32, preferred_max_l_0_reference_count), convert(UInt32, preferred_max_l_1_reference_count), convert(VkBool32, preferred_std_entropy_coding_mode_flag))
     _VideoEncodeH264QualityLevelPropertiesKHR(vks, deps)
 end
 
@@ -54535,7 +54543,7 @@ Arguments:
 function _VideoEncodeH264SessionCreateInfoKHR(use_max_level_idc::Bool, max_level_idc::StdVideoH264LevelIdc; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeH264SessionCreateInfoKHR(structure_type(VkVideoEncodeH264SessionCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), use_max_level_idc, max_level_idc)
+    vks = VkVideoEncodeH264SessionCreateInfoKHR(structure_type(VkVideoEncodeH264SessionCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, use_max_level_idc), convert(StdVideoH264LevelIdc, max_level_idc))
     _VideoEncodeH264SessionCreateInfoKHR(vks, deps)
 end
 
@@ -54557,7 +54565,7 @@ function _VideoEncodeH264SessionParametersAddInfoKHR(; next = C_NULL, std_sp_ss 
     std_sp_ss = cconvert(Ptr{StdVideoH264SequenceParameterSet}, std_sp_ss)
     std_pp_ss = cconvert(Ptr{StdVideoH264PictureParameterSet}, std_pp_ss)
     deps = Any[next, std_sp_ss, std_pp_ss]
-    vks = VkVideoEncodeH264SessionParametersAddInfoKHR(structure_type(VkVideoEncodeH264SessionParametersAddInfoKHR), unsafe_convert(Ptr{Cvoid}, next), std_sps_count, unsafe_convert(Ptr{StdVideoH264SequenceParameterSet}, std_sp_ss), std_pps_count, unsafe_convert(Ptr{StdVideoH264PictureParameterSet}, std_pp_ss))
+    vks = VkVideoEncodeH264SessionParametersAddInfoKHR(structure_type(VkVideoEncodeH264SessionParametersAddInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, std_sps_count), unsafe_convert(Ptr{StdVideoH264SequenceParameterSet}, std_sp_ss), convert(UInt32, std_pps_count), unsafe_convert(Ptr{StdVideoH264PictureParameterSet}, std_pp_ss))
     _VideoEncodeH264SessionParametersAddInfoKHR(vks, deps)
 end
 
@@ -54577,7 +54585,7 @@ function _VideoEncodeH264SessionParametersCreateInfoKHR(max_std_sps_count::Integ
     next = cconvert(Ptr{Cvoid}, next)
     parameters_add_info = cconvert(Ptr{VkVideoEncodeH264SessionParametersAddInfoKHR}, parameters_add_info)
     deps = Any[next, parameters_add_info]
-    vks = VkVideoEncodeH264SessionParametersCreateInfoKHR(structure_type(VkVideoEncodeH264SessionParametersCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), max_std_sps_count, max_std_pps_count, unsafe_convert(Ptr{VkVideoEncodeH264SessionParametersAddInfoKHR}, parameters_add_info))
+    vks = VkVideoEncodeH264SessionParametersCreateInfoKHR(structure_type(VkVideoEncodeH264SessionParametersCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_std_sps_count), convert(UInt32, max_std_pps_count), unsafe_convert(Ptr{VkVideoEncodeH264SessionParametersAddInfoKHR}, parameters_add_info))
     _VideoEncodeH264SessionParametersCreateInfoKHR(vks, deps)
 end
 
@@ -54597,7 +54605,7 @@ Arguments:
 function _VideoEncodeH264SessionParametersGetInfoKHR(write_std_sps::Bool, write_std_pps::Bool, std_sps_id::Integer, std_pps_id::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeH264SessionParametersGetInfoKHR(structure_type(VkVideoEncodeH264SessionParametersGetInfoKHR), unsafe_convert(Ptr{Cvoid}, next), write_std_sps, write_std_pps, std_sps_id, std_pps_id)
+    vks = VkVideoEncodeH264SessionParametersGetInfoKHR(structure_type(VkVideoEncodeH264SessionParametersGetInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, write_std_sps), convert(VkBool32, write_std_pps), convert(UInt32, std_sps_id), convert(UInt32, std_pps_id))
     _VideoEncodeH264SessionParametersGetInfoKHR(vks, deps)
 end
 
@@ -54615,7 +54623,7 @@ Arguments:
 function _VideoEncodeH264SessionParametersFeedbackInfoKHR(has_std_sps_overrides::Bool, has_std_pps_overrides::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeH264SessionParametersFeedbackInfoKHR(structure_type(VkVideoEncodeH264SessionParametersFeedbackInfoKHR), unsafe_convert(Ptr{Cvoid}, next), has_std_sps_overrides, has_std_pps_overrides)
+    vks = VkVideoEncodeH264SessionParametersFeedbackInfoKHR(structure_type(VkVideoEncodeH264SessionParametersFeedbackInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, has_std_sps_overrides), convert(VkBool32, has_std_pps_overrides))
     _VideoEncodeH264SessionParametersFeedbackInfoKHR(vks, deps)
 end
 
@@ -54655,7 +54663,7 @@ function _VideoEncodeH264PictureInfoKHR(nalu_slice_entries::AbstractArray, std_p
     nalu_slice_entries = cconvert(Ptr{VkVideoEncodeH264NaluSliceInfoKHR}, nalu_slice_entries)
     std_picture_info = cconvert(Ptr{StdVideoEncodeH264PictureInfo}, std_picture_info)
     deps = Any[next, nalu_slice_entries, std_picture_info]
-    vks = VkVideoEncodeH264PictureInfoKHR(structure_type(VkVideoEncodeH264PictureInfoKHR), unsafe_convert(Ptr{Cvoid}, next), nalu_slice_entry_count, unsafe_convert(Ptr{VkVideoEncodeH264NaluSliceInfoKHR}, nalu_slice_entries), unsafe_convert(Ptr{StdVideoEncodeH264PictureInfo}, std_picture_info), generate_prefix_nalu)
+    vks = VkVideoEncodeH264PictureInfoKHR(structure_type(VkVideoEncodeH264PictureInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, nalu_slice_entry_count), unsafe_convert(Ptr{VkVideoEncodeH264NaluSliceInfoKHR}, nalu_slice_entries), unsafe_convert(Ptr{StdVideoEncodeH264PictureInfo}, std_picture_info), convert(VkBool32, generate_prefix_nalu))
     _VideoEncodeH264PictureInfoKHR(vks, deps)
 end
 
@@ -54672,7 +54680,7 @@ Arguments:
 function _VideoEncodeH264ProfileInfoKHR(std_profile_idc::StdVideoH264ProfileIdc; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeH264ProfileInfoKHR(structure_type(VkVideoEncodeH264ProfileInfoKHR), unsafe_convert(Ptr{Cvoid}, next), std_profile_idc)
+    vks = VkVideoEncodeH264ProfileInfoKHR(structure_type(VkVideoEncodeH264ProfileInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(StdVideoH264ProfileIdc, std_profile_idc))
     _VideoEncodeH264ProfileInfoKHR(vks, deps)
 end
 
@@ -54691,7 +54699,7 @@ function _VideoEncodeH264NaluSliceInfoKHR(constant_qp::Integer, std_slice_header
     next = cconvert(Ptr{Cvoid}, next)
     std_slice_header = cconvert(Ptr{StdVideoEncodeH264SliceHeader}, std_slice_header)
     deps = Any[next, std_slice_header]
-    vks = VkVideoEncodeH264NaluSliceInfoKHR(structure_type(VkVideoEncodeH264NaluSliceInfoKHR), unsafe_convert(Ptr{Cvoid}, next), constant_qp, unsafe_convert(Ptr{StdVideoEncodeH264SliceHeader}, std_slice_header))
+    vks = VkVideoEncodeH264NaluSliceInfoKHR(structure_type(VkVideoEncodeH264NaluSliceInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(Int32, constant_qp), unsafe_convert(Ptr{StdVideoEncodeH264SliceHeader}, std_slice_header))
     _VideoEncodeH264NaluSliceInfoKHR(vks, deps)
 end
 
@@ -54712,7 +54720,7 @@ Arguments:
 function _VideoEncodeH264RateControlInfoKHR(gop_frame_count::Integer, idr_period::Integer, consecutive_b_frame_count::Integer, temporal_layer_count::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeH264RateControlInfoKHR(structure_type(VkVideoEncodeH264RateControlInfoKHR), unsafe_convert(Ptr{Cvoid}, next), flags, gop_frame_count, idr_period, consecutive_b_frame_count, temporal_layer_count)
+    vks = VkVideoEncodeH264RateControlInfoKHR(structure_type(VkVideoEncodeH264RateControlInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoEncodeH264RateControlFlagsKHR, flags), convert(UInt32, gop_frame_count), convert(UInt32, idr_period), convert(UInt32, consecutive_b_frame_count), convert(UInt32, temporal_layer_count))
     _VideoEncodeH264RateControlInfoKHR(vks, deps)
 end
 
@@ -54728,7 +54736,7 @@ Arguments:
 
 """
 function _VideoEncodeH264QpKHR(qp_i::Integer, qp_p::Integer, qp_b::Integer)
-    _VideoEncodeH264QpKHR(VkVideoEncodeH264QpKHR(qp_i, qp_p, qp_b))
+    _VideoEncodeH264QpKHR(VkVideoEncodeH264QpKHR(convert(Int32, qp_i), convert(Int32, qp_p), convert(Int32, qp_b)))
 end
 
 """
@@ -54743,7 +54751,7 @@ Arguments:
 
 """
 function _VideoEncodeH264FrameSizeKHR(frame_i_size::Integer, frame_p_size::Integer, frame_b_size::Integer)
-    _VideoEncodeH264FrameSizeKHR(VkVideoEncodeH264FrameSizeKHR(frame_i_size, frame_p_size, frame_b_size))
+    _VideoEncodeH264FrameSizeKHR(VkVideoEncodeH264FrameSizeKHR(convert(UInt32, frame_i_size), convert(UInt32, frame_p_size), convert(UInt32, frame_b_size)))
 end
 
 """
@@ -54762,7 +54770,7 @@ Arguments:
 function _VideoEncodeH264GopRemainingFrameInfoKHR(use_gop_remaining_frames::Bool, gop_remaining_i::Integer, gop_remaining_p::Integer, gop_remaining_b::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeH264GopRemainingFrameInfoKHR(structure_type(VkVideoEncodeH264GopRemainingFrameInfoKHR), unsafe_convert(Ptr{Cvoid}, next), use_gop_remaining_frames, gop_remaining_i, gop_remaining_p, gop_remaining_b)
+    vks = VkVideoEncodeH264GopRemainingFrameInfoKHR(structure_type(VkVideoEncodeH264GopRemainingFrameInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, use_gop_remaining_frames), convert(UInt32, gop_remaining_i), convert(UInt32, gop_remaining_p), convert(UInt32, gop_remaining_b))
     _VideoEncodeH264GopRemainingFrameInfoKHR(vks, deps)
 end
 
@@ -54784,7 +54792,7 @@ Arguments:
 function _VideoEncodeH264RateControlLayerInfoKHR(use_min_qp::Bool, min_qp::_VideoEncodeH264QpKHR, use_max_qp::Bool, max_qp::_VideoEncodeH264QpKHR, use_max_frame_size::Bool, max_frame_size::_VideoEncodeH264FrameSizeKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeH264RateControlLayerInfoKHR(structure_type(VkVideoEncodeH264RateControlLayerInfoKHR), unsafe_convert(Ptr{Cvoid}, next), use_min_qp, min_qp.vks, use_max_qp, max_qp.vks, use_max_frame_size, max_frame_size.vks)
+    vks = VkVideoEncodeH264RateControlLayerInfoKHR(structure_type(VkVideoEncodeH264RateControlLayerInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, use_min_qp), min_qp.vks, convert(VkBool32, use_max_qp), max_qp.vks, convert(VkBool32, use_max_frame_size), max_frame_size.vks)
     _VideoEncodeH264RateControlLayerInfoKHR(vks, deps)
 end
 
@@ -54816,7 +54824,7 @@ Arguments:
 function _VideoEncodeH265CapabilitiesKHR(flags::VideoEncodeH265CapabilityFlagKHR, max_level_idc::StdVideoH265LevelIdc, max_slice_segment_count::Integer, max_tiles::_Extent2D, ctb_sizes::VideoEncodeH265CtbSizeFlagKHR, transform_block_sizes::VideoEncodeH265TransformBlockSizeFlagKHR, max_p_picture_l_0_reference_count::Integer, max_b_picture_l_0_reference_count::Integer, max_l_1_reference_count::Integer, max_sub_layer_count::Integer, expect_dyadic_temporal_sub_layer_pattern::Bool, min_qp::Integer, max_qp::Integer, prefers_gop_remaining_frames::Bool, requires_gop_remaining_frames::Bool, std_syntax_flags::VideoEncodeH265StdFlagKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeH265CapabilitiesKHR(structure_type(VkVideoEncodeH265CapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), flags, max_level_idc, max_slice_segment_count, max_tiles.vks, ctb_sizes, transform_block_sizes, max_p_picture_l_0_reference_count, max_b_picture_l_0_reference_count, max_l_1_reference_count, max_sub_layer_count, expect_dyadic_temporal_sub_layer_pattern, min_qp, max_qp, prefers_gop_remaining_frames, requires_gop_remaining_frames, std_syntax_flags)
+    vks = VkVideoEncodeH265CapabilitiesKHR(structure_type(VkVideoEncodeH265CapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoEncodeH265CapabilityFlagsKHR, flags), convert(StdVideoH265LevelIdc, max_level_idc), convert(UInt32, max_slice_segment_count), max_tiles.vks, convert(VkVideoEncodeH265CtbSizeFlagsKHR, ctb_sizes), convert(VkVideoEncodeH265TransformBlockSizeFlagsKHR, transform_block_sizes), convert(UInt32, max_p_picture_l_0_reference_count), convert(UInt32, max_b_picture_l_0_reference_count), convert(UInt32, max_l_1_reference_count), convert(UInt32, max_sub_layer_count), convert(VkBool32, expect_dyadic_temporal_sub_layer_pattern), convert(Int32, min_qp), convert(Int32, max_qp), convert(VkBool32, prefers_gop_remaining_frames), convert(VkBool32, requires_gop_remaining_frames), convert(VkVideoEncodeH265StdFlagsKHR, std_syntax_flags))
     _VideoEncodeH265CapabilitiesKHR(vks, deps)
 end
 
@@ -54840,7 +54848,7 @@ Arguments:
 function _VideoEncodeH265QualityLevelPropertiesKHR(preferred_rate_control_flags::VideoEncodeH265RateControlFlagKHR, preferred_gop_frame_count::Integer, preferred_idr_period::Integer, preferred_consecutive_b_frame_count::Integer, preferred_sub_layer_count::Integer, preferred_constant_qp::_VideoEncodeH265QpKHR, preferred_max_l_0_reference_count::Integer, preferred_max_l_1_reference_count::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeH265QualityLevelPropertiesKHR(structure_type(VkVideoEncodeH265QualityLevelPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), preferred_rate_control_flags, preferred_gop_frame_count, preferred_idr_period, preferred_consecutive_b_frame_count, preferred_sub_layer_count, preferred_constant_qp.vks, preferred_max_l_0_reference_count, preferred_max_l_1_reference_count)
+    vks = VkVideoEncodeH265QualityLevelPropertiesKHR(structure_type(VkVideoEncodeH265QualityLevelPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoEncodeH265RateControlFlagsKHR, preferred_rate_control_flags), convert(UInt32, preferred_gop_frame_count), convert(UInt32, preferred_idr_period), convert(UInt32, preferred_consecutive_b_frame_count), convert(UInt32, preferred_sub_layer_count), preferred_constant_qp.vks, convert(UInt32, preferred_max_l_0_reference_count), convert(UInt32, preferred_max_l_1_reference_count))
     _VideoEncodeH265QualityLevelPropertiesKHR(vks, deps)
 end
 
@@ -54858,7 +54866,7 @@ Arguments:
 function _VideoEncodeH265SessionCreateInfoKHR(use_max_level_idc::Bool, max_level_idc::StdVideoH265LevelIdc; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeH265SessionCreateInfoKHR(structure_type(VkVideoEncodeH265SessionCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), use_max_level_idc, max_level_idc)
+    vks = VkVideoEncodeH265SessionCreateInfoKHR(structure_type(VkVideoEncodeH265SessionCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, use_max_level_idc), convert(StdVideoH265LevelIdc, max_level_idc))
     _VideoEncodeH265SessionCreateInfoKHR(vks, deps)
 end
 
@@ -54883,7 +54891,7 @@ function _VideoEncodeH265SessionParametersAddInfoKHR(; next = C_NULL, std_vp_ss 
     std_sp_ss = cconvert(Ptr{StdVideoH265SequenceParameterSet}, std_sp_ss)
     std_pp_ss = cconvert(Ptr{StdVideoH265PictureParameterSet}, std_pp_ss)
     deps = Any[next, std_vp_ss, std_sp_ss, std_pp_ss]
-    vks = VkVideoEncodeH265SessionParametersAddInfoKHR(structure_type(VkVideoEncodeH265SessionParametersAddInfoKHR), unsafe_convert(Ptr{Cvoid}, next), std_vps_count, unsafe_convert(Ptr{StdVideoH265VideoParameterSet}, std_vp_ss), std_sps_count, unsafe_convert(Ptr{StdVideoH265SequenceParameterSet}, std_sp_ss), std_pps_count, unsafe_convert(Ptr{StdVideoH265PictureParameterSet}, std_pp_ss))
+    vks = VkVideoEncodeH265SessionParametersAddInfoKHR(structure_type(VkVideoEncodeH265SessionParametersAddInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, std_vps_count), unsafe_convert(Ptr{StdVideoH265VideoParameterSet}, std_vp_ss), convert(UInt32, std_sps_count), unsafe_convert(Ptr{StdVideoH265SequenceParameterSet}, std_sp_ss), convert(UInt32, std_pps_count), unsafe_convert(Ptr{StdVideoH265PictureParameterSet}, std_pp_ss))
     _VideoEncodeH265SessionParametersAddInfoKHR(vks, deps)
 end
 
@@ -54904,7 +54912,7 @@ function _VideoEncodeH265SessionParametersCreateInfoKHR(max_std_vps_count::Integ
     next = cconvert(Ptr{Cvoid}, next)
     parameters_add_info = cconvert(Ptr{VkVideoEncodeH265SessionParametersAddInfoKHR}, parameters_add_info)
     deps = Any[next, parameters_add_info]
-    vks = VkVideoEncodeH265SessionParametersCreateInfoKHR(structure_type(VkVideoEncodeH265SessionParametersCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), max_std_vps_count, max_std_sps_count, max_std_pps_count, unsafe_convert(Ptr{VkVideoEncodeH265SessionParametersAddInfoKHR}, parameters_add_info))
+    vks = VkVideoEncodeH265SessionParametersCreateInfoKHR(structure_type(VkVideoEncodeH265SessionParametersCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_std_vps_count), convert(UInt32, max_std_sps_count), convert(UInt32, max_std_pps_count), unsafe_convert(Ptr{VkVideoEncodeH265SessionParametersAddInfoKHR}, parameters_add_info))
     _VideoEncodeH265SessionParametersCreateInfoKHR(vks, deps)
 end
 
@@ -54926,7 +54934,7 @@ Arguments:
 function _VideoEncodeH265SessionParametersGetInfoKHR(write_std_vps::Bool, write_std_sps::Bool, write_std_pps::Bool, std_vps_id::Integer, std_sps_id::Integer, std_pps_id::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeH265SessionParametersGetInfoKHR(structure_type(VkVideoEncodeH265SessionParametersGetInfoKHR), unsafe_convert(Ptr{Cvoid}, next), write_std_vps, write_std_sps, write_std_pps, std_vps_id, std_sps_id, std_pps_id)
+    vks = VkVideoEncodeH265SessionParametersGetInfoKHR(structure_type(VkVideoEncodeH265SessionParametersGetInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, write_std_vps), convert(VkBool32, write_std_sps), convert(VkBool32, write_std_pps), convert(UInt32, std_vps_id), convert(UInt32, std_sps_id), convert(UInt32, std_pps_id))
     _VideoEncodeH265SessionParametersGetInfoKHR(vks, deps)
 end
 
@@ -54945,7 +54953,7 @@ Arguments:
 function _VideoEncodeH265SessionParametersFeedbackInfoKHR(has_std_vps_overrides::Bool, has_std_sps_overrides::Bool, has_std_pps_overrides::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeH265SessionParametersFeedbackInfoKHR(structure_type(VkVideoEncodeH265SessionParametersFeedbackInfoKHR), unsafe_convert(Ptr{Cvoid}, next), has_std_vps_overrides, has_std_sps_overrides, has_std_pps_overrides)
+    vks = VkVideoEncodeH265SessionParametersFeedbackInfoKHR(structure_type(VkVideoEncodeH265SessionParametersFeedbackInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, has_std_vps_overrides), convert(VkBool32, has_std_sps_overrides), convert(VkBool32, has_std_pps_overrides))
     _VideoEncodeH265SessionParametersFeedbackInfoKHR(vks, deps)
 end
 
@@ -54966,7 +54974,7 @@ function _VideoEncodeH265PictureInfoKHR(nalu_slice_segment_entries::AbstractArra
     nalu_slice_segment_entries = cconvert(Ptr{VkVideoEncodeH265NaluSliceSegmentInfoKHR}, nalu_slice_segment_entries)
     std_picture_info = cconvert(Ptr{StdVideoEncodeH265PictureInfo}, std_picture_info)
     deps = Any[next, nalu_slice_segment_entries, std_picture_info]
-    vks = VkVideoEncodeH265PictureInfoKHR(structure_type(VkVideoEncodeH265PictureInfoKHR), unsafe_convert(Ptr{Cvoid}, next), nalu_slice_segment_entry_count, unsafe_convert(Ptr{VkVideoEncodeH265NaluSliceSegmentInfoKHR}, nalu_slice_segment_entries), unsafe_convert(Ptr{StdVideoEncodeH265PictureInfo}, std_picture_info))
+    vks = VkVideoEncodeH265PictureInfoKHR(structure_type(VkVideoEncodeH265PictureInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, nalu_slice_segment_entry_count), unsafe_convert(Ptr{VkVideoEncodeH265NaluSliceSegmentInfoKHR}, nalu_slice_segment_entries), unsafe_convert(Ptr{StdVideoEncodeH265PictureInfo}, std_picture_info))
     _VideoEncodeH265PictureInfoKHR(vks, deps)
 end
 
@@ -54985,7 +54993,7 @@ function _VideoEncodeH265NaluSliceSegmentInfoKHR(constant_qp::Integer, std_slice
     next = cconvert(Ptr{Cvoid}, next)
     std_slice_segment_header = cconvert(Ptr{StdVideoEncodeH265SliceSegmentHeader}, std_slice_segment_header)
     deps = Any[next, std_slice_segment_header]
-    vks = VkVideoEncodeH265NaluSliceSegmentInfoKHR(structure_type(VkVideoEncodeH265NaluSliceSegmentInfoKHR), unsafe_convert(Ptr{Cvoid}, next), constant_qp, unsafe_convert(Ptr{StdVideoEncodeH265SliceSegmentHeader}, std_slice_segment_header))
+    vks = VkVideoEncodeH265NaluSliceSegmentInfoKHR(structure_type(VkVideoEncodeH265NaluSliceSegmentInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(Int32, constant_qp), unsafe_convert(Ptr{StdVideoEncodeH265SliceSegmentHeader}, std_slice_segment_header))
     _VideoEncodeH265NaluSliceSegmentInfoKHR(vks, deps)
 end
 
@@ -55006,7 +55014,7 @@ Arguments:
 function _VideoEncodeH265RateControlInfoKHR(gop_frame_count::Integer, idr_period::Integer, consecutive_b_frame_count::Integer, sub_layer_count::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeH265RateControlInfoKHR(structure_type(VkVideoEncodeH265RateControlInfoKHR), unsafe_convert(Ptr{Cvoid}, next), flags, gop_frame_count, idr_period, consecutive_b_frame_count, sub_layer_count)
+    vks = VkVideoEncodeH265RateControlInfoKHR(structure_type(VkVideoEncodeH265RateControlInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoEncodeH265RateControlFlagsKHR, flags), convert(UInt32, gop_frame_count), convert(UInt32, idr_period), convert(UInt32, consecutive_b_frame_count), convert(UInt32, sub_layer_count))
     _VideoEncodeH265RateControlInfoKHR(vks, deps)
 end
 
@@ -55022,7 +55030,7 @@ Arguments:
 
 """
 function _VideoEncodeH265QpKHR(qp_i::Integer, qp_p::Integer, qp_b::Integer)
-    _VideoEncodeH265QpKHR(VkVideoEncodeH265QpKHR(qp_i, qp_p, qp_b))
+    _VideoEncodeH265QpKHR(VkVideoEncodeH265QpKHR(convert(Int32, qp_i), convert(Int32, qp_p), convert(Int32, qp_b)))
 end
 
 """
@@ -55037,7 +55045,7 @@ Arguments:
 
 """
 function _VideoEncodeH265FrameSizeKHR(frame_i_size::Integer, frame_p_size::Integer, frame_b_size::Integer)
-    _VideoEncodeH265FrameSizeKHR(VkVideoEncodeH265FrameSizeKHR(frame_i_size, frame_p_size, frame_b_size))
+    _VideoEncodeH265FrameSizeKHR(VkVideoEncodeH265FrameSizeKHR(convert(UInt32, frame_i_size), convert(UInt32, frame_p_size), convert(UInt32, frame_b_size)))
 end
 
 """
@@ -55056,7 +55064,7 @@ Arguments:
 function _VideoEncodeH265GopRemainingFrameInfoKHR(use_gop_remaining_frames::Bool, gop_remaining_i::Integer, gop_remaining_p::Integer, gop_remaining_b::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeH265GopRemainingFrameInfoKHR(structure_type(VkVideoEncodeH265GopRemainingFrameInfoKHR), unsafe_convert(Ptr{Cvoid}, next), use_gop_remaining_frames, gop_remaining_i, gop_remaining_p, gop_remaining_b)
+    vks = VkVideoEncodeH265GopRemainingFrameInfoKHR(structure_type(VkVideoEncodeH265GopRemainingFrameInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, use_gop_remaining_frames), convert(UInt32, gop_remaining_i), convert(UInt32, gop_remaining_p), convert(UInt32, gop_remaining_b))
     _VideoEncodeH265GopRemainingFrameInfoKHR(vks, deps)
 end
 
@@ -55078,7 +55086,7 @@ Arguments:
 function _VideoEncodeH265RateControlLayerInfoKHR(use_min_qp::Bool, min_qp::_VideoEncodeH265QpKHR, use_max_qp::Bool, max_qp::_VideoEncodeH265QpKHR, use_max_frame_size::Bool, max_frame_size::_VideoEncodeH265FrameSizeKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeH265RateControlLayerInfoKHR(structure_type(VkVideoEncodeH265RateControlLayerInfoKHR), unsafe_convert(Ptr{Cvoid}, next), use_min_qp, min_qp.vks, use_max_qp, max_qp.vks, use_max_frame_size, max_frame_size.vks)
+    vks = VkVideoEncodeH265RateControlLayerInfoKHR(structure_type(VkVideoEncodeH265RateControlLayerInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, use_min_qp), min_qp.vks, convert(VkBool32, use_max_qp), max_qp.vks, convert(VkBool32, use_max_frame_size), max_frame_size.vks)
     _VideoEncodeH265RateControlLayerInfoKHR(vks, deps)
 end
 
@@ -55095,7 +55103,7 @@ Arguments:
 function _VideoEncodeH265ProfileInfoKHR(std_profile_idc::StdVideoH265ProfileIdc; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeH265ProfileInfoKHR(structure_type(VkVideoEncodeH265ProfileInfoKHR), unsafe_convert(Ptr{Cvoid}, next), std_profile_idc)
+    vks = VkVideoEncodeH265ProfileInfoKHR(structure_type(VkVideoEncodeH265ProfileInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(StdVideoH265ProfileIdc, std_profile_idc))
     _VideoEncodeH265ProfileInfoKHR(vks, deps)
 end
 
@@ -55153,7 +55161,7 @@ Arguments:
 function _VideoEncodeAV1CapabilitiesKHR(flags::VideoEncodeAV1CapabilityFlagKHR, max_level::StdVideoAV1Level, coded_picture_alignment::_Extent2D, max_tiles::_Extent2D, min_tile_size::_Extent2D, max_tile_size::_Extent2D, superblock_sizes::VideoEncodeAV1SuperblockSizeFlagKHR, max_single_reference_count::Integer, single_reference_name_mask::Integer, max_unidirectional_compound_reference_count::Integer, max_unidirectional_compound_group_1_reference_count::Integer, unidirectional_compound_reference_name_mask::Integer, max_bidirectional_compound_reference_count::Integer, max_bidirectional_compound_group_1_reference_count::Integer, max_bidirectional_compound_group_2_reference_count::Integer, bidirectional_compound_reference_name_mask::Integer, max_temporal_layer_count::Integer, max_spatial_layer_count::Integer, max_operating_points::Integer, min_q_index::Integer, max_q_index::Integer, prefers_gop_remaining_frames::Bool, requires_gop_remaining_frames::Bool, std_syntax_flags::VideoEncodeAV1StdFlagKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeAV1CapabilitiesKHR(structure_type(VkVideoEncodeAV1CapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), flags, max_level, coded_picture_alignment.vks, max_tiles.vks, min_tile_size.vks, max_tile_size.vks, superblock_sizes, max_single_reference_count, single_reference_name_mask, max_unidirectional_compound_reference_count, max_unidirectional_compound_group_1_reference_count, unidirectional_compound_reference_name_mask, max_bidirectional_compound_reference_count, max_bidirectional_compound_group_1_reference_count, max_bidirectional_compound_group_2_reference_count, bidirectional_compound_reference_name_mask, max_temporal_layer_count, max_spatial_layer_count, max_operating_points, min_q_index, max_q_index, prefers_gop_remaining_frames, requires_gop_remaining_frames, std_syntax_flags)
+    vks = VkVideoEncodeAV1CapabilitiesKHR(structure_type(VkVideoEncodeAV1CapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoEncodeAV1CapabilityFlagsKHR, flags), convert(StdVideoAV1Level, max_level), coded_picture_alignment.vks, max_tiles.vks, min_tile_size.vks, max_tile_size.vks, convert(VkVideoEncodeAV1SuperblockSizeFlagsKHR, superblock_sizes), convert(UInt32, max_single_reference_count), convert(UInt32, single_reference_name_mask), convert(UInt32, max_unidirectional_compound_reference_count), convert(UInt32, max_unidirectional_compound_group_1_reference_count), convert(UInt32, unidirectional_compound_reference_name_mask), convert(UInt32, max_bidirectional_compound_reference_count), convert(UInt32, max_bidirectional_compound_group_1_reference_count), convert(UInt32, max_bidirectional_compound_group_2_reference_count), convert(UInt32, bidirectional_compound_reference_name_mask), convert(UInt32, max_temporal_layer_count), convert(UInt32, max_spatial_layer_count), convert(UInt32, max_operating_points), convert(UInt32, min_q_index), convert(UInt32, max_q_index), convert(VkBool32, prefers_gop_remaining_frames), convert(VkBool32, requires_gop_remaining_frames), convert(VkVideoEncodeAV1StdFlagsKHR, std_syntax_flags))
     _VideoEncodeAV1CapabilitiesKHR(vks, deps)
 end
 
@@ -55184,7 +55192,7 @@ Arguments:
 function _VideoEncodeAV1QualityLevelPropertiesKHR(preferred_rate_control_flags::VideoEncodeAV1RateControlFlagKHR, preferred_gop_frame_count::Integer, preferred_key_frame_period::Integer, preferred_consecutive_bipredictive_frame_count::Integer, preferred_temporal_layer_count::Integer, preferred_constant_q_index::_VideoEncodeAV1QIndexKHR, preferred_max_single_reference_count::Integer, preferred_single_reference_name_mask::Integer, preferred_max_unidirectional_compound_reference_count::Integer, preferred_max_unidirectional_compound_group_1_reference_count::Integer, preferred_unidirectional_compound_reference_name_mask::Integer, preferred_max_bidirectional_compound_reference_count::Integer, preferred_max_bidirectional_compound_group_1_reference_count::Integer, preferred_max_bidirectional_compound_group_2_reference_count::Integer, preferred_bidirectional_compound_reference_name_mask::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeAV1QualityLevelPropertiesKHR(structure_type(VkVideoEncodeAV1QualityLevelPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), preferred_rate_control_flags, preferred_gop_frame_count, preferred_key_frame_period, preferred_consecutive_bipredictive_frame_count, preferred_temporal_layer_count, preferred_constant_q_index.vks, preferred_max_single_reference_count, preferred_single_reference_name_mask, preferred_max_unidirectional_compound_reference_count, preferred_max_unidirectional_compound_group_1_reference_count, preferred_unidirectional_compound_reference_name_mask, preferred_max_bidirectional_compound_reference_count, preferred_max_bidirectional_compound_group_1_reference_count, preferred_max_bidirectional_compound_group_2_reference_count, preferred_bidirectional_compound_reference_name_mask)
+    vks = VkVideoEncodeAV1QualityLevelPropertiesKHR(structure_type(VkVideoEncodeAV1QualityLevelPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoEncodeAV1RateControlFlagsKHR, preferred_rate_control_flags), convert(UInt32, preferred_gop_frame_count), convert(UInt32, preferred_key_frame_period), convert(UInt32, preferred_consecutive_bipredictive_frame_count), convert(UInt32, preferred_temporal_layer_count), preferred_constant_q_index.vks, convert(UInt32, preferred_max_single_reference_count), convert(UInt32, preferred_single_reference_name_mask), convert(UInt32, preferred_max_unidirectional_compound_reference_count), convert(UInt32, preferred_max_unidirectional_compound_group_1_reference_count), convert(UInt32, preferred_unidirectional_compound_reference_name_mask), convert(UInt32, preferred_max_bidirectional_compound_reference_count), convert(UInt32, preferred_max_bidirectional_compound_group_1_reference_count), convert(UInt32, preferred_max_bidirectional_compound_group_2_reference_count), convert(UInt32, preferred_bidirectional_compound_reference_name_mask))
     _VideoEncodeAV1QualityLevelPropertiesKHR(vks, deps)
 end
 
@@ -55201,7 +55209,7 @@ Arguments:
 function _PhysicalDeviceVideoEncodeAV1FeaturesKHR(video_encode_av_1::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceVideoEncodeAV1FeaturesKHR(structure_type(VkPhysicalDeviceVideoEncodeAV1FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), video_encode_av_1)
+    vks = VkPhysicalDeviceVideoEncodeAV1FeaturesKHR(structure_type(VkPhysicalDeviceVideoEncodeAV1FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, video_encode_av_1))
     _PhysicalDeviceVideoEncodeAV1FeaturesKHR(vks, deps)
 end
 
@@ -55219,7 +55227,7 @@ Arguments:
 function _VideoEncodeAV1SessionCreateInfoKHR(use_max_level::Bool, max_level::StdVideoAV1Level; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeAV1SessionCreateInfoKHR(structure_type(VkVideoEncodeAV1SessionCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), use_max_level, max_level)
+    vks = VkVideoEncodeAV1SessionCreateInfoKHR(structure_type(VkVideoEncodeAV1SessionCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, use_max_level), convert(StdVideoAV1Level, max_level))
     _VideoEncodeAV1SessionCreateInfoKHR(vks, deps)
 end
 
@@ -55242,7 +55250,7 @@ function _VideoEncodeAV1SessionParametersCreateInfoKHR(std_sequence_header::StdV
     std_decoder_model_info = cconvert(Ptr{StdVideoEncodeAV1DecoderModelInfo}, std_decoder_model_info)
     std_operating_points = cconvert(Ptr{StdVideoEncodeAV1OperatingPointInfo}, std_operating_points)
     deps = Any[next, std_sequence_header, std_decoder_model_info, std_operating_points]
-    vks = VkVideoEncodeAV1SessionParametersCreateInfoKHR(structure_type(VkVideoEncodeAV1SessionParametersCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{StdVideoAV1SequenceHeader}, std_sequence_header), unsafe_convert(Ptr{StdVideoEncodeAV1DecoderModelInfo}, std_decoder_model_info), std_operating_point_count, unsafe_convert(Ptr{StdVideoEncodeAV1OperatingPointInfo}, std_operating_points))
+    vks = VkVideoEncodeAV1SessionParametersCreateInfoKHR(structure_type(VkVideoEncodeAV1SessionParametersCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), unsafe_convert(Ptr{StdVideoAV1SequenceHeader}, std_sequence_header), unsafe_convert(Ptr{StdVideoEncodeAV1DecoderModelInfo}, std_decoder_model_info), convert(UInt32, std_operating_point_count), unsafe_convert(Ptr{StdVideoEncodeAV1OperatingPointInfo}, std_operating_points))
     _VideoEncodeAV1SessionParametersCreateInfoKHR(vks, deps)
 end
 
@@ -55284,7 +55292,7 @@ function _VideoEncodeAV1PictureInfoKHR(prediction_mode::VideoEncodeAV1Prediction
     next = cconvert(Ptr{Cvoid}, next)
     std_picture_info = cconvert(Ptr{StdVideoEncodeAV1PictureInfo}, std_picture_info)
     deps = Any[next, std_picture_info]
-    vks = VkVideoEncodeAV1PictureInfoKHR(structure_type(VkVideoEncodeAV1PictureInfoKHR), unsafe_convert(Ptr{Cvoid}, next), prediction_mode, rate_control_group, constant_q_index, unsafe_convert(Ptr{StdVideoEncodeAV1PictureInfo}, std_picture_info), reference_name_slot_indices, primary_reference_cdf_only, generate_obu_extension_header)
+    vks = VkVideoEncodeAV1PictureInfoKHR(structure_type(VkVideoEncodeAV1PictureInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoEncodeAV1PredictionModeKHR, prediction_mode), convert(VkVideoEncodeAV1RateControlGroupKHR, rate_control_group), convert(UInt32, constant_q_index), unsafe_convert(Ptr{StdVideoEncodeAV1PictureInfo}, std_picture_info), convert(NTuple{Int(VK_MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR), Int32}, reference_name_slot_indices), convert(VkBool32, primary_reference_cdf_only), convert(VkBool32, generate_obu_extension_header))
     _VideoEncodeAV1PictureInfoKHR(vks, deps)
 end
 
@@ -55301,7 +55309,7 @@ Arguments:
 function _VideoEncodeAV1ProfileInfoKHR(std_profile::StdVideoAV1Profile; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeAV1ProfileInfoKHR(structure_type(VkVideoEncodeAV1ProfileInfoKHR), unsafe_convert(Ptr{Cvoid}, next), std_profile)
+    vks = VkVideoEncodeAV1ProfileInfoKHR(structure_type(VkVideoEncodeAV1ProfileInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(StdVideoAV1Profile, std_profile))
     _VideoEncodeAV1ProfileInfoKHR(vks, deps)
 end
 
@@ -55322,7 +55330,7 @@ Arguments:
 function _VideoEncodeAV1RateControlInfoKHR(gop_frame_count::Integer, key_frame_period::Integer, consecutive_bipredictive_frame_count::Integer, temporal_layer_count::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeAV1RateControlInfoKHR(structure_type(VkVideoEncodeAV1RateControlInfoKHR), unsafe_convert(Ptr{Cvoid}, next), flags, gop_frame_count, key_frame_period, consecutive_bipredictive_frame_count, temporal_layer_count)
+    vks = VkVideoEncodeAV1RateControlInfoKHR(structure_type(VkVideoEncodeAV1RateControlInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoEncodeAV1RateControlFlagsKHR, flags), convert(UInt32, gop_frame_count), convert(UInt32, key_frame_period), convert(UInt32, consecutive_bipredictive_frame_count), convert(UInt32, temporal_layer_count))
     _VideoEncodeAV1RateControlInfoKHR(vks, deps)
 end
 
@@ -55338,7 +55346,7 @@ Arguments:
 
 """
 function _VideoEncodeAV1QIndexKHR(intra_q_index::Integer, predictive_q_index::Integer, bipredictive_q_index::Integer)
-    _VideoEncodeAV1QIndexKHR(VkVideoEncodeAV1QIndexKHR(intra_q_index, predictive_q_index, bipredictive_q_index))
+    _VideoEncodeAV1QIndexKHR(VkVideoEncodeAV1QIndexKHR(convert(UInt32, intra_q_index), convert(UInt32, predictive_q_index), convert(UInt32, bipredictive_q_index)))
 end
 
 """
@@ -55353,7 +55361,7 @@ Arguments:
 
 """
 function _VideoEncodeAV1FrameSizeKHR(intra_frame_size::Integer, predictive_frame_size::Integer, bipredictive_frame_size::Integer)
-    _VideoEncodeAV1FrameSizeKHR(VkVideoEncodeAV1FrameSizeKHR(intra_frame_size, predictive_frame_size, bipredictive_frame_size))
+    _VideoEncodeAV1FrameSizeKHR(VkVideoEncodeAV1FrameSizeKHR(convert(UInt32, intra_frame_size), convert(UInt32, predictive_frame_size), convert(UInt32, bipredictive_frame_size)))
 end
 
 """
@@ -55372,7 +55380,7 @@ Arguments:
 function _VideoEncodeAV1GopRemainingFrameInfoKHR(use_gop_remaining_frames::Bool, gop_remaining_intra::Integer, gop_remaining_predictive::Integer, gop_remaining_bipredictive::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeAV1GopRemainingFrameInfoKHR(structure_type(VkVideoEncodeAV1GopRemainingFrameInfoKHR), unsafe_convert(Ptr{Cvoid}, next), use_gop_remaining_frames, gop_remaining_intra, gop_remaining_predictive, gop_remaining_bipredictive)
+    vks = VkVideoEncodeAV1GopRemainingFrameInfoKHR(structure_type(VkVideoEncodeAV1GopRemainingFrameInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, use_gop_remaining_frames), convert(UInt32, gop_remaining_intra), convert(UInt32, gop_remaining_predictive), convert(UInt32, gop_remaining_bipredictive))
     _VideoEncodeAV1GopRemainingFrameInfoKHR(vks, deps)
 end
 
@@ -55394,7 +55402,7 @@ Arguments:
 function _VideoEncodeAV1RateControlLayerInfoKHR(use_min_q_index::Bool, min_q_index::_VideoEncodeAV1QIndexKHR, use_max_q_index::Bool, max_q_index::_VideoEncodeAV1QIndexKHR, use_max_frame_size::Bool, max_frame_size::_VideoEncodeAV1FrameSizeKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeAV1RateControlLayerInfoKHR(structure_type(VkVideoEncodeAV1RateControlLayerInfoKHR), unsafe_convert(Ptr{Cvoid}, next), use_min_q_index, min_q_index.vks, use_max_q_index, max_q_index.vks, use_max_frame_size, max_frame_size.vks)
+    vks = VkVideoEncodeAV1RateControlLayerInfoKHR(structure_type(VkVideoEncodeAV1RateControlLayerInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, use_min_q_index), min_q_index.vks, convert(VkBool32, use_max_q_index), max_q_index.vks, convert(VkBool32, use_max_frame_size), max_frame_size.vks)
     _VideoEncodeAV1RateControlLayerInfoKHR(vks, deps)
 end
 
@@ -55411,7 +55419,7 @@ Arguments:
 function _PhysicalDeviceInheritedViewportScissorFeaturesNV(inherited_viewport_scissor_2_d::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceInheritedViewportScissorFeaturesNV(structure_type(VkPhysicalDeviceInheritedViewportScissorFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), inherited_viewport_scissor_2_d)
+    vks = VkPhysicalDeviceInheritedViewportScissorFeaturesNV(structure_type(VkPhysicalDeviceInheritedViewportScissorFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, inherited_viewport_scissor_2_d))
     _PhysicalDeviceInheritedViewportScissorFeaturesNV(vks, deps)
 end
 
@@ -55431,7 +55439,7 @@ function _CommandBufferInheritanceViewportScissorInfoNV(viewport_scissor_2_d::Bo
     next = cconvert(Ptr{Cvoid}, next)
     viewport_depths = cconvert(Ptr{VkViewport}, viewport_depths)
     deps = Any[next, viewport_depths]
-    vks = VkCommandBufferInheritanceViewportScissorInfoNV(structure_type(VkCommandBufferInheritanceViewportScissorInfoNV), unsafe_convert(Ptr{Cvoid}, next), viewport_scissor_2_d, viewport_depth_count, unsafe_convert(Ptr{VkViewport}, viewport_depths))
+    vks = VkCommandBufferInheritanceViewportScissorInfoNV(structure_type(VkCommandBufferInheritanceViewportScissorInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, viewport_scissor_2_d), convert(UInt32, viewport_depth_count), unsafe_convert(Ptr{VkViewport}, viewport_depths))
     _CommandBufferInheritanceViewportScissorInfoNV(vks, deps)
 end
 
@@ -55448,7 +55456,7 @@ Arguments:
 function _PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT(ycbcr_444_formats::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT(structure_type(VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), ycbcr_444_formats)
+    vks = VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT(structure_type(VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, ycbcr_444_formats))
     _PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT(vks, deps)
 end
 
@@ -55466,7 +55474,7 @@ Arguments:
 function _PhysicalDeviceProvokingVertexFeaturesEXT(provoking_vertex_last::Bool, transform_feedback_preserves_provoking_vertex::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceProvokingVertexFeaturesEXT(structure_type(VkPhysicalDeviceProvokingVertexFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), provoking_vertex_last, transform_feedback_preserves_provoking_vertex)
+    vks = VkPhysicalDeviceProvokingVertexFeaturesEXT(structure_type(VkPhysicalDeviceProvokingVertexFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, provoking_vertex_last), convert(VkBool32, transform_feedback_preserves_provoking_vertex))
     _PhysicalDeviceProvokingVertexFeaturesEXT(vks, deps)
 end
 
@@ -55484,7 +55492,7 @@ Arguments:
 function _PhysicalDeviceProvokingVertexPropertiesEXT(provoking_vertex_mode_per_pipeline::Bool, transform_feedback_preserves_triangle_fan_provoking_vertex::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceProvokingVertexPropertiesEXT(structure_type(VkPhysicalDeviceProvokingVertexPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), provoking_vertex_mode_per_pipeline, transform_feedback_preserves_triangle_fan_provoking_vertex)
+    vks = VkPhysicalDeviceProvokingVertexPropertiesEXT(structure_type(VkPhysicalDeviceProvokingVertexPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, provoking_vertex_mode_per_pipeline), convert(VkBool32, transform_feedback_preserves_triangle_fan_provoking_vertex))
     _PhysicalDeviceProvokingVertexPropertiesEXT(vks, deps)
 end
 
@@ -55501,7 +55509,7 @@ Arguments:
 function _PipelineRasterizationProvokingVertexStateCreateInfoEXT(provoking_vertex_mode::ProvokingVertexModeEXT; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineRasterizationProvokingVertexStateCreateInfoEXT(structure_type(VkPipelineRasterizationProvokingVertexStateCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), provoking_vertex_mode)
+    vks = VkPipelineRasterizationProvokingVertexStateCreateInfoEXT(structure_type(VkPipelineRasterizationProvokingVertexStateCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkProvokingVertexModeEXT, provoking_vertex_mode))
     _PipelineRasterizationProvokingVertexStateCreateInfoEXT(vks, deps)
 end
 
@@ -55522,7 +55530,7 @@ Arguments:
 function _VideoEncodeIntraRefreshCapabilitiesKHR(max_intra_refresh_cycle_duration::Integer, max_intra_refresh_active_reference_pictures::Integer, partition_independent_intra_refresh_regions::Bool, non_rectangular_intra_refresh_regions::Bool; next = C_NULL, intra_refresh_modes = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeIntraRefreshCapabilitiesKHR(structure_type(VkVideoEncodeIntraRefreshCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), intra_refresh_modes, max_intra_refresh_cycle_duration, max_intra_refresh_active_reference_pictures, partition_independent_intra_refresh_regions, non_rectangular_intra_refresh_regions)
+    vks = VkVideoEncodeIntraRefreshCapabilitiesKHR(structure_type(VkVideoEncodeIntraRefreshCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkVideoEncodeIntraRefreshModeFlagsKHR, intra_refresh_modes), convert(UInt32, max_intra_refresh_cycle_duration), convert(UInt32, max_intra_refresh_active_reference_pictures), convert(VkBool32, partition_independent_intra_refresh_regions), convert(VkBool32, non_rectangular_intra_refresh_regions))
     _VideoEncodeIntraRefreshCapabilitiesKHR(vks, deps)
 end
 
@@ -55539,7 +55547,7 @@ Arguments:
 function _VideoEncodeSessionIntraRefreshCreateInfoKHR(; next = C_NULL, intra_refresh_mode = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeSessionIntraRefreshCreateInfoKHR(structure_type(VkVideoEncodeSessionIntraRefreshCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), VkVideoEncodeIntraRefreshModeFlagBitsKHR(intra_refresh_mode.val))
+    vks = VkVideoEncodeSessionIntraRefreshCreateInfoKHR(structure_type(VkVideoEncodeSessionIntraRefreshCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), VkVideoEncodeIntraRefreshModeFlagBitsKHR(flag_value(intra_refresh_mode)))
     _VideoEncodeSessionIntraRefreshCreateInfoKHR(vks, deps)
 end
 
@@ -55557,7 +55565,7 @@ Arguments:
 function _VideoEncodeIntraRefreshInfoKHR(intra_refresh_cycle_duration::Integer, intra_refresh_index::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoEncodeIntraRefreshInfoKHR(structure_type(VkVideoEncodeIntraRefreshInfoKHR), unsafe_convert(Ptr{Cvoid}, next), intra_refresh_cycle_duration, intra_refresh_index)
+    vks = VkVideoEncodeIntraRefreshInfoKHR(structure_type(VkVideoEncodeIntraRefreshInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, intra_refresh_cycle_duration), convert(UInt32, intra_refresh_index))
     _VideoEncodeIntraRefreshInfoKHR(vks, deps)
 end
 
@@ -55574,7 +55582,7 @@ Arguments:
 function _VideoReferenceIntraRefreshInfoKHR(dirty_intra_refresh_regions::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkVideoReferenceIntraRefreshInfoKHR(structure_type(VkVideoReferenceIntraRefreshInfoKHR), unsafe_convert(Ptr{Cvoid}, next), dirty_intra_refresh_regions)
+    vks = VkVideoReferenceIntraRefreshInfoKHR(structure_type(VkVideoReferenceIntraRefreshInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, dirty_intra_refresh_regions))
     _VideoReferenceIntraRefreshInfoKHR(vks, deps)
 end
 
@@ -55591,7 +55599,7 @@ Arguments:
 function _PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR(video_encode_intra_refresh::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR(structure_type(VkPhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), video_encode_intra_refresh)
+    vks = VkPhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR(structure_type(VkPhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, video_encode_intra_refresh))
     _PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR(vks, deps)
 end
 
@@ -55610,7 +55618,7 @@ function _CuModuleCreateInfoNVX(data_size::Integer, data::Ptr{Cvoid}; next = C_N
     next = cconvert(Ptr{Cvoid}, next)
     data = cconvert(Ptr{Cvoid}, data)
     deps = Any[next, data]
-    vks = VkCuModuleCreateInfoNVX(structure_type(VkCuModuleCreateInfoNVX), unsafe_convert(Ptr{Cvoid}, next), data_size, unsafe_convert(Ptr{Cvoid}, data))
+    vks = VkCuModuleCreateInfoNVX(structure_type(VkCuModuleCreateInfoNVX), unsafe_convert(Ptr{Cvoid}, next), convert(UInt, data_size), unsafe_convert(Ptr{Cvoid}, data))
     _CuModuleCreateInfoNVX(vks, deps)
 end
 
@@ -55627,7 +55635,7 @@ Arguments:
 function _CuModuleTexturingModeCreateInfoNVX(use_6_texturing::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkCuModuleTexturingModeCreateInfoNVX(structure_type(VkCuModuleTexturingModeCreateInfoNVX), unsafe_convert(Ptr{Cvoid}, next), use_6_texturing)
+    vks = VkCuModuleTexturingModeCreateInfoNVX(structure_type(VkCuModuleTexturingModeCreateInfoNVX), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, use_6_texturing))
     _CuModuleTexturingModeCreateInfoNVX(vks, deps)
 end
 
@@ -55646,7 +55654,7 @@ function _CuFunctionCreateInfoNVX(_module, name::AbstractString; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     name = cconvert(Cstring, name)
     deps = Any[next, name]
-    vks = VkCuFunctionCreateInfoNVX(structure_type(VkCuFunctionCreateInfoNVX), unsafe_convert(Ptr{Cvoid}, next), _module, unsafe_convert(Cstring, name))
+    vks = VkCuFunctionCreateInfoNVX(structure_type(VkCuFunctionCreateInfoNVX), unsafe_convert(Ptr{Cvoid}, next), convert(VkCuModuleNVX, _module), unsafe_convert(Cstring, name))
     _CuFunctionCreateInfoNVX(vks, deps, _module)
 end
 
@@ -55674,7 +55682,7 @@ function _CuLaunchInfoNVX(_function, grid_dim_x::Integer, grid_dim_y::Integer, g
     params = cconvert(Ptr{Ptr{Cvoid}}, params)
     extras = cconvert(Ptr{Ptr{Cvoid}}, extras)
     deps = Any[next, params, extras]
-    vks = VkCuLaunchInfoNVX(structure_type(VkCuLaunchInfoNVX), unsafe_convert(Ptr{Cvoid}, next), _function, grid_dim_x, grid_dim_y, grid_dim_z, block_dim_x, block_dim_y, block_dim_z, shared_mem_bytes, param_count, unsafe_convert(Ptr{Ptr{Cvoid}}, params), extra_count, unsafe_convert(Ptr{Ptr{Cvoid}}, extras))
+    vks = VkCuLaunchInfoNVX(structure_type(VkCuLaunchInfoNVX), unsafe_convert(Ptr{Cvoid}, next), convert(VkCuFunctionNVX, _function), convert(UInt32, grid_dim_x), convert(UInt32, grid_dim_y), convert(UInt32, grid_dim_z), convert(UInt32, block_dim_x), convert(UInt32, block_dim_y), convert(UInt32, block_dim_z), convert(UInt32, shared_mem_bytes), convert(UInt, param_count), unsafe_convert(Ptr{Ptr{Cvoid}}, params), convert(UInt, extra_count), unsafe_convert(Ptr{Ptr{Cvoid}}, extras))
     _CuLaunchInfoNVX(vks, deps, _function)
 end
 
@@ -55694,7 +55702,7 @@ Arguments:
 function _PhysicalDeviceDescriptorBufferFeaturesEXT(descriptor_buffer::Bool, descriptor_buffer_capture_replay::Bool, descriptor_buffer_image_layout_ignored::Bool, descriptor_buffer_push_descriptors::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDescriptorBufferFeaturesEXT(structure_type(VkPhysicalDeviceDescriptorBufferFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), descriptor_buffer, descriptor_buffer_capture_replay, descriptor_buffer_image_layout_ignored, descriptor_buffer_push_descriptors)
+    vks = VkPhysicalDeviceDescriptorBufferFeaturesEXT(structure_type(VkPhysicalDeviceDescriptorBufferFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, descriptor_buffer), convert(VkBool32, descriptor_buffer_capture_replay), convert(VkBool32, descriptor_buffer_image_layout_ignored), convert(VkBool32, descriptor_buffer_push_descriptors))
     _PhysicalDeviceDescriptorBufferFeaturesEXT(vks, deps)
 end
 
@@ -55743,7 +55751,7 @@ Arguments:
 function _PhysicalDeviceDescriptorBufferPropertiesEXT(combined_image_sampler_descriptor_single_array::Bool, bufferless_push_descriptors::Bool, allow_sampler_image_view_post_submit_creation::Bool, descriptor_buffer_offset_alignment::Integer, max_descriptor_buffer_bindings::Integer, max_resource_descriptor_buffer_bindings::Integer, max_sampler_descriptor_buffer_bindings::Integer, max_embedded_immutable_sampler_bindings::Integer, max_embedded_immutable_samplers::Integer, buffer_capture_replay_descriptor_data_size::Integer, image_capture_replay_descriptor_data_size::Integer, image_view_capture_replay_descriptor_data_size::Integer, sampler_capture_replay_descriptor_data_size::Integer, acceleration_structure_capture_replay_descriptor_data_size::Integer, sampler_descriptor_size::Integer, combined_image_sampler_descriptor_size::Integer, sampled_image_descriptor_size::Integer, storage_image_descriptor_size::Integer, uniform_texel_buffer_descriptor_size::Integer, robust_uniform_texel_buffer_descriptor_size::Integer, storage_texel_buffer_descriptor_size::Integer, robust_storage_texel_buffer_descriptor_size::Integer, uniform_buffer_descriptor_size::Integer, robust_uniform_buffer_descriptor_size::Integer, storage_buffer_descriptor_size::Integer, robust_storage_buffer_descriptor_size::Integer, input_attachment_descriptor_size::Integer, acceleration_structure_descriptor_size::Integer, max_sampler_descriptor_buffer_range::Integer, max_resource_descriptor_buffer_range::Integer, sampler_descriptor_buffer_address_space_size::Integer, resource_descriptor_buffer_address_space_size::Integer, descriptor_buffer_address_space_size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDescriptorBufferPropertiesEXT(structure_type(VkPhysicalDeviceDescriptorBufferPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), combined_image_sampler_descriptor_single_array, bufferless_push_descriptors, allow_sampler_image_view_post_submit_creation, descriptor_buffer_offset_alignment, max_descriptor_buffer_bindings, max_resource_descriptor_buffer_bindings, max_sampler_descriptor_buffer_bindings, max_embedded_immutable_sampler_bindings, max_embedded_immutable_samplers, buffer_capture_replay_descriptor_data_size, image_capture_replay_descriptor_data_size, image_view_capture_replay_descriptor_data_size, sampler_capture_replay_descriptor_data_size, acceleration_structure_capture_replay_descriptor_data_size, sampler_descriptor_size, combined_image_sampler_descriptor_size, sampled_image_descriptor_size, storage_image_descriptor_size, uniform_texel_buffer_descriptor_size, robust_uniform_texel_buffer_descriptor_size, storage_texel_buffer_descriptor_size, robust_storage_texel_buffer_descriptor_size, uniform_buffer_descriptor_size, robust_uniform_buffer_descriptor_size, storage_buffer_descriptor_size, robust_storage_buffer_descriptor_size, input_attachment_descriptor_size, acceleration_structure_descriptor_size, max_sampler_descriptor_buffer_range, max_resource_descriptor_buffer_range, sampler_descriptor_buffer_address_space_size, resource_descriptor_buffer_address_space_size, descriptor_buffer_address_space_size)
+    vks = VkPhysicalDeviceDescriptorBufferPropertiesEXT(structure_type(VkPhysicalDeviceDescriptorBufferPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, combined_image_sampler_descriptor_single_array), convert(VkBool32, bufferless_push_descriptors), convert(VkBool32, allow_sampler_image_view_post_submit_creation), convert(VkDeviceSize, descriptor_buffer_offset_alignment), convert(UInt32, max_descriptor_buffer_bindings), convert(UInt32, max_resource_descriptor_buffer_bindings), convert(UInt32, max_sampler_descriptor_buffer_bindings), convert(UInt32, max_embedded_immutable_sampler_bindings), convert(UInt32, max_embedded_immutable_samplers), convert(UInt, buffer_capture_replay_descriptor_data_size), convert(UInt, image_capture_replay_descriptor_data_size), convert(UInt, image_view_capture_replay_descriptor_data_size), convert(UInt, sampler_capture_replay_descriptor_data_size), convert(UInt, acceleration_structure_capture_replay_descriptor_data_size), convert(UInt, sampler_descriptor_size), convert(UInt, combined_image_sampler_descriptor_size), convert(UInt, sampled_image_descriptor_size), convert(UInt, storage_image_descriptor_size), convert(UInt, uniform_texel_buffer_descriptor_size), convert(UInt, robust_uniform_texel_buffer_descriptor_size), convert(UInt, storage_texel_buffer_descriptor_size), convert(UInt, robust_storage_texel_buffer_descriptor_size), convert(UInt, uniform_buffer_descriptor_size), convert(UInt, robust_uniform_buffer_descriptor_size), convert(UInt, storage_buffer_descriptor_size), convert(UInt, robust_storage_buffer_descriptor_size), convert(UInt, input_attachment_descriptor_size), convert(UInt, acceleration_structure_descriptor_size), convert(VkDeviceSize, max_sampler_descriptor_buffer_range), convert(VkDeviceSize, max_resource_descriptor_buffer_range), convert(VkDeviceSize, sampler_descriptor_buffer_address_space_size), convert(VkDeviceSize, resource_descriptor_buffer_address_space_size), convert(VkDeviceSize, descriptor_buffer_address_space_size))
     _PhysicalDeviceDescriptorBufferPropertiesEXT(vks, deps)
 end
 
@@ -55760,7 +55768,7 @@ Arguments:
 function _PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT(combined_image_sampler_density_map_descriptor_size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDescriptorBufferDensityMapPropertiesEXT(structure_type(VkPhysicalDeviceDescriptorBufferDensityMapPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), combined_image_sampler_density_map_descriptor_size)
+    vks = VkPhysicalDeviceDescriptorBufferDensityMapPropertiesEXT(structure_type(VkPhysicalDeviceDescriptorBufferDensityMapPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt, combined_image_sampler_density_map_descriptor_size))
     _PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT(vks, deps)
 end
 
@@ -55779,7 +55787,7 @@ Arguments:
 function _DescriptorAddressInfoEXT(address::Integer, range::Integer, format::Format; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDescriptorAddressInfoEXT(structure_type(VkDescriptorAddressInfoEXT), unsafe_convert(Ptr{Cvoid}, next), address, range, format)
+    vks = VkDescriptorAddressInfoEXT(structure_type(VkDescriptorAddressInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceAddress, address), convert(VkDeviceSize, range), convert(VkFormat, format))
     _DescriptorAddressInfoEXT(vks, deps)
 end
 
@@ -55797,7 +55805,7 @@ Arguments:
 function _DescriptorBufferBindingInfoEXT(address::Integer, usage::BufferUsageFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDescriptorBufferBindingInfoEXT(structure_type(VkDescriptorBufferBindingInfoEXT), unsafe_convert(Ptr{Cvoid}, next), address, usage)
+    vks = VkDescriptorBufferBindingInfoEXT(structure_type(VkDescriptorBufferBindingInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceAddress, address), convert(VkBufferUsageFlags, usage))
     _DescriptorBufferBindingInfoEXT(vks, deps)
 end
 
@@ -55814,7 +55822,7 @@ Arguments:
 function _DescriptorBufferBindingPushDescriptorBufferHandleEXT(buffer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDescriptorBufferBindingPushDescriptorBufferHandleEXT(structure_type(VkDescriptorBufferBindingPushDescriptorBufferHandleEXT), unsafe_convert(Ptr{Cvoid}, next), buffer)
+    vks = VkDescriptorBufferBindingPushDescriptorBufferHandleEXT(structure_type(VkDescriptorBufferBindingPushDescriptorBufferHandleEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBuffer, buffer))
     _DescriptorBufferBindingPushDescriptorBufferHandleEXT(vks, deps, buffer)
 end
 
@@ -55832,7 +55840,7 @@ Arguments:
 function _DescriptorGetInfoEXT(type::DescriptorType, data::_DescriptorDataEXT; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDescriptorGetInfoEXT(structure_type(VkDescriptorGetInfoEXT), unsafe_convert(Ptr{Cvoid}, next), type, data.vks)
+    vks = VkDescriptorGetInfoEXT(structure_type(VkDescriptorGetInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDescriptorType, type), data.vks)
     _DescriptorGetInfoEXT(vks, deps)
 end
 
@@ -55849,7 +55857,7 @@ Arguments:
 function _BufferCaptureDescriptorDataInfoEXT(buffer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkBufferCaptureDescriptorDataInfoEXT(structure_type(VkBufferCaptureDescriptorDataInfoEXT), unsafe_convert(Ptr{Cvoid}, next), buffer)
+    vks = VkBufferCaptureDescriptorDataInfoEXT(structure_type(VkBufferCaptureDescriptorDataInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBuffer, buffer))
     _BufferCaptureDescriptorDataInfoEXT(vks, deps, buffer)
 end
 
@@ -55866,7 +55874,7 @@ Arguments:
 function _ImageCaptureDescriptorDataInfoEXT(image; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImageCaptureDescriptorDataInfoEXT(structure_type(VkImageCaptureDescriptorDataInfoEXT), unsafe_convert(Ptr{Cvoid}, next), image)
+    vks = VkImageCaptureDescriptorDataInfoEXT(structure_type(VkImageCaptureDescriptorDataInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkImage, image))
     _ImageCaptureDescriptorDataInfoEXT(vks, deps, image)
 end
 
@@ -55883,7 +55891,7 @@ Arguments:
 function _ImageViewCaptureDescriptorDataInfoEXT(image_view; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImageViewCaptureDescriptorDataInfoEXT(structure_type(VkImageViewCaptureDescriptorDataInfoEXT), unsafe_convert(Ptr{Cvoid}, next), image_view)
+    vks = VkImageViewCaptureDescriptorDataInfoEXT(structure_type(VkImageViewCaptureDescriptorDataInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkImageView, image_view))
     _ImageViewCaptureDescriptorDataInfoEXT(vks, deps, image_view)
 end
 
@@ -55900,7 +55908,7 @@ Arguments:
 function _SamplerCaptureDescriptorDataInfoEXT(sampler; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSamplerCaptureDescriptorDataInfoEXT(structure_type(VkSamplerCaptureDescriptorDataInfoEXT), unsafe_convert(Ptr{Cvoid}, next), sampler)
+    vks = VkSamplerCaptureDescriptorDataInfoEXT(structure_type(VkSamplerCaptureDescriptorDataInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkSampler, sampler))
     _SamplerCaptureDescriptorDataInfoEXT(vks, deps, sampler)
 end
 
@@ -55918,7 +55926,7 @@ Arguments:
 function _AccelerationStructureCaptureDescriptorDataInfoEXT(; next = C_NULL, acceleration_structure = C_NULL, acceleration_structure_nv = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAccelerationStructureCaptureDescriptorDataInfoEXT(structure_type(VkAccelerationStructureCaptureDescriptorDataInfoEXT), unsafe_convert(Ptr{Cvoid}, next), acceleration_structure, acceleration_structure_nv)
+    vks = VkAccelerationStructureCaptureDescriptorDataInfoEXT(structure_type(VkAccelerationStructureCaptureDescriptorDataInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkAccelerationStructureKHR, acceleration_structure), convert(VkAccelerationStructureNV, acceleration_structure_nv))
     _AccelerationStructureCaptureDescriptorDataInfoEXT(vks, deps, acceleration_structure, acceleration_structure_nv)
 end
 
@@ -55951,7 +55959,7 @@ Arguments:
 function _PhysicalDeviceShaderIntegerDotProductFeatures(shader_integer_dot_product::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderIntegerDotProductFeatures(structure_type(VkPhysicalDeviceShaderIntegerDotProductFeatures), unsafe_convert(Ptr{Cvoid}, next), shader_integer_dot_product)
+    vks = VkPhysicalDeviceShaderIntegerDotProductFeatures(structure_type(VkPhysicalDeviceShaderIntegerDotProductFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_integer_dot_product))
     _PhysicalDeviceShaderIntegerDotProductFeatures(vks, deps)
 end
 
@@ -55995,7 +56003,7 @@ Arguments:
 function _PhysicalDeviceShaderIntegerDotProductProperties(integer_dot_product_8_bit_unsigned_accelerated::Bool, integer_dot_product_8_bit_signed_accelerated::Bool, integer_dot_product_8_bit_mixed_signedness_accelerated::Bool, integer_dot_product_8_bit_packed_unsigned_accelerated::Bool, integer_dot_product_8_bit_packed_signed_accelerated::Bool, integer_dot_product_8_bit_packed_mixed_signedness_accelerated::Bool, integer_dot_product_16_bit_unsigned_accelerated::Bool, integer_dot_product_16_bit_signed_accelerated::Bool, integer_dot_product_16_bit_mixed_signedness_accelerated::Bool, integer_dot_product_32_bit_unsigned_accelerated::Bool, integer_dot_product_32_bit_signed_accelerated::Bool, integer_dot_product_32_bit_mixed_signedness_accelerated::Bool, integer_dot_product_64_bit_unsigned_accelerated::Bool, integer_dot_product_64_bit_signed_accelerated::Bool, integer_dot_product_64_bit_mixed_signedness_accelerated::Bool, integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated::Bool, integer_dot_product_accumulating_saturating_8_bit_signed_accelerated::Bool, integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated::Bool, integer_dot_product_accumulating_saturating_8_bit_packed_unsigned_accelerated::Bool, integer_dot_product_accumulating_saturating_8_bit_packed_signed_accelerated::Bool, integer_dot_product_accumulating_saturating_8_bit_packed_mixed_signedness_accelerated::Bool, integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated::Bool, integer_dot_product_accumulating_saturating_16_bit_signed_accelerated::Bool, integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated::Bool, integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated::Bool, integer_dot_product_accumulating_saturating_32_bit_signed_accelerated::Bool, integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated::Bool, integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated::Bool, integer_dot_product_accumulating_saturating_64_bit_signed_accelerated::Bool, integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderIntegerDotProductProperties(structure_type(VkPhysicalDeviceShaderIntegerDotProductProperties), unsafe_convert(Ptr{Cvoid}, next), integer_dot_product_8_bit_unsigned_accelerated, integer_dot_product_8_bit_signed_accelerated, integer_dot_product_8_bit_mixed_signedness_accelerated, integer_dot_product_8_bit_packed_unsigned_accelerated, integer_dot_product_8_bit_packed_signed_accelerated, integer_dot_product_8_bit_packed_mixed_signedness_accelerated, integer_dot_product_16_bit_unsigned_accelerated, integer_dot_product_16_bit_signed_accelerated, integer_dot_product_16_bit_mixed_signedness_accelerated, integer_dot_product_32_bit_unsigned_accelerated, integer_dot_product_32_bit_signed_accelerated, integer_dot_product_32_bit_mixed_signedness_accelerated, integer_dot_product_64_bit_unsigned_accelerated, integer_dot_product_64_bit_signed_accelerated, integer_dot_product_64_bit_mixed_signedness_accelerated, integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated, integer_dot_product_accumulating_saturating_8_bit_signed_accelerated, integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated, integer_dot_product_accumulating_saturating_8_bit_packed_unsigned_accelerated, integer_dot_product_accumulating_saturating_8_bit_packed_signed_accelerated, integer_dot_product_accumulating_saturating_8_bit_packed_mixed_signedness_accelerated, integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated, integer_dot_product_accumulating_saturating_16_bit_signed_accelerated, integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated, integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated, integer_dot_product_accumulating_saturating_32_bit_signed_accelerated, integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated, integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated, integer_dot_product_accumulating_saturating_64_bit_signed_accelerated, integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated)
+    vks = VkPhysicalDeviceShaderIntegerDotProductProperties(structure_type(VkPhysicalDeviceShaderIntegerDotProductProperties), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, integer_dot_product_8_bit_unsigned_accelerated), convert(VkBool32, integer_dot_product_8_bit_signed_accelerated), convert(VkBool32, integer_dot_product_8_bit_mixed_signedness_accelerated), convert(VkBool32, integer_dot_product_8_bit_packed_unsigned_accelerated), convert(VkBool32, integer_dot_product_8_bit_packed_signed_accelerated), convert(VkBool32, integer_dot_product_8_bit_packed_mixed_signedness_accelerated), convert(VkBool32, integer_dot_product_16_bit_unsigned_accelerated), convert(VkBool32, integer_dot_product_16_bit_signed_accelerated), convert(VkBool32, integer_dot_product_16_bit_mixed_signedness_accelerated), convert(VkBool32, integer_dot_product_32_bit_unsigned_accelerated), convert(VkBool32, integer_dot_product_32_bit_signed_accelerated), convert(VkBool32, integer_dot_product_32_bit_mixed_signedness_accelerated), convert(VkBool32, integer_dot_product_64_bit_unsigned_accelerated), convert(VkBool32, integer_dot_product_64_bit_signed_accelerated), convert(VkBool32, integer_dot_product_64_bit_mixed_signedness_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_8_bit_unsigned_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_8_bit_signed_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_8_bit_mixed_signedness_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_8_bit_packed_unsigned_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_8_bit_packed_signed_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_8_bit_packed_mixed_signedness_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_16_bit_unsigned_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_16_bit_signed_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_16_bit_mixed_signedness_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_32_bit_unsigned_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_32_bit_signed_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_32_bit_mixed_signedness_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_64_bit_unsigned_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_64_bit_signed_accelerated), convert(VkBool32, integer_dot_product_accumulating_saturating_64_bit_mixed_signedness_accelerated))
     _PhysicalDeviceShaderIntegerDotProductProperties(vks, deps)
 end
 
@@ -56017,7 +56025,7 @@ Arguments:
 function _PhysicalDeviceDrmPropertiesEXT(has_primary::Bool, has_render::Bool, primary_major::Integer, primary_minor::Integer, render_major::Integer, render_minor::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDrmPropertiesEXT(structure_type(VkPhysicalDeviceDrmPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), has_primary, has_render, primary_major, primary_minor, render_major, render_minor)
+    vks = VkPhysicalDeviceDrmPropertiesEXT(structure_type(VkPhysicalDeviceDrmPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, has_primary), convert(VkBool32, has_render), convert(Int64, primary_major), convert(Int64, primary_minor), convert(Int64, render_major), convert(Int64, render_minor))
     _PhysicalDeviceDrmPropertiesEXT(vks, deps)
 end
 
@@ -56034,7 +56042,7 @@ Arguments:
 function _PhysicalDeviceFragmentShaderBarycentricFeaturesKHR(fragment_shader_barycentric::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceFragmentShaderBarycentricFeaturesKHR(structure_type(VkPhysicalDeviceFragmentShaderBarycentricFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), fragment_shader_barycentric)
+    vks = VkPhysicalDeviceFragmentShaderBarycentricFeaturesKHR(structure_type(VkPhysicalDeviceFragmentShaderBarycentricFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, fragment_shader_barycentric))
     _PhysicalDeviceFragmentShaderBarycentricFeaturesKHR(vks, deps)
 end
 
@@ -56051,7 +56059,7 @@ Arguments:
 function _PhysicalDeviceFragmentShaderBarycentricPropertiesKHR(tri_strip_vertex_order_independent_of_provoking_vertex::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceFragmentShaderBarycentricPropertiesKHR(structure_type(VkPhysicalDeviceFragmentShaderBarycentricPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), tri_strip_vertex_order_independent_of_provoking_vertex)
+    vks = VkPhysicalDeviceFragmentShaderBarycentricPropertiesKHR(structure_type(VkPhysicalDeviceFragmentShaderBarycentricPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, tri_strip_vertex_order_independent_of_provoking_vertex))
     _PhysicalDeviceFragmentShaderBarycentricPropertiesKHR(vks, deps)
 end
 
@@ -56069,7 +56077,7 @@ Arguments:
 function _PhysicalDeviceRayTracingMotionBlurFeaturesNV(ray_tracing_motion_blur::Bool, ray_tracing_motion_blur_pipeline_trace_rays_indirect::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceRayTracingMotionBlurFeaturesNV(structure_type(VkPhysicalDeviceRayTracingMotionBlurFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), ray_tracing_motion_blur, ray_tracing_motion_blur_pipeline_trace_rays_indirect)
+    vks = VkPhysicalDeviceRayTracingMotionBlurFeaturesNV(structure_type(VkPhysicalDeviceRayTracingMotionBlurFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, ray_tracing_motion_blur), convert(VkBool32, ray_tracing_motion_blur_pipeline_trace_rays_indirect))
     _PhysicalDeviceRayTracingMotionBlurFeaturesNV(vks, deps)
 end
 
@@ -56086,7 +56094,7 @@ Arguments:
 function _PhysicalDeviceRayTracingValidationFeaturesNV(ray_tracing_validation::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceRayTracingValidationFeaturesNV(structure_type(VkPhysicalDeviceRayTracingValidationFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), ray_tracing_validation)
+    vks = VkPhysicalDeviceRayTracingValidationFeaturesNV(structure_type(VkPhysicalDeviceRayTracingValidationFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, ray_tracing_validation))
     _PhysicalDeviceRayTracingValidationFeaturesNV(vks, deps)
 end
 
@@ -56104,7 +56112,7 @@ Arguments:
 function _PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV(spheres::Bool, linear_swept_spheres::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV(structure_type(VkPhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), spheres, linear_swept_spheres)
+    vks = VkPhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV(structure_type(VkPhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, spheres), convert(VkBool32, linear_swept_spheres))
     _PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV(vks, deps)
 end
 
@@ -56139,7 +56147,7 @@ Arguments:
 function _AccelerationStructureMotionInfoNV(max_instances::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAccelerationStructureMotionInfoNV(structure_type(VkAccelerationStructureMotionInfoNV), unsafe_convert(Ptr{Cvoid}, next), max_instances, flags)
+    vks = VkAccelerationStructureMotionInfoNV(structure_type(VkAccelerationStructureMotionInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_instances), convert(VkAccelerationStructureMotionInfoFlagsNV, flags))
     _AccelerationStructureMotionInfoNV(vks, deps)
 end
 
@@ -56168,7 +56176,7 @@ Arguments:
 
 """
 function _SRTDataNV(sx::Real, a::Real, b::Real, pvx::Real, sy::Real, c::Real, pvy::Real, sz::Real, pvz::Real, qx::Real, qy::Real, qz::Real, qw::Real, tx::Real, ty::Real, tz::Real)
-    _SRTDataNV(VkSRTDataNV(sx, a, b, pvx, sy, c, pvy, sz, pvz, qx, qy, qz, qw, tx, ty, tz))
+    _SRTDataNV(VkSRTDataNV(convert(Float32, sx), convert(Float32, a), convert(Float32, b), convert(Float32, pvx), convert(Float32, sy), convert(Float32, c), convert(Float32, pvy), convert(Float32, sz), convert(Float32, pvz), convert(Float32, qx), convert(Float32, qy), convert(Float32, qz), convert(Float32, qw), convert(Float32, tx), convert(Float32, ty), convert(Float32, tz)))
 end
 
 """
@@ -56187,7 +56195,7 @@ Arguments:
 
 """
 function _AccelerationStructureSRTMotionInstanceNV(transform_t_0::_SRTDataNV, transform_t_1::_SRTDataNV, instance_custom_index::Integer, mask::Integer, instance_shader_binding_table_record_offset::Integer, acceleration_structure_reference::Integer; flags = 0)
-    _AccelerationStructureSRTMotionInstanceNV(VkAccelerationStructureSRTMotionInstanceNV(transform_t_0.vks, transform_t_1.vks, instance_custom_index, mask, instance_shader_binding_table_record_offset, flags, acceleration_structure_reference))
+    _AccelerationStructureSRTMotionInstanceNV(VkAccelerationStructureSRTMotionInstanceNV(transform_t_0.vks, transform_t_1.vks, convert(UInt32, instance_custom_index), convert(UInt32, mask), convert(UInt32, instance_shader_binding_table_record_offset), convert(VkGeometryInstanceFlagsKHR, flags), convert(UInt64, acceleration_structure_reference)))
 end
 
 """
@@ -56206,7 +56214,7 @@ Arguments:
 
 """
 function _AccelerationStructureMatrixMotionInstanceNV(transform_t_0::_TransformMatrixKHR, transform_t_1::_TransformMatrixKHR, instance_custom_index::Integer, mask::Integer, instance_shader_binding_table_record_offset::Integer, acceleration_structure_reference::Integer; flags = 0)
-    _AccelerationStructureMatrixMotionInstanceNV(VkAccelerationStructureMatrixMotionInstanceNV(transform_t_0.vks, transform_t_1.vks, instance_custom_index, mask, instance_shader_binding_table_record_offset, flags, acceleration_structure_reference))
+    _AccelerationStructureMatrixMotionInstanceNV(VkAccelerationStructureMatrixMotionInstanceNV(transform_t_0.vks, transform_t_1.vks, convert(UInt32, instance_custom_index), convert(UInt32, mask), convert(UInt32, instance_shader_binding_table_record_offset), convert(VkGeometryInstanceFlagsKHR, flags), convert(UInt64, acceleration_structure_reference)))
 end
 
 """
@@ -56221,7 +56229,7 @@ Arguments:
 
 """
 function _AccelerationStructureMotionInstanceNV(type::AccelerationStructureMotionInstanceTypeNV, data::_AccelerationStructureMotionInstanceDataNV; flags = 0)
-    _AccelerationStructureMotionInstanceNV(VkAccelerationStructureMotionInstanceNV(type, flags, data.vks))
+    _AccelerationStructureMotionInstanceNV(VkAccelerationStructureMotionInstanceNV(convert(VkAccelerationStructureMotionInstanceTypeNV, type), convert(VkAccelerationStructureMotionInstanceFlagsNV, flags), data.vks))
 end
 
 """
@@ -56238,7 +56246,7 @@ Arguments:
 function _MemoryGetRemoteAddressInfoNV(memory, handle_type::ExternalMemoryHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMemoryGetRemoteAddressInfoNV(structure_type(VkMemoryGetRemoteAddressInfoNV), unsafe_convert(Ptr{Cvoid}, next), memory, VkExternalMemoryHandleTypeFlagBits(handle_type.val))
+    vks = VkMemoryGetRemoteAddressInfoNV(structure_type(VkMemoryGetRemoteAddressInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceMemory, memory), VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)))
     _MemoryGetRemoteAddressInfoNV(vks, deps, memory)
 end
 
@@ -56255,7 +56263,7 @@ Arguments:
 function _PhysicalDeviceRGBA10X6FormatsFeaturesEXT(format_rgba_1_6_without_y_cb_cr_sampler::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceRGBA10X6FormatsFeaturesEXT(structure_type(VkPhysicalDeviceRGBA10X6FormatsFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), format_rgba_1_6_without_y_cb_cr_sampler)
+    vks = VkPhysicalDeviceRGBA10X6FormatsFeaturesEXT(structure_type(VkPhysicalDeviceRGBA10X6FormatsFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, format_rgba_1_6_without_y_cb_cr_sampler))
     _PhysicalDeviceRGBA10X6FormatsFeaturesEXT(vks, deps)
 end
 
@@ -56272,7 +56280,7 @@ Arguments:
 function _FormatProperties3(; next = C_NULL, linear_tiling_features = 0, optimal_tiling_features = 0, buffer_features = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkFormatProperties3(structure_type(VkFormatProperties3), unsafe_convert(Ptr{Cvoid}, next), linear_tiling_features, optimal_tiling_features, buffer_features)
+    vks = VkFormatProperties3(structure_type(VkFormatProperties3), unsafe_convert(Ptr{Cvoid}, next), convert(VkFormatFeatureFlags2, linear_tiling_features), convert(VkFormatFeatureFlags2, optimal_tiling_features), convert(VkFormatFeatureFlags2, buffer_features))
     _FormatProperties3(vks, deps)
 end
 
@@ -56291,7 +56299,7 @@ function _DrmFormatModifierPropertiesList2EXT(; next = C_NULL, drm_format_modifi
     next = cconvert(Ptr{Cvoid}, next)
     drm_format_modifier_properties = cconvert(Ptr{VkDrmFormatModifierProperties2EXT}, drm_format_modifier_properties)
     deps = Any[next, drm_format_modifier_properties]
-    vks = VkDrmFormatModifierPropertiesList2EXT(structure_type(VkDrmFormatModifierPropertiesList2EXT), unsafe_convert(Ptr{Cvoid}, next), drm_format_modifier_count, unsafe_convert(Ptr{VkDrmFormatModifierProperties2EXT}, drm_format_modifier_properties))
+    vks = VkDrmFormatModifierPropertiesList2EXT(structure_type(VkDrmFormatModifierPropertiesList2EXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, drm_format_modifier_count), unsafe_convert(Ptr{VkDrmFormatModifierProperties2EXT}, drm_format_modifier_properties))
     _DrmFormatModifierPropertiesList2EXT(vks, deps)
 end
 
@@ -56307,7 +56315,7 @@ Arguments:
 
 """
 function _DrmFormatModifierProperties2EXT(drm_format_modifier::Integer, drm_format_modifier_plane_count::Integer, drm_format_modifier_tiling_features::Integer)
-    _DrmFormatModifierProperties2EXT(VkDrmFormatModifierProperties2EXT(drm_format_modifier, drm_format_modifier_plane_count, drm_format_modifier_tiling_features))
+    _DrmFormatModifierProperties2EXT(VkDrmFormatModifierProperties2EXT(convert(UInt64, drm_format_modifier), convert(UInt32, drm_format_modifier_plane_count), convert(VkFormatFeatureFlags2, drm_format_modifier_tiling_features)))
 end
 
 """
@@ -56326,7 +56334,7 @@ function _PipelineRenderingCreateInfo(view_mask::Integer, color_attachment_forma
     next = cconvert(Ptr{Cvoid}, next)
     color_attachment_formats = cconvert(Ptr{VkFormat}, color_attachment_formats)
     deps = Any[next, color_attachment_formats]
-    vks = VkPipelineRenderingCreateInfo(structure_type(VkPipelineRenderingCreateInfo), unsafe_convert(Ptr{Cvoid}, next), view_mask, color_attachment_count, unsafe_convert(Ptr{VkFormat}, color_attachment_formats), depth_attachment_format, stencil_attachment_format)
+    vks = VkPipelineRenderingCreateInfo(structure_type(VkPipelineRenderingCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, view_mask), convert(UInt32, color_attachment_count), unsafe_convert(Ptr{VkFormat}, color_attachment_formats), convert(VkFormat, depth_attachment_format), convert(VkFormat, stencil_attachment_format))
     _PipelineRenderingCreateInfo(vks, deps)
 end
 
@@ -56351,7 +56359,7 @@ function _RenderingInfo(render_area::_Rect2D, layer_count::Integer, view_mask::I
     depth_attachment = cconvert(Ptr{VkRenderingAttachmentInfo}, depth_attachment)
     stencil_attachment = cconvert(Ptr{VkRenderingAttachmentInfo}, stencil_attachment)
     deps = Any[next, color_attachments, depth_attachment, stencil_attachment]
-    vks = VkRenderingInfo(structure_type(VkRenderingInfo), unsafe_convert(Ptr{Cvoid}, next), flags, render_area.vks, layer_count, view_mask, color_attachment_count, unsafe_convert(Ptr{VkRenderingAttachmentInfo}, color_attachments), unsafe_convert(Ptr{VkRenderingAttachmentInfo}, depth_attachment), unsafe_convert(Ptr{VkRenderingAttachmentInfo}, stencil_attachment))
+    vks = VkRenderingInfo(structure_type(VkRenderingInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkRenderingFlags, flags), render_area.vks, convert(UInt32, layer_count), convert(UInt32, view_mask), convert(UInt32, color_attachment_count), unsafe_convert(Ptr{VkRenderingAttachmentInfo}, color_attachments), unsafe_convert(Ptr{VkRenderingAttachmentInfo}, depth_attachment), unsafe_convert(Ptr{VkRenderingAttachmentInfo}, stencil_attachment))
     _RenderingInfo(vks, deps)
 end
 
@@ -56389,7 +56397,7 @@ Arguments:
 function _RenderingAttachmentInfo(image_layout::ImageLayout, resolve_image_layout::ImageLayout, load_op::AttachmentLoadOp, store_op::AttachmentStoreOp, clear_value::_ClearValue; next = C_NULL, image_view = C_NULL, resolve_mode = 0, resolve_image_view = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkRenderingAttachmentInfo(structure_type(VkRenderingAttachmentInfo), unsafe_convert(Ptr{Cvoid}, next), image_view, image_layout, VkResolveModeFlagBits(resolve_mode.val), resolve_image_view, resolve_image_layout, load_op, store_op, clear_value.vks)
+    vks = VkRenderingAttachmentInfo(structure_type(VkRenderingAttachmentInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkImageView, image_view), convert(VkImageLayout, image_layout), VkResolveModeFlagBits(flag_value(resolve_mode)), convert(VkImageView, resolve_image_view), convert(VkImageLayout, resolve_image_layout), convert(VkAttachmentLoadOp, load_op), convert(VkAttachmentStoreOp, store_op), clear_value.vks)
     _RenderingAttachmentInfo(vks, deps, image_view, resolve_image_view)
 end
 
@@ -56408,7 +56416,7 @@ Arguments:
 function _RenderingFragmentShadingRateAttachmentInfoKHR(image_layout::ImageLayout, shading_rate_attachment_texel_size::_Extent2D; next = C_NULL, image_view = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkRenderingFragmentShadingRateAttachmentInfoKHR(structure_type(VkRenderingFragmentShadingRateAttachmentInfoKHR), unsafe_convert(Ptr{Cvoid}, next), image_view, image_layout, shading_rate_attachment_texel_size.vks)
+    vks = VkRenderingFragmentShadingRateAttachmentInfoKHR(structure_type(VkRenderingFragmentShadingRateAttachmentInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkImageView, image_view), convert(VkImageLayout, image_layout), shading_rate_attachment_texel_size.vks)
     _RenderingFragmentShadingRateAttachmentInfoKHR(vks, deps, image_view)
 end
 
@@ -56426,7 +56434,7 @@ Arguments:
 function _RenderingFragmentDensityMapAttachmentInfoEXT(image_view, image_layout::ImageLayout; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkRenderingFragmentDensityMapAttachmentInfoEXT(structure_type(VkRenderingFragmentDensityMapAttachmentInfoEXT), unsafe_convert(Ptr{Cvoid}, next), image_view, image_layout)
+    vks = VkRenderingFragmentDensityMapAttachmentInfoEXT(structure_type(VkRenderingFragmentDensityMapAttachmentInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkImageView, image_view), convert(VkImageLayout, image_layout))
     _RenderingFragmentDensityMapAttachmentInfoEXT(vks, deps, image_view)
 end
 
@@ -56441,7 +56449,7 @@ Arguments:
 function _PhysicalDeviceDynamicRenderingFeatures(dynamic_rendering::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDynamicRenderingFeatures(structure_type(VkPhysicalDeviceDynamicRenderingFeatures), unsafe_convert(Ptr{Cvoid}, next), dynamic_rendering)
+    vks = VkPhysicalDeviceDynamicRenderingFeatures(structure_type(VkPhysicalDeviceDynamicRenderingFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, dynamic_rendering))
     _PhysicalDeviceDynamicRenderingFeatures(vks, deps)
 end
 
@@ -56463,7 +56471,7 @@ function _CommandBufferInheritanceRenderingInfo(view_mask::Integer, color_attach
     next = cconvert(Ptr{Cvoid}, next)
     color_attachment_formats = cconvert(Ptr{VkFormat}, color_attachment_formats)
     deps = Any[next, color_attachment_formats]
-    vks = VkCommandBufferInheritanceRenderingInfo(structure_type(VkCommandBufferInheritanceRenderingInfo), unsafe_convert(Ptr{Cvoid}, next), flags, view_mask, color_attachment_count, unsafe_convert(Ptr{VkFormat}, color_attachment_formats), depth_attachment_format, stencil_attachment_format, VkSampleCountFlagBits(rasterization_samples.val))
+    vks = VkCommandBufferInheritanceRenderingInfo(structure_type(VkCommandBufferInheritanceRenderingInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkRenderingFlags, flags), convert(UInt32, view_mask), convert(UInt32, color_attachment_count), unsafe_convert(Ptr{VkFormat}, color_attachment_formats), convert(VkFormat, depth_attachment_format), convert(VkFormat, stencil_attachment_format), VkSampleCountFlagBits(flag_value(rasterization_samples)))
     _CommandBufferInheritanceRenderingInfo(vks, deps)
 end
 
@@ -56483,7 +56491,7 @@ function _AttachmentSampleCountInfoAMD(color_attachment_samples::AbstractArray; 
     next = cconvert(Ptr{Cvoid}, next)
     color_attachment_samples = cconvert(Ptr{VkSampleCountFlagBits}, color_attachment_samples)
     deps = Any[next, color_attachment_samples]
-    vks = VkAttachmentSampleCountInfoAMD(structure_type(VkAttachmentSampleCountInfoAMD), unsafe_convert(Ptr{Cvoid}, next), color_attachment_count, unsafe_convert(Ptr{VkSampleCountFlagBits}, color_attachment_samples), VkSampleCountFlagBits(depth_stencil_attachment_samples.val))
+    vks = VkAttachmentSampleCountInfoAMD(structure_type(VkAttachmentSampleCountInfoAMD), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, color_attachment_count), unsafe_convert(Ptr{VkSampleCountFlagBits}, color_attachment_samples), VkSampleCountFlagBits(flag_value(depth_stencil_attachment_samples)))
     _AttachmentSampleCountInfoAMD(vks, deps)
 end
 
@@ -56501,7 +56509,7 @@ Arguments:
 function _MultiviewPerViewAttributesInfoNVX(per_view_attributes::Bool, per_view_attributes_position_x_only::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMultiviewPerViewAttributesInfoNVX(structure_type(VkMultiviewPerViewAttributesInfoNVX), unsafe_convert(Ptr{Cvoid}, next), per_view_attributes, per_view_attributes_position_x_only)
+    vks = VkMultiviewPerViewAttributesInfoNVX(structure_type(VkMultiviewPerViewAttributesInfoNVX), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, per_view_attributes), convert(VkBool32, per_view_attributes_position_x_only))
     _MultiviewPerViewAttributesInfoNVX(vks, deps)
 end
 
@@ -56518,7 +56526,7 @@ Arguments:
 function _PhysicalDeviceImageViewMinLodFeaturesEXT(min_lod::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceImageViewMinLodFeaturesEXT(structure_type(VkPhysicalDeviceImageViewMinLodFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), min_lod)
+    vks = VkPhysicalDeviceImageViewMinLodFeaturesEXT(structure_type(VkPhysicalDeviceImageViewMinLodFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, min_lod))
     _PhysicalDeviceImageViewMinLodFeaturesEXT(vks, deps)
 end
 
@@ -56535,7 +56543,7 @@ Arguments:
 function _ImageViewMinLodCreateInfoEXT(min_lod::Real; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImageViewMinLodCreateInfoEXT(structure_type(VkImageViewMinLodCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), min_lod)
+    vks = VkImageViewMinLodCreateInfoEXT(structure_type(VkImageViewMinLodCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(Float32, min_lod))
     _ImageViewMinLodCreateInfoEXT(vks, deps)
 end
 
@@ -56554,7 +56562,7 @@ Arguments:
 function _PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT(rasterization_order_color_attachment_access::Bool, rasterization_order_depth_attachment_access::Bool, rasterization_order_stencil_attachment_access::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT(structure_type(VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), rasterization_order_color_attachment_access, rasterization_order_depth_attachment_access, rasterization_order_stencil_attachment_access)
+    vks = VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT(structure_type(VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, rasterization_order_color_attachment_access), convert(VkBool32, rasterization_order_depth_attachment_access), convert(VkBool32, rasterization_order_stencil_attachment_access))
     _PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT(vks, deps)
 end
 
@@ -56571,7 +56579,7 @@ Arguments:
 function _PhysicalDeviceLinearColorAttachmentFeaturesNV(linear_color_attachment::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceLinearColorAttachmentFeaturesNV(structure_type(VkPhysicalDeviceLinearColorAttachmentFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), linear_color_attachment)
+    vks = VkPhysicalDeviceLinearColorAttachmentFeaturesNV(structure_type(VkPhysicalDeviceLinearColorAttachmentFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, linear_color_attachment))
     _PhysicalDeviceLinearColorAttachmentFeaturesNV(vks, deps)
 end
 
@@ -56588,7 +56596,7 @@ Arguments:
 function _PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT(graphics_pipeline_library::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceGraphicsPipelineLibraryFeaturesEXT(structure_type(VkPhysicalDeviceGraphicsPipelineLibraryFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), graphics_pipeline_library)
+    vks = VkPhysicalDeviceGraphicsPipelineLibraryFeaturesEXT(structure_type(VkPhysicalDeviceGraphicsPipelineLibraryFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, graphics_pipeline_library))
     _PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT(vks, deps)
 end
 
@@ -56605,7 +56613,7 @@ Arguments:
 function _PhysicalDevicePipelineBinaryFeaturesKHR(pipeline_binaries::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePipelineBinaryFeaturesKHR(structure_type(VkPhysicalDevicePipelineBinaryFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), pipeline_binaries)
+    vks = VkPhysicalDevicePipelineBinaryFeaturesKHR(structure_type(VkPhysicalDevicePipelineBinaryFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, pipeline_binaries))
     _PhysicalDevicePipelineBinaryFeaturesKHR(vks, deps)
 end
 
@@ -56622,7 +56630,7 @@ Arguments:
 function _DevicePipelineBinaryInternalCacheControlKHR(disable_internal_cache::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDevicePipelineBinaryInternalCacheControlKHR(structure_type(VkDevicePipelineBinaryInternalCacheControlKHR), unsafe_convert(Ptr{Cvoid}, next), disable_internal_cache)
+    vks = VkDevicePipelineBinaryInternalCacheControlKHR(structure_type(VkDevicePipelineBinaryInternalCacheControlKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, disable_internal_cache))
     _DevicePipelineBinaryInternalCacheControlKHR(vks, deps)
 end
 
@@ -56643,7 +56651,7 @@ Arguments:
 function _PhysicalDevicePipelineBinaryPropertiesKHR(pipeline_binary_internal_cache::Bool, pipeline_binary_internal_cache_control::Bool, pipeline_binary_prefers_internal_cache::Bool, pipeline_binary_precompiled_internal_cache::Bool, pipeline_binary_compressed_data::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePipelineBinaryPropertiesKHR(structure_type(VkPhysicalDevicePipelineBinaryPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), pipeline_binary_internal_cache, pipeline_binary_internal_cache_control, pipeline_binary_prefers_internal_cache, pipeline_binary_precompiled_internal_cache, pipeline_binary_compressed_data)
+    vks = VkPhysicalDevicePipelineBinaryPropertiesKHR(structure_type(VkPhysicalDevicePipelineBinaryPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, pipeline_binary_internal_cache), convert(VkBool32, pipeline_binary_internal_cache_control), convert(VkBool32, pipeline_binary_prefers_internal_cache), convert(VkBool32, pipeline_binary_precompiled_internal_cache), convert(VkBool32, pipeline_binary_compressed_data))
     _PhysicalDevicePipelineBinaryPropertiesKHR(vks, deps)
 end
 
@@ -56661,7 +56669,7 @@ Arguments:
 function _PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT(graphics_pipeline_library_fast_linking::Bool, graphics_pipeline_library_independent_interpolation_decoration::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceGraphicsPipelineLibraryPropertiesEXT(structure_type(VkPhysicalDeviceGraphicsPipelineLibraryPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), graphics_pipeline_library_fast_linking, graphics_pipeline_library_independent_interpolation_decoration)
+    vks = VkPhysicalDeviceGraphicsPipelineLibraryPropertiesEXT(structure_type(VkPhysicalDeviceGraphicsPipelineLibraryPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, graphics_pipeline_library_fast_linking), convert(VkBool32, graphics_pipeline_library_independent_interpolation_decoration))
     _PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT(vks, deps)
 end
 
@@ -56678,7 +56686,7 @@ Arguments:
 function _GraphicsPipelineLibraryCreateInfoEXT(flags::GraphicsPipelineLibraryFlagEXT; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkGraphicsPipelineLibraryCreateInfoEXT(structure_type(VkGraphicsPipelineLibraryCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), flags)
+    vks = VkGraphicsPipelineLibraryCreateInfoEXT(structure_type(VkGraphicsPipelineLibraryCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkGraphicsPipelineLibraryFlagsEXT, flags))
     _GraphicsPipelineLibraryCreateInfoEXT(vks, deps)
 end
 
@@ -56695,7 +56703,7 @@ Arguments:
 function _PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE(descriptor_set_host_mapping::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE(structure_type(VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE), unsafe_convert(Ptr{Cvoid}, next), descriptor_set_host_mapping)
+    vks = VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE(structure_type(VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, descriptor_set_host_mapping))
     _PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE(vks, deps)
 end
 
@@ -56713,7 +56721,7 @@ Arguments:
 function _DescriptorSetBindingReferenceVALVE(descriptor_set_layout, binding::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDescriptorSetBindingReferenceVALVE(structure_type(VkDescriptorSetBindingReferenceVALVE), unsafe_convert(Ptr{Cvoid}, next), descriptor_set_layout, binding)
+    vks = VkDescriptorSetBindingReferenceVALVE(structure_type(VkDescriptorSetBindingReferenceVALVE), unsafe_convert(Ptr{Cvoid}, next), convert(VkDescriptorSetLayout, descriptor_set_layout), convert(UInt32, binding))
     _DescriptorSetBindingReferenceVALVE(vks, deps, descriptor_set_layout)
 end
 
@@ -56731,7 +56739,7 @@ Arguments:
 function _DescriptorSetLayoutHostMappingInfoVALVE(descriptor_offset::Integer, descriptor_size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDescriptorSetLayoutHostMappingInfoVALVE(structure_type(VkDescriptorSetLayoutHostMappingInfoVALVE), unsafe_convert(Ptr{Cvoid}, next), descriptor_offset, descriptor_size)
+    vks = VkDescriptorSetLayoutHostMappingInfoVALVE(structure_type(VkDescriptorSetLayoutHostMappingInfoVALVE), unsafe_convert(Ptr{Cvoid}, next), convert(UInt, descriptor_offset), convert(UInt32, descriptor_size))
     _DescriptorSetLayoutHostMappingInfoVALVE(vks, deps)
 end
 
@@ -56750,7 +56758,7 @@ Arguments:
 function _PhysicalDeviceNestedCommandBufferFeaturesEXT(nested_command_buffer::Bool, nested_command_buffer_rendering::Bool, nested_command_buffer_simultaneous_use::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceNestedCommandBufferFeaturesEXT(structure_type(VkPhysicalDeviceNestedCommandBufferFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), nested_command_buffer, nested_command_buffer_rendering, nested_command_buffer_simultaneous_use)
+    vks = VkPhysicalDeviceNestedCommandBufferFeaturesEXT(structure_type(VkPhysicalDeviceNestedCommandBufferFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, nested_command_buffer), convert(VkBool32, nested_command_buffer_rendering), convert(VkBool32, nested_command_buffer_simultaneous_use))
     _PhysicalDeviceNestedCommandBufferFeaturesEXT(vks, deps)
 end
 
@@ -56767,7 +56775,7 @@ Arguments:
 function _PhysicalDeviceNestedCommandBufferPropertiesEXT(max_command_buffer_nesting_level::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceNestedCommandBufferPropertiesEXT(structure_type(VkPhysicalDeviceNestedCommandBufferPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), max_command_buffer_nesting_level)
+    vks = VkPhysicalDeviceNestedCommandBufferPropertiesEXT(structure_type(VkPhysicalDeviceNestedCommandBufferPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_command_buffer_nesting_level))
     _PhysicalDeviceNestedCommandBufferPropertiesEXT(vks, deps)
 end
 
@@ -56784,7 +56792,7 @@ Arguments:
 function _PhysicalDeviceShaderModuleIdentifierFeaturesEXT(shader_module_identifier::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderModuleIdentifierFeaturesEXT(structure_type(VkPhysicalDeviceShaderModuleIdentifierFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), shader_module_identifier)
+    vks = VkPhysicalDeviceShaderModuleIdentifierFeaturesEXT(structure_type(VkPhysicalDeviceShaderModuleIdentifierFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_module_identifier))
     _PhysicalDeviceShaderModuleIdentifierFeaturesEXT(vks, deps)
 end
 
@@ -56801,7 +56809,7 @@ Arguments:
 function _PhysicalDeviceShaderModuleIdentifierPropertiesEXT(shader_module_identifier_algorithm_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderModuleIdentifierPropertiesEXT(structure_type(VkPhysicalDeviceShaderModuleIdentifierPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), shader_module_identifier_algorithm_uuid)
+    vks = VkPhysicalDeviceShaderModuleIdentifierPropertiesEXT(structure_type(VkPhysicalDeviceShaderModuleIdentifierPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(NTuple{Int(VK_UUID_SIZE), UInt8}, shader_module_identifier_algorithm_uuid))
     _PhysicalDeviceShaderModuleIdentifierPropertiesEXT(vks, deps)
 end
 
@@ -56820,7 +56828,7 @@ function _PipelineShaderStageModuleIdentifierCreateInfoEXT(identifier::AbstractA
     next = cconvert(Ptr{Cvoid}, next)
     identifier = cconvert(Ptr{UInt8}, identifier)
     deps = Any[next, identifier]
-    vks = VkPipelineShaderStageModuleIdentifierCreateInfoEXT(structure_type(VkPipelineShaderStageModuleIdentifierCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), identifier_size, unsafe_convert(Ptr{UInt8}, identifier))
+    vks = VkPipelineShaderStageModuleIdentifierCreateInfoEXT(structure_type(VkPipelineShaderStageModuleIdentifierCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, identifier_size), unsafe_convert(Ptr{UInt8}, identifier))
     _PipelineShaderStageModuleIdentifierCreateInfoEXT(vks, deps)
 end
 
@@ -56838,7 +56846,7 @@ Arguments:
 function _ShaderModuleIdentifierEXT(identifier_size::Integer, identifier::NTuple{Int(VK_MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT), UInt8}; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkShaderModuleIdentifierEXT(structure_type(VkShaderModuleIdentifierEXT), unsafe_convert(Ptr{Cvoid}, next), identifier_size, identifier)
+    vks = VkShaderModuleIdentifierEXT(structure_type(VkShaderModuleIdentifierEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, identifier_size), convert(NTuple{Int(VK_MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT), UInt8}, identifier))
     _ShaderModuleIdentifierEXT(vks, deps)
 end
 
@@ -56858,7 +56866,7 @@ function _ImageCompressionControlEXT(flags::ImageCompressionFlagEXT, fixed_rate_
     next = cconvert(Ptr{Cvoid}, next)
     fixed_rate_flags = cconvert(Ptr{VkImageCompressionFixedRateFlagsEXT}, fixed_rate_flags)
     deps = Any[next, fixed_rate_flags]
-    vks = VkImageCompressionControlEXT(structure_type(VkImageCompressionControlEXT), unsafe_convert(Ptr{Cvoid}, next), flags, compression_control_plane_count, unsafe_convert(Ptr{VkImageCompressionFixedRateFlagsEXT}, fixed_rate_flags))
+    vks = VkImageCompressionControlEXT(structure_type(VkImageCompressionControlEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkImageCompressionFlagsEXT, flags), convert(UInt32, compression_control_plane_count), unsafe_convert(Ptr{VkImageCompressionFixedRateFlagsEXT}, fixed_rate_flags))
     _ImageCompressionControlEXT(vks, deps)
 end
 
@@ -56875,7 +56883,7 @@ Arguments:
 function _PhysicalDeviceImageCompressionControlFeaturesEXT(image_compression_control::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceImageCompressionControlFeaturesEXT(structure_type(VkPhysicalDeviceImageCompressionControlFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), image_compression_control)
+    vks = VkPhysicalDeviceImageCompressionControlFeaturesEXT(structure_type(VkPhysicalDeviceImageCompressionControlFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, image_compression_control))
     _PhysicalDeviceImageCompressionControlFeaturesEXT(vks, deps)
 end
 
@@ -56893,7 +56901,7 @@ Arguments:
 function _ImageCompressionPropertiesEXT(image_compression_flags::ImageCompressionFlagEXT, image_compression_fixed_rate_flags::ImageCompressionFixedRateFlagEXT; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImageCompressionPropertiesEXT(structure_type(VkImageCompressionPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), image_compression_flags, image_compression_fixed_rate_flags)
+    vks = VkImageCompressionPropertiesEXT(structure_type(VkImageCompressionPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkImageCompressionFlagsEXT, image_compression_flags), convert(VkImageCompressionFixedRateFlagsEXT, image_compression_fixed_rate_flags))
     _ImageCompressionPropertiesEXT(vks, deps)
 end
 
@@ -56910,7 +56918,7 @@ Arguments:
 function _PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT(image_compression_control_swapchain::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceImageCompressionControlSwapchainFeaturesEXT(structure_type(VkPhysicalDeviceImageCompressionControlSwapchainFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), image_compression_control_swapchain)
+    vks = VkPhysicalDeviceImageCompressionControlSwapchainFeaturesEXT(structure_type(VkPhysicalDeviceImageCompressionControlSwapchainFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, image_compression_control_swapchain))
     _PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT(vks, deps)
 end
 
@@ -56957,7 +56965,7 @@ Arguments:
 function _RenderPassCreationControlEXT(disallow_merging::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkRenderPassCreationControlEXT(structure_type(VkRenderPassCreationControlEXT), unsafe_convert(Ptr{Cvoid}, next), disallow_merging)
+    vks = VkRenderPassCreationControlEXT(structure_type(VkRenderPassCreationControlEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, disallow_merging))
     _RenderPassCreationControlEXT(vks, deps)
 end
 
@@ -56971,7 +56979,7 @@ Arguments:
 
 """
 function _RenderPassCreationFeedbackInfoEXT(post_merge_subpass_count::Integer)
-    _RenderPassCreationFeedbackInfoEXT(VkRenderPassCreationFeedbackInfoEXT(post_merge_subpass_count))
+    _RenderPassCreationFeedbackInfoEXT(VkRenderPassCreationFeedbackInfoEXT(convert(UInt32, post_merge_subpass_count)))
 end
 
 """
@@ -57004,7 +57012,7 @@ Arguments:
 
 """
 function _RenderPassSubpassFeedbackInfoEXT(subpass_merge_status::SubpassMergeStatusEXT, description::AbstractString, post_merge_index::Integer)
-    _RenderPassSubpassFeedbackInfoEXT(VkRenderPassSubpassFeedbackInfoEXT(subpass_merge_status, description, post_merge_index))
+    _RenderPassSubpassFeedbackInfoEXT(VkRenderPassSubpassFeedbackInfoEXT(convert(VkSubpassMergeStatusEXT, subpass_merge_status), convert(NTuple{Int(VK_MAX_DESCRIPTION_SIZE), Char}, description), convert(UInt32, post_merge_index)))
 end
 
 """
@@ -57038,7 +57046,7 @@ Arguments:
 function _PhysicalDeviceSubpassMergeFeedbackFeaturesEXT(subpass_merge_feedback::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceSubpassMergeFeedbackFeaturesEXT(structure_type(VkPhysicalDeviceSubpassMergeFeedbackFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), subpass_merge_feedback)
+    vks = VkPhysicalDeviceSubpassMergeFeedbackFeaturesEXT(structure_type(VkPhysicalDeviceSubpassMergeFeedbackFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, subpass_merge_feedback))
     _PhysicalDeviceSubpassMergeFeedbackFeaturesEXT(vks, deps)
 end
 
@@ -57067,7 +57075,7 @@ function _MicromapBuildInfoEXT(type::MicromapTypeEXT, mode::BuildMicromapModeEXT
     usage_counts = cconvert(Ptr{VkMicromapUsageEXT}, usage_counts)
     usage_counts_2 = cconvert(Ptr{Ptr{VkMicromapUsageEXT}}, usage_counts_2)
     deps = Any[next, usage_counts, usage_counts_2]
-    vks = VkMicromapBuildInfoEXT(structure_type(VkMicromapBuildInfoEXT), unsafe_convert(Ptr{Cvoid}, next), type, flags, mode, dst_micromap, usage_counts_count, unsafe_convert(Ptr{VkMicromapUsageEXT}, usage_counts), unsafe_convert(Ptr{Ptr{VkMicromapUsageEXT}}, usage_counts), data.vks, scratch_data.vks, triangle_array.vks, triangle_array_stride)
+    vks = VkMicromapBuildInfoEXT(structure_type(VkMicromapBuildInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkMicromapTypeEXT, type), convert(VkBuildMicromapFlagsEXT, flags), convert(VkBuildMicromapModeEXT, mode), convert(VkMicromapEXT, dst_micromap), convert(UInt32, usage_counts_count), unsafe_convert(Ptr{VkMicromapUsageEXT}, usage_counts), unsafe_convert(Ptr{Ptr{VkMicromapUsageEXT}}, usage_counts), data.vks, scratch_data.vks, triangle_array.vks, convert(VkDeviceSize, triangle_array_stride))
     _MicromapBuildInfoEXT(vks, deps, dst_micromap)
 end
 
@@ -57089,7 +57097,7 @@ Arguments:
 function _MicromapCreateInfoEXT(buffer, offset::Integer, size::Integer, type::MicromapTypeEXT; next = C_NULL, create_flags = 0, device_address = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMicromapCreateInfoEXT(structure_type(VkMicromapCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), create_flags, buffer, offset, size, type, device_address)
+    vks = VkMicromapCreateInfoEXT(structure_type(VkMicromapCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkMicromapCreateFlagsEXT, create_flags), convert(VkBuffer, buffer), convert(VkDeviceSize, offset), convert(VkDeviceSize, size), convert(VkMicromapTypeEXT, type), convert(VkDeviceAddress, device_address))
     _MicromapCreateInfoEXT(vks, deps, buffer)
 end
 
@@ -57126,7 +57134,7 @@ Arguments:
 function _CopyMicromapInfoEXT(src, dst, mode::CopyMicromapModeEXT; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkCopyMicromapInfoEXT(structure_type(VkCopyMicromapInfoEXT), unsafe_convert(Ptr{Cvoid}, next), src, dst, mode)
+    vks = VkCopyMicromapInfoEXT(structure_type(VkCopyMicromapInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkMicromapEXT, src), convert(VkMicromapEXT, dst), convert(VkCopyMicromapModeEXT, mode))
     _CopyMicromapInfoEXT(vks, deps, src, dst)
 end
 
@@ -57145,7 +57153,7 @@ Arguments:
 function _CopyMicromapToMemoryInfoEXT(src, dst::_DeviceOrHostAddressKHR, mode::CopyMicromapModeEXT; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkCopyMicromapToMemoryInfoEXT(structure_type(VkCopyMicromapToMemoryInfoEXT), unsafe_convert(Ptr{Cvoid}, next), src, dst.vks, mode)
+    vks = VkCopyMicromapToMemoryInfoEXT(structure_type(VkCopyMicromapToMemoryInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkMicromapEXT, src), dst.vks, convert(VkCopyMicromapModeEXT, mode))
     _CopyMicromapToMemoryInfoEXT(vks, deps, src)
 end
 
@@ -57164,7 +57172,7 @@ Arguments:
 function _CopyMemoryToMicromapInfoEXT(src::_DeviceOrHostAddressConstKHR, dst, mode::CopyMicromapModeEXT; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkCopyMemoryToMicromapInfoEXT(structure_type(VkCopyMemoryToMicromapInfoEXT), unsafe_convert(Ptr{Cvoid}, next), src.vks, dst, mode)
+    vks = VkCopyMemoryToMicromapInfoEXT(structure_type(VkCopyMemoryToMicromapInfoEXT), unsafe_convert(Ptr{Cvoid}, next), src.vks, convert(VkMicromapEXT, dst), convert(VkCopyMicromapModeEXT, mode))
     _CopyMemoryToMicromapInfoEXT(vks, deps, dst)
 end
 
@@ -57183,7 +57191,7 @@ Arguments:
 function _MicromapBuildSizesInfoEXT(micromap_size::Integer, build_scratch_size::Integer, discardable::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMicromapBuildSizesInfoEXT(structure_type(VkMicromapBuildSizesInfoEXT), unsafe_convert(Ptr{Cvoid}, next), micromap_size, build_scratch_size, discardable)
+    vks = VkMicromapBuildSizesInfoEXT(structure_type(VkMicromapBuildSizesInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceSize, micromap_size), convert(VkDeviceSize, build_scratch_size), convert(VkBool32, discardable))
     _MicromapBuildSizesInfoEXT(vks, deps)
 end
 
@@ -57199,7 +57207,7 @@ Arguments:
 
 """
 function _MicromapUsageEXT(count::Integer, subdivision_level::Integer, format::Integer)
-    _MicromapUsageEXT(VkMicromapUsageEXT(count, subdivision_level, format))
+    _MicromapUsageEXT(VkMicromapUsageEXT(convert(UInt32, count), convert(UInt32, subdivision_level), convert(UInt32, format)))
 end
 
 """
@@ -57214,7 +57222,7 @@ Arguments:
 
 """
 function _MicromapTriangleEXT(data_offset::Integer, subdivision_level::Integer, format::Integer)
-    _MicromapTriangleEXT(VkMicromapTriangleEXT(data_offset, subdivision_level, format))
+    _MicromapTriangleEXT(VkMicromapTriangleEXT(convert(UInt32, data_offset), convert(UInt16, subdivision_level), convert(UInt16, format)))
 end
 
 """
@@ -57232,7 +57240,7 @@ Arguments:
 function _PhysicalDeviceOpacityMicromapFeaturesEXT(micromap::Bool, micromap_capture_replay::Bool, micromap_host_commands::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceOpacityMicromapFeaturesEXT(structure_type(VkPhysicalDeviceOpacityMicromapFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), micromap, micromap_capture_replay, micromap_host_commands)
+    vks = VkPhysicalDeviceOpacityMicromapFeaturesEXT(structure_type(VkPhysicalDeviceOpacityMicromapFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, micromap), convert(VkBool32, micromap_capture_replay), convert(VkBool32, micromap_host_commands))
     _PhysicalDeviceOpacityMicromapFeaturesEXT(vks, deps)
 end
 
@@ -57250,7 +57258,7 @@ Arguments:
 function _PhysicalDeviceOpacityMicromapPropertiesEXT(max_opacity_2_state_subdivision_level::Integer, max_opacity_4_state_subdivision_level::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceOpacityMicromapPropertiesEXT(structure_type(VkPhysicalDeviceOpacityMicromapPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), max_opacity_2_state_subdivision_level, max_opacity_4_state_subdivision_level)
+    vks = VkPhysicalDeviceOpacityMicromapPropertiesEXT(structure_type(VkPhysicalDeviceOpacityMicromapPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_opacity_2_state_subdivision_level), convert(UInt32, max_opacity_4_state_subdivision_level))
     _PhysicalDeviceOpacityMicromapPropertiesEXT(vks, deps)
 end
 
@@ -57276,7 +57284,7 @@ function _AccelerationStructureTrianglesOpacityMicromapEXT(index_type::IndexType
     usage_counts = cconvert(Ptr{VkMicromapUsageEXT}, usage_counts)
     usage_counts_2 = cconvert(Ptr{Ptr{VkMicromapUsageEXT}}, usage_counts_2)
     deps = Any[next, usage_counts, usage_counts_2]
-    vks = VkAccelerationStructureTrianglesOpacityMicromapEXT(structure_type(VkAccelerationStructureTrianglesOpacityMicromapEXT), unsafe_convert(Ptr{Cvoid}, next), index_type, index_buffer.vks, index_stride, base_triangle, usage_counts_count, unsafe_convert(Ptr{VkMicromapUsageEXT}, usage_counts), unsafe_convert(Ptr{Ptr{VkMicromapUsageEXT}}, usage_counts), micromap)
+    vks = VkAccelerationStructureTrianglesOpacityMicromapEXT(structure_type(VkAccelerationStructureTrianglesOpacityMicromapEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkIndexType, index_type), index_buffer.vks, convert(VkDeviceSize, index_stride), convert(UInt32, base_triangle), convert(UInt32, usage_counts_count), unsafe_convert(Ptr{VkMicromapUsageEXT}, usage_counts), unsafe_convert(Ptr{Ptr{VkMicromapUsageEXT}}, usage_counts), convert(VkMicromapEXT, micromap))
     _AccelerationStructureTrianglesOpacityMicromapEXT(vks, deps, micromap)
 end
 
@@ -57293,7 +57301,7 @@ Arguments:
 function _PipelinePropertiesIdentifierEXT(pipeline_identifier::NTuple{Int(VK_UUID_SIZE), UInt8}; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelinePropertiesIdentifierEXT(structure_type(VkPipelinePropertiesIdentifierEXT), unsafe_convert(Ptr{Cvoid}, next), pipeline_identifier)
+    vks = VkPipelinePropertiesIdentifierEXT(structure_type(VkPipelinePropertiesIdentifierEXT), unsafe_convert(Ptr{Cvoid}, next), convert(NTuple{Int(VK_UUID_SIZE), UInt8}, pipeline_identifier))
     _PipelinePropertiesIdentifierEXT(vks, deps)
 end
 
@@ -57310,7 +57318,7 @@ Arguments:
 function _PhysicalDevicePipelinePropertiesFeaturesEXT(pipeline_properties_identifier::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePipelinePropertiesFeaturesEXT(structure_type(VkPhysicalDevicePipelinePropertiesFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), pipeline_properties_identifier)
+    vks = VkPhysicalDevicePipelinePropertiesFeaturesEXT(structure_type(VkPhysicalDevicePipelinePropertiesFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, pipeline_properties_identifier))
     _PhysicalDevicePipelinePropertiesFeaturesEXT(vks, deps)
 end
 
@@ -57327,7 +57335,7 @@ Arguments:
 function _PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD(shader_early_and_late_fragment_tests::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD(structure_type(VkPhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD), unsafe_convert(Ptr{Cvoid}, next), shader_early_and_late_fragment_tests)
+    vks = VkPhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD(structure_type(VkPhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_early_and_late_fragment_tests))
     _PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD(vks, deps)
 end
 
@@ -57344,7 +57352,7 @@ Arguments:
 function _ExternalMemoryAcquireUnmodifiedEXT(acquire_unmodified_memory::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExternalMemoryAcquireUnmodifiedEXT(structure_type(VkExternalMemoryAcquireUnmodifiedEXT), unsafe_convert(Ptr{Cvoid}, next), acquire_unmodified_memory)
+    vks = VkExternalMemoryAcquireUnmodifiedEXT(structure_type(VkExternalMemoryAcquireUnmodifiedEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, acquire_unmodified_memory))
     _ExternalMemoryAcquireUnmodifiedEXT(vks, deps)
 end
 
@@ -57361,7 +57369,7 @@ Arguments:
 function _ExportMetalObjectCreateInfoEXT(; next = C_NULL, export_object_type = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExportMetalObjectCreateInfoEXT(structure_type(VkExportMetalObjectCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), VkExportMetalObjectTypeFlagBitsEXT(export_object_type.val))
+    vks = VkExportMetalObjectCreateInfoEXT(structure_type(VkExportMetalObjectCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), VkExportMetalObjectTypeFlagBitsEXT(flag_value(export_object_type)))
     _ExportMetalObjectCreateInfoEXT(vks, deps)
 end
 
@@ -57394,7 +57402,7 @@ Arguments:
 function _ExportMetalDeviceInfoEXT(mtl_device::Cvoid; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExportMetalDeviceInfoEXT(structure_type(VkExportMetalDeviceInfoEXT), unsafe_convert(Ptr{Cvoid}, next), mtl_device)
+    vks = VkExportMetalDeviceInfoEXT(structure_type(VkExportMetalDeviceInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(vk.MTLDevice_id, mtl_device))
     _ExportMetalDeviceInfoEXT(vks, deps)
 end
 
@@ -57412,7 +57420,7 @@ Arguments:
 function _ExportMetalCommandQueueInfoEXT(queue, mtl_command_queue::Cvoid; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExportMetalCommandQueueInfoEXT(structure_type(VkExportMetalCommandQueueInfoEXT), unsafe_convert(Ptr{Cvoid}, next), queue, mtl_command_queue)
+    vks = VkExportMetalCommandQueueInfoEXT(structure_type(VkExportMetalCommandQueueInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkQueue, queue), convert(vk.MTLCommandQueue_id, mtl_command_queue))
     _ExportMetalCommandQueueInfoEXT(vks, deps, queue)
 end
 
@@ -57430,7 +57438,7 @@ Arguments:
 function _ExportMetalBufferInfoEXT(memory, mtl_buffer::Cvoid; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExportMetalBufferInfoEXT(structure_type(VkExportMetalBufferInfoEXT), unsafe_convert(Ptr{Cvoid}, next), memory, mtl_buffer)
+    vks = VkExportMetalBufferInfoEXT(structure_type(VkExportMetalBufferInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceMemory, memory), convert(vk.MTLBuffer_id, mtl_buffer))
     _ExportMetalBufferInfoEXT(vks, deps, memory)
 end
 
@@ -57447,7 +57455,7 @@ Arguments:
 function _ImportMetalBufferInfoEXT(mtl_buffer::Cvoid; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImportMetalBufferInfoEXT(structure_type(VkImportMetalBufferInfoEXT), unsafe_convert(Ptr{Cvoid}, next), mtl_buffer)
+    vks = VkImportMetalBufferInfoEXT(structure_type(VkImportMetalBufferInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(vk.MTLBuffer_id, mtl_buffer))
     _ImportMetalBufferInfoEXT(vks, deps)
 end
 
@@ -57468,7 +57476,7 @@ Arguments:
 function _ExportMetalTextureInfoEXT(plane::ImageAspectFlag, mtl_texture::Cvoid; next = C_NULL, image = C_NULL, image_view = C_NULL, buffer_view = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExportMetalTextureInfoEXT(structure_type(VkExportMetalTextureInfoEXT), unsafe_convert(Ptr{Cvoid}, next), image, image_view, buffer_view, VkImageAspectFlagBits(plane.val), mtl_texture)
+    vks = VkExportMetalTextureInfoEXT(structure_type(VkExportMetalTextureInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkImage, image), convert(VkImageView, image_view), convert(VkBufferView, buffer_view), VkImageAspectFlagBits(flag_value(plane)), convert(vk.MTLTexture_id, mtl_texture))
     _ExportMetalTextureInfoEXT(vks, deps, image, image_view, buffer_view)
 end
 
@@ -57486,7 +57494,7 @@ Arguments:
 function _ImportMetalTextureInfoEXT(plane::ImageAspectFlag, mtl_texture::Cvoid; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImportMetalTextureInfoEXT(structure_type(VkImportMetalTextureInfoEXT), unsafe_convert(Ptr{Cvoid}, next), VkImageAspectFlagBits(plane.val), mtl_texture)
+    vks = VkImportMetalTextureInfoEXT(structure_type(VkImportMetalTextureInfoEXT), unsafe_convert(Ptr{Cvoid}, next), VkImageAspectFlagBits(flag_value(plane)), convert(vk.MTLTexture_id, mtl_texture))
     _ImportMetalTextureInfoEXT(vks, deps)
 end
 
@@ -57504,7 +57512,7 @@ Arguments:
 function _ExportMetalIOSurfaceInfoEXT(image, io_surface::Cvoid; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExportMetalIOSurfaceInfoEXT(structure_type(VkExportMetalIOSurfaceInfoEXT), unsafe_convert(Ptr{Cvoid}, next), image, io_surface)
+    vks = VkExportMetalIOSurfaceInfoEXT(structure_type(VkExportMetalIOSurfaceInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkImage, image), convert(vk.IOSurfaceRef, io_surface))
     _ExportMetalIOSurfaceInfoEXT(vks, deps, image)
 end
 
@@ -57521,7 +57529,7 @@ Arguments:
 function _ImportMetalIOSurfaceInfoEXT(; next = C_NULL, io_surface = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImportMetalIOSurfaceInfoEXT(structure_type(VkImportMetalIOSurfaceInfoEXT), unsafe_convert(Ptr{Cvoid}, next), io_surface)
+    vks = VkImportMetalIOSurfaceInfoEXT(structure_type(VkImportMetalIOSurfaceInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(vk.IOSurfaceRef, io_surface))
     _ImportMetalIOSurfaceInfoEXT(vks, deps)
 end
 
@@ -57540,7 +57548,7 @@ Arguments:
 function _ExportMetalSharedEventInfoEXT(mtl_shared_event::Cvoid; next = C_NULL, semaphore = C_NULL, event = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExportMetalSharedEventInfoEXT(structure_type(VkExportMetalSharedEventInfoEXT), unsafe_convert(Ptr{Cvoid}, next), semaphore, event, mtl_shared_event)
+    vks = VkExportMetalSharedEventInfoEXT(structure_type(VkExportMetalSharedEventInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkSemaphore, semaphore), convert(VkEvent, event), convert(vk.MTLSharedEvent_id, mtl_shared_event))
     _ExportMetalSharedEventInfoEXT(vks, deps, semaphore, event)
 end
 
@@ -57557,7 +57565,7 @@ Arguments:
 function _ImportMetalSharedEventInfoEXT(mtl_shared_event::Cvoid; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImportMetalSharedEventInfoEXT(structure_type(VkImportMetalSharedEventInfoEXT), unsafe_convert(Ptr{Cvoid}, next), mtl_shared_event)
+    vks = VkImportMetalSharedEventInfoEXT(structure_type(VkImportMetalSharedEventInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(vk.MTLSharedEvent_id, mtl_shared_event))
     _ImportMetalSharedEventInfoEXT(vks, deps)
 end
 
@@ -57574,7 +57582,7 @@ Arguments:
 function _PhysicalDeviceNonSeamlessCubeMapFeaturesEXT(non_seamless_cube_map::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceNonSeamlessCubeMapFeaturesEXT(structure_type(VkPhysicalDeviceNonSeamlessCubeMapFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), non_seamless_cube_map)
+    vks = VkPhysicalDeviceNonSeamlessCubeMapFeaturesEXT(structure_type(VkPhysicalDeviceNonSeamlessCubeMapFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, non_seamless_cube_map))
     _PhysicalDeviceNonSeamlessCubeMapFeaturesEXT(vks, deps)
 end
 
@@ -57589,7 +57597,7 @@ Arguments:
 function _PhysicalDevicePipelineRobustnessFeatures(pipeline_robustness::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePipelineRobustnessFeatures(structure_type(VkPhysicalDevicePipelineRobustnessFeatures), unsafe_convert(Ptr{Cvoid}, next), pipeline_robustness)
+    vks = VkPhysicalDevicePipelineRobustnessFeatures(structure_type(VkPhysicalDevicePipelineRobustnessFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, pipeline_robustness))
     _PhysicalDevicePipelineRobustnessFeatures(vks, deps)
 end
 
@@ -57607,7 +57615,7 @@ Arguments:
 function _PipelineRobustnessCreateInfo(storage_buffers::PipelineRobustnessBufferBehavior, uniform_buffers::PipelineRobustnessBufferBehavior, vertex_inputs::PipelineRobustnessBufferBehavior, images::PipelineRobustnessImageBehavior; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineRobustnessCreateInfo(structure_type(VkPipelineRobustnessCreateInfo), unsafe_convert(Ptr{Cvoid}, next), storage_buffers, uniform_buffers, vertex_inputs, images)
+    vks = VkPipelineRobustnessCreateInfo(structure_type(VkPipelineRobustnessCreateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineRobustnessBufferBehavior, storage_buffers), convert(VkPipelineRobustnessBufferBehavior, uniform_buffers), convert(VkPipelineRobustnessBufferBehavior, vertex_inputs), convert(VkPipelineRobustnessImageBehavior, images))
     _PipelineRobustnessCreateInfo(vks, deps)
 end
 
@@ -57625,7 +57633,7 @@ Arguments:
 function _PhysicalDevicePipelineRobustnessProperties(default_robustness_storage_buffers::PipelineRobustnessBufferBehavior, default_robustness_uniform_buffers::PipelineRobustnessBufferBehavior, default_robustness_vertex_inputs::PipelineRobustnessBufferBehavior, default_robustness_images::PipelineRobustnessImageBehavior; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePipelineRobustnessProperties(structure_type(VkPhysicalDevicePipelineRobustnessProperties), unsafe_convert(Ptr{Cvoid}, next), default_robustness_storage_buffers, default_robustness_uniform_buffers, default_robustness_vertex_inputs, default_robustness_images)
+    vks = VkPhysicalDevicePipelineRobustnessProperties(structure_type(VkPhysicalDevicePipelineRobustnessProperties), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineRobustnessBufferBehavior, default_robustness_storage_buffers), convert(VkPipelineRobustnessBufferBehavior, default_robustness_uniform_buffers), convert(VkPipelineRobustnessBufferBehavior, default_robustness_vertex_inputs), convert(VkPipelineRobustnessImageBehavior, default_robustness_images))
     _PhysicalDevicePipelineRobustnessProperties(vks, deps)
 end
 
@@ -57644,7 +57652,7 @@ Arguments:
 function _ImageViewSampleWeightCreateInfoQCOM(filter_center::_Offset2D, filter_size::_Extent2D, num_phases::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImageViewSampleWeightCreateInfoQCOM(structure_type(VkImageViewSampleWeightCreateInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), filter_center.vks, filter_size.vks, num_phases)
+    vks = VkImageViewSampleWeightCreateInfoQCOM(structure_type(VkImageViewSampleWeightCreateInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), filter_center.vks, filter_size.vks, convert(UInt32, num_phases))
     _ImageViewSampleWeightCreateInfoQCOM(vks, deps)
 end
 
@@ -57663,7 +57671,7 @@ Arguments:
 function _PhysicalDeviceImageProcessingFeaturesQCOM(texture_sample_weighted::Bool, texture_box_filter::Bool, texture_block_match::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceImageProcessingFeaturesQCOM(structure_type(VkPhysicalDeviceImageProcessingFeaturesQCOM), unsafe_convert(Ptr{Cvoid}, next), texture_sample_weighted, texture_box_filter, texture_block_match)
+    vks = VkPhysicalDeviceImageProcessingFeaturesQCOM(structure_type(VkPhysicalDeviceImageProcessingFeaturesQCOM), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, texture_sample_weighted), convert(VkBool32, texture_box_filter), convert(VkBool32, texture_block_match))
     _PhysicalDeviceImageProcessingFeaturesQCOM(vks, deps)
 end
 
@@ -57683,7 +57691,7 @@ Arguments:
 function _PhysicalDeviceImageProcessingPropertiesQCOM(; next = C_NULL, max_weight_filter_phases = 0, max_weight_filter_dimension = 0, max_block_match_region = 0, max_box_filter_block_size = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceImageProcessingPropertiesQCOM(structure_type(VkPhysicalDeviceImageProcessingPropertiesQCOM), unsafe_convert(Ptr{Cvoid}, next), max_weight_filter_phases, max_weight_filter_dimension.vks, max_block_match_region.vks, max_box_filter_block_size.vks)
+    vks = VkPhysicalDeviceImageProcessingPropertiesQCOM(structure_type(VkPhysicalDeviceImageProcessingPropertiesQCOM), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_weight_filter_phases), max_weight_filter_dimension.vks, max_block_match_region.vks, max_box_filter_block_size.vks)
     _PhysicalDeviceImageProcessingPropertiesQCOM(vks, deps)
 end
 
@@ -57700,7 +57708,7 @@ Arguments:
 function _PhysicalDeviceTilePropertiesFeaturesQCOM(tile_properties::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceTilePropertiesFeaturesQCOM(structure_type(VkPhysicalDeviceTilePropertiesFeaturesQCOM), unsafe_convert(Ptr{Cvoid}, next), tile_properties)
+    vks = VkPhysicalDeviceTilePropertiesFeaturesQCOM(structure_type(VkPhysicalDeviceTilePropertiesFeaturesQCOM), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, tile_properties))
     _PhysicalDeviceTilePropertiesFeaturesQCOM(vks, deps)
 end
 
@@ -57736,7 +57744,7 @@ Arguments:
 function _TileMemoryBindInfoQCOM(memory; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkTileMemoryBindInfoQCOM(structure_type(VkTileMemoryBindInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), memory)
+    vks = VkTileMemoryBindInfoQCOM(structure_type(VkTileMemoryBindInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceMemory, memory))
     _TileMemoryBindInfoQCOM(vks, deps, memory)
 end
 
@@ -57753,7 +57761,7 @@ Arguments:
 function _PhysicalDeviceAmigoProfilingFeaturesSEC(amigo_profiling::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceAmigoProfilingFeaturesSEC(structure_type(VkPhysicalDeviceAmigoProfilingFeaturesSEC), unsafe_convert(Ptr{Cvoid}, next), amigo_profiling)
+    vks = VkPhysicalDeviceAmigoProfilingFeaturesSEC(structure_type(VkPhysicalDeviceAmigoProfilingFeaturesSEC), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, amigo_profiling))
     _PhysicalDeviceAmigoProfilingFeaturesSEC(vks, deps)
 end
 
@@ -57771,7 +57779,7 @@ Arguments:
 function _AmigoProfilingSubmitInfoSEC(first_draw_timestamp::Integer, swap_buffer_timestamp::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAmigoProfilingSubmitInfoSEC(structure_type(VkAmigoProfilingSubmitInfoSEC), unsafe_convert(Ptr{Cvoid}, next), first_draw_timestamp, swap_buffer_timestamp)
+    vks = VkAmigoProfilingSubmitInfoSEC(structure_type(VkAmigoProfilingSubmitInfoSEC), unsafe_convert(Ptr{Cvoid}, next), convert(UInt64, first_draw_timestamp), convert(UInt64, swap_buffer_timestamp))
     _AmigoProfilingSubmitInfoSEC(vks, deps)
 end
 
@@ -57788,7 +57796,7 @@ Arguments:
 function _PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT(attachment_feedback_loop_layout::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT(structure_type(VkPhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), attachment_feedback_loop_layout)
+    vks = VkPhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT(structure_type(VkPhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, attachment_feedback_loop_layout))
     _PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT(vks, deps)
 end
 
@@ -57805,7 +57813,7 @@ Arguments:
 function _AttachmentFeedbackLoopInfoEXT(feedback_loop_enable::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAttachmentFeedbackLoopInfoEXT(structure_type(VkAttachmentFeedbackLoopInfoEXT), unsafe_convert(Ptr{Cvoid}, next), feedback_loop_enable)
+    vks = VkAttachmentFeedbackLoopInfoEXT(structure_type(VkAttachmentFeedbackLoopInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, feedback_loop_enable))
     _AttachmentFeedbackLoopInfoEXT(vks, deps)
 end
 
@@ -57822,7 +57830,7 @@ Arguments:
 function _PhysicalDeviceAddressBindingReportFeaturesEXT(report_address_binding::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceAddressBindingReportFeaturesEXT(structure_type(VkPhysicalDeviceAddressBindingReportFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), report_address_binding)
+    vks = VkPhysicalDeviceAddressBindingReportFeaturesEXT(structure_type(VkPhysicalDeviceAddressBindingReportFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, report_address_binding))
     _PhysicalDeviceAddressBindingReportFeaturesEXT(vks, deps)
 end
 
@@ -57842,7 +57850,7 @@ Arguments:
 function _DeviceAddressBindingCallbackDataEXT(base_address::Integer, size::Integer, binding_type::DeviceAddressBindingTypeEXT; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDeviceAddressBindingCallbackDataEXT(structure_type(VkDeviceAddressBindingCallbackDataEXT), unsafe_convert(Ptr{Cvoid}, next), flags, base_address, size, binding_type)
+    vks = VkDeviceAddressBindingCallbackDataEXT(structure_type(VkDeviceAddressBindingCallbackDataEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceAddressBindingFlagsEXT, flags), convert(VkDeviceAddress, base_address), convert(VkDeviceSize, size), convert(VkDeviceAddressBindingTypeEXT, binding_type))
     _DeviceAddressBindingCallbackDataEXT(vks, deps)
 end
 
@@ -57859,7 +57867,7 @@ Arguments:
 function _PhysicalDeviceOpticalFlowFeaturesNV(optical_flow::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceOpticalFlowFeaturesNV(structure_type(VkPhysicalDeviceOpticalFlowFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), optical_flow)
+    vks = VkPhysicalDeviceOpticalFlowFeaturesNV(structure_type(VkPhysicalDeviceOpticalFlowFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, optical_flow))
     _PhysicalDeviceOpticalFlowFeaturesNV(vks, deps)
 end
 
@@ -57886,7 +57894,7 @@ Arguments:
 function _PhysicalDeviceOpticalFlowPropertiesNV(supported_output_grid_sizes::OpticalFlowGridSizeFlagNV, supported_hint_grid_sizes::OpticalFlowGridSizeFlagNV, hint_supported::Bool, cost_supported::Bool, bidirectional_flow_supported::Bool, global_flow_supported::Bool, min_width::Integer, min_height::Integer, max_width::Integer, max_height::Integer, max_num_regions_of_interest::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceOpticalFlowPropertiesNV(structure_type(VkPhysicalDeviceOpticalFlowPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), supported_output_grid_sizes, supported_hint_grid_sizes, hint_supported, cost_supported, bidirectional_flow_supported, global_flow_supported, min_width, min_height, max_width, max_height, max_num_regions_of_interest)
+    vks = VkPhysicalDeviceOpticalFlowPropertiesNV(structure_type(VkPhysicalDeviceOpticalFlowPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkOpticalFlowGridSizeFlagsNV, supported_output_grid_sizes), convert(VkOpticalFlowGridSizeFlagsNV, supported_hint_grid_sizes), convert(VkBool32, hint_supported), convert(VkBool32, cost_supported), convert(VkBool32, bidirectional_flow_supported), convert(VkBool32, global_flow_supported), convert(UInt32, min_width), convert(UInt32, min_height), convert(UInt32, max_width), convert(UInt32, max_height), convert(UInt32, max_num_regions_of_interest))
     _PhysicalDeviceOpticalFlowPropertiesNV(vks, deps)
 end
 
@@ -57903,7 +57911,7 @@ Arguments:
 function _OpticalFlowImageFormatInfoNV(usage::OpticalFlowUsageFlagNV; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkOpticalFlowImageFormatInfoNV(structure_type(VkOpticalFlowImageFormatInfoNV), unsafe_convert(Ptr{Cvoid}, next), usage)
+    vks = VkOpticalFlowImageFormatInfoNV(structure_type(VkOpticalFlowImageFormatInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkOpticalFlowUsageFlagsNV, usage))
     _OpticalFlowImageFormatInfoNV(vks, deps)
 end
 
@@ -57920,7 +57928,7 @@ Arguments:
 function _OpticalFlowImageFormatPropertiesNV(format::Format; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkOpticalFlowImageFormatPropertiesNV(structure_type(VkOpticalFlowImageFormatPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), format)
+    vks = VkOpticalFlowImageFormatPropertiesNV(structure_type(VkOpticalFlowImageFormatPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkFormat, format))
     _OpticalFlowImageFormatPropertiesNV(vks, deps)
 end
 
@@ -57945,7 +57953,7 @@ Arguments:
 function _OpticalFlowSessionCreateInfoNV(width::Integer, height::Integer, image_format::Format, flow_vector_format::Format, output_grid_size::OpticalFlowGridSizeFlagNV; next = C_NULL, cost_format = 0, hint_grid_size = 0, performance_level = 0, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkOpticalFlowSessionCreateInfoNV(structure_type(VkOpticalFlowSessionCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), width, height, image_format, flow_vector_format, cost_format, output_grid_size, hint_grid_size, performance_level, flags)
+    vks = VkOpticalFlowSessionCreateInfoNV(structure_type(VkOpticalFlowSessionCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, width), convert(UInt32, height), convert(VkFormat, image_format), convert(VkFormat, flow_vector_format), convert(VkFormat, cost_format), convert(VkOpticalFlowGridSizeFlagsNV, output_grid_size), convert(VkOpticalFlowGridSizeFlagsNV, hint_grid_size), convert(VkOpticalFlowPerformanceLevelNV, performance_level), convert(VkOpticalFlowSessionCreateFlagsNV, flags))
     _OpticalFlowSessionCreateInfoNV(vks, deps)
 end
 
@@ -57965,7 +57973,7 @@ function _OpticalFlowSessionCreatePrivateDataInfoNV(id::Integer, size::Integer, 
     next = cconvert(Ptr{Cvoid}, next)
     private_data = cconvert(Ptr{Cvoid}, private_data)
     deps = Any[next, private_data]
-    vks = VkOpticalFlowSessionCreatePrivateDataInfoNV(structure_type(VkOpticalFlowSessionCreatePrivateDataInfoNV), unsafe_convert(Ptr{Cvoid}, next), id, size, unsafe_convert(Ptr{Cvoid}, private_data))
+    vks = VkOpticalFlowSessionCreatePrivateDataInfoNV(structure_type(VkOpticalFlowSessionCreatePrivateDataInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, id), convert(UInt32, size), unsafe_convert(Ptr{Cvoid}, private_data))
     _OpticalFlowSessionCreatePrivateDataInfoNV(vks, deps)
 end
 
@@ -57985,7 +57993,7 @@ function _OpticalFlowExecuteInfoNV(regions::AbstractArray; next = C_NULL, flags 
     next = cconvert(Ptr{Cvoid}, next)
     regions = cconvert(Ptr{VkRect2D}, regions)
     deps = Any[next, regions]
-    vks = VkOpticalFlowExecuteInfoNV(structure_type(VkOpticalFlowExecuteInfoNV), unsafe_convert(Ptr{Cvoid}, next), flags, region_count, unsafe_convert(Ptr{VkRect2D}, regions))
+    vks = VkOpticalFlowExecuteInfoNV(structure_type(VkOpticalFlowExecuteInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkOpticalFlowExecuteFlagsNV, flags), convert(UInt32, region_count), unsafe_convert(Ptr{VkRect2D}, regions))
     _OpticalFlowExecuteInfoNV(vks, deps)
 end
 
@@ -58003,7 +58011,7 @@ Arguments:
 function _PhysicalDeviceFaultFeaturesEXT(device_fault::Bool, device_fault_vendor_binary::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceFaultFeaturesEXT(structure_type(VkPhysicalDeviceFaultFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), device_fault, device_fault_vendor_binary)
+    vks = VkPhysicalDeviceFaultFeaturesEXT(structure_type(VkPhysicalDeviceFaultFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, device_fault), convert(VkBool32, device_fault_vendor_binary))
     _PhysicalDeviceFaultFeaturesEXT(vks, deps)
 end
 
@@ -58019,7 +58027,7 @@ Arguments:
 
 """
 function _DeviceFaultAddressInfoEXT(address_type::DeviceFaultAddressTypeEXT, reported_address::Integer, address_precision::Integer)
-    _DeviceFaultAddressInfoEXT(VkDeviceFaultAddressInfoEXT(address_type, reported_address, address_precision))
+    _DeviceFaultAddressInfoEXT(VkDeviceFaultAddressInfoEXT(convert(VkDeviceFaultAddressTypeEXT, address_type), convert(VkDeviceAddress, reported_address), convert(VkDeviceSize, address_precision)))
 end
 
 """
@@ -58034,7 +58042,7 @@ Arguments:
 
 """
 function _DeviceFaultVendorInfoEXT(description::AbstractString, vendor_fault_code::Integer, vendor_fault_data::Integer)
-    _DeviceFaultVendorInfoEXT(VkDeviceFaultVendorInfoEXT(description, vendor_fault_code, vendor_fault_data))
+    _DeviceFaultVendorInfoEXT(VkDeviceFaultVendorInfoEXT(convert(NTuple{Int(VK_MAX_DESCRIPTION_SIZE), Char}, description), convert(UInt64, vendor_fault_code), convert(UInt64, vendor_fault_data)))
 end
 
 """
@@ -58052,7 +58060,7 @@ Arguments:
 function _DeviceFaultCountsEXT(; next = C_NULL, address_info_count = 0, vendor_info_count = 0, vendor_binary_size = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDeviceFaultCountsEXT(structure_type(VkDeviceFaultCountsEXT), unsafe_convert(Ptr{Cvoid}, next), address_info_count, vendor_info_count, vendor_binary_size)
+    vks = VkDeviceFaultCountsEXT(structure_type(VkDeviceFaultCountsEXT), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, address_info_count), convert(UInt32, vendor_info_count), convert(VkDeviceSize, vendor_binary_size))
     _DeviceFaultCountsEXT(vks, deps)
 end
 
@@ -58075,7 +58083,7 @@ function _DeviceFaultInfoEXT(description::AbstractString; next = C_NULL, address
     vendor_infos = cconvert(Ptr{VkDeviceFaultVendorInfoEXT}, vendor_infos)
     vendor_binary_data = cconvert(Ptr{Cvoid}, vendor_binary_data)
     deps = Any[next, address_infos, vendor_infos, vendor_binary_data]
-    vks = VkDeviceFaultInfoEXT(structure_type(VkDeviceFaultInfoEXT), unsafe_convert(Ptr{Cvoid}, next), description, unsafe_convert(Ptr{VkDeviceFaultAddressInfoEXT}, address_infos), unsafe_convert(Ptr{VkDeviceFaultVendorInfoEXT}, vendor_infos), unsafe_convert(Ptr{Cvoid}, vendor_binary_data))
+    vks = VkDeviceFaultInfoEXT(structure_type(VkDeviceFaultInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(NTuple{Int(VK_MAX_DESCRIPTION_SIZE), Char}, description), unsafe_convert(Ptr{VkDeviceFaultAddressInfoEXT}, address_infos), unsafe_convert(Ptr{VkDeviceFaultVendorInfoEXT}, vendor_infos), unsafe_convert(Ptr{Cvoid}, vendor_binary_data))
     _DeviceFaultInfoEXT(vks, deps)
 end
 
@@ -58099,7 +58107,7 @@ Arguments:
 
 """
 function _DeviceFaultVendorBinaryHeaderVersionOneEXT(header_size::Integer, header_version::DeviceFaultVendorBinaryHeaderVersionEXT, vendor_id::Integer, device_id::Integer, driver_version::VersionNumber, pipeline_cache_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}, application_name_offset::Integer, application_version::VersionNumber, engine_name_offset::Integer, engine_version::VersionNumber, api_version::VersionNumber)
-    _DeviceFaultVendorBinaryHeaderVersionOneEXT(VkDeviceFaultVendorBinaryHeaderVersionOneEXT(header_size, header_version, vendor_id, device_id, to_vk(UInt32, driver_version), pipeline_cache_uuid, application_name_offset, to_vk(UInt32, application_version), engine_name_offset, to_vk(UInt32, engine_version), to_vk(UInt32, api_version)))
+    _DeviceFaultVendorBinaryHeaderVersionOneEXT(VkDeviceFaultVendorBinaryHeaderVersionOneEXT(convert(UInt32, header_size), convert(VkDeviceFaultVendorBinaryHeaderVersionEXT, header_version), convert(UInt32, vendor_id), convert(UInt32, device_id), to_vk(UInt32, driver_version), convert(NTuple{Int(VK_UUID_SIZE), UInt8}, pipeline_cache_uuid), convert(UInt32, application_name_offset), to_vk(UInt32, application_version), convert(UInt32, engine_name_offset), to_vk(UInt32, engine_version), to_vk(UInt32, api_version)))
 end
 
 """
@@ -58115,7 +58123,7 @@ Arguments:
 function _PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT(pipeline_library_group_handles::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT(structure_type(VkPhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), pipeline_library_group_handles)
+    vks = VkPhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT(structure_type(VkPhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, pipeline_library_group_handles))
     _PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT(vks, deps)
 end
 
@@ -58134,7 +58142,7 @@ Arguments:
 function _DepthBiasInfoEXT(depth_bias_constant_factor::Real, depth_bias_clamp::Real, depth_bias_slope_factor::Real; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDepthBiasInfoEXT(structure_type(VkDepthBiasInfoEXT), unsafe_convert(Ptr{Cvoid}, next), depth_bias_constant_factor, depth_bias_clamp, depth_bias_slope_factor)
+    vks = VkDepthBiasInfoEXT(structure_type(VkDepthBiasInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(Float32, depth_bias_constant_factor), convert(Float32, depth_bias_clamp), convert(Float32, depth_bias_slope_factor))
     _DepthBiasInfoEXT(vks, deps)
 end
 
@@ -58152,7 +58160,7 @@ Arguments:
 function _DepthBiasRepresentationInfoEXT(depth_bias_representation::DepthBiasRepresentationEXT, depth_bias_exact::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDepthBiasRepresentationInfoEXT(structure_type(VkDepthBiasRepresentationInfoEXT), unsafe_convert(Ptr{Cvoid}, next), depth_bias_representation, depth_bias_exact)
+    vks = VkDepthBiasRepresentationInfoEXT(structure_type(VkDepthBiasRepresentationInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDepthBiasRepresentationEXT, depth_bias_representation), convert(VkBool32, depth_bias_exact))
     _DepthBiasRepresentationInfoEXT(vks, deps)
 end
 
@@ -58170,7 +58178,7 @@ Arguments:
 
 """
 function _DecompressMemoryRegionNV(src_address::Integer, dst_address::Integer, compressed_size::Integer, decompressed_size::Integer, decompression_method::Integer)
-    _DecompressMemoryRegionNV(VkDecompressMemoryRegionNV(src_address, dst_address, compressed_size, decompressed_size, decompression_method))
+    _DecompressMemoryRegionNV(VkDecompressMemoryRegionNV(convert(VkDeviceAddress, src_address), convert(VkDeviceAddress, dst_address), convert(VkDeviceSize, compressed_size), convert(VkDeviceSize, decompressed_size), convert(VkMemoryDecompressionMethodFlagsNV, decompression_method)))
 end
 
 """
@@ -58188,7 +58196,7 @@ Arguments:
 function _PhysicalDeviceShaderCoreBuiltinsPropertiesARM(shader_core_mask::Integer, shader_core_count::Integer, shader_warps_per_core::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderCoreBuiltinsPropertiesARM(structure_type(VkPhysicalDeviceShaderCoreBuiltinsPropertiesARM), unsafe_convert(Ptr{Cvoid}, next), shader_core_mask, shader_core_count, shader_warps_per_core)
+    vks = VkPhysicalDeviceShaderCoreBuiltinsPropertiesARM(structure_type(VkPhysicalDeviceShaderCoreBuiltinsPropertiesARM), unsafe_convert(Ptr{Cvoid}, next), convert(UInt64, shader_core_mask), convert(UInt32, shader_core_count), convert(UInt32, shader_warps_per_core))
     _PhysicalDeviceShaderCoreBuiltinsPropertiesARM(vks, deps)
 end
 
@@ -58205,7 +58213,7 @@ Arguments:
 function _PhysicalDeviceShaderCoreBuiltinsFeaturesARM(shader_core_builtins::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderCoreBuiltinsFeaturesARM(structure_type(VkPhysicalDeviceShaderCoreBuiltinsFeaturesARM), unsafe_convert(Ptr{Cvoid}, next), shader_core_builtins)
+    vks = VkPhysicalDeviceShaderCoreBuiltinsFeaturesARM(structure_type(VkPhysicalDeviceShaderCoreBuiltinsFeaturesARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_core_builtins))
     _PhysicalDeviceShaderCoreBuiltinsFeaturesARM(vks, deps)
 end
 
@@ -58233,7 +58241,7 @@ function _FrameBoundaryEXT(frame_id::Integer; next = C_NULL, flags = 0, images =
     buffers = cconvert(Ptr{VkBuffer}, buffers)
     tag = cconvert(Ptr{Cvoid}, tag)
     deps = Any[next, images, buffers, tag]
-    vks = VkFrameBoundaryEXT(structure_type(VkFrameBoundaryEXT), unsafe_convert(Ptr{Cvoid}, next), flags, frame_id, image_count, unsafe_convert(Ptr{VkImage}, images), buffer_count, unsafe_convert(Ptr{VkBuffer}, buffers), tag_name, tag_size, unsafe_convert(Ptr{Cvoid}, tag))
+    vks = VkFrameBoundaryEXT(structure_type(VkFrameBoundaryEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkFrameBoundaryFlagsEXT, flags), convert(UInt64, frame_id), convert(UInt32, image_count), unsafe_convert(Ptr{VkImage}, images), convert(UInt32, buffer_count), unsafe_convert(Ptr{VkBuffer}, buffers), convert(UInt64, tag_name), convert(UInt, tag_size), unsafe_convert(Ptr{Cvoid}, tag))
     _FrameBoundaryEXT(vks, deps)
 end
 
@@ -58250,7 +58258,7 @@ Arguments:
 function _PhysicalDeviceFrameBoundaryFeaturesEXT(frame_boundary::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceFrameBoundaryFeaturesEXT(structure_type(VkPhysicalDeviceFrameBoundaryFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), frame_boundary)
+    vks = VkPhysicalDeviceFrameBoundaryFeaturesEXT(structure_type(VkPhysicalDeviceFrameBoundaryFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, frame_boundary))
     _PhysicalDeviceFrameBoundaryFeaturesEXT(vks, deps)
 end
 
@@ -58267,7 +58275,7 @@ Arguments:
 function _PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT(dynamic_rendering_unused_attachments::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT(structure_type(VkPhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), dynamic_rendering_unused_attachments)
+    vks = VkPhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT(structure_type(VkPhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, dynamic_rendering_unused_attachments))
     _PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT(vks, deps)
 end
 
@@ -58284,7 +58292,7 @@ Arguments:
 function _SurfacePresentModeKHR(present_mode::PresentModeKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSurfacePresentModeKHR(structure_type(VkSurfacePresentModeKHR), unsafe_convert(Ptr{Cvoid}, next), present_mode)
+    vks = VkSurfacePresentModeKHR(structure_type(VkSurfacePresentModeKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkPresentModeKHR, present_mode))
     _SurfacePresentModeKHR(vks, deps)
 end
 
@@ -58305,7 +58313,7 @@ Arguments:
 function _SurfacePresentScalingCapabilitiesKHR(; next = C_NULL, supported_present_scaling = 0, supported_present_gravity_x = 0, supported_present_gravity_y = 0, min_scaled_image_extent = 0, max_scaled_image_extent = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSurfacePresentScalingCapabilitiesKHR(structure_type(VkSurfacePresentScalingCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), supported_present_scaling, supported_present_gravity_x, supported_present_gravity_y, min_scaled_image_extent.vks, max_scaled_image_extent.vks)
+    vks = VkSurfacePresentScalingCapabilitiesKHR(structure_type(VkSurfacePresentScalingCapabilitiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkPresentScalingFlagsKHR, supported_present_scaling), convert(VkPresentGravityFlagsKHR, supported_present_gravity_x), convert(VkPresentGravityFlagsKHR, supported_present_gravity_y), min_scaled_image_extent.vks, max_scaled_image_extent.vks)
     _SurfacePresentScalingCapabilitiesKHR(vks, deps)
 end
 
@@ -58324,7 +58332,7 @@ function _SurfacePresentModeCompatibilityKHR(; next = C_NULL, present_modes = C_
     next = cconvert(Ptr{Cvoid}, next)
     present_modes = cconvert(Ptr{VkPresentModeKHR}, present_modes)
     deps = Any[next, present_modes]
-    vks = VkSurfacePresentModeCompatibilityKHR(structure_type(VkSurfacePresentModeCompatibilityKHR), unsafe_convert(Ptr{Cvoid}, next), present_mode_count, unsafe_convert(Ptr{VkPresentModeKHR}, present_modes))
+    vks = VkSurfacePresentModeCompatibilityKHR(structure_type(VkSurfacePresentModeCompatibilityKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, present_mode_count), unsafe_convert(Ptr{VkPresentModeKHR}, present_modes))
     _SurfacePresentModeCompatibilityKHR(vks, deps)
 end
 
@@ -58341,7 +58349,7 @@ Arguments:
 function _PhysicalDeviceSwapchainMaintenance1FeaturesKHR(swapchain_maintenance_1::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceSwapchainMaintenance1FeaturesKHR(structure_type(VkPhysicalDeviceSwapchainMaintenance1FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), swapchain_maintenance_1)
+    vks = VkPhysicalDeviceSwapchainMaintenance1FeaturesKHR(structure_type(VkPhysicalDeviceSwapchainMaintenance1FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, swapchain_maintenance_1))
     _PhysicalDeviceSwapchainMaintenance1FeaturesKHR(vks, deps)
 end
 
@@ -58360,7 +58368,7 @@ function _SwapchainPresentFenceInfoKHR(fences::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     fences = cconvert(Ptr{VkFence}, fences)
     deps = Any[next, fences]
-    vks = VkSwapchainPresentFenceInfoKHR(structure_type(VkSwapchainPresentFenceInfoKHR), unsafe_convert(Ptr{Cvoid}, next), swapchain_count, unsafe_convert(Ptr{VkFence}, fences))
+    vks = VkSwapchainPresentFenceInfoKHR(structure_type(VkSwapchainPresentFenceInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, swapchain_count), unsafe_convert(Ptr{VkFence}, fences))
     _SwapchainPresentFenceInfoKHR(vks, deps)
 end
 
@@ -58379,7 +58387,7 @@ function _SwapchainPresentModesCreateInfoKHR(present_modes::AbstractArray; next 
     next = cconvert(Ptr{Cvoid}, next)
     present_modes = cconvert(Ptr{VkPresentModeKHR}, present_modes)
     deps = Any[next, present_modes]
-    vks = VkSwapchainPresentModesCreateInfoKHR(structure_type(VkSwapchainPresentModesCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), present_mode_count, unsafe_convert(Ptr{VkPresentModeKHR}, present_modes))
+    vks = VkSwapchainPresentModesCreateInfoKHR(structure_type(VkSwapchainPresentModesCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, present_mode_count), unsafe_convert(Ptr{VkPresentModeKHR}, present_modes))
     _SwapchainPresentModesCreateInfoKHR(vks, deps)
 end
 
@@ -58398,7 +58406,7 @@ function _SwapchainPresentModeInfoKHR(present_modes::AbstractArray; next = C_NUL
     next = cconvert(Ptr{Cvoid}, next)
     present_modes = cconvert(Ptr{VkPresentModeKHR}, present_modes)
     deps = Any[next, present_modes]
-    vks = VkSwapchainPresentModeInfoKHR(structure_type(VkSwapchainPresentModeInfoKHR), unsafe_convert(Ptr{Cvoid}, next), swapchain_count, unsafe_convert(Ptr{VkPresentModeKHR}, present_modes))
+    vks = VkSwapchainPresentModeInfoKHR(structure_type(VkSwapchainPresentModeInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, swapchain_count), unsafe_convert(Ptr{VkPresentModeKHR}, present_modes))
     _SwapchainPresentModeInfoKHR(vks, deps)
 end
 
@@ -58417,7 +58425,7 @@ Arguments:
 function _SwapchainPresentScalingCreateInfoKHR(; next = C_NULL, scaling_behavior = 0, present_gravity_x = 0, present_gravity_y = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSwapchainPresentScalingCreateInfoKHR(structure_type(VkSwapchainPresentScalingCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), scaling_behavior, present_gravity_x, present_gravity_y)
+    vks = VkSwapchainPresentScalingCreateInfoKHR(structure_type(VkSwapchainPresentScalingCreateInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkPresentScalingFlagsKHR, scaling_behavior), convert(VkPresentGravityFlagsKHR, present_gravity_x), convert(VkPresentGravityFlagsKHR, present_gravity_y))
     _SwapchainPresentScalingCreateInfoKHR(vks, deps)
 end
 
@@ -58437,7 +58445,7 @@ function _ReleaseSwapchainImagesInfoKHR(swapchain, image_indices::AbstractArray;
     next = cconvert(Ptr{Cvoid}, next)
     image_indices = cconvert(Ptr{UInt32}, image_indices)
     deps = Any[next, image_indices]
-    vks = VkReleaseSwapchainImagesInfoKHR(structure_type(VkReleaseSwapchainImagesInfoKHR), unsafe_convert(Ptr{Cvoid}, next), swapchain, image_index_count, unsafe_convert(Ptr{UInt32}, image_indices))
+    vks = VkReleaseSwapchainImagesInfoKHR(structure_type(VkReleaseSwapchainImagesInfoKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkSwapchainKHR, swapchain), convert(UInt32, image_index_count), unsafe_convert(Ptr{UInt32}, image_indices))
     _ReleaseSwapchainImagesInfoKHR(vks, deps, swapchain)
 end
 
@@ -58457,7 +58465,7 @@ Arguments:
 function _PhysicalDeviceDepthBiasControlFeaturesEXT(depth_bias_control::Bool, least_representable_value_force_unorm_representation::Bool, float_representation::Bool, depth_bias_exact::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDepthBiasControlFeaturesEXT(structure_type(VkPhysicalDeviceDepthBiasControlFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), depth_bias_control, least_representable_value_force_unorm_representation, float_representation, depth_bias_exact)
+    vks = VkPhysicalDeviceDepthBiasControlFeaturesEXT(structure_type(VkPhysicalDeviceDepthBiasControlFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, depth_bias_control), convert(VkBool32, least_representable_value_force_unorm_representation), convert(VkBool32, float_representation), convert(VkBool32, depth_bias_exact))
     _PhysicalDeviceDepthBiasControlFeaturesEXT(vks, deps)
 end
 
@@ -58474,7 +58482,7 @@ Arguments:
 function _PhysicalDeviceRayTracingInvocationReorderFeaturesNV(ray_tracing_invocation_reorder::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceRayTracingInvocationReorderFeaturesNV(structure_type(VkPhysicalDeviceRayTracingInvocationReorderFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), ray_tracing_invocation_reorder)
+    vks = VkPhysicalDeviceRayTracingInvocationReorderFeaturesNV(structure_type(VkPhysicalDeviceRayTracingInvocationReorderFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, ray_tracing_invocation_reorder))
     _PhysicalDeviceRayTracingInvocationReorderFeaturesNV(vks, deps)
 end
 
@@ -58491,7 +58499,7 @@ Arguments:
 function _PhysicalDeviceRayTracingInvocationReorderPropertiesNV(ray_tracing_invocation_reorder_reordering_hint::RayTracingInvocationReorderModeNV; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceRayTracingInvocationReorderPropertiesNV(structure_type(VkPhysicalDeviceRayTracingInvocationReorderPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), ray_tracing_invocation_reorder_reordering_hint)
+    vks = VkPhysicalDeviceRayTracingInvocationReorderPropertiesNV(structure_type(VkPhysicalDeviceRayTracingInvocationReorderPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkRayTracingInvocationReorderModeNV, ray_tracing_invocation_reorder_reordering_hint))
     _PhysicalDeviceRayTracingInvocationReorderPropertiesNV(vks, deps)
 end
 
@@ -58508,7 +58516,7 @@ Arguments:
 function _PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV(extended_sparse_address_space::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceExtendedSparseAddressSpaceFeaturesNV(structure_type(VkPhysicalDeviceExtendedSparseAddressSpaceFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), extended_sparse_address_space)
+    vks = VkPhysicalDeviceExtendedSparseAddressSpaceFeaturesNV(structure_type(VkPhysicalDeviceExtendedSparseAddressSpaceFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, extended_sparse_address_space))
     _PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV(vks, deps)
 end
 
@@ -58527,7 +58535,7 @@ Arguments:
 function _PhysicalDeviceExtendedSparseAddressSpacePropertiesNV(extended_sparse_address_space_size::Integer, extended_sparse_image_usage_flags::ImageUsageFlag, extended_sparse_buffer_usage_flags::BufferUsageFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceExtendedSparseAddressSpacePropertiesNV(structure_type(VkPhysicalDeviceExtendedSparseAddressSpacePropertiesNV), unsafe_convert(Ptr{Cvoid}, next), extended_sparse_address_space_size, extended_sparse_image_usage_flags, extended_sparse_buffer_usage_flags)
+    vks = VkPhysicalDeviceExtendedSparseAddressSpacePropertiesNV(structure_type(VkPhysicalDeviceExtendedSparseAddressSpacePropertiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceSize, extended_sparse_address_space_size), convert(VkImageUsageFlags, extended_sparse_image_usage_flags), convert(VkBufferUsageFlags, extended_sparse_buffer_usage_flags))
     _PhysicalDeviceExtendedSparseAddressSpacePropertiesNV(vks, deps)
 end
 
@@ -58545,7 +58553,7 @@ Arguments:
 function _DirectDriverLoadingInfoLUNARG(flags::Integer, pfn_get_instance_proc_addr::FunctionPtr; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDirectDriverLoadingInfoLUNARG(structure_type(VkDirectDriverLoadingInfoLUNARG), unsafe_convert(Ptr{Cvoid}, next), flags, pfn_get_instance_proc_addr)
+    vks = VkDirectDriverLoadingInfoLUNARG(structure_type(VkDirectDriverLoadingInfoLUNARG), unsafe_convert(Ptr{Cvoid}, next), convert(VkDirectDriverLoadingFlagsLUNARG, flags), pfn_get_instance_proc_addr)
     _DirectDriverLoadingInfoLUNARG(vks, deps)
 end
 
@@ -58565,7 +58573,7 @@ function _DirectDriverLoadingListLUNARG(mode::DirectDriverLoadingModeLUNARG, dri
     next = cconvert(Ptr{Cvoid}, next)
     drivers = cconvert(Ptr{VkDirectDriverLoadingInfoLUNARG}, drivers)
     deps = Any[next, drivers]
-    vks = VkDirectDriverLoadingListLUNARG(structure_type(VkDirectDriverLoadingListLUNARG), unsafe_convert(Ptr{Cvoid}, next), mode, driver_count, unsafe_convert(Ptr{VkDirectDriverLoadingInfoLUNARG}, drivers))
+    vks = VkDirectDriverLoadingListLUNARG(structure_type(VkDirectDriverLoadingListLUNARG), unsafe_convert(Ptr{Cvoid}, next), convert(VkDirectDriverLoadingModeLUNARG, mode), convert(UInt32, driver_count), unsafe_convert(Ptr{VkDirectDriverLoadingInfoLUNARG}, drivers))
     _DirectDriverLoadingListLUNARG(vks, deps)
 end
 
@@ -58582,7 +58590,7 @@ Arguments:
 function _PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM(multiview_per_view_viewports::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM(structure_type(VkPhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM), unsafe_convert(Ptr{Cvoid}, next), multiview_per_view_viewports)
+    vks = VkPhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM(structure_type(VkPhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, multiview_per_view_viewports))
     _PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM(vks, deps)
 end
 
@@ -58599,7 +58607,7 @@ Arguments:
 function _PhysicalDeviceRayTracingPositionFetchFeaturesKHR(ray_tracing_position_fetch::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceRayTracingPositionFetchFeaturesKHR(structure_type(VkPhysicalDeviceRayTracingPositionFetchFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), ray_tracing_position_fetch)
+    vks = VkPhysicalDeviceRayTracingPositionFetchFeaturesKHR(structure_type(VkPhysicalDeviceRayTracingPositionFetchFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, ray_tracing_position_fetch))
     _PhysicalDeviceRayTracingPositionFetchFeaturesKHR(vks, deps)
 end
 
@@ -58636,7 +58644,7 @@ Arguments:
 function _PhysicalDeviceShaderCorePropertiesARM(pixel_rate::Integer, texel_rate::Integer, fma_rate::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderCorePropertiesARM(structure_type(VkPhysicalDeviceShaderCorePropertiesARM), unsafe_convert(Ptr{Cvoid}, next), pixel_rate, texel_rate, fma_rate)
+    vks = VkPhysicalDeviceShaderCorePropertiesARM(structure_type(VkPhysicalDeviceShaderCorePropertiesARM), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, pixel_rate), convert(UInt32, texel_rate), convert(UInt32, fma_rate))
     _PhysicalDeviceShaderCorePropertiesARM(vks, deps)
 end
 
@@ -58653,7 +58661,7 @@ Arguments:
 function _PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM(multiview_per_view_render_areas::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM(structure_type(VkPhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM), unsafe_convert(Ptr{Cvoid}, next), multiview_per_view_render_areas)
+    vks = VkPhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM(structure_type(VkPhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, multiview_per_view_render_areas))
     _PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM(vks, deps)
 end
 
@@ -58672,7 +58680,7 @@ function _MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM(per_view_render_are
     next = cconvert(Ptr{Cvoid}, next)
     per_view_render_areas = cconvert(Ptr{VkRect2D}, per_view_render_areas)
     deps = Any[next, per_view_render_areas]
-    vks = VkMultiviewPerViewRenderAreasRenderPassBeginInfoQCOM(structure_type(VkMultiviewPerViewRenderAreasRenderPassBeginInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), per_view_render_area_count, unsafe_convert(Ptr{VkRect2D}, per_view_render_areas))
+    vks = VkMultiviewPerViewRenderAreasRenderPassBeginInfoQCOM(structure_type(VkMultiviewPerViewRenderAreasRenderPassBeginInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, per_view_render_area_count), unsafe_convert(Ptr{VkRect2D}, per_view_render_areas))
     _MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM(vks, deps)
 end
 
@@ -58708,7 +58716,7 @@ Arguments:
 function _MemoryMapInfo(memory, offset::Integer, size::Integer; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMemoryMapInfo(structure_type(VkMemoryMapInfo), unsafe_convert(Ptr{Cvoid}, next), flags, memory, offset, size)
+    vks = VkMemoryMapInfo(structure_type(VkMemoryMapInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkMemoryMapFlags, flags), convert(VkDeviceMemory, memory), convert(VkDeviceSize, offset), convert(VkDeviceSize, size))
     _MemoryMapInfo(vks, deps, memory)
 end
 
@@ -58724,7 +58732,7 @@ Arguments:
 function _MemoryUnmapInfo(memory; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMemoryUnmapInfo(structure_type(VkMemoryUnmapInfo), unsafe_convert(Ptr{Cvoid}, next), flags, memory)
+    vks = VkMemoryUnmapInfo(structure_type(VkMemoryUnmapInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkMemoryUnmapFlags, flags), convert(VkDeviceMemory, memory))
     _MemoryUnmapInfo(vks, deps, memory)
 end
 
@@ -58741,7 +58749,7 @@ Arguments:
 function _PhysicalDeviceShaderObjectFeaturesEXT(shader_object::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderObjectFeaturesEXT(structure_type(VkPhysicalDeviceShaderObjectFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), shader_object)
+    vks = VkPhysicalDeviceShaderObjectFeaturesEXT(structure_type(VkPhysicalDeviceShaderObjectFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_object))
     _PhysicalDeviceShaderObjectFeaturesEXT(vks, deps)
 end
 
@@ -58759,7 +58767,7 @@ Arguments:
 function _PhysicalDeviceShaderObjectPropertiesEXT(shader_binary_uuid::NTuple{Int(VK_UUID_SIZE), UInt8}, shader_binary_version::VersionNumber; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderObjectPropertiesEXT(structure_type(VkPhysicalDeviceShaderObjectPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), shader_binary_uuid, to_vk(UInt32, shader_binary_version))
+    vks = VkPhysicalDeviceShaderObjectPropertiesEXT(structure_type(VkPhysicalDeviceShaderObjectPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(NTuple{Int(VK_UUID_SIZE), UInt8}, shader_binary_uuid), to_vk(UInt32, shader_binary_version))
     _PhysicalDeviceShaderObjectPropertiesEXT(vks, deps)
 end
 
@@ -58792,7 +58800,7 @@ function _ShaderCreateInfoEXT(stage::ShaderStageFlag, code_type::ShaderCodeTypeE
     push_constant_ranges = cconvert(Ptr{VkPushConstantRange}, push_constant_ranges)
     specialization_info = cconvert(Ptr{VkSpecializationInfo}, specialization_info)
     deps = Any[next, code, name, set_layouts, push_constant_ranges, specialization_info]
-    vks = VkShaderCreateInfoEXT(structure_type(VkShaderCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), flags, VkShaderStageFlagBits(stage.val), next_stage, code_type, code_size, unsafe_convert(Ptr{Cvoid}, code), unsafe_convert(Cstring, name), set_layout_count, unsafe_convert(Ptr{VkDescriptorSetLayout}, set_layouts), push_constant_range_count, unsafe_convert(Ptr{VkPushConstantRange}, push_constant_ranges), unsafe_convert(Ptr{VkSpecializationInfo}, specialization_info))
+    vks = VkShaderCreateInfoEXT(structure_type(VkShaderCreateInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkShaderCreateFlagsEXT, flags), VkShaderStageFlagBits(flag_value(stage)), convert(VkShaderStageFlags, next_stage), convert(VkShaderCodeTypeEXT, code_type), convert(UInt, code_size), unsafe_convert(Ptr{Cvoid}, code), unsafe_convert(Cstring, name), convert(UInt32, set_layout_count), unsafe_convert(Ptr{VkDescriptorSetLayout}, set_layouts), convert(UInt32, push_constant_range_count), unsafe_convert(Ptr{VkPushConstantRange}, push_constant_ranges), unsafe_convert(Ptr{VkSpecializationInfo}, specialization_info))
     _ShaderCreateInfoEXT(vks, deps)
 end
 
@@ -58811,7 +58819,7 @@ Arguments:
 function _PhysicalDeviceShaderTileImageFeaturesEXT(shader_tile_image_color_read_access::Bool, shader_tile_image_depth_read_access::Bool, shader_tile_image_stencil_read_access::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderTileImageFeaturesEXT(structure_type(VkPhysicalDeviceShaderTileImageFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), shader_tile_image_color_read_access, shader_tile_image_depth_read_access, shader_tile_image_stencil_read_access)
+    vks = VkPhysicalDeviceShaderTileImageFeaturesEXT(structure_type(VkPhysicalDeviceShaderTileImageFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_tile_image_color_read_access), convert(VkBool32, shader_tile_image_depth_read_access), convert(VkBool32, shader_tile_image_stencil_read_access))
     _PhysicalDeviceShaderTileImageFeaturesEXT(vks, deps)
 end
 
@@ -58830,7 +58838,7 @@ Arguments:
 function _PhysicalDeviceShaderTileImagePropertiesEXT(shader_tile_image_coherent_read_accelerated::Bool, shader_tile_image_read_sample_from_pixel_rate_invocation::Bool, shader_tile_image_read_from_helper_invocation::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderTileImagePropertiesEXT(structure_type(VkPhysicalDeviceShaderTileImagePropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), shader_tile_image_coherent_read_accelerated, shader_tile_image_read_sample_from_pixel_rate_invocation, shader_tile_image_read_from_helper_invocation)
+    vks = VkPhysicalDeviceShaderTileImagePropertiesEXT(structure_type(VkPhysicalDeviceShaderTileImagePropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_tile_image_coherent_read_accelerated), convert(VkBool32, shader_tile_image_read_sample_from_pixel_rate_invocation), convert(VkBool32, shader_tile_image_read_from_helper_invocation))
     _PhysicalDeviceShaderTileImagePropertiesEXT(vks, deps)
 end
 
@@ -58848,7 +58856,7 @@ Arguments:
 function _PhysicalDeviceCooperativeMatrixFeaturesKHR(cooperative_matrix::Bool, cooperative_matrix_robust_buffer_access::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceCooperativeMatrixFeaturesKHR(structure_type(VkPhysicalDeviceCooperativeMatrixFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), cooperative_matrix, cooperative_matrix_robust_buffer_access)
+    vks = VkPhysicalDeviceCooperativeMatrixFeaturesKHR(structure_type(VkPhysicalDeviceCooperativeMatrixFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, cooperative_matrix), convert(VkBool32, cooperative_matrix_robust_buffer_access))
     _PhysicalDeviceCooperativeMatrixFeaturesKHR(vks, deps)
 end
 
@@ -58873,7 +58881,7 @@ Arguments:
 function _CooperativeMatrixPropertiesKHR(m_size::Integer, n_size::Integer, k_size::Integer, a_type::ComponentTypeKHR, b_type::ComponentTypeKHR, c_type::ComponentTypeKHR, result_type::ComponentTypeKHR, saturating_accumulation::Bool, scope::ScopeKHR; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkCooperativeMatrixPropertiesKHR(structure_type(VkCooperativeMatrixPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), m_size, n_size, k_size, a_type, b_type, c_type, result_type, saturating_accumulation, scope)
+    vks = VkCooperativeMatrixPropertiesKHR(structure_type(VkCooperativeMatrixPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, m_size), convert(UInt32, n_size), convert(UInt32, k_size), convert(VkComponentTypeKHR, a_type), convert(VkComponentTypeKHR, b_type), convert(VkComponentTypeKHR, c_type), convert(VkComponentTypeKHR, result_type), convert(VkBool32, saturating_accumulation), convert(VkScopeKHR, scope))
     _CooperativeMatrixPropertiesKHR(vks, deps)
 end
 
@@ -58890,7 +58898,7 @@ Arguments:
 function _PhysicalDeviceCooperativeMatrixPropertiesKHR(cooperative_matrix_supported_stages::ShaderStageFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceCooperativeMatrixPropertiesKHR(structure_type(VkPhysicalDeviceCooperativeMatrixPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), cooperative_matrix_supported_stages)
+    vks = VkPhysicalDeviceCooperativeMatrixPropertiesKHR(structure_type(VkPhysicalDeviceCooperativeMatrixPropertiesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkShaderStageFlags, cooperative_matrix_supported_stages))
     _PhysicalDeviceCooperativeMatrixPropertiesKHR(vks, deps)
 end
 
@@ -58907,7 +58915,7 @@ Arguments:
 function _PhysicalDeviceAntiLagFeaturesAMD(anti_lag::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceAntiLagFeaturesAMD(structure_type(VkPhysicalDeviceAntiLagFeaturesAMD), unsafe_convert(Ptr{Cvoid}, next), anti_lag)
+    vks = VkPhysicalDeviceAntiLagFeaturesAMD(structure_type(VkPhysicalDeviceAntiLagFeaturesAMD), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, anti_lag))
     _PhysicalDeviceAntiLagFeaturesAMD(vks, deps)
 end
 
@@ -58927,7 +58935,7 @@ function _AntiLagDataAMD(mode::AntiLagModeAMD, max_fps::Integer; next = C_NULL, 
     next = cconvert(Ptr{Cvoid}, next)
     presentation_info = cconvert(Ptr{VkAntiLagPresentationInfoAMD}, presentation_info)
     deps = Any[next, presentation_info]
-    vks = VkAntiLagDataAMD(structure_type(VkAntiLagDataAMD), unsafe_convert(Ptr{Cvoid}, next), mode, max_fps, unsafe_convert(Ptr{VkAntiLagPresentationInfoAMD}, presentation_info))
+    vks = VkAntiLagDataAMD(structure_type(VkAntiLagDataAMD), unsafe_convert(Ptr{Cvoid}, next), convert(VkAntiLagModeAMD, mode), convert(UInt32, max_fps), unsafe_convert(Ptr{VkAntiLagPresentationInfoAMD}, presentation_info))
     _AntiLagDataAMD(vks, deps)
 end
 
@@ -58945,7 +58953,7 @@ Arguments:
 function _AntiLagPresentationInfoAMD(stage::AntiLagStageAMD, frame_index::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkAntiLagPresentationInfoAMD(structure_type(VkAntiLagPresentationInfoAMD), unsafe_convert(Ptr{Cvoid}, next), stage, frame_index)
+    vks = VkAntiLagPresentationInfoAMD(structure_type(VkAntiLagPresentationInfoAMD), unsafe_convert(Ptr{Cvoid}, next), convert(VkAntiLagStageAMD, stage), convert(UInt64, frame_index))
     _AntiLagPresentationInfoAMD(vks, deps)
 end
 
@@ -58978,7 +58986,7 @@ Arguments:
 function _PhysicalDeviceTileMemoryHeapFeaturesQCOM(tile_memory_heap::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceTileMemoryHeapFeaturesQCOM(structure_type(VkPhysicalDeviceTileMemoryHeapFeaturesQCOM), unsafe_convert(Ptr{Cvoid}, next), tile_memory_heap)
+    vks = VkPhysicalDeviceTileMemoryHeapFeaturesQCOM(structure_type(VkPhysicalDeviceTileMemoryHeapFeaturesQCOM), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, tile_memory_heap))
     _PhysicalDeviceTileMemoryHeapFeaturesQCOM(vks, deps)
 end
 
@@ -58996,7 +59004,7 @@ Arguments:
 function _PhysicalDeviceTileMemoryHeapPropertiesQCOM(queue_submit_boundary::Bool, tile_buffer_transfers::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceTileMemoryHeapPropertiesQCOM(structure_type(VkPhysicalDeviceTileMemoryHeapPropertiesQCOM), unsafe_convert(Ptr{Cvoid}, next), queue_submit_boundary, tile_buffer_transfers)
+    vks = VkPhysicalDeviceTileMemoryHeapPropertiesQCOM(structure_type(VkPhysicalDeviceTileMemoryHeapPropertiesQCOM), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, queue_submit_boundary), convert(VkBool32, tile_buffer_transfers))
     _PhysicalDeviceTileMemoryHeapPropertiesQCOM(vks, deps)
 end
 
@@ -59013,7 +59021,7 @@ Arguments:
 function _TileMemorySizeInfoQCOM(size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkTileMemorySizeInfoQCOM(structure_type(VkTileMemorySizeInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), size)
+    vks = VkTileMemorySizeInfoQCOM(structure_type(VkTileMemorySizeInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceSize, size))
     _TileMemorySizeInfoQCOM(vks, deps)
 end
 
@@ -59031,7 +59039,7 @@ Arguments:
 function _TileMemoryRequirementsQCOM(size::Integer, alignment::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkTileMemoryRequirementsQCOM(structure_type(VkTileMemoryRequirementsQCOM), unsafe_convert(Ptr{Cvoid}, next), size, alignment)
+    vks = VkTileMemoryRequirementsQCOM(structure_type(VkTileMemoryRequirementsQCOM), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceSize, size), convert(VkDeviceSize, alignment))
     _TileMemoryRequirementsQCOM(vks, deps)
 end
 
@@ -59054,7 +59062,7 @@ function _BindDescriptorSetsInfo(stage_flags::ShaderStageFlag, descriptor_sets::
     descriptor_sets = cconvert(Ptr{VkDescriptorSet}, descriptor_sets)
     dynamic_offsets = cconvert(Ptr{UInt32}, dynamic_offsets)
     deps = Any[next, descriptor_sets, dynamic_offsets]
-    vks = VkBindDescriptorSetsInfo(structure_type(VkBindDescriptorSetsInfo), unsafe_convert(Ptr{Cvoid}, next), stage_flags, layout, first_set, descriptor_set_count, unsafe_convert(Ptr{VkDescriptorSet}, descriptor_sets), dynamic_offset_count, unsafe_convert(Ptr{UInt32}, dynamic_offsets))
+    vks = VkBindDescriptorSetsInfo(structure_type(VkBindDescriptorSetsInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkShaderStageFlags, stage_flags), convert(VkPipelineLayout, layout), convert(UInt32, first_set), convert(UInt32, descriptor_set_count), unsafe_convert(Ptr{VkDescriptorSet}, descriptor_sets), convert(UInt32, dynamic_offset_count), unsafe_convert(Ptr{UInt32}, dynamic_offsets))
     _BindDescriptorSetsInfo(vks, deps, layout)
 end
 
@@ -59074,7 +59082,7 @@ function _PushConstantsInfo(stage_flags::ShaderStageFlag, size::Integer, values:
     next = cconvert(Ptr{Cvoid}, next)
     values = cconvert(Ptr{Cvoid}, values)
     deps = Any[next, values]
-    vks = VkPushConstantsInfo(structure_type(VkPushConstantsInfo), unsafe_convert(Ptr{Cvoid}, next), layout, stage_flags, offset, size, unsafe_convert(Ptr{Cvoid}, values))
+    vks = VkPushConstantsInfo(structure_type(VkPushConstantsInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineLayout, layout), convert(VkShaderStageFlags, stage_flags), convert(UInt32, offset), convert(UInt32, size), unsafe_convert(Ptr{Cvoid}, values))
     _PushConstantsInfo(vks, deps, layout)
 end
 
@@ -59094,7 +59102,7 @@ function _PushDescriptorSetInfo(stage_flags::ShaderStageFlag, descriptor_writes:
     next = cconvert(Ptr{Cvoid}, next)
     descriptor_writes = cconvert(Ptr{VkWriteDescriptorSet}, descriptor_writes)
     deps = Any[next, descriptor_writes]
-    vks = VkPushDescriptorSetInfo(structure_type(VkPushDescriptorSetInfo), unsafe_convert(Ptr{Cvoid}, next), stage_flags, layout, set, descriptor_write_count, unsafe_convert(Ptr{VkWriteDescriptorSet}, descriptor_writes))
+    vks = VkPushDescriptorSetInfo(structure_type(VkPushDescriptorSetInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkShaderStageFlags, stage_flags), convert(VkPipelineLayout, layout), convert(UInt32, set), convert(UInt32, descriptor_write_count), unsafe_convert(Ptr{VkWriteDescriptorSet}, descriptor_writes))
     _PushDescriptorSetInfo(vks, deps, layout)
 end
 
@@ -59113,7 +59121,7 @@ function _PushDescriptorSetWithTemplateInfo(descriptor_update_template, data::Pt
     next = cconvert(Ptr{Cvoid}, next)
     data = cconvert(Ptr{Cvoid}, data)
     deps = Any[next, data]
-    vks = VkPushDescriptorSetWithTemplateInfo(structure_type(VkPushDescriptorSetWithTemplateInfo), unsafe_convert(Ptr{Cvoid}, next), descriptor_update_template, layout, set, unsafe_convert(Ptr{Cvoid}, data))
+    vks = VkPushDescriptorSetWithTemplateInfo(structure_type(VkPushDescriptorSetWithTemplateInfo), unsafe_convert(Ptr{Cvoid}, next), convert(VkDescriptorUpdateTemplate, descriptor_update_template), convert(VkPipelineLayout, layout), convert(UInt32, set), unsafe_convert(Ptr{Cvoid}, data))
     _PushDescriptorSetWithTemplateInfo(vks, deps, descriptor_update_template, layout)
 end
 
@@ -59136,7 +59144,7 @@ function _SetDescriptorBufferOffsetsInfoEXT(stage_flags::ShaderStageFlag, buffer
     buffer_indices = cconvert(Ptr{UInt32}, buffer_indices)
     offsets = cconvert(Ptr{VkDeviceSize}, offsets)
     deps = Any[next, buffer_indices, offsets]
-    vks = VkSetDescriptorBufferOffsetsInfoEXT(structure_type(VkSetDescriptorBufferOffsetsInfoEXT), unsafe_convert(Ptr{Cvoid}, next), stage_flags, layout, 0, set_count, unsafe_convert(Ptr{UInt32}, buffer_indices), unsafe_convert(Ptr{VkDeviceSize}, offsets))
+    vks = VkSetDescriptorBufferOffsetsInfoEXT(structure_type(VkSetDescriptorBufferOffsetsInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkShaderStageFlags, stage_flags), convert(VkPipelineLayout, layout), convert(UInt32, 0), convert(UInt32, set_count), unsafe_convert(Ptr{UInt32}, buffer_indices), unsafe_convert(Ptr{VkDeviceSize}, offsets))
     _SetDescriptorBufferOffsetsInfoEXT(vks, deps, layout)
 end
 
@@ -59155,7 +59163,7 @@ Arguments:
 function _BindDescriptorBufferEmbeddedSamplersInfoEXT(stage_flags::ShaderStageFlag; next = C_NULL, layout = C_NULL, set = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkBindDescriptorBufferEmbeddedSamplersInfoEXT(structure_type(VkBindDescriptorBufferEmbeddedSamplersInfoEXT), unsafe_convert(Ptr{Cvoid}, next), stage_flags, layout, set)
+    vks = VkBindDescriptorBufferEmbeddedSamplersInfoEXT(structure_type(VkBindDescriptorBufferEmbeddedSamplersInfoEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkShaderStageFlags, stage_flags), convert(VkPipelineLayout, layout), convert(UInt32, set))
     _BindDescriptorBufferEmbeddedSamplersInfoEXT(vks, deps, layout)
 end
 
@@ -59172,7 +59180,7 @@ Arguments:
 function _PhysicalDeviceCubicClampFeaturesQCOM(cubic_range_clamp::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceCubicClampFeaturesQCOM(structure_type(VkPhysicalDeviceCubicClampFeaturesQCOM), unsafe_convert(Ptr{Cvoid}, next), cubic_range_clamp)
+    vks = VkPhysicalDeviceCubicClampFeaturesQCOM(structure_type(VkPhysicalDeviceCubicClampFeaturesQCOM), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, cubic_range_clamp))
     _PhysicalDeviceCubicClampFeaturesQCOM(vks, deps)
 end
 
@@ -59189,7 +59197,7 @@ Arguments:
 function _PhysicalDeviceYcbcrDegammaFeaturesQCOM(ycbcr_degamma::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceYcbcrDegammaFeaturesQCOM(structure_type(VkPhysicalDeviceYcbcrDegammaFeaturesQCOM), unsafe_convert(Ptr{Cvoid}, next), ycbcr_degamma)
+    vks = VkPhysicalDeviceYcbcrDegammaFeaturesQCOM(structure_type(VkPhysicalDeviceYcbcrDegammaFeaturesQCOM), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, ycbcr_degamma))
     _PhysicalDeviceYcbcrDegammaFeaturesQCOM(vks, deps)
 end
 
@@ -59207,7 +59215,7 @@ Arguments:
 function _SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM(enable_y_degamma::Bool, enable_cb_cr_degamma::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM(structure_type(VkSamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), enable_y_degamma, enable_cb_cr_degamma)
+    vks = VkSamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM(structure_type(VkSamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, enable_y_degamma), convert(VkBool32, enable_cb_cr_degamma))
     _SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM(vks, deps)
 end
 
@@ -59224,7 +59232,7 @@ Arguments:
 function _PhysicalDeviceCubicWeightsFeaturesQCOM(selectable_cubic_weights::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceCubicWeightsFeaturesQCOM(structure_type(VkPhysicalDeviceCubicWeightsFeaturesQCOM), unsafe_convert(Ptr{Cvoid}, next), selectable_cubic_weights)
+    vks = VkPhysicalDeviceCubicWeightsFeaturesQCOM(structure_type(VkPhysicalDeviceCubicWeightsFeaturesQCOM), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, selectable_cubic_weights))
     _PhysicalDeviceCubicWeightsFeaturesQCOM(vks, deps)
 end
 
@@ -59241,7 +59249,7 @@ Arguments:
 function _SamplerCubicWeightsCreateInfoQCOM(cubic_weights::CubicFilterWeightsQCOM; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSamplerCubicWeightsCreateInfoQCOM(structure_type(VkSamplerCubicWeightsCreateInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), cubic_weights)
+    vks = VkSamplerCubicWeightsCreateInfoQCOM(structure_type(VkSamplerCubicWeightsCreateInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), convert(VkCubicFilterWeightsQCOM, cubic_weights))
     _SamplerCubicWeightsCreateInfoQCOM(vks, deps)
 end
 
@@ -59258,7 +59266,7 @@ Arguments:
 function _BlitImageCubicWeightsInfoQCOM(cubic_weights::CubicFilterWeightsQCOM; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkBlitImageCubicWeightsInfoQCOM(structure_type(VkBlitImageCubicWeightsInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), cubic_weights)
+    vks = VkBlitImageCubicWeightsInfoQCOM(structure_type(VkBlitImageCubicWeightsInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), convert(VkCubicFilterWeightsQCOM, cubic_weights))
     _BlitImageCubicWeightsInfoQCOM(vks, deps)
 end
 
@@ -59275,7 +59283,7 @@ Arguments:
 function _PhysicalDeviceImageProcessing2FeaturesQCOM(texture_block_match_2::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceImageProcessing2FeaturesQCOM(structure_type(VkPhysicalDeviceImageProcessing2FeaturesQCOM), unsafe_convert(Ptr{Cvoid}, next), texture_block_match_2)
+    vks = VkPhysicalDeviceImageProcessing2FeaturesQCOM(structure_type(VkPhysicalDeviceImageProcessing2FeaturesQCOM), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, texture_block_match_2))
     _PhysicalDeviceImageProcessing2FeaturesQCOM(vks, deps)
 end
 
@@ -59310,7 +59318,7 @@ Arguments:
 function _SamplerBlockMatchWindowCreateInfoQCOM(window_extent::_Extent2D, window_compare_mode::BlockMatchWindowCompareModeQCOM; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSamplerBlockMatchWindowCreateInfoQCOM(structure_type(VkSamplerBlockMatchWindowCreateInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), window_extent.vks, window_compare_mode)
+    vks = VkSamplerBlockMatchWindowCreateInfoQCOM(structure_type(VkSamplerBlockMatchWindowCreateInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), window_extent.vks, convert(VkBlockMatchWindowCompareModeQCOM, window_compare_mode))
     _SamplerBlockMatchWindowCreateInfoQCOM(vks, deps)
 end
 
@@ -59327,7 +59335,7 @@ Arguments:
 function _PhysicalDeviceDescriptorPoolOverallocationFeaturesNV(descriptor_pool_overallocation::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDescriptorPoolOverallocationFeaturesNV(structure_type(VkPhysicalDeviceDescriptorPoolOverallocationFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), descriptor_pool_overallocation)
+    vks = VkPhysicalDeviceDescriptorPoolOverallocationFeaturesNV(structure_type(VkPhysicalDeviceDescriptorPoolOverallocationFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, descriptor_pool_overallocation))
     _PhysicalDeviceDescriptorPoolOverallocationFeaturesNV(vks, deps)
 end
 
@@ -59344,7 +59352,7 @@ Arguments:
 function _PhysicalDeviceLayeredDriverPropertiesMSFT(underlying_api::LayeredDriverUnderlyingApiMSFT; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceLayeredDriverPropertiesMSFT(structure_type(VkPhysicalDeviceLayeredDriverPropertiesMSFT), unsafe_convert(Ptr{Cvoid}, next), underlying_api)
+    vks = VkPhysicalDeviceLayeredDriverPropertiesMSFT(structure_type(VkPhysicalDeviceLayeredDriverPropertiesMSFT), unsafe_convert(Ptr{Cvoid}, next), convert(VkLayeredDriverUnderlyingApiMSFT, underlying_api))
     _PhysicalDeviceLayeredDriverPropertiesMSFT(vks, deps)
 end
 
@@ -59362,7 +59370,7 @@ Arguments:
 function _PhysicalDevicePerStageDescriptorSetFeaturesNV(per_stage_descriptor_set::Bool, dynamic_pipeline_layout::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePerStageDescriptorSetFeaturesNV(structure_type(VkPhysicalDevicePerStageDescriptorSetFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), per_stage_descriptor_set, dynamic_pipeline_layout)
+    vks = VkPhysicalDevicePerStageDescriptorSetFeaturesNV(structure_type(VkPhysicalDevicePerStageDescriptorSetFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, per_stage_descriptor_set), convert(VkBool32, dynamic_pipeline_layout))
     _PhysicalDevicePerStageDescriptorSetFeaturesNV(vks, deps)
 end
 
@@ -59381,7 +59389,7 @@ Arguments:
 function _LatencySleepModeInfoNV(low_latency_mode::Bool, low_latency_boost::Bool, minimum_interval_us::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkLatencySleepModeInfoNV(structure_type(VkLatencySleepModeInfoNV), unsafe_convert(Ptr{Cvoid}, next), low_latency_mode, low_latency_boost, minimum_interval_us)
+    vks = VkLatencySleepModeInfoNV(structure_type(VkLatencySleepModeInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, low_latency_mode), convert(VkBool32, low_latency_boost), convert(UInt32, minimum_interval_us))
     _LatencySleepModeInfoNV(vks, deps)
 end
 
@@ -59399,7 +59407,7 @@ Arguments:
 function _LatencySleepInfoNV(signal_semaphore, value::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkLatencySleepInfoNV(structure_type(VkLatencySleepInfoNV), unsafe_convert(Ptr{Cvoid}, next), signal_semaphore, value)
+    vks = VkLatencySleepInfoNV(structure_type(VkLatencySleepInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkSemaphore, signal_semaphore), convert(UInt64, value))
     _LatencySleepInfoNV(vks, deps, signal_semaphore)
 end
 
@@ -59417,7 +59425,7 @@ Arguments:
 function _SetLatencyMarkerInfoNV(present_id::Integer, marker::LatencyMarkerNV; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSetLatencyMarkerInfoNV(structure_type(VkSetLatencyMarkerInfoNV), unsafe_convert(Ptr{Cvoid}, next), present_id, marker)
+    vks = VkSetLatencyMarkerInfoNV(structure_type(VkSetLatencyMarkerInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt64, present_id), convert(VkLatencyMarkerNV, marker))
     _SetLatencyMarkerInfoNV(vks, deps)
 end
 
@@ -59436,7 +59444,7 @@ function _GetLatencyMarkerInfoNV(; next = C_NULL, timings = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     timings = cconvert(Ptr{VkLatencyTimingsFrameReportNV}, timings)
     deps = Any[next, timings]
-    vks = VkGetLatencyMarkerInfoNV(structure_type(VkGetLatencyMarkerInfoNV), unsafe_convert(Ptr{Cvoid}, next), timing_count, unsafe_convert(Ptr{VkLatencyTimingsFrameReportNV}, timings))
+    vks = VkGetLatencyMarkerInfoNV(structure_type(VkGetLatencyMarkerInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, timing_count), unsafe_convert(Ptr{VkLatencyTimingsFrameReportNV}, timings))
     _GetLatencyMarkerInfoNV(vks, deps)
 end
 
@@ -59466,7 +59474,7 @@ Arguments:
 function _LatencyTimingsFrameReportNV(present_id::Integer, input_sample_time_us::Integer, sim_start_time_us::Integer, sim_end_time_us::Integer, render_submit_start_time_us::Integer, render_submit_end_time_us::Integer, present_start_time_us::Integer, present_end_time_us::Integer, driver_start_time_us::Integer, driver_end_time_us::Integer, os_render_queue_start_time_us::Integer, os_render_queue_end_time_us::Integer, gpu_render_start_time_us::Integer, gpu_render_end_time_us::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkLatencyTimingsFrameReportNV(structure_type(VkLatencyTimingsFrameReportNV), unsafe_convert(Ptr{Cvoid}, next), present_id, input_sample_time_us, sim_start_time_us, sim_end_time_us, render_submit_start_time_us, render_submit_end_time_us, present_start_time_us, present_end_time_us, driver_start_time_us, driver_end_time_us, os_render_queue_start_time_us, os_render_queue_end_time_us, gpu_render_start_time_us, gpu_render_end_time_us)
+    vks = VkLatencyTimingsFrameReportNV(structure_type(VkLatencyTimingsFrameReportNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt64, present_id), convert(UInt64, input_sample_time_us), convert(UInt64, sim_start_time_us), convert(UInt64, sim_end_time_us), convert(UInt64, render_submit_start_time_us), convert(UInt64, render_submit_end_time_us), convert(UInt64, present_start_time_us), convert(UInt64, present_end_time_us), convert(UInt64, driver_start_time_us), convert(UInt64, driver_end_time_us), convert(UInt64, os_render_queue_start_time_us), convert(UInt64, os_render_queue_end_time_us), convert(UInt64, gpu_render_start_time_us), convert(UInt64, gpu_render_end_time_us))
     _LatencyTimingsFrameReportNV(vks, deps)
 end
 
@@ -59483,7 +59491,7 @@ Arguments:
 function _OutOfBandQueueTypeInfoNV(queue_type::OutOfBandQueueTypeNV; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkOutOfBandQueueTypeInfoNV(structure_type(VkOutOfBandQueueTypeInfoNV), unsafe_convert(Ptr{Cvoid}, next), queue_type)
+    vks = VkOutOfBandQueueTypeInfoNV(structure_type(VkOutOfBandQueueTypeInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkOutOfBandQueueTypeNV, queue_type))
     _OutOfBandQueueTypeInfoNV(vks, deps)
 end
 
@@ -59500,7 +59508,7 @@ Arguments:
 function _LatencySubmissionPresentIdNV(present_id::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkLatencySubmissionPresentIdNV(structure_type(VkLatencySubmissionPresentIdNV), unsafe_convert(Ptr{Cvoid}, next), present_id)
+    vks = VkLatencySubmissionPresentIdNV(structure_type(VkLatencySubmissionPresentIdNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt64, present_id))
     _LatencySubmissionPresentIdNV(vks, deps)
 end
 
@@ -59517,7 +59525,7 @@ Arguments:
 function _SwapchainLatencyCreateInfoNV(; next = C_NULL, latency_mode_enable = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkSwapchainLatencyCreateInfoNV(structure_type(VkSwapchainLatencyCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), latency_mode_enable)
+    vks = VkSwapchainLatencyCreateInfoNV(structure_type(VkSwapchainLatencyCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, latency_mode_enable))
     _SwapchainLatencyCreateInfoNV(vks, deps)
 end
 
@@ -59536,7 +59544,7 @@ function _LatencySurfaceCapabilitiesNV(; next = C_NULL, present_modes = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     present_modes = cconvert(Ptr{VkPresentModeKHR}, present_modes)
     deps = Any[next, present_modes]
-    vks = VkLatencySurfaceCapabilitiesNV(structure_type(VkLatencySurfaceCapabilitiesNV), unsafe_convert(Ptr{Cvoid}, next), present_mode_count, unsafe_convert(Ptr{VkPresentModeKHR}, present_modes))
+    vks = VkLatencySurfaceCapabilitiesNV(structure_type(VkLatencySurfaceCapabilitiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, present_mode_count), unsafe_convert(Ptr{VkPresentModeKHR}, present_modes))
     _LatencySurfaceCapabilitiesNV(vks, deps)
 end
 
@@ -59553,7 +59561,7 @@ Arguments:
 function _DeviceQueueShaderCoreControlCreateInfoARM(shader_core_count::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDeviceQueueShaderCoreControlCreateInfoARM(structure_type(VkDeviceQueueShaderCoreControlCreateInfoARM), unsafe_convert(Ptr{Cvoid}, next), shader_core_count)
+    vks = VkDeviceQueueShaderCoreControlCreateInfoARM(structure_type(VkDeviceQueueShaderCoreControlCreateInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, shader_core_count))
     _DeviceQueueShaderCoreControlCreateInfoARM(vks, deps)
 end
 
@@ -59570,7 +59578,7 @@ Arguments:
 function _PhysicalDeviceSchedulingControlsFeaturesARM(scheduling_controls::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceSchedulingControlsFeaturesARM(structure_type(VkPhysicalDeviceSchedulingControlsFeaturesARM), unsafe_convert(Ptr{Cvoid}, next), scheduling_controls)
+    vks = VkPhysicalDeviceSchedulingControlsFeaturesARM(structure_type(VkPhysicalDeviceSchedulingControlsFeaturesARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, scheduling_controls))
     _PhysicalDeviceSchedulingControlsFeaturesARM(vks, deps)
 end
 
@@ -59587,7 +59595,7 @@ Arguments:
 function _PhysicalDeviceSchedulingControlsPropertiesARM(scheduling_controls_flags::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceSchedulingControlsPropertiesARM(structure_type(VkPhysicalDeviceSchedulingControlsPropertiesARM), unsafe_convert(Ptr{Cvoid}, next), scheduling_controls_flags)
+    vks = VkPhysicalDeviceSchedulingControlsPropertiesARM(structure_type(VkPhysicalDeviceSchedulingControlsPropertiesARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkPhysicalDeviceSchedulingControlsFlagsARM, scheduling_controls_flags))
     _PhysicalDeviceSchedulingControlsPropertiesARM(vks, deps)
 end
 
@@ -59604,7 +59612,7 @@ Arguments:
 function _PhysicalDeviceRelaxedLineRasterizationFeaturesIMG(relaxed_line_rasterization::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceRelaxedLineRasterizationFeaturesIMG(structure_type(VkPhysicalDeviceRelaxedLineRasterizationFeaturesIMG), unsafe_convert(Ptr{Cvoid}, next), relaxed_line_rasterization)
+    vks = VkPhysicalDeviceRelaxedLineRasterizationFeaturesIMG(structure_type(VkPhysicalDeviceRelaxedLineRasterizationFeaturesIMG), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, relaxed_line_rasterization))
     _PhysicalDeviceRelaxedLineRasterizationFeaturesIMG(vks, deps)
 end
 
@@ -59621,7 +59629,7 @@ Arguments:
 function _PhysicalDeviceRenderPassStripedFeaturesARM(render_pass_striped::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceRenderPassStripedFeaturesARM(structure_type(VkPhysicalDeviceRenderPassStripedFeaturesARM), unsafe_convert(Ptr{Cvoid}, next), render_pass_striped)
+    vks = VkPhysicalDeviceRenderPassStripedFeaturesARM(structure_type(VkPhysicalDeviceRenderPassStripedFeaturesARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, render_pass_striped))
     _PhysicalDeviceRenderPassStripedFeaturesARM(vks, deps)
 end
 
@@ -59639,7 +59647,7 @@ Arguments:
 function _PhysicalDeviceRenderPassStripedPropertiesARM(render_pass_stripe_granularity::_Extent2D, max_render_pass_stripes::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceRenderPassStripedPropertiesARM(structure_type(VkPhysicalDeviceRenderPassStripedPropertiesARM), unsafe_convert(Ptr{Cvoid}, next), render_pass_stripe_granularity.vks, max_render_pass_stripes)
+    vks = VkPhysicalDeviceRenderPassStripedPropertiesARM(structure_type(VkPhysicalDeviceRenderPassStripedPropertiesARM), unsafe_convert(Ptr{Cvoid}, next), render_pass_stripe_granularity.vks, convert(UInt32, max_render_pass_stripes))
     _PhysicalDeviceRenderPassStripedPropertiesARM(vks, deps)
 end
 
@@ -59675,7 +59683,7 @@ function _RenderPassStripeBeginInfoARM(stripe_infos::AbstractArray; next = C_NUL
     next = cconvert(Ptr{Cvoid}, next)
     stripe_infos = cconvert(Ptr{VkRenderPassStripeInfoARM}, stripe_infos)
     deps = Any[next, stripe_infos]
-    vks = VkRenderPassStripeBeginInfoARM(structure_type(VkRenderPassStripeBeginInfoARM), unsafe_convert(Ptr{Cvoid}, next), stripe_info_count, unsafe_convert(Ptr{VkRenderPassStripeInfoARM}, stripe_infos))
+    vks = VkRenderPassStripeBeginInfoARM(structure_type(VkRenderPassStripeBeginInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, stripe_info_count), unsafe_convert(Ptr{VkRenderPassStripeInfoARM}, stripe_infos))
     _RenderPassStripeBeginInfoARM(vks, deps)
 end
 
@@ -59694,7 +59702,7 @@ function _RenderPassStripeSubmitInfoARM(stripe_semaphore_infos::AbstractArray; n
     next = cconvert(Ptr{Cvoid}, next)
     stripe_semaphore_infos = cconvert(Ptr{VkSemaphoreSubmitInfo}, stripe_semaphore_infos)
     deps = Any[next, stripe_semaphore_infos]
-    vks = VkRenderPassStripeSubmitInfoARM(structure_type(VkRenderPassStripeSubmitInfoARM), unsafe_convert(Ptr{Cvoid}, next), stripe_semaphore_info_count, unsafe_convert(Ptr{VkSemaphoreSubmitInfo}, stripe_semaphore_infos))
+    vks = VkRenderPassStripeSubmitInfoARM(structure_type(VkRenderPassStripeSubmitInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, stripe_semaphore_info_count), unsafe_convert(Ptr{VkSemaphoreSubmitInfo}, stripe_semaphore_infos))
     _RenderPassStripeSubmitInfoARM(vks, deps)
 end
 
@@ -59711,7 +59719,7 @@ Arguments:
 function _PhysicalDevicePipelineOpacityMicromapFeaturesARM(pipeline_opacity_micromap::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePipelineOpacityMicromapFeaturesARM(structure_type(VkPhysicalDevicePipelineOpacityMicromapFeaturesARM), unsafe_convert(Ptr{Cvoid}, next), pipeline_opacity_micromap)
+    vks = VkPhysicalDevicePipelineOpacityMicromapFeaturesARM(structure_type(VkPhysicalDevicePipelineOpacityMicromapFeaturesARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, pipeline_opacity_micromap))
     _PhysicalDevicePipelineOpacityMicromapFeaturesARM(vks, deps)
 end
 
@@ -59728,7 +59736,7 @@ Arguments:
 function _PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR(shader_maximal_reconvergence::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderMaximalReconvergenceFeaturesKHR(structure_type(VkPhysicalDeviceShaderMaximalReconvergenceFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), shader_maximal_reconvergence)
+    vks = VkPhysicalDeviceShaderMaximalReconvergenceFeaturesKHR(structure_type(VkPhysicalDeviceShaderMaximalReconvergenceFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_maximal_reconvergence))
     _PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR(vks, deps)
 end
 
@@ -59744,7 +59752,7 @@ Arguments:
 function _PhysicalDeviceShaderSubgroupRotateFeatures(shader_subgroup_rotate::Bool, shader_subgroup_rotate_clustered::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderSubgroupRotateFeatures(structure_type(VkPhysicalDeviceShaderSubgroupRotateFeatures), unsafe_convert(Ptr{Cvoid}, next), shader_subgroup_rotate, shader_subgroup_rotate_clustered)
+    vks = VkPhysicalDeviceShaderSubgroupRotateFeatures(structure_type(VkPhysicalDeviceShaderSubgroupRotateFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_subgroup_rotate), convert(VkBool32, shader_subgroup_rotate_clustered))
     _PhysicalDeviceShaderSubgroupRotateFeatures(vks, deps)
 end
 
@@ -59759,7 +59767,7 @@ Arguments:
 function _PhysicalDeviceShaderExpectAssumeFeatures(shader_expect_assume::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderExpectAssumeFeatures(structure_type(VkPhysicalDeviceShaderExpectAssumeFeatures), unsafe_convert(Ptr{Cvoid}, next), shader_expect_assume)
+    vks = VkPhysicalDeviceShaderExpectAssumeFeatures(structure_type(VkPhysicalDeviceShaderExpectAssumeFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_expect_assume))
     _PhysicalDeviceShaderExpectAssumeFeatures(vks, deps)
 end
 
@@ -59774,7 +59782,7 @@ Arguments:
 function _PhysicalDeviceShaderFloatControls2Features(shader_float_controls_2::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderFloatControls2Features(structure_type(VkPhysicalDeviceShaderFloatControls2Features), unsafe_convert(Ptr{Cvoid}, next), shader_float_controls_2)
+    vks = VkPhysicalDeviceShaderFloatControls2Features(structure_type(VkPhysicalDeviceShaderFloatControls2Features), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_float_controls_2))
     _PhysicalDeviceShaderFloatControls2Features(vks, deps)
 end
 
@@ -59789,7 +59797,7 @@ Arguments:
 function _PhysicalDeviceDynamicRenderingLocalReadFeatures(dynamic_rendering_local_read::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDynamicRenderingLocalReadFeatures(structure_type(VkPhysicalDeviceDynamicRenderingLocalReadFeatures), unsafe_convert(Ptr{Cvoid}, next), dynamic_rendering_local_read)
+    vks = VkPhysicalDeviceDynamicRenderingLocalReadFeatures(structure_type(VkPhysicalDeviceDynamicRenderingLocalReadFeatures), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, dynamic_rendering_local_read))
     _PhysicalDeviceDynamicRenderingLocalReadFeatures(vks, deps)
 end
 
@@ -59806,7 +59814,7 @@ function _RenderingAttachmentLocationInfo(color_attachment_locations::AbstractAr
     next = cconvert(Ptr{Cvoid}, next)
     color_attachment_locations = cconvert(Ptr{UInt32}, color_attachment_locations)
     deps = Any[next, color_attachment_locations]
-    vks = VkRenderingAttachmentLocationInfo(structure_type(VkRenderingAttachmentLocationInfo), unsafe_convert(Ptr{Cvoid}, next), color_attachment_count, unsafe_convert(Ptr{UInt32}, color_attachment_locations))
+    vks = VkRenderingAttachmentLocationInfo(structure_type(VkRenderingAttachmentLocationInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, color_attachment_count), unsafe_convert(Ptr{UInt32}, color_attachment_locations))
     _RenderingAttachmentLocationInfo(vks, deps)
 end
 
@@ -59827,7 +59835,7 @@ function _RenderingInputAttachmentIndexInfo(; next = C_NULL, color_attachment_in
     depth_input_attachment_index = cconvert(Ptr{UInt32}, depth_input_attachment_index)
     stencil_input_attachment_index = cconvert(Ptr{UInt32}, stencil_input_attachment_index)
     deps = Any[next, color_attachment_input_indices, depth_input_attachment_index, stencil_input_attachment_index]
-    vks = VkRenderingInputAttachmentIndexInfo(structure_type(VkRenderingInputAttachmentIndexInfo), unsafe_convert(Ptr{Cvoid}, next), color_attachment_count, unsafe_convert(Ptr{UInt32}, color_attachment_input_indices), unsafe_convert(Ptr{UInt32}, depth_input_attachment_index), unsafe_convert(Ptr{UInt32}, stencil_input_attachment_index))
+    vks = VkRenderingInputAttachmentIndexInfo(structure_type(VkRenderingInputAttachmentIndexInfo), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, color_attachment_count), unsafe_convert(Ptr{UInt32}, color_attachment_input_indices), unsafe_convert(Ptr{UInt32}, depth_input_attachment_index), unsafe_convert(Ptr{UInt32}, stencil_input_attachment_index))
     _RenderingInputAttachmentIndexInfo(vks, deps)
 end
 
@@ -59844,7 +59852,7 @@ Arguments:
 function _PhysicalDeviceShaderQuadControlFeaturesKHR(shader_quad_control::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderQuadControlFeaturesKHR(structure_type(VkPhysicalDeviceShaderQuadControlFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), shader_quad_control)
+    vks = VkPhysicalDeviceShaderQuadControlFeaturesKHR(structure_type(VkPhysicalDeviceShaderQuadControlFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_quad_control))
     _PhysicalDeviceShaderQuadControlFeaturesKHR(vks, deps)
 end
 
@@ -59861,7 +59869,7 @@ Arguments:
 function _PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV(shader_float_16_vector_atomics::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderAtomicFloat16VectorFeaturesNV(structure_type(VkPhysicalDeviceShaderAtomicFloat16VectorFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), shader_float_16_vector_atomics)
+    vks = VkPhysicalDeviceShaderAtomicFloat16VectorFeaturesNV(structure_type(VkPhysicalDeviceShaderAtomicFloat16VectorFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_float_16_vector_atomics))
     _PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV(vks, deps)
 end
 
@@ -59880,7 +59888,7 @@ Arguments:
 function _PhysicalDeviceMapMemoryPlacedFeaturesEXT(memory_map_placed::Bool, memory_map_range_placed::Bool, memory_unmap_reserve::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMapMemoryPlacedFeaturesEXT(structure_type(VkPhysicalDeviceMapMemoryPlacedFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), memory_map_placed, memory_map_range_placed, memory_unmap_reserve)
+    vks = VkPhysicalDeviceMapMemoryPlacedFeaturesEXT(structure_type(VkPhysicalDeviceMapMemoryPlacedFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, memory_map_placed), convert(VkBool32, memory_map_range_placed), convert(VkBool32, memory_unmap_reserve))
     _PhysicalDeviceMapMemoryPlacedFeaturesEXT(vks, deps)
 end
 
@@ -59897,7 +59905,7 @@ Arguments:
 function _PhysicalDeviceMapMemoryPlacedPropertiesEXT(min_placed_memory_map_alignment::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceMapMemoryPlacedPropertiesEXT(structure_type(VkPhysicalDeviceMapMemoryPlacedPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), min_placed_memory_map_alignment)
+    vks = VkPhysicalDeviceMapMemoryPlacedPropertiesEXT(structure_type(VkPhysicalDeviceMapMemoryPlacedPropertiesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkDeviceSize, min_placed_memory_map_alignment))
     _PhysicalDeviceMapMemoryPlacedPropertiesEXT(vks, deps)
 end
 
@@ -59934,7 +59942,7 @@ Arguments:
 function _PhysicalDeviceShaderBfloat16FeaturesKHR(shader_b_float_16_type::Bool, shader_b_float_16_dot_product::Bool, shader_b_float_16_cooperative_matrix::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderBfloat16FeaturesKHR(structure_type(VkPhysicalDeviceShaderBfloat16FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), shader_b_float_16_type, shader_b_float_16_dot_product, shader_b_float_16_cooperative_matrix)
+    vks = VkPhysicalDeviceShaderBfloat16FeaturesKHR(structure_type(VkPhysicalDeviceShaderBfloat16FeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_b_float_16_type), convert(VkBool32, shader_b_float_16_dot_product), convert(VkBool32, shader_b_float_16_cooperative_matrix))
     _PhysicalDeviceShaderBfloat16FeaturesKHR(vks, deps)
 end
 
@@ -59951,7 +59959,7 @@ Arguments:
 function _PhysicalDeviceRawAccessChainsFeaturesNV(shader_raw_access_chains::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceRawAccessChainsFeaturesNV(structure_type(VkPhysicalDeviceRawAccessChainsFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), shader_raw_access_chains)
+    vks = VkPhysicalDeviceRawAccessChainsFeaturesNV(structure_type(VkPhysicalDeviceRawAccessChainsFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_raw_access_chains))
     _PhysicalDeviceRawAccessChainsFeaturesNV(vks, deps)
 end
 
@@ -59968,7 +59976,7 @@ Arguments:
 function _PhysicalDeviceCommandBufferInheritanceFeaturesNV(command_buffer_inheritance::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceCommandBufferInheritanceFeaturesNV(structure_type(VkPhysicalDeviceCommandBufferInheritanceFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), command_buffer_inheritance)
+    vks = VkPhysicalDeviceCommandBufferInheritanceFeaturesNV(structure_type(VkPhysicalDeviceCommandBufferInheritanceFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, command_buffer_inheritance))
     _PhysicalDeviceCommandBufferInheritanceFeaturesNV(vks, deps)
 end
 
@@ -59985,7 +59993,7 @@ Arguments:
 function _PhysicalDeviceImageAlignmentControlFeaturesMESA(image_alignment_control::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceImageAlignmentControlFeaturesMESA(structure_type(VkPhysicalDeviceImageAlignmentControlFeaturesMESA), unsafe_convert(Ptr{Cvoid}, next), image_alignment_control)
+    vks = VkPhysicalDeviceImageAlignmentControlFeaturesMESA(structure_type(VkPhysicalDeviceImageAlignmentControlFeaturesMESA), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, image_alignment_control))
     _PhysicalDeviceImageAlignmentControlFeaturesMESA(vks, deps)
 end
 
@@ -60002,7 +60010,7 @@ Arguments:
 function _PhysicalDeviceImageAlignmentControlPropertiesMESA(supported_image_alignment_mask::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceImageAlignmentControlPropertiesMESA(structure_type(VkPhysicalDeviceImageAlignmentControlPropertiesMESA), unsafe_convert(Ptr{Cvoid}, next), supported_image_alignment_mask)
+    vks = VkPhysicalDeviceImageAlignmentControlPropertiesMESA(structure_type(VkPhysicalDeviceImageAlignmentControlPropertiesMESA), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, supported_image_alignment_mask))
     _PhysicalDeviceImageAlignmentControlPropertiesMESA(vks, deps)
 end
 
@@ -60019,7 +60027,7 @@ Arguments:
 function _ImageAlignmentControlCreateInfoMESA(maximum_requested_alignment::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkImageAlignmentControlCreateInfoMESA(structure_type(VkImageAlignmentControlCreateInfoMESA), unsafe_convert(Ptr{Cvoid}, next), maximum_requested_alignment)
+    vks = VkImageAlignmentControlCreateInfoMESA(structure_type(VkImageAlignmentControlCreateInfoMESA), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, maximum_requested_alignment))
     _ImageAlignmentControlCreateInfoMESA(vks, deps)
 end
 
@@ -60036,7 +60044,7 @@ Arguments:
 function _PhysicalDeviceShaderReplicatedCompositesFeaturesEXT(shader_replicated_composites::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderReplicatedCompositesFeaturesEXT(structure_type(VkPhysicalDeviceShaderReplicatedCompositesFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), shader_replicated_composites)
+    vks = VkPhysicalDeviceShaderReplicatedCompositesFeaturesEXT(structure_type(VkPhysicalDeviceShaderReplicatedCompositesFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_replicated_composites))
     _PhysicalDeviceShaderReplicatedCompositesFeaturesEXT(vks, deps)
 end
 
@@ -60053,7 +60061,7 @@ Arguments:
 function _PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR(present_mode_fifo_latest_ready::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePresentModeFifoLatestReadyFeaturesKHR(structure_type(VkPhysicalDevicePresentModeFifoLatestReadyFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), present_mode_fifo_latest_ready)
+    vks = VkPhysicalDevicePresentModeFifoLatestReadyFeaturesKHR(structure_type(VkPhysicalDevicePresentModeFifoLatestReadyFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, present_mode_fifo_latest_ready))
     _PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR(vks, deps)
 end
 
@@ -60068,7 +60076,7 @@ Arguments:
 
 """
 function _DepthClampRangeEXT(min_depth_clamp::Real, max_depth_clamp::Real)
-    _DepthClampRangeEXT(VkDepthClampRangeEXT(min_depth_clamp, max_depth_clamp))
+    _DepthClampRangeEXT(VkDepthClampRangeEXT(convert(Float32, min_depth_clamp), convert(Float32, max_depth_clamp)))
 end
 
 """
@@ -60090,7 +60098,7 @@ Arguments:
 function _PhysicalDeviceCooperativeMatrix2FeaturesNV(cooperative_matrix_workgroup_scope::Bool, cooperative_matrix_flexible_dimensions::Bool, cooperative_matrix_reductions::Bool, cooperative_matrix_conversions::Bool, cooperative_matrix_per_element_operations::Bool, cooperative_matrix_tensor_addressing::Bool, cooperative_matrix_block_loads::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceCooperativeMatrix2FeaturesNV(structure_type(VkPhysicalDeviceCooperativeMatrix2FeaturesNV), unsafe_convert(Ptr{Cvoid}, next), cooperative_matrix_workgroup_scope, cooperative_matrix_flexible_dimensions, cooperative_matrix_reductions, cooperative_matrix_conversions, cooperative_matrix_per_element_operations, cooperative_matrix_tensor_addressing, cooperative_matrix_block_loads)
+    vks = VkPhysicalDeviceCooperativeMatrix2FeaturesNV(structure_type(VkPhysicalDeviceCooperativeMatrix2FeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, cooperative_matrix_workgroup_scope), convert(VkBool32, cooperative_matrix_flexible_dimensions), convert(VkBool32, cooperative_matrix_reductions), convert(VkBool32, cooperative_matrix_conversions), convert(VkBool32, cooperative_matrix_per_element_operations), convert(VkBool32, cooperative_matrix_tensor_addressing), convert(VkBool32, cooperative_matrix_block_loads))
     _PhysicalDeviceCooperativeMatrix2FeaturesNV(vks, deps)
 end
 
@@ -60109,7 +60117,7 @@ Arguments:
 function _PhysicalDeviceCooperativeMatrix2PropertiesNV(cooperative_matrix_workgroup_scope_max_workgroup_size::Integer, cooperative_matrix_flexible_dimensions_max_dimension::Integer, cooperative_matrix_workgroup_scope_reserved_shared_memory::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceCooperativeMatrix2PropertiesNV(structure_type(VkPhysicalDeviceCooperativeMatrix2PropertiesNV), unsafe_convert(Ptr{Cvoid}, next), cooperative_matrix_workgroup_scope_max_workgroup_size, cooperative_matrix_flexible_dimensions_max_dimension, cooperative_matrix_workgroup_scope_reserved_shared_memory)
+    vks = VkPhysicalDeviceCooperativeMatrix2PropertiesNV(structure_type(VkPhysicalDeviceCooperativeMatrix2PropertiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, cooperative_matrix_workgroup_scope_max_workgroup_size), convert(UInt32, cooperative_matrix_flexible_dimensions_max_dimension), convert(UInt32, cooperative_matrix_workgroup_scope_reserved_shared_memory))
     _PhysicalDeviceCooperativeMatrix2PropertiesNV(vks, deps)
 end
 
@@ -60135,7 +60143,7 @@ Arguments:
 function _CooperativeMatrixFlexibleDimensionsPropertiesNV(m_granularity::Integer, n_granularity::Integer, k_granularity::Integer, a_type::ComponentTypeKHR, b_type::ComponentTypeKHR, c_type::ComponentTypeKHR, result_type::ComponentTypeKHR, saturating_accumulation::Bool, scope::ScopeKHR, workgroup_invocations::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkCooperativeMatrixFlexibleDimensionsPropertiesNV(structure_type(VkCooperativeMatrixFlexibleDimensionsPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), m_granularity, n_granularity, k_granularity, a_type, b_type, c_type, result_type, saturating_accumulation, scope, workgroup_invocations)
+    vks = VkCooperativeMatrixFlexibleDimensionsPropertiesNV(structure_type(VkCooperativeMatrixFlexibleDimensionsPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, m_granularity), convert(UInt32, n_granularity), convert(UInt32, k_granularity), convert(VkComponentTypeKHR, a_type), convert(VkComponentTypeKHR, b_type), convert(VkComponentTypeKHR, c_type), convert(VkComponentTypeKHR, result_type), convert(VkBool32, saturating_accumulation), convert(VkScopeKHR, scope), convert(UInt32, workgroup_invocations))
     _CooperativeMatrixFlexibleDimensionsPropertiesNV(vks, deps)
 end
 
@@ -60152,7 +60160,7 @@ Arguments:
 function _PhysicalDeviceHdrVividFeaturesHUAWEI(hdr_vivid::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceHdrVividFeaturesHUAWEI(structure_type(VkPhysicalDeviceHdrVividFeaturesHUAWEI), unsafe_convert(Ptr{Cvoid}, next), hdr_vivid)
+    vks = VkPhysicalDeviceHdrVividFeaturesHUAWEI(structure_type(VkPhysicalDeviceHdrVividFeaturesHUAWEI), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, hdr_vivid))
     _PhysicalDeviceHdrVividFeaturesHUAWEI(vks, deps)
 end
 
@@ -60169,7 +60177,7 @@ Arguments:
 function _PhysicalDeviceVertexAttributeRobustnessFeaturesEXT(vertex_attribute_robustness::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceVertexAttributeRobustnessFeaturesEXT(structure_type(VkPhysicalDeviceVertexAttributeRobustnessFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), vertex_attribute_robustness)
+    vks = VkPhysicalDeviceVertexAttributeRobustnessFeaturesEXT(structure_type(VkPhysicalDeviceVertexAttributeRobustnessFeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, vertex_attribute_robustness))
     _PhysicalDeviceVertexAttributeRobustnessFeaturesEXT(vks, deps)
 end
 
@@ -60186,7 +60194,7 @@ Arguments:
 function _PhysicalDeviceDepthClampZeroOneFeaturesKHR(depth_clamp_zero_one::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDepthClampZeroOneFeaturesKHR(structure_type(VkPhysicalDeviceDepthClampZeroOneFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), depth_clamp_zero_one)
+    vks = VkPhysicalDeviceDepthClampZeroOneFeaturesKHR(structure_type(VkPhysicalDeviceDepthClampZeroOneFeaturesKHR), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, depth_clamp_zero_one))
     _PhysicalDeviceDepthClampZeroOneFeaturesKHR(vks, deps)
 end
 
@@ -60204,7 +60212,7 @@ Arguments:
 function _PhysicalDeviceCooperativeVectorFeaturesNV(cooperative_vector::Bool, cooperative_vector_training::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceCooperativeVectorFeaturesNV(structure_type(VkPhysicalDeviceCooperativeVectorFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), cooperative_vector, cooperative_vector_training)
+    vks = VkPhysicalDeviceCooperativeVectorFeaturesNV(structure_type(VkPhysicalDeviceCooperativeVectorFeaturesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, cooperative_vector), convert(VkBool32, cooperative_vector_training))
     _PhysicalDeviceCooperativeVectorFeaturesNV(vks, deps)
 end
 
@@ -60226,7 +60234,7 @@ Arguments:
 function _CooperativeVectorPropertiesNV(input_type::ComponentTypeKHR, input_interpretation::ComponentTypeKHR, matrix_interpretation::ComponentTypeKHR, bias_interpretation::ComponentTypeKHR, result_type::ComponentTypeKHR, transpose::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkCooperativeVectorPropertiesNV(structure_type(VkCooperativeVectorPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), input_type, input_interpretation, matrix_interpretation, bias_interpretation, result_type, transpose)
+    vks = VkCooperativeVectorPropertiesNV(structure_type(VkCooperativeVectorPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkComponentTypeKHR, input_type), convert(VkComponentTypeKHR, input_interpretation), convert(VkComponentTypeKHR, matrix_interpretation), convert(VkComponentTypeKHR, bias_interpretation), convert(VkComponentTypeKHR, result_type), convert(VkBool32, transpose))
     _CooperativeVectorPropertiesNV(vks, deps)
 end
 
@@ -60246,7 +60254,7 @@ Arguments:
 function _PhysicalDeviceCooperativeVectorPropertiesNV(cooperative_vector_supported_stages::ShaderStageFlag, cooperative_vector_training_float_16_accumulation::Bool, cooperative_vector_training_float_32_accumulation::Bool, max_cooperative_vector_components::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceCooperativeVectorPropertiesNV(structure_type(VkPhysicalDeviceCooperativeVectorPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), cooperative_vector_supported_stages, cooperative_vector_training_float_16_accumulation, cooperative_vector_training_float_32_accumulation, max_cooperative_vector_components)
+    vks = VkPhysicalDeviceCooperativeVectorPropertiesNV(structure_type(VkPhysicalDeviceCooperativeVectorPropertiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkShaderStageFlags, cooperative_vector_supported_stages), convert(VkBool32, cooperative_vector_training_float_16_accumulation), convert(VkBool32, cooperative_vector_training_float_32_accumulation), convert(UInt32, max_cooperative_vector_components))
     _PhysicalDeviceCooperativeVectorPropertiesNV(vks, deps)
 end
 
@@ -60275,7 +60283,7 @@ function _ConvertCooperativeVectorMatrixInfoNV(src_size::Integer, src_data::_Dev
     next = cconvert(Ptr{Cvoid}, next)
     dst_size = cconvert(Ptr{UInt}, dst_size)
     deps = Any[next, dst_size]
-    vks = VkConvertCooperativeVectorMatrixInfoNV(structure_type(VkConvertCooperativeVectorMatrixInfoNV), unsafe_convert(Ptr{Cvoid}, next), src_size, src_data.vks, unsafe_convert(Ptr{UInt}, dst_size), dst_data.vks, src_component_type, dst_component_type, num_rows, num_columns, src_layout, src_stride, dst_layout, dst_stride)
+    vks = VkConvertCooperativeVectorMatrixInfoNV(structure_type(VkConvertCooperativeVectorMatrixInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt, src_size), src_data.vks, unsafe_convert(Ptr{UInt}, dst_size), dst_data.vks, convert(VkComponentTypeKHR, src_component_type), convert(VkComponentTypeKHR, dst_component_type), convert(UInt32, num_rows), convert(UInt32, num_columns), convert(VkCooperativeVectorMatrixLayoutNV, src_layout), convert(UInt, src_stride), convert(VkCooperativeVectorMatrixLayoutNV, dst_layout), convert(UInt, dst_stride))
     _ConvertCooperativeVectorMatrixInfoNV(vks, deps)
 end
 
@@ -60305,7 +60313,7 @@ Arguments:
 function _PhysicalDeviceTileShadingFeaturesQCOM(tile_shading::Bool, tile_shading_fragment_stage::Bool, tile_shading_color_attachments::Bool, tile_shading_depth_attachments::Bool, tile_shading_stencil_attachments::Bool, tile_shading_input_attachments::Bool, tile_shading_sampled_attachments::Bool, tile_shading_per_tile_draw::Bool, tile_shading_per_tile_dispatch::Bool, tile_shading_dispatch_tile::Bool, tile_shading_apron::Bool, tile_shading_anisotropic_apron::Bool, tile_shading_atomic_ops::Bool, tile_shading_image_processing::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceTileShadingFeaturesQCOM(structure_type(VkPhysicalDeviceTileShadingFeaturesQCOM), unsafe_convert(Ptr{Cvoid}, next), tile_shading, tile_shading_fragment_stage, tile_shading_color_attachments, tile_shading_depth_attachments, tile_shading_stencil_attachments, tile_shading_input_attachments, tile_shading_sampled_attachments, tile_shading_per_tile_draw, tile_shading_per_tile_dispatch, tile_shading_dispatch_tile, tile_shading_apron, tile_shading_anisotropic_apron, tile_shading_atomic_ops, tile_shading_image_processing)
+    vks = VkPhysicalDeviceTileShadingFeaturesQCOM(structure_type(VkPhysicalDeviceTileShadingFeaturesQCOM), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, tile_shading), convert(VkBool32, tile_shading_fragment_stage), convert(VkBool32, tile_shading_color_attachments), convert(VkBool32, tile_shading_depth_attachments), convert(VkBool32, tile_shading_stencil_attachments), convert(VkBool32, tile_shading_input_attachments), convert(VkBool32, tile_shading_sampled_attachments), convert(VkBool32, tile_shading_per_tile_draw), convert(VkBool32, tile_shading_per_tile_dispatch), convert(VkBool32, tile_shading_dispatch_tile), convert(VkBool32, tile_shading_apron), convert(VkBool32, tile_shading_anisotropic_apron), convert(VkBool32, tile_shading_atomic_ops), convert(VkBool32, tile_shading_image_processing))
     _PhysicalDeviceTileShadingFeaturesQCOM(vks, deps)
 end
 
@@ -60325,7 +60333,7 @@ Arguments:
 function _PhysicalDeviceTileShadingPropertiesQCOM(max_apron_size::Integer, prefer_non_coherent::Bool, tile_granularity::_Extent2D, max_tile_shading_rate::_Extent2D; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceTileShadingPropertiesQCOM(structure_type(VkPhysicalDeviceTileShadingPropertiesQCOM), unsafe_convert(Ptr{Cvoid}, next), max_apron_size, prefer_non_coherent, tile_granularity.vks, max_tile_shading_rate.vks)
+    vks = VkPhysicalDeviceTileShadingPropertiesQCOM(structure_type(VkPhysicalDeviceTileShadingPropertiesQCOM), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_apron_size), convert(VkBool32, prefer_non_coherent), tile_granularity.vks, max_tile_shading_rate.vks)
     _PhysicalDeviceTileShadingPropertiesQCOM(vks, deps)
 end
 
@@ -60343,7 +60351,7 @@ Arguments:
 function _RenderPassTileShadingCreateInfoQCOM(; next = C_NULL, flags = 0, tile_apron_size = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkRenderPassTileShadingCreateInfoQCOM(structure_type(VkRenderPassTileShadingCreateInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), flags, tile_apron_size.vks)
+    vks = VkRenderPassTileShadingCreateInfoQCOM(structure_type(VkRenderPassTileShadingCreateInfoQCOM), unsafe_convert(Ptr{Cvoid}, next), convert(VkTileShadingRenderPassFlagsQCOM, flags), tile_apron_size.vks)
     _RenderPassTileShadingCreateInfoQCOM(vks, deps)
 end
 
@@ -60408,7 +60416,7 @@ Arguments:
 function _PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE(max_fragment_density_map_layers::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE(structure_type(VkPhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE), unsafe_convert(Ptr{Cvoid}, next), max_fragment_density_map_layers)
+    vks = VkPhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE(structure_type(VkPhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_fragment_density_map_layers))
     _PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE(vks, deps)
 end
 
@@ -60425,7 +60433,7 @@ Arguments:
 function _PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE(fragment_density_map_layered::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE(structure_type(VkPhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE), unsafe_convert(Ptr{Cvoid}, next), fragment_density_map_layered)
+    vks = VkPhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE(structure_type(VkPhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, fragment_density_map_layered))
     _PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE(vks, deps)
 end
 
@@ -60442,7 +60450,7 @@ Arguments:
 function _PipelineFragmentDensityMapLayeredCreateInfoVALVE(max_fragment_density_map_layers::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPipelineFragmentDensityMapLayeredCreateInfoVALVE(structure_type(VkPipelineFragmentDensityMapLayeredCreateInfoVALVE), unsafe_convert(Ptr{Cvoid}, next), max_fragment_density_map_layers)
+    vks = VkPipelineFragmentDensityMapLayeredCreateInfoVALVE(structure_type(VkPipelineFragmentDensityMapLayeredCreateInfoVALVE), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_fragment_density_map_layers))
     _PipelineFragmentDensityMapLayeredCreateInfoVALVE(vks, deps)
 end
 
@@ -60459,7 +60467,7 @@ Arguments:
 function _ExternalComputeQueueDeviceCreateInfoNV(reserved_external_queues::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExternalComputeQueueDeviceCreateInfoNV(structure_type(VkExternalComputeQueueDeviceCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), reserved_external_queues)
+    vks = VkExternalComputeQueueDeviceCreateInfoNV(structure_type(VkExternalComputeQueueDeviceCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, reserved_external_queues))
     _ExternalComputeQueueDeviceCreateInfoNV(vks, deps)
 end
 
@@ -60476,7 +60484,7 @@ Arguments:
 function _ExternalComputeQueueCreateInfoNV(preferred_queue; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExternalComputeQueueCreateInfoNV(structure_type(VkExternalComputeQueueCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), preferred_queue)
+    vks = VkExternalComputeQueueCreateInfoNV(structure_type(VkExternalComputeQueueCreateInfoNV), unsafe_convert(Ptr{Cvoid}, next), convert(VkQueue, preferred_queue))
     _ExternalComputeQueueCreateInfoNV(vks, deps, preferred_queue)
 end
 
@@ -60493,7 +60501,7 @@ Arguments:
 function _ExternalComputeQueueDataParamsNV(device_index::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExternalComputeQueueDataParamsNV(structure_type(VkExternalComputeQueueDataParamsNV), unsafe_convert(Ptr{Cvoid}, next), device_index)
+    vks = VkExternalComputeQueueDataParamsNV(structure_type(VkExternalComputeQueueDataParamsNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, device_index))
     _ExternalComputeQueueDataParamsNV(vks, deps)
 end
 
@@ -60511,7 +60519,7 @@ Arguments:
 function _PhysicalDeviceExternalComputeQueuePropertiesNV(external_data_size::Integer, max_external_queues::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceExternalComputeQueuePropertiesNV(structure_type(VkPhysicalDeviceExternalComputeQueuePropertiesNV), unsafe_convert(Ptr{Cvoid}, next), external_data_size, max_external_queues)
+    vks = VkPhysicalDeviceExternalComputeQueuePropertiesNV(structure_type(VkPhysicalDeviceExternalComputeQueuePropertiesNV), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, external_data_size), convert(UInt32, max_external_queues))
     _PhysicalDeviceExternalComputeQueuePropertiesNV(vks, deps)
 end
 
@@ -60528,7 +60536,7 @@ Arguments:
 function _PhysicalDeviceFormatPackFeaturesARM(format_pack::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceFormatPackFeaturesARM(structure_type(VkPhysicalDeviceFormatPackFeaturesARM), unsafe_convert(Ptr{Cvoid}, next), format_pack)
+    vks = VkPhysicalDeviceFormatPackFeaturesARM(structure_type(VkPhysicalDeviceFormatPackFeaturesARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, format_pack))
     _PhysicalDeviceFormatPackFeaturesARM(vks, deps)
 end
 
@@ -60552,7 +60560,7 @@ function _TensorDescriptionARM(tiling::TensorTilingARM, format::Format, dimensio
     dimensions = cconvert(Ptr{Int64}, dimensions)
     strides = cconvert(Ptr{Int64}, strides)
     deps = Any[next, dimensions, strides]
-    vks = VkTensorDescriptionARM(structure_type(VkTensorDescriptionARM), unsafe_convert(Ptr{Cvoid}, next), tiling, format, dimension_count, unsafe_convert(Ptr{Int64}, dimensions), unsafe_convert(Ptr{Int64}, strides), usage)
+    vks = VkTensorDescriptionARM(structure_type(VkTensorDescriptionARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkTensorTilingARM, tiling), convert(VkFormat, format), convert(UInt32, dimension_count), unsafe_convert(Ptr{Int64}, dimensions), unsafe_convert(Ptr{Int64}, strides), convert(VkTensorUsageFlagsARM, usage))
     _TensorDescriptionARM(vks, deps)
 end
 
@@ -60575,7 +60583,7 @@ function _TensorCreateInfoARM(description::_TensorDescriptionARM, sharing_mode::
     description = cconvert(Ptr{VkTensorDescriptionARM}, description)
     queue_family_indices = cconvert(Ptr{UInt32}, queue_family_indices)
     deps = Any[next, description, queue_family_indices]
-    vks = VkTensorCreateInfoARM(structure_type(VkTensorCreateInfoARM), unsafe_convert(Ptr{Cvoid}, next), flags, unsafe_convert(Ptr{VkTensorDescriptionARM}, description), sharing_mode, queue_family_index_count, unsafe_convert(Ptr{UInt32}, queue_family_indices))
+    vks = VkTensorCreateInfoARM(structure_type(VkTensorCreateInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkTensorCreateFlagsARM, flags), unsafe_convert(Ptr{VkTensorDescriptionARM}, description), convert(VkSharingMode, sharing_mode), convert(UInt32, queue_family_index_count), unsafe_convert(Ptr{UInt32}, queue_family_indices))
     _TensorCreateInfoARM(vks, deps)
 end
 
@@ -60594,7 +60602,7 @@ Arguments:
 function _TensorViewCreateInfoARM(tensor, format::Format; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkTensorViewCreateInfoARM(structure_type(VkTensorViewCreateInfoARM), unsafe_convert(Ptr{Cvoid}, next), flags, tensor, format)
+    vks = VkTensorViewCreateInfoARM(structure_type(VkTensorViewCreateInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkTensorViewCreateFlagsARM, flags), convert(VkTensorARM, tensor), convert(VkFormat, format))
     _TensorViewCreateInfoARM(vks, deps, tensor)
 end
 
@@ -60611,7 +60619,7 @@ Arguments:
 function _TensorMemoryRequirementsInfoARM(tensor; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkTensorMemoryRequirementsInfoARM(structure_type(VkTensorMemoryRequirementsInfoARM), unsafe_convert(Ptr{Cvoid}, next), tensor)
+    vks = VkTensorMemoryRequirementsInfoARM(structure_type(VkTensorMemoryRequirementsInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkTensorARM, tensor))
     _TensorMemoryRequirementsInfoARM(vks, deps, tensor)
 end
 
@@ -60630,7 +60638,7 @@ Arguments:
 function _BindTensorMemoryInfoARM(tensor, memory, memory_offset::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkBindTensorMemoryInfoARM(structure_type(VkBindTensorMemoryInfoARM), unsafe_convert(Ptr{Cvoid}, next), tensor, memory, memory_offset)
+    vks = VkBindTensorMemoryInfoARM(structure_type(VkBindTensorMemoryInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkTensorARM, tensor), convert(VkDeviceMemory, memory), convert(VkDeviceSize, memory_offset))
     _BindTensorMemoryInfoARM(vks, deps, tensor, memory)
 end
 
@@ -60649,7 +60657,7 @@ function _WriteDescriptorSetTensorARM(tensor_views::AbstractArray; next = C_NULL
     next = cconvert(Ptr{Cvoid}, next)
     tensor_views = cconvert(Ptr{VkTensorViewARM}, tensor_views)
     deps = Any[next, tensor_views]
-    vks = VkWriteDescriptorSetTensorARM(structure_type(VkWriteDescriptorSetTensorARM), unsafe_convert(Ptr{Cvoid}, next), tensor_view_count, unsafe_convert(Ptr{VkTensorViewARM}, tensor_views))
+    vks = VkWriteDescriptorSetTensorARM(structure_type(VkWriteDescriptorSetTensorARM), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, tensor_view_count), unsafe_convert(Ptr{VkTensorViewARM}, tensor_views))
     _WriteDescriptorSetTensorARM(vks, deps)
 end
 
@@ -60667,7 +60675,7 @@ Arguments:
 function _TensorFormatPropertiesARM(optimal_tiling_tensor_features::Integer, linear_tiling_tensor_features::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkTensorFormatPropertiesARM(structure_type(VkTensorFormatPropertiesARM), unsafe_convert(Ptr{Cvoid}, next), optimal_tiling_tensor_features, linear_tiling_tensor_features)
+    vks = VkTensorFormatPropertiesARM(structure_type(VkTensorFormatPropertiesARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkFormatFeatureFlags2, optimal_tiling_tensor_features), convert(VkFormatFeatureFlags2, linear_tiling_tensor_features))
     _TensorFormatPropertiesARM(vks, deps)
 end
 
@@ -60696,7 +60704,7 @@ Arguments:
 function _PhysicalDeviceTensorPropertiesARM(max_tensor_dimension_count::Integer, max_tensor_elements::Integer, max_per_dimension_tensor_elements::Integer, max_tensor_stride::Integer, max_tensor_size::Integer, max_tensor_shader_access_array_length::Integer, max_tensor_shader_access_size::Integer, max_descriptor_set_storage_tensors::Integer, max_per_stage_descriptor_set_storage_tensors::Integer, max_descriptor_set_update_after_bind_storage_tensors::Integer, max_per_stage_descriptor_update_after_bind_storage_tensors::Integer, shader_storage_tensor_array_non_uniform_indexing_native::Bool, shader_tensor_supported_stages::ShaderStageFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceTensorPropertiesARM(structure_type(VkPhysicalDeviceTensorPropertiesARM), unsafe_convert(Ptr{Cvoid}, next), max_tensor_dimension_count, max_tensor_elements, max_per_dimension_tensor_elements, max_tensor_stride, max_tensor_size, max_tensor_shader_access_array_length, max_tensor_shader_access_size, max_descriptor_set_storage_tensors, max_per_stage_descriptor_set_storage_tensors, max_descriptor_set_update_after_bind_storage_tensors, max_per_stage_descriptor_update_after_bind_storage_tensors, shader_storage_tensor_array_non_uniform_indexing_native, shader_tensor_supported_stages)
+    vks = VkPhysicalDeviceTensorPropertiesARM(structure_type(VkPhysicalDeviceTensorPropertiesARM), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, max_tensor_dimension_count), convert(UInt64, max_tensor_elements), convert(UInt64, max_per_dimension_tensor_elements), convert(Int64, max_tensor_stride), convert(UInt64, max_tensor_size), convert(UInt32, max_tensor_shader_access_array_length), convert(UInt32, max_tensor_shader_access_size), convert(UInt32, max_descriptor_set_storage_tensors), convert(UInt32, max_per_stage_descriptor_set_storage_tensors), convert(UInt32, max_descriptor_set_update_after_bind_storage_tensors), convert(UInt32, max_per_stage_descriptor_update_after_bind_storage_tensors), convert(VkBool32, shader_storage_tensor_array_non_uniform_indexing_native), convert(VkShaderStageFlags, shader_tensor_supported_stages))
     _PhysicalDeviceTensorPropertiesARM(vks, deps)
 end
 
@@ -60719,7 +60727,7 @@ Arguments:
 function _TensorMemoryBarrierARM(src_queue_family_index::Integer, dst_queue_family_index::Integer, tensor; next = C_NULL, src_stage_mask = 0, src_access_mask = 0, dst_stage_mask = 0, dst_access_mask = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkTensorMemoryBarrierARM(structure_type(VkTensorMemoryBarrierARM), unsafe_convert(Ptr{Cvoid}, next), src_stage_mask, src_access_mask, dst_stage_mask, dst_access_mask, src_queue_family_index, dst_queue_family_index, tensor)
+    vks = VkTensorMemoryBarrierARM(structure_type(VkTensorMemoryBarrierARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineStageFlags2, src_stage_mask), convert(VkAccessFlags2, src_access_mask), convert(VkPipelineStageFlags2, dst_stage_mask), convert(VkAccessFlags2, dst_access_mask), convert(UInt32, src_queue_family_index), convert(UInt32, dst_queue_family_index), convert(VkTensorARM, tensor))
     _TensorMemoryBarrierARM(vks, deps, tensor)
 end
 
@@ -60738,7 +60746,7 @@ function _TensorDependencyInfoARM(tensor_memory_barrier_count::Integer, tensor_m
     next = cconvert(Ptr{Cvoid}, next)
     tensor_memory_barriers = cconvert(Ptr{VkTensorMemoryBarrierARM}, tensor_memory_barriers)
     deps = Any[next, tensor_memory_barriers]
-    vks = VkTensorDependencyInfoARM(structure_type(VkTensorDependencyInfoARM), unsafe_convert(Ptr{Cvoid}, next), tensor_memory_barrier_count, unsafe_convert(Ptr{VkTensorMemoryBarrierARM}, tensor_memory_barriers))
+    vks = VkTensorDependencyInfoARM(structure_type(VkTensorDependencyInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, tensor_memory_barrier_count), unsafe_convert(Ptr{VkTensorMemoryBarrierARM}, tensor_memory_barriers))
     _TensorDependencyInfoARM(vks, deps)
 end
 
@@ -60760,7 +60768,7 @@ Arguments:
 function _PhysicalDeviceTensorFeaturesARM(tensor_non_packed::Bool, shader_tensor_access::Bool, shader_storage_tensor_array_dynamic_indexing::Bool, shader_storage_tensor_array_non_uniform_indexing::Bool, descriptor_binding_storage_tensor_update_after_bind::Bool, tensors::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceTensorFeaturesARM(structure_type(VkPhysicalDeviceTensorFeaturesARM), unsafe_convert(Ptr{Cvoid}, next), tensor_non_packed, shader_tensor_access, shader_storage_tensor_array_dynamic_indexing, shader_storage_tensor_array_non_uniform_indexing, descriptor_binding_storage_tensor_update_after_bind, tensors)
+    vks = VkPhysicalDeviceTensorFeaturesARM(structure_type(VkPhysicalDeviceTensorFeaturesARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, tensor_non_packed), convert(VkBool32, shader_tensor_access), convert(VkBool32, shader_storage_tensor_array_dynamic_indexing), convert(VkBool32, shader_storage_tensor_array_non_uniform_indexing), convert(VkBool32, descriptor_binding_storage_tensor_update_after_bind), convert(VkBool32, tensors))
     _PhysicalDeviceTensorFeaturesARM(vks, deps)
 end
 
@@ -60799,7 +60807,7 @@ function _CopyTensorInfoARM(src_tensor, dst_tensor, regions::AbstractArray; next
     next = cconvert(Ptr{Cvoid}, next)
     regions = cconvert(Ptr{VkTensorCopyARM}, regions)
     deps = Any[next, regions]
-    vks = VkCopyTensorInfoARM(structure_type(VkCopyTensorInfoARM), unsafe_convert(Ptr{Cvoid}, next), src_tensor, dst_tensor, region_count, unsafe_convert(Ptr{VkTensorCopyARM}, regions))
+    vks = VkCopyTensorInfoARM(structure_type(VkCopyTensorInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkTensorARM, src_tensor), convert(VkTensorARM, dst_tensor), convert(UInt32, region_count), unsafe_convert(Ptr{VkTensorCopyARM}, regions))
     _CopyTensorInfoARM(vks, deps, src_tensor, dst_tensor)
 end
 
@@ -60822,7 +60830,7 @@ function _TensorCopyARM(; next = C_NULL, src_offset = C_NULL, dst_offset = C_NUL
     dst_offset = cconvert(Ptr{UInt64}, dst_offset)
     extent = cconvert(Ptr{UInt64}, extent)
     deps = Any[next, src_offset, dst_offset, extent]
-    vks = VkTensorCopyARM(structure_type(VkTensorCopyARM), unsafe_convert(Ptr{Cvoid}, next), dimension_count, unsafe_convert(Ptr{UInt64}, src_offset), unsafe_convert(Ptr{UInt64}, dst_offset), unsafe_convert(Ptr{UInt64}, extent))
+    vks = VkTensorCopyARM(structure_type(VkTensorCopyARM), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, dimension_count), unsafe_convert(Ptr{UInt64}, src_offset), unsafe_convert(Ptr{UInt64}, dst_offset), unsafe_convert(Ptr{UInt64}, extent))
     _TensorCopyARM(vks, deps)
 end
 
@@ -60839,7 +60847,7 @@ Arguments:
 function _MemoryDedicatedAllocateInfoTensorARM(tensor; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkMemoryDedicatedAllocateInfoTensorARM(structure_type(VkMemoryDedicatedAllocateInfoTensorARM), unsafe_convert(Ptr{Cvoid}, next), tensor)
+    vks = VkMemoryDedicatedAllocateInfoTensorARM(structure_type(VkMemoryDedicatedAllocateInfoTensorARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkTensorARM, tensor))
     _MemoryDedicatedAllocateInfoTensorARM(vks, deps, tensor)
 end
 
@@ -60858,7 +60866,7 @@ Arguments:
 function _PhysicalDeviceDescriptorBufferTensorPropertiesARM(tensor_capture_replay_descriptor_data_size::Integer, tensor_view_capture_replay_descriptor_data_size::Integer, tensor_descriptor_size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDescriptorBufferTensorPropertiesARM(structure_type(VkPhysicalDeviceDescriptorBufferTensorPropertiesARM), unsafe_convert(Ptr{Cvoid}, next), tensor_capture_replay_descriptor_data_size, tensor_view_capture_replay_descriptor_data_size, tensor_descriptor_size)
+    vks = VkPhysicalDeviceDescriptorBufferTensorPropertiesARM(structure_type(VkPhysicalDeviceDescriptorBufferTensorPropertiesARM), unsafe_convert(Ptr{Cvoid}, next), convert(UInt, tensor_capture_replay_descriptor_data_size), convert(UInt, tensor_view_capture_replay_descriptor_data_size), convert(UInt, tensor_descriptor_size))
     _PhysicalDeviceDescriptorBufferTensorPropertiesARM(vks, deps)
 end
 
@@ -60875,7 +60883,7 @@ Arguments:
 function _PhysicalDeviceDescriptorBufferTensorFeaturesARM(descriptor_buffer_tensor_descriptors::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDescriptorBufferTensorFeaturesARM(structure_type(VkPhysicalDeviceDescriptorBufferTensorFeaturesARM), unsafe_convert(Ptr{Cvoid}, next), descriptor_buffer_tensor_descriptors)
+    vks = VkPhysicalDeviceDescriptorBufferTensorFeaturesARM(structure_type(VkPhysicalDeviceDescriptorBufferTensorFeaturesARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, descriptor_buffer_tensor_descriptors))
     _PhysicalDeviceDescriptorBufferTensorFeaturesARM(vks, deps)
 end
 
@@ -60892,7 +60900,7 @@ Arguments:
 function _TensorCaptureDescriptorDataInfoARM(tensor; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkTensorCaptureDescriptorDataInfoARM(structure_type(VkTensorCaptureDescriptorDataInfoARM), unsafe_convert(Ptr{Cvoid}, next), tensor)
+    vks = VkTensorCaptureDescriptorDataInfoARM(structure_type(VkTensorCaptureDescriptorDataInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkTensorARM, tensor))
     _TensorCaptureDescriptorDataInfoARM(vks, deps, tensor)
 end
 
@@ -60909,7 +60917,7 @@ Arguments:
 function _TensorViewCaptureDescriptorDataInfoARM(tensor_view; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkTensorViewCaptureDescriptorDataInfoARM(structure_type(VkTensorViewCaptureDescriptorDataInfoARM), unsafe_convert(Ptr{Cvoid}, next), tensor_view)
+    vks = VkTensorViewCaptureDescriptorDataInfoARM(structure_type(VkTensorViewCaptureDescriptorDataInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkTensorViewARM, tensor_view))
     _TensorViewCaptureDescriptorDataInfoARM(vks, deps, tensor_view)
 end
 
@@ -60926,7 +60934,7 @@ Arguments:
 function _DescriptorGetTensorInfoARM(tensor_view; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDescriptorGetTensorInfoARM(structure_type(VkDescriptorGetTensorInfoARM), unsafe_convert(Ptr{Cvoid}, next), tensor_view)
+    vks = VkDescriptorGetTensorInfoARM(structure_type(VkDescriptorGetTensorInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkTensorViewARM, tensor_view))
     _DescriptorGetTensorInfoARM(vks, deps, tensor_view)
 end
 
@@ -60945,7 +60953,7 @@ function _FrameBoundaryTensorsARM(tensors::AbstractArray; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     tensors = cconvert(Ptr{VkTensorARM}, tensors)
     deps = Any[next, tensors]
-    vks = VkFrameBoundaryTensorsARM(structure_type(VkFrameBoundaryTensorsARM), unsafe_convert(Ptr{Cvoid}, next), tensor_count, unsafe_convert(Ptr{VkTensorARM}, tensors))
+    vks = VkFrameBoundaryTensorsARM(structure_type(VkFrameBoundaryTensorsARM), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, tensor_count), unsafe_convert(Ptr{VkTensorARM}, tensors))
     _FrameBoundaryTensorsARM(vks, deps)
 end
 
@@ -60965,7 +60973,7 @@ function _PhysicalDeviceExternalTensorInfoARM(description::_TensorDescriptionARM
     next = cconvert(Ptr{Cvoid}, next)
     description = cconvert(Ptr{VkTensorDescriptionARM}, description)
     deps = Any[next, description]
-    vks = VkPhysicalDeviceExternalTensorInfoARM(structure_type(VkPhysicalDeviceExternalTensorInfoARM), unsafe_convert(Ptr{Cvoid}, next), flags, unsafe_convert(Ptr{VkTensorDescriptionARM}, description), VkExternalMemoryHandleTypeFlagBits(handle_type.val))
+    vks = VkPhysicalDeviceExternalTensorInfoARM(structure_type(VkPhysicalDeviceExternalTensorInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkTensorCreateFlagsARM, flags), unsafe_convert(Ptr{VkTensorDescriptionARM}, description), VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)))
     _PhysicalDeviceExternalTensorInfoARM(vks, deps)
 end
 
@@ -60999,7 +61007,7 @@ Arguments:
 function _ExternalMemoryTensorCreateInfoARM(; next = C_NULL, handle_types = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkExternalMemoryTensorCreateInfoARM(structure_type(VkExternalMemoryTensorCreateInfoARM), unsafe_convert(Ptr{Cvoid}, next), handle_types)
+    vks = VkExternalMemoryTensorCreateInfoARM(structure_type(VkExternalMemoryTensorCreateInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkExternalMemoryHandleTypeFlags, handle_types))
     _ExternalMemoryTensorCreateInfoARM(vks, deps)
 end
 
@@ -61017,7 +61025,7 @@ Arguments:
 function _PhysicalDeviceShaderFloat8FeaturesEXT(shader_float_8::Bool, shader_float_8_cooperative_matrix::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceShaderFloat8FeaturesEXT(structure_type(VkPhysicalDeviceShaderFloat8FeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), shader_float_8, shader_float_8_cooperative_matrix)
+    vks = VkPhysicalDeviceShaderFloat8FeaturesEXT(structure_type(VkPhysicalDeviceShaderFloat8FeaturesEXT), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, shader_float_8), convert(VkBool32, shader_float_8_cooperative_matrix))
     _PhysicalDeviceShaderFloat8FeaturesEXT(vks, deps)
 end
 
@@ -61038,7 +61046,7 @@ Arguments:
 function _PhysicalDeviceDataGraphFeaturesARM(data_graph::Bool, data_graph_update_after_bind::Bool, data_graph_specialization_constants::Bool, data_graph_descriptor_buffer::Bool, data_graph_shader_module::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceDataGraphFeaturesARM(structure_type(VkPhysicalDeviceDataGraphFeaturesARM), unsafe_convert(Ptr{Cvoid}, next), data_graph, data_graph_update_after_bind, data_graph_specialization_constants, data_graph_descriptor_buffer, data_graph_shader_module)
+    vks = VkPhysicalDeviceDataGraphFeaturesARM(structure_type(VkPhysicalDeviceDataGraphFeaturesARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, data_graph), convert(VkBool32, data_graph_update_after_bind), convert(VkBool32, data_graph_specialization_constants), convert(VkBool32, data_graph_descriptor_buffer), convert(VkBool32, data_graph_shader_module))
     _PhysicalDeviceDataGraphFeaturesARM(vks, deps)
 end
 
@@ -61057,7 +61065,7 @@ Arguments:
 function _DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM(dimension::Integer, zero_count::Integer, group_size::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM(structure_type(VkDataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM), unsafe_convert(Ptr{Cvoid}, next), dimension, zero_count, group_size)
+    vks = VkDataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM(structure_type(VkDataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, dimension), convert(UInt32, zero_count), convert(UInt32, group_size))
     _DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM(vks, deps)
 end
 
@@ -61076,7 +61084,7 @@ function _DataGraphPipelineConstantARM(id::Integer, constant_data::Ptr{Cvoid}; n
     next = cconvert(Ptr{Cvoid}, next)
     constant_data = cconvert(Ptr{Cvoid}, constant_data)
     deps = Any[next, constant_data]
-    vks = VkDataGraphPipelineConstantARM(structure_type(VkDataGraphPipelineConstantARM), unsafe_convert(Ptr{Cvoid}, next), id, unsafe_convert(Ptr{Cvoid}, constant_data))
+    vks = VkDataGraphPipelineConstantARM(structure_type(VkDataGraphPipelineConstantARM), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, id), unsafe_convert(Ptr{Cvoid}, constant_data))
     _DataGraphPipelineConstantARM(vks, deps)
 end
 
@@ -61095,7 +61103,7 @@ Arguments:
 function _DataGraphPipelineResourceInfoARM(descriptor_set::Integer, binding::Integer; next = C_NULL, array_element = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDataGraphPipelineResourceInfoARM(structure_type(VkDataGraphPipelineResourceInfoARM), unsafe_convert(Ptr{Cvoid}, next), descriptor_set, binding, array_element)
+    vks = VkDataGraphPipelineResourceInfoARM(structure_type(VkDataGraphPipelineResourceInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, descriptor_set), convert(UInt32, binding), convert(UInt32, array_element))
     _DataGraphPipelineResourceInfoARM(vks, deps)
 end
 
@@ -61134,7 +61142,7 @@ function _DataGraphPipelineCreateInfoARM(layout, resource_infos::AbstractArray; 
     next = cconvert(Ptr{Cvoid}, next)
     resource_infos = cconvert(Ptr{VkDataGraphPipelineResourceInfoARM}, resource_infos)
     deps = Any[next, resource_infos]
-    vks = VkDataGraphPipelineCreateInfoARM(structure_type(VkDataGraphPipelineCreateInfoARM), unsafe_convert(Ptr{Cvoid}, next), flags, layout, resource_info_count, unsafe_convert(Ptr{VkDataGraphPipelineResourceInfoARM}, resource_infos))
+    vks = VkDataGraphPipelineCreateInfoARM(structure_type(VkDataGraphPipelineCreateInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipelineCreateFlags2KHR, flags), convert(VkPipelineLayout, layout), convert(UInt32, resource_info_count), unsafe_convert(Ptr{VkDataGraphPipelineResourceInfoARM}, resource_infos))
     _DataGraphPipelineCreateInfoARM(vks, deps, layout)
 end
 
@@ -61158,7 +61166,7 @@ function _DataGraphPipelineShaderModuleCreateInfoARM(name::AbstractString; next 
     specialization_info = cconvert(Ptr{VkSpecializationInfo}, specialization_info)
     constants = cconvert(Ptr{VkDataGraphPipelineConstantARM}, constants)
     deps = Any[next, name, specialization_info, constants]
-    vks = VkDataGraphPipelineShaderModuleCreateInfoARM(structure_type(VkDataGraphPipelineShaderModuleCreateInfoARM), unsafe_convert(Ptr{Cvoid}, next), _module, unsafe_convert(Cstring, name), unsafe_convert(Ptr{VkSpecializationInfo}, specialization_info), constant_count, unsafe_convert(Ptr{VkDataGraphPipelineConstantARM}, constants))
+    vks = VkDataGraphPipelineShaderModuleCreateInfoARM(structure_type(VkDataGraphPipelineShaderModuleCreateInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkShaderModule, _module), unsafe_convert(Cstring, name), unsafe_convert(Ptr{VkSpecializationInfo}, specialization_info), convert(UInt32, constant_count), unsafe_convert(Ptr{VkDataGraphPipelineConstantARM}, constants))
     _DataGraphPipelineShaderModuleCreateInfoARM(vks, deps, _module)
 end
 
@@ -61176,7 +61184,7 @@ Arguments:
 function _DataGraphPipelineSessionCreateInfoARM(data_graph_pipeline; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDataGraphPipelineSessionCreateInfoARM(structure_type(VkDataGraphPipelineSessionCreateInfoARM), unsafe_convert(Ptr{Cvoid}, next), flags, data_graph_pipeline)
+    vks = VkDataGraphPipelineSessionCreateInfoARM(structure_type(VkDataGraphPipelineSessionCreateInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkDataGraphPipelineSessionCreateFlagsARM, flags), convert(VkPipeline, data_graph_pipeline))
     _DataGraphPipelineSessionCreateInfoARM(vks, deps, data_graph_pipeline)
 end
 
@@ -61193,7 +61201,7 @@ Arguments:
 function _DataGraphPipelineSessionBindPointRequirementsInfoARM(session; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDataGraphPipelineSessionBindPointRequirementsInfoARM(structure_type(VkDataGraphPipelineSessionBindPointRequirementsInfoARM), unsafe_convert(Ptr{Cvoid}, next), session)
+    vks = VkDataGraphPipelineSessionBindPointRequirementsInfoARM(structure_type(VkDataGraphPipelineSessionBindPointRequirementsInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkDataGraphPipelineSessionARM, session))
     _DataGraphPipelineSessionBindPointRequirementsInfoARM(vks, deps, session)
 end
 
@@ -61212,7 +61220,7 @@ Arguments:
 function _DataGraphPipelineSessionBindPointRequirementARM(bind_point::DataGraphPipelineSessionBindPointARM, bind_point_type::DataGraphPipelineSessionBindPointTypeARM, num_objects::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDataGraphPipelineSessionBindPointRequirementARM(structure_type(VkDataGraphPipelineSessionBindPointRequirementARM), unsafe_convert(Ptr{Cvoid}, next), bind_point, bind_point_type, num_objects)
+    vks = VkDataGraphPipelineSessionBindPointRequirementARM(structure_type(VkDataGraphPipelineSessionBindPointRequirementARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkDataGraphPipelineSessionBindPointARM, bind_point), convert(VkDataGraphPipelineSessionBindPointTypeARM, bind_point_type), convert(UInt32, num_objects))
     _DataGraphPipelineSessionBindPointRequirementARM(vks, deps)
 end
 
@@ -61231,7 +61239,7 @@ Arguments:
 function _DataGraphPipelineSessionMemoryRequirementsInfoARM(session, bind_point::DataGraphPipelineSessionBindPointARM, object_index::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDataGraphPipelineSessionMemoryRequirementsInfoARM(structure_type(VkDataGraphPipelineSessionMemoryRequirementsInfoARM), unsafe_convert(Ptr{Cvoid}, next), session, bind_point, object_index)
+    vks = VkDataGraphPipelineSessionMemoryRequirementsInfoARM(structure_type(VkDataGraphPipelineSessionMemoryRequirementsInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkDataGraphPipelineSessionARM, session), convert(VkDataGraphPipelineSessionBindPointARM, bind_point), convert(UInt32, object_index))
     _DataGraphPipelineSessionMemoryRequirementsInfoARM(vks, deps, session)
 end
 
@@ -61252,7 +61260,7 @@ Arguments:
 function _BindDataGraphPipelineSessionMemoryInfoARM(session, bind_point::DataGraphPipelineSessionBindPointARM, object_index::Integer, memory, memory_offset::Integer; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkBindDataGraphPipelineSessionMemoryInfoARM(structure_type(VkBindDataGraphPipelineSessionMemoryInfoARM), unsafe_convert(Ptr{Cvoid}, next), session, bind_point, object_index, memory, memory_offset)
+    vks = VkBindDataGraphPipelineSessionMemoryInfoARM(structure_type(VkBindDataGraphPipelineSessionMemoryInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkDataGraphPipelineSessionARM, session), convert(VkDataGraphPipelineSessionBindPointARM, bind_point), convert(UInt32, object_index), convert(VkDeviceMemory, memory), convert(VkDeviceSize, memory_offset))
     _BindDataGraphPipelineSessionMemoryInfoARM(vks, deps, session, memory)
 end
 
@@ -61269,7 +61277,7 @@ Arguments:
 function _DataGraphPipelineInfoARM(data_graph_pipeline; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDataGraphPipelineInfoARM(structure_type(VkDataGraphPipelineInfoARM), unsafe_convert(Ptr{Cvoid}, next), data_graph_pipeline)
+    vks = VkDataGraphPipelineInfoARM(structure_type(VkDataGraphPipelineInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkPipeline, data_graph_pipeline))
     _DataGraphPipelineInfoARM(vks, deps, data_graph_pipeline)
 end
 
@@ -61290,7 +61298,7 @@ function _DataGraphPipelinePropertyQueryResultARM(property::DataGraphPipelinePro
     next = cconvert(Ptr{Cvoid}, next)
     data = cconvert(Ptr{Cvoid}, data)
     deps = Any[next, data]
-    vks = VkDataGraphPipelinePropertyQueryResultARM(structure_type(VkDataGraphPipelinePropertyQueryResultARM), unsafe_convert(Ptr{Cvoid}, next), property, is_text, data_size, unsafe_convert(Ptr{Cvoid}, data))
+    vks = VkDataGraphPipelinePropertyQueryResultARM(structure_type(VkDataGraphPipelinePropertyQueryResultARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkDataGraphPipelinePropertyARM, property), convert(VkBool32, is_text), convert(UInt, data_size), unsafe_convert(Ptr{Cvoid}, data))
     _DataGraphPipelinePropertyQueryResultARM(vks, deps)
 end
 
@@ -61309,7 +61317,7 @@ function _DataGraphPipelineIdentifierCreateInfoARM(identifier_size::Integer, ide
     next = cconvert(Ptr{Cvoid}, next)
     identifier = cconvert(Ptr{UInt8}, identifier)
     deps = Any[next, identifier]
-    vks = VkDataGraphPipelineIdentifierCreateInfoARM(structure_type(VkDataGraphPipelineIdentifierCreateInfoARM), unsafe_convert(Ptr{Cvoid}, next), identifier_size, unsafe_convert(Ptr{UInt8}, identifier))
+    vks = VkDataGraphPipelineIdentifierCreateInfoARM(structure_type(VkDataGraphPipelineIdentifierCreateInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, identifier_size), unsafe_convert(Ptr{UInt8}, identifier))
     _DataGraphPipelineIdentifierCreateInfoARM(vks, deps)
 end
 
@@ -61326,7 +61334,7 @@ Arguments:
 function _DataGraphPipelineDispatchInfoARM(; next = C_NULL, flags = 0)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkDataGraphPipelineDispatchInfoARM(structure_type(VkDataGraphPipelineDispatchInfoARM), unsafe_convert(Ptr{Cvoid}, next), flags)
+    vks = VkDataGraphPipelineDispatchInfoARM(structure_type(VkDataGraphPipelineDispatchInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkDataGraphPipelineDispatchFlagsARM, flags))
     _DataGraphPipelineDispatchInfoARM(vks, deps)
 end
 
@@ -61341,7 +61349,7 @@ Arguments:
 
 """
 function _PhysicalDeviceDataGraphProcessingEngineARM(type::PhysicalDeviceDataGraphProcessingEngineTypeARM, is_foreign::Bool)
-    _PhysicalDeviceDataGraphProcessingEngineARM(VkPhysicalDeviceDataGraphProcessingEngineARM(type, is_foreign))
+    _PhysicalDeviceDataGraphProcessingEngineARM(VkPhysicalDeviceDataGraphProcessingEngineARM(convert(VkPhysicalDeviceDataGraphProcessingEngineTypeARM, type), convert(VkBool32, is_foreign)))
 end
 
 """
@@ -61356,7 +61364,7 @@ Arguments:
 
 """
 function _PhysicalDeviceDataGraphOperationSupportARM(operation_type::PhysicalDeviceDataGraphOperationTypeARM, name::AbstractString, version::Integer)
-    _PhysicalDeviceDataGraphOperationSupportARM(VkPhysicalDeviceDataGraphOperationSupportARM(operation_type, name, version))
+    _PhysicalDeviceDataGraphOperationSupportARM(VkPhysicalDeviceDataGraphOperationSupportARM(convert(VkPhysicalDeviceDataGraphOperationTypeARM, operation_type), convert(NTuple{Int(VK_MAX_PHYSICAL_DEVICE_DATA_GRAPH_OPERATION_SET_NAME_SIZE_ARM), Char}, name), convert(UInt32, version)))
 end
 
 """
@@ -61391,7 +61399,7 @@ Arguments:
 function _PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM(queue_family_index::Integer, engine_type::PhysicalDeviceDataGraphProcessingEngineTypeARM; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM(structure_type(VkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM), unsafe_convert(Ptr{Cvoid}, next), queue_family_index, engine_type)
+    vks = VkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM(structure_type(VkPhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, queue_family_index), convert(VkPhysicalDeviceDataGraphProcessingEngineTypeARM, engine_type))
     _PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM(vks, deps)
 end
 
@@ -61409,7 +61417,7 @@ Arguments:
 function _QueueFamilyDataGraphProcessingEnginePropertiesARM(foreign_semaphore_handle_types::ExternalSemaphoreHandleTypeFlag, foreign_memory_handle_types::ExternalMemoryHandleTypeFlag; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkQueueFamilyDataGraphProcessingEnginePropertiesARM(structure_type(VkQueueFamilyDataGraphProcessingEnginePropertiesARM), unsafe_convert(Ptr{Cvoid}, next), foreign_semaphore_handle_types, foreign_memory_handle_types)
+    vks = VkQueueFamilyDataGraphProcessingEnginePropertiesARM(structure_type(VkQueueFamilyDataGraphProcessingEnginePropertiesARM), unsafe_convert(Ptr{Cvoid}, next), convert(VkExternalSemaphoreHandleTypeFlags, foreign_semaphore_handle_types), convert(VkExternalMemoryHandleTypeFlags, foreign_memory_handle_types))
     _QueueFamilyDataGraphProcessingEnginePropertiesARM(vks, deps)
 end
 
@@ -61428,7 +61436,7 @@ function _DataGraphProcessingEngineCreateInfoARM(processing_engines::AbstractArr
     next = cconvert(Ptr{Cvoid}, next)
     processing_engines = cconvert(Ptr{VkPhysicalDeviceDataGraphProcessingEngineARM}, processing_engines)
     deps = Any[next, processing_engines]
-    vks = VkDataGraphProcessingEngineCreateInfoARM(structure_type(VkDataGraphProcessingEngineCreateInfoARM), unsafe_convert(Ptr{Cvoid}, next), processing_engine_count, unsafe_convert(Ptr{VkPhysicalDeviceDataGraphProcessingEngineARM}, processing_engines))
+    vks = VkDataGraphProcessingEngineCreateInfoARM(structure_type(VkDataGraphProcessingEngineCreateInfoARM), unsafe_convert(Ptr{Cvoid}, next), convert(UInt32, processing_engine_count), unsafe_convert(Ptr{VkPhysicalDeviceDataGraphProcessingEngineARM}, processing_engines))
     _DataGraphProcessingEngineCreateInfoARM(vks, deps)
 end
 
@@ -61445,7 +61453,7 @@ Arguments:
 function _PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC(pipeline_cache_incremental_mode::Bool; next = C_NULL)
     next = cconvert(Ptr{Cvoid}, next)
     deps = Any[next]
-    vks = VkPhysicalDevicePipelineCacheIncrementalModeFeaturesSEC(structure_type(VkPhysicalDevicePipelineCacheIncrementalModeFeaturesSEC), unsafe_convert(Ptr{Cvoid}, next), pipeline_cache_incremental_mode)
+    vks = VkPhysicalDevicePipelineCacheIncrementalModeFeaturesSEC(structure_type(VkPhysicalDevicePipelineCacheIncrementalModeFeaturesSEC), unsafe_convert(Ptr{Cvoid}, next), convert(VkBool32, pipeline_cache_incremental_mode))
     _PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC(vks, deps)
 end
 
@@ -63813,6 +63821,7 @@ SwapchainCounterCreateInfoEXT(; next = C_NULL, surface_counters = 0) = Swapchain
 
 """
 Arguments:
+- `physical_device_count::UInt32`
 - `physical_devices::NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), PhysicalDevice}`
 - `subset_allocation::Bool`
 - `next::Any`: defaults to `C_NULL`
@@ -63820,7 +63829,7 @@ Arguments:
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceGroupProperties.html)
 
 """
-PhysicalDeviceGroupProperties(physical_devices::NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), PhysicalDevice}, subset_allocation::Bool; next = C_NULL) = PhysicalDeviceGroupProperties(next, physical_devices, subset_allocation)
+PhysicalDeviceGroupProperties(physical_device_count::Integer, physical_devices::NTuple{Int(VK_MAX_DEVICE_GROUP_SIZE), PhysicalDevice}, subset_allocation::Bool; next = C_NULL) = PhysicalDeviceGroupProperties(next, physical_device_count, physical_devices, subset_allocation)
 
 """
 Arguments:
@@ -65262,13 +65271,14 @@ PhysicalDeviceGlobalPriorityQueryFeatures(global_priority_query::Bool; next = C_
 
 """
 Arguments:
+- `priority_count::UInt32`
 - `priorities::NTuple{Int(VK_MAX_GLOBAL_PRIORITY_SIZE), QueueGlobalPriority}`
 - `next::Any`: defaults to `C_NULL`
 
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkQueueFamilyGlobalPriorityProperties.html)
 
 """
-QueueFamilyGlobalPriorityProperties(priorities::NTuple{Int(VK_MAX_GLOBAL_PRIORITY_SIZE), QueueGlobalPriority}; next = C_NULL) = QueueFamilyGlobalPriorityProperties(next, priorities)
+QueueFamilyGlobalPriorityProperties(priority_count::Integer, priorities::NTuple{Int(VK_MAX_GLOBAL_PRIORITY_SIZE), QueueGlobalPriority}; next = C_NULL) = QueueFamilyGlobalPriorityProperties(next, priority_count, priorities)
 
 """
 Extension: VK\\_EXT\\_debug\\_utils
@@ -75729,7 +75739,7 @@ _InstanceCreateInfo(x::InstanceCreateInfo) = _InstanceCreateInfo(x.enabled_layer
 
 _QueueFamilyProperties(x::QueueFamilyProperties) = _QueueFamilyProperties(x.queue_count, x.timestamp_valid_bits, convert_nonnull(_Extent3D, x.min_image_transfer_granularity); x.queue_flags)
 
-_PhysicalDeviceMemoryProperties(x::PhysicalDeviceMemoryProperties) = _PhysicalDeviceMemoryProperties(convert_nonnull(NTuple{Int(VK_MAX_MEMORY_TYPES), _MemoryType}, x.memory_types), convert_nonnull(NTuple{Int(VK_MAX_MEMORY_HEAPS), _MemoryHeap}, x.memory_heaps))
+_PhysicalDeviceMemoryProperties(x::PhysicalDeviceMemoryProperties) = _PhysicalDeviceMemoryProperties(x.memory_type_count, convert_nonnull(NTuple{Int(VK_MAX_MEMORY_TYPES), _MemoryType}, x.memory_types), x.memory_heap_count, convert_nonnull(NTuple{Int(VK_MAX_MEMORY_HEAPS), _MemoryHeap}, x.memory_heaps))
 
 _MemoryAllocateInfo(x::MemoryAllocateInfo) = _MemoryAllocateInfo(x.allocation_size, x.memory_type_index; x.next)
 
@@ -76165,7 +76175,7 @@ _DisplayEventInfoEXT(x::DisplayEventInfoEXT) = _DisplayEventInfoEXT(x.display_ev
 
 _SwapchainCounterCreateInfoEXT(x::SwapchainCounterCreateInfoEXT) = _SwapchainCounterCreateInfoEXT(; x.next, x.surface_counters)
 
-_PhysicalDeviceGroupProperties(x::PhysicalDeviceGroupProperties) = _PhysicalDeviceGroupProperties(x.physical_devices, x.subset_allocation; x.next)
+_PhysicalDeviceGroupProperties(x::PhysicalDeviceGroupProperties) = _PhysicalDeviceGroupProperties(x.physical_device_count, x.physical_devices, x.subset_allocation; x.next)
 
 _MemoryAllocateFlagsInfo(x::MemoryAllocateFlagsInfo) = _MemoryAllocateFlagsInfo(x.device_mask; x.next, x.flags)
 
@@ -76431,7 +76441,7 @@ _DeviceQueueGlobalPriorityCreateInfo(x::DeviceQueueGlobalPriorityCreateInfo) = _
 
 _PhysicalDeviceGlobalPriorityQueryFeatures(x::PhysicalDeviceGlobalPriorityQueryFeatures) = _PhysicalDeviceGlobalPriorityQueryFeatures(x.global_priority_query; x.next)
 
-_QueueFamilyGlobalPriorityProperties(x::QueueFamilyGlobalPriorityProperties) = _QueueFamilyGlobalPriorityProperties(x.priorities; x.next)
+_QueueFamilyGlobalPriorityProperties(x::QueueFamilyGlobalPriorityProperties) = _QueueFamilyGlobalPriorityProperties(x.priority_count, x.priorities; x.next)
 
 _DebugUtilsObjectNameInfoEXT(x::DebugUtilsObjectNameInfoEXT) = _DebugUtilsObjectNameInfoEXT(x.object_type, x.object_handle; x.next, x.object_name)
 
@@ -83504,7 +83514,7 @@ InstanceCreateInfo(x::VkInstanceCreateInfo, next_types::Type...) = InstanceCreat
 
 QueueFamilyProperties(x::VkQueueFamilyProperties) = QueueFamilyProperties(x.queueFlags, x.queueCount, x.timestampValidBits, Extent3D(x.minImageTransferGranularity))
 
-PhysicalDeviceMemoryProperties(x::VkPhysicalDeviceMemoryProperties) = PhysicalDeviceMemoryProperties(MemoryType.(x.memoryTypes), MemoryHeap.(x.memoryHeaps))
+PhysicalDeviceMemoryProperties(x::VkPhysicalDeviceMemoryProperties) = PhysicalDeviceMemoryProperties(x.memoryTypeCount, MemoryType.(x.memoryTypes), x.memoryHeapCount, MemoryHeap.(x.memoryHeaps))
 
 MemoryAllocateInfo(x::VkMemoryAllocateInfo, next_types::Type...) = MemoryAllocateInfo(load_next_chain(x.pNext, next_types...), x.allocationSize, x.memoryTypeIndex)
 
@@ -83940,7 +83950,7 @@ DisplayEventInfoEXT(x::VkDisplayEventInfoEXT, next_types::Type...) = DisplayEven
 
 SwapchainCounterCreateInfoEXT(x::VkSwapchainCounterCreateInfoEXT, next_types::Type...) = SwapchainCounterCreateInfoEXT(load_next_chain(x.pNext, next_types...), x.surfaceCounters)
 
-PhysicalDeviceGroupProperties(x::VkPhysicalDeviceGroupProperties, next_types::Type...) = PhysicalDeviceGroupProperties(load_next_chain(x.pNext, next_types...), PhysicalDevice.(x.physicalDevices), from_vk(Bool, x.subsetAllocation))
+PhysicalDeviceGroupProperties(x::VkPhysicalDeviceGroupProperties, next_types::Type...) = PhysicalDeviceGroupProperties(load_next_chain(x.pNext, next_types...), x.physicalDeviceCount, PhysicalDevice.(x.physicalDevices), from_vk(Bool, x.subsetAllocation))
 
 MemoryAllocateFlagsInfo(x::VkMemoryAllocateFlagsInfo, next_types::Type...) = MemoryAllocateFlagsInfo(load_next_chain(x.pNext, next_types...), x.flags, x.deviceMask)
 
@@ -84206,7 +84216,7 @@ DeviceQueueGlobalPriorityCreateInfo(x::VkDeviceQueueGlobalPriorityCreateInfo, ne
 
 PhysicalDeviceGlobalPriorityQueryFeatures(x::VkPhysicalDeviceGlobalPriorityQueryFeatures, next_types::Type...) = PhysicalDeviceGlobalPriorityQueryFeatures(load_next_chain(x.pNext, next_types...), from_vk(Bool, x.globalPriorityQuery))
 
-QueueFamilyGlobalPriorityProperties(x::VkQueueFamilyGlobalPriorityProperties, next_types::Type...) = QueueFamilyGlobalPriorityProperties(load_next_chain(x.pNext, next_types...), x.priorities)
+QueueFamilyGlobalPriorityProperties(x::VkQueueFamilyGlobalPriorityProperties, next_types::Type...) = QueueFamilyGlobalPriorityProperties(load_next_chain(x.pNext, next_types...), x.priorityCount, x.priorities)
 
 DebugUtilsObjectNameInfoEXT(x::VkDebugUtilsObjectNameInfoEXT, next_types::Type...) = DebugUtilsObjectNameInfoEXT(load_next_chain(x.pNext, next_types...), x.objectType, x.objectHandle, unsafe_string(x.pObjectName))
 
@@ -88727,9 +88737,9 @@ Arguments:
 """
 function _get_physical_device_sparse_image_format_properties(physical_device, format::Format, type::ImageType, samples::SampleCountFlag, usage::ImageUsageFlag, tiling::ImageTiling)::Vector{_SparseImageFormatProperties}
     pPropertyCount = Ref{UInt32}()
-    @dispatch instance(physical_device) vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, VkSampleCountFlagBits(samples.val), usage, tiling, pPropertyCount, C_NULL)
+    @dispatch instance(physical_device) vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, VkSampleCountFlagBits(flag_value(samples)), usage, tiling, pPropertyCount, C_NULL)
     pProperties = Vector{VkSparseImageFormatProperties}(undef, pPropertyCount[])
-    @dispatch instance(physical_device) vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, VkSampleCountFlagBits(samples.val), usage, tiling, pPropertyCount, pProperties)
+    @dispatch instance(physical_device) vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, VkSampleCountFlagBits(flag_value(samples)), usage, tiling, pPropertyCount, pProperties)
     from_vk.(_SparseImageFormatProperties, pProperties)
 end
 
@@ -90502,7 +90512,7 @@ Arguments:
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdWriteTimestamp.html)
 
 """
-_cmd_write_timestamp(command_buffer, pipeline_stage::PipelineStageFlag, query_pool, query::Integer)::Cvoid = @dispatch(device(command_buffer), vkCmdWriteTimestamp(command_buffer, VkPipelineStageFlagBits(pipeline_stage.val), query_pool, query))
+_cmd_write_timestamp(command_buffer, pipeline_stage::PipelineStageFlag, query_pool, query::Integer)::Cvoid = @dispatch(device(command_buffer), vkCmdWriteTimestamp(command_buffer, VkPipelineStageFlagBits(flag_value(pipeline_stage)), query_pool, query))
 
 """
 Arguments:
@@ -91604,7 +91614,7 @@ Arguments:
 """
 function _get_memory_fd_properties_khr(device, handle_type::ExternalMemoryHandleTypeFlag, fd::Integer)::ResultTypes.Result{_MemoryFdPropertiesKHR, VulkanError}
     pMemoryFdProperties = Ref{VkMemoryFdPropertiesKHR}()
-    @check @dispatch(device, vkGetMemoryFdPropertiesKHR(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), fd, pMemoryFdProperties))
+    @check @dispatch(device, vkGetMemoryFdPropertiesKHR(device, VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)), fd, pMemoryFdProperties))
     from_vk(_MemoryFdPropertiesKHR, pMemoryFdProperties[])
 end
 
@@ -91832,7 +91842,7 @@ Arguments:
 """
 function _get_swapchain_counter_ext(device, swapchain, counter::SurfaceCounterFlagEXT)::ResultTypes.Result{UInt64, VulkanError}
     pCounterValue = Ref{UInt64}()
-    @check @dispatch(device, vkGetSwapchainCounterEXT(device, swapchain, VkSurfaceCounterFlagBitsEXT(counter.val), pCounterValue))
+    @check @dispatch(device, vkGetSwapchainCounterEXT(device, swapchain, VkSurfaceCounterFlagBitsEXT(flag_value(counter)), pCounterValue))
     pCounterValue[]
 end
 
@@ -92316,7 +92326,7 @@ Arguments:
 """
 function _get_physical_device_multisample_properties_ext(physical_device, samples::SampleCountFlag)::_MultisamplePropertiesEXT
     pMultisampleProperties = Ref{VkMultisamplePropertiesEXT}()
-    @dispatch instance(physical_device) vkGetPhysicalDeviceMultisamplePropertiesEXT(physical_device, VkSampleCountFlagBits(samples.val), pMultisampleProperties)
+    @dispatch instance(physical_device) vkGetPhysicalDeviceMultisamplePropertiesEXT(physical_device, VkSampleCountFlagBits(flag_value(samples)), pMultisampleProperties)
     from_vk(_MultisamplePropertiesEXT, pMultisampleProperties[])
 end
 
@@ -92745,9 +92755,9 @@ Arguments:
 function _get_shader_info_amd(device, pipeline, shader_stage::ShaderStageFlag, info_type::ShaderInfoTypeAMD)::ResultTypes.Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
     pInfoSize = Ref{UInt}()
     @repeat_while_incomplete begin
-            @check @dispatch(device, vkGetShaderInfoAMD(device, pipeline, VkShaderStageFlagBits(shader_stage.val), info_type, pInfoSize, C_NULL))
+            @check @dispatch(device, vkGetShaderInfoAMD(device, pipeline, VkShaderStageFlagBits(flag_value(shader_stage)), info_type, pInfoSize, C_NULL))
             pInfo = Libc.malloc(pInfoSize[])
-            @check @dispatch(device, vkGetShaderInfoAMD(device, pipeline, VkShaderStageFlagBits(shader_stage.val), info_type, pInfoSize, pInfo))
+            @check @dispatch(device, vkGetShaderInfoAMD(device, pipeline, VkShaderStageFlagBits(flag_value(shader_stage)), info_type, pInfoSize, pInfo))
             if _return_code == VK_INCOMPLETE
                 Libc.free(pInfo)
             end
@@ -92967,7 +92977,7 @@ Arguments:
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkSubmitDebugUtilsMessageEXT.html)
 
 """
-_submit_debug_utils_message_ext(instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::_DebugUtilsMessengerCallbackDataEXT)::Cvoid = @dispatch(instance, vkSubmitDebugUtilsMessageEXT(instance, VkDebugUtilsMessageSeverityFlagBitsEXT(message_severity.val), message_types, callback_data))
+_submit_debug_utils_message_ext(instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::_DebugUtilsMessengerCallbackDataEXT)::Cvoid = @dispatch(instance, vkSubmitDebugUtilsMessageEXT(instance, VkDebugUtilsMessageSeverityFlagBitsEXT(flag_value(message_severity)), message_types, callback_data))
 
 """
 Extension: VK\\_EXT\\_external\\_memory\\_host
@@ -92987,7 +92997,7 @@ Arguments:
 """
 function _get_memory_host_pointer_properties_ext(device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid})::ResultTypes.Result{_MemoryHostPointerPropertiesEXT, VulkanError}
     pMemoryHostPointerProperties = Ref{VkMemoryHostPointerPropertiesEXT}()
-    @check @dispatch(device, vkGetMemoryHostPointerPropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), host_pointer, pMemoryHostPointerProperties))
+    @check @dispatch(device, vkGetMemoryHostPointerPropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)), host_pointer, pMemoryHostPointerProperties))
     from_vk(_MemoryHostPointerPropertiesEXT, pMemoryHostPointerProperties[])
 end
 
@@ -93004,7 +93014,7 @@ Arguments:
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdWriteBufferMarkerAMD.html)
 
 """
-_cmd_write_buffer_marker_amd(command_buffer, dst_buffer, dst_offset::Integer, marker::Integer; pipeline_stage = 0)::Cvoid = @dispatch(device(command_buffer), vkCmdWriteBufferMarkerAMD(command_buffer, VkPipelineStageFlagBits(pipeline_stage.val), dst_buffer, dst_offset, marker))
+_cmd_write_buffer_marker_amd(command_buffer, dst_buffer, dst_offset::Integer, marker::Integer; pipeline_stage = 0)::Cvoid = @dispatch(device(command_buffer), vkCmdWriteBufferMarkerAMD(command_buffer, VkPipelineStageFlagBits(flag_value(pipeline_stage)), dst_buffer, dst_offset, marker))
 
 """
 Return codes:
@@ -94920,7 +94930,7 @@ Arguments:
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetRasterizationSamplesEXT.html)
 
 """
-_cmd_set_rasterization_samples_ext(command_buffer, rasterization_samples::SampleCountFlag)::Cvoid = @dispatch(device(command_buffer), vkCmdSetRasterizationSamplesEXT(command_buffer, VkSampleCountFlagBits(rasterization_samples.val)))
+_cmd_set_rasterization_samples_ext(command_buffer, rasterization_samples::SampleCountFlag)::Cvoid = @dispatch(device(command_buffer), vkCmdSetRasterizationSamplesEXT(command_buffer, VkSampleCountFlagBits(flag_value(rasterization_samples))))
 
 """
 Extension: VK\\_EXT\\_extended\\_dynamic\\_state3
@@ -94933,7 +94943,7 @@ Arguments:
 [API documentation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdSetSampleMaskEXT.html)
 
 """
-_cmd_set_sample_mask_ext(command_buffer, samples::SampleCountFlag, sample_mask::AbstractArray)::Cvoid = @dispatch(device(command_buffer), vkCmdSetSampleMaskEXT(command_buffer, VkSampleCountFlagBits(samples.val), sample_mask))
+_cmd_set_sample_mask_ext(command_buffer, samples::SampleCountFlag, sample_mask::AbstractArray)::Cvoid = @dispatch(device(command_buffer), vkCmdSetSampleMaskEXT(command_buffer, VkSampleCountFlagBits(flag_value(samples)), sample_mask))
 
 """
 Extension: VK\\_EXT\\_extended\\_dynamic\\_state3
@@ -97359,7 +97369,7 @@ Arguments:
 """
 function _get_memory_metal_handle_properties_ext(device, handle_type::ExternalMemoryHandleTypeFlag, handle::Ptr{Cvoid})::ResultTypes.Result{_MemoryMetalHandlePropertiesEXT, VulkanError}
     pMemoryMetalHandleProperties = Ref{VkMemoryMetalHandlePropertiesEXT}()
-    @check @dispatch(device, vkGetMemoryMetalHandlePropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), handle, pMemoryMetalHandleProperties))
+    @check @dispatch(device, vkGetMemoryMetalHandlePropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)), handle, pMemoryMetalHandleProperties))
     from_vk(_MemoryMetalHandlePropertiesEXT, pMemoryMetalHandleProperties[])
 end
 
@@ -98117,9 +98127,9 @@ end
 
 function _get_physical_device_sparse_image_format_properties(physical_device, format::Format, type::ImageType, samples::SampleCountFlag, usage::ImageUsageFlag, tiling::ImageTiling, fptr::FunctionPtr)::Vector{_SparseImageFormatProperties}
     pPropertyCount = Ref{UInt32}()
-    vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, VkSampleCountFlagBits(samples.val), usage, tiling, pPropertyCount, C_NULL, fptr)
+    vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, VkSampleCountFlagBits(flag_value(samples)), usage, tiling, pPropertyCount, C_NULL, fptr)
     pProperties = Vector{VkSparseImageFormatProperties}(undef, pPropertyCount[])
-    vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, VkSampleCountFlagBits(samples.val), usage, tiling, pPropertyCount, pProperties, fptr)
+    vkGetPhysicalDeviceSparseImageFormatProperties(physical_device, format, type, VkSampleCountFlagBits(flag_value(samples)), usage, tiling, pPropertyCount, pProperties, fptr)
     from_vk.(_SparseImageFormatProperties, pProperties)
 end
 
@@ -98548,7 +98558,7 @@ _cmd_end_conditional_rendering_ext(command_buffer, fptr::FunctionPtr)::Cvoid = v
 
 _cmd_reset_query_pool(command_buffer, query_pool, first_query::Integer, query_count::Integer, fptr::FunctionPtr)::Cvoid = vkCmdResetQueryPool(command_buffer, query_pool, first_query, query_count, fptr)
 
-_cmd_write_timestamp(command_buffer, pipeline_stage::PipelineStageFlag, query_pool, query::Integer, fptr::FunctionPtr)::Cvoid = vkCmdWriteTimestamp(command_buffer, VkPipelineStageFlagBits(pipeline_stage.val), query_pool, query, fptr)
+_cmd_write_timestamp(command_buffer, pipeline_stage::PipelineStageFlag, query_pool, query::Integer, fptr::FunctionPtr)::Cvoid = vkCmdWriteTimestamp(command_buffer, VkPipelineStageFlagBits(flag_value(pipeline_stage)), query_pool, query, fptr)
 
 _cmd_copy_query_pool_results(command_buffer, query_pool, first_query::Integer, query_count::Integer, dst_buffer, dst_offset::Integer, stride::Integer, fptr::FunctionPtr; flags = 0)::Cvoid = vkCmdCopyQueryPoolResults(command_buffer, query_pool, first_query, query_count, dst_buffer, dst_offset, stride, flags, fptr)
 
@@ -98868,7 +98878,7 @@ end
 
 function _get_memory_fd_properties_khr(device, handle_type::ExternalMemoryHandleTypeFlag, fd::Integer, fptr::FunctionPtr)::ResultTypes.Result{_MemoryFdPropertiesKHR, VulkanError}
     pMemoryFdProperties = Ref{VkMemoryFdPropertiesKHR}()
-    @check vkGetMemoryFdPropertiesKHR(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), fd, pMemoryFdProperties, fptr)
+    @check vkGetMemoryFdPropertiesKHR(device, VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)), fd, pMemoryFdProperties, fptr)
     from_vk(_MemoryFdPropertiesKHR, pMemoryFdProperties[])
 end
 
@@ -98933,7 +98943,7 @@ end
 
 function _get_swapchain_counter_ext(device, swapchain, counter::SurfaceCounterFlagEXT, fptr::FunctionPtr)::ResultTypes.Result{UInt64, VulkanError}
     pCounterValue = Ref{UInt64}()
-    @check vkGetSwapchainCounterEXT(device, swapchain, VkSurfaceCounterFlagBitsEXT(counter.val), pCounterValue, fptr)
+    @check vkGetSwapchainCounterEXT(device, swapchain, VkSurfaceCounterFlagBitsEXT(flag_value(counter)), pCounterValue, fptr)
     pCounterValue[]
 end
 
@@ -99060,7 +99070,7 @@ _cmd_set_sample_locations_ext(command_buffer, sample_locations_info::_SampleLoca
 
 function _get_physical_device_multisample_properties_ext(physical_device, samples::SampleCountFlag, fptr::FunctionPtr)::_MultisamplePropertiesEXT
     pMultisampleProperties = Ref{VkMultisamplePropertiesEXT}()
-    vkGetPhysicalDeviceMultisamplePropertiesEXT(physical_device, VkSampleCountFlagBits(samples.val), pMultisampleProperties, fptr)
+    vkGetPhysicalDeviceMultisamplePropertiesEXT(physical_device, VkSampleCountFlagBits(flag_value(samples)), pMultisampleProperties, fptr)
     from_vk(_MultisamplePropertiesEXT, pMultisampleProperties[])
 end
 
@@ -99226,9 +99236,9 @@ end
 function _get_shader_info_amd(device, pipeline, shader_stage::ShaderStageFlag, info_type::ShaderInfoTypeAMD, fptr::FunctionPtr)::ResultTypes.Result{Tuple{UInt, Ptr{Cvoid}}, VulkanError}
     pInfoSize = Ref{UInt}()
     @repeat_while_incomplete begin
-            @check vkGetShaderInfoAMD(device, pipeline, VkShaderStageFlagBits(shader_stage.val), info_type, pInfoSize, C_NULL, fptr)
+            @check vkGetShaderInfoAMD(device, pipeline, VkShaderStageFlagBits(flag_value(shader_stage)), info_type, pInfoSize, C_NULL, fptr)
             pInfo = Libc.malloc(pInfoSize[])
-            @check vkGetShaderInfoAMD(device, pipeline, VkShaderStageFlagBits(shader_stage.val), info_type, pInfoSize, pInfo, fptr)
+            @check vkGetShaderInfoAMD(device, pipeline, VkShaderStageFlagBits(flag_value(shader_stage)), info_type, pInfoSize, pInfo, fptr)
             if _return_code == VK_INCOMPLETE
                 Libc.free(pInfo)
             end
@@ -99282,15 +99292,15 @@ end
 
 _destroy_debug_utils_messenger_ext(instance, messenger, fptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyDebugUtilsMessengerEXT(instance, messenger, allocator, fptr)
 
-_submit_debug_utils_message_ext(instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::_DebugUtilsMessengerCallbackDataEXT, fptr::FunctionPtr)::Cvoid = vkSubmitDebugUtilsMessageEXT(instance, VkDebugUtilsMessageSeverityFlagBitsEXT(message_severity.val), message_types, callback_data, fptr)
+_submit_debug_utils_message_ext(instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::_DebugUtilsMessengerCallbackDataEXT, fptr::FunctionPtr)::Cvoid = vkSubmitDebugUtilsMessageEXT(instance, VkDebugUtilsMessageSeverityFlagBitsEXT(flag_value(message_severity)), message_types, callback_data, fptr)
 
 function _get_memory_host_pointer_properties_ext(device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid}, fptr::FunctionPtr)::ResultTypes.Result{_MemoryHostPointerPropertiesEXT, VulkanError}
     pMemoryHostPointerProperties = Ref{VkMemoryHostPointerPropertiesEXT}()
-    @check vkGetMemoryHostPointerPropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), host_pointer, pMemoryHostPointerProperties, fptr)
+    @check vkGetMemoryHostPointerPropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)), host_pointer, pMemoryHostPointerProperties, fptr)
     from_vk(_MemoryHostPointerPropertiesEXT, pMemoryHostPointerProperties[])
 end
 
-_cmd_write_buffer_marker_amd(command_buffer, dst_buffer, dst_offset::Integer, marker::Integer, fptr::FunctionPtr; pipeline_stage = 0)::Cvoid = vkCmdWriteBufferMarkerAMD(command_buffer, VkPipelineStageFlagBits(pipeline_stage.val), dst_buffer, dst_offset, marker, fptr)
+_cmd_write_buffer_marker_amd(command_buffer, dst_buffer, dst_offset::Integer, marker::Integer, fptr::FunctionPtr; pipeline_stage = 0)::Cvoid = vkCmdWriteBufferMarkerAMD(command_buffer, VkPipelineStageFlagBits(flag_value(pipeline_stage)), dst_buffer, dst_offset, marker, fptr)
 
 function _create_render_pass_2(device, create_info::_RenderPassCreateInfo2, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)::ResultTypes.Result{RenderPass, VulkanError}
     pRenderPass = Ref{VkRenderPass}()
@@ -99691,9 +99701,9 @@ _cmd_set_depth_clamp_enable_ext(command_buffer, depth_clamp_enable::Bool, fptr::
 
 _cmd_set_polygon_mode_ext(command_buffer, polygon_mode::PolygonMode, fptr::FunctionPtr)::Cvoid = vkCmdSetPolygonModeEXT(command_buffer, polygon_mode, fptr)
 
-_cmd_set_rasterization_samples_ext(command_buffer, rasterization_samples::SampleCountFlag, fptr::FunctionPtr)::Cvoid = vkCmdSetRasterizationSamplesEXT(command_buffer, VkSampleCountFlagBits(rasterization_samples.val), fptr)
+_cmd_set_rasterization_samples_ext(command_buffer, rasterization_samples::SampleCountFlag, fptr::FunctionPtr)::Cvoid = vkCmdSetRasterizationSamplesEXT(command_buffer, VkSampleCountFlagBits(flag_value(rasterization_samples)), fptr)
 
-_cmd_set_sample_mask_ext(command_buffer, samples::SampleCountFlag, sample_mask::AbstractArray, fptr::FunctionPtr)::Cvoid = vkCmdSetSampleMaskEXT(command_buffer, VkSampleCountFlagBits(samples.val), sample_mask, fptr)
+_cmd_set_sample_mask_ext(command_buffer, samples::SampleCountFlag, sample_mask::AbstractArray, fptr::FunctionPtr)::Cvoid = vkCmdSetSampleMaskEXT(command_buffer, VkSampleCountFlagBits(flag_value(samples)), sample_mask, fptr)
 
 _cmd_set_alpha_to_coverage_enable_ext(command_buffer, alpha_to_coverage_enable::Bool, fptr::FunctionPtr)::Cvoid = vkCmdSetAlphaToCoverageEnableEXT(command_buffer, alpha_to_coverage_enable, fptr)
 
@@ -100270,7 +100280,7 @@ end
 
 function _get_memory_metal_handle_properties_ext(device, handle_type::ExternalMemoryHandleTypeFlag, handle::Ptr{Cvoid}, fptr::FunctionPtr)::ResultTypes.Result{_MemoryMetalHandlePropertiesEXT, VulkanError}
     pMemoryMetalHandleProperties = Ref{VkMemoryMetalHandlePropertiesEXT}()
-    @check vkGetMemoryMetalHandlePropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(handle_type.val), handle, pMemoryMetalHandleProperties, fptr)
+    @check vkGetMemoryMetalHandlePropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)), handle, pMemoryMetalHandleProperties, fptr)
     from_vk(_MemoryMetalHandlePropertiesEXT, pMemoryMetalHandleProperties[])
 end
 
