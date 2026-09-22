@@ -20,6 +20,28 @@ to_vk(T::Type{UInt32}, version::VersionNumber) = VK_MAKE_VERSION(version.major, 
 to_vk(T::Type{NTuple{N,UInt8}}, s::AbstractString) where {N} = T(s * '\0' ^ (N - length(s)))
 
 """
+    flag_value(x)
+
+The integer behind a flag, whether it arrives as a `BitMask` or already as one.
+
+The generated wrapper turns a flag member into its raw `Vk*FlagBits` with
+`VkResolveModeFlagBits(flag_value(resolve_mode))`, and it has to accept both:
+the high-level value a caller passes (`RESOLVE_MODE_NONE`, a `BitMask`) and a
+plain integer, which is what every optional flag member DEFAULTS to. Reading
+`.val` unconditionally meant `_RenderingAttachmentInfo` threw
+`FieldError: type Int64 has no field val` unless the caller named `resolve_mode`
+explicitly, and the same for any of the nineteen flag members with such a
+default.
+
+Dispatch rather than a width cast: `UInt32(x)` would be right for all nineteen
+today and would silently truncate the first 64-bit flag to reach this path.
+"""
+function flag_value end
+
+flag_value(x::BitMask) = x.val
+flag_value(x::Integer) = x
+
+"""
 Convert a Vulkan type into its corresponding Julia type.
 
 ### Examples

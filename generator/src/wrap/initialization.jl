@@ -26,5 +26,16 @@ function initialize_ptr(param::SpecFuncParam)
 end
 
 function initialize_array(param::SpecFuncParam, count_ptr::SpecFuncParam)
-    :($(param.name) = Vector{$(ptr_type(param.type))}(undef, $(count_ptr.name)[]))
+    T = ptr_type(param.type)
+    # For an sType-bearing element type the caller must set `sType` (and
+    # `pNext`) on *every* element before the API fills the array in — the driver
+    # reads them as input.  `undef` memory means it reads garbage, which
+    # validation flags (e.g. VUID-VkCooperativeMatrixPropertiesKHR-sType-sType).
+    # `initialize_core` zeroes the struct, giving pNext = NULL, and stamps sType.
+    rhs = if haskey(api.structure_types, T)
+        :(fill(initialize_core($T, []), $(count_ptr.name)[]))
+    else
+        :(Vector{$T}(undef, $(count_ptr.name)[]))
+    end
+    :($(param.name) = $rhs)
 end
