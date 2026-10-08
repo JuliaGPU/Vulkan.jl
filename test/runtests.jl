@@ -3,6 +3,7 @@ using Vulkan
 using Accessors: @set
 
 @testset "Vulkan.jl" begin
+    include("generated_scope.jl")
     include("handles.jl")
     include("api.jl")
     include("dispatch.jl")

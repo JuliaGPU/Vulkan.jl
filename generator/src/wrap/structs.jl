@@ -14,6 +14,50 @@ function StructDefinition{false}(spec::SpecStruct)
     StructDefinition{false}(spec, p)
 end
 
+"""
+    vk_ctor_call(x::SpecStructMember)
+
+What `x` contributes to the raw struct's constructor call: its `vk_call`,
+converted to the member's raw type unless it provably already is that type.
+
+Clang emits a struct that contains a union or a bitfield as an opaque blob with a
+single explicitly typed constructor, and Julia does not convert arguments to make
+a method match. A member handed the high-level `Format`, `IndexType` or handle
+the wrapper works in is then a MethodError instead of a conversion -- which is how
+every acceleration-structure geometry and build info, the micromap and cluster
+builds, `VkDescriptorGetInfoEXT` and `VkRenderingAttachmentInfo` came to be
+unreachable from the wrapper that constructs them. A field-wise struct converts
+its arguments on construction anyway, which is what makes this free there.
+
+Converting every member rather than the blob-shaped ones is deliberate: which
+structs Clang makes opaque cannot be read off the specification. It is opaque for
+bitfields too, and the spec models the three packed fields of
+`VkAccelerationStructureInstanceKHR` as plain `UInt32` members -- a union-closure
+over the spec misses that struct and six others. The skips below are the
+expressions that are already exactly `x.type`, so nothing rests on classifying
+the struct at all.
+"""
+function vk_ctor_call(x::SpecStructMember)
+    # A function pointer is handed through untouched, as `vk_call` already has
+    # it: `PFN_vkDebugUtilsMessengerCallbackEXT` and its eight siblings are
+    # VulkanCore typedefs that this module never brings into scope, so naming one
+    # here is an UndefVarError at call time. No blob-shaped struct has a function
+    # pointer member, so nothing needs the conversion.
+    is_fn_ptr(x.type) && return vk_call(x)
+    ex = vk_call(x)
+    @match ex begin
+        # `structure_type` returns a VkStructureType, which is what sType is.
+        :(structure_type($_)) => ex
+        # These three name the target type in the expression itself.
+        :(unsafe_convert($t, $_)) && if t == x.type end => ex
+        :(to_vk($t, $_)) && if t == x.type end => ex
+        Expr(:call, t, _...) && if t == x.type end => ex
+        # A wrapped struct's `vks` field is declared at the raw type.
+        :($_.vks) => ex
+        _ => :(convert($(raw_julia_type(x.type)), $ex))
+    end
+end
+
 function Constructor(def::StructDefinition{false})
     (; spec) = def
     cconverted_members = spec[findall(is_semantic_ptr, spec.members.type)]
@@ -34,11 +78,11 @@ function Constructor(def::StructDefinition{false})
                 )...
             )
             deps = Any[$((cconverted_ids)...)]
-            vks = $(spec.name)($(map(vk_call, spec)...))
+            vks = $(spec.name)($(map(vk_ctor_call, spec)...))
             $(name(def))(vks, deps, $(wrap_identifier.(parent_handles(spec))...))
         end
     else
-        p[:body] = :($(name(def))($(spec.name)($(map(vk_call, spec)...)), $(wrap_identifier.(parent_handles(spec))...)))
+        p[:body] = :($(name(def))($(spec.name)($(map(vk_ctor_call, spec)...)), $(wrap_identifier.(parent_handles(spec))...)))
     end
     potential_args = filter(x -> x.type ≠ :VkStructureType, spec)
     add_func_args!(p, spec, potential_args)
