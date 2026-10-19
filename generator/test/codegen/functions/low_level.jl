@@ -135,7 +135,7 @@
 
     test_ex(APIFunction(api.functions[:vkGetFenceFdKHR], false), :(
         function _get_fence_fd_khr(device, get_fd_info::_FenceGetFdInfoKHR)::ResultTypes.Result{Int,VulkanError}
-            pFd = Ref{Int}()
+            pFd = Ref{Cint}()
             @check @dispatch device vkGetFenceFdKHR(device, get_fd_info, pFd)
             pFd[]
         end

@@ -14,12 +14,21 @@ function initialize_ptr(param::SpecFuncParam, count_ptr::SpecFuncParam)
     :($(param.name) = Libc.malloc($(count_ptr.name)[]))
 end
 
+"""
+The type of the storage an output pointer is handed: the C layout, which
+VulkanSpec's SEMANTIC translation does not give for C `int` (it says `Int`, 64
+bits). `vkGetMemoryFdKHR`, `vkGetSemaphoreFdKHR` and `vkGetFenceFdKHR` write an
+`int` through `int* pFd`, and VulkanCore binds them with `Ptr{Cint}`, so a
+`Ref{Int}` does not even convert: the three fd exports threw on every call.
+"""
+layout_type(T) = T === :Int ? :Cint : T
+
 function initialize_ptr(param::SpecFuncParam)
     rhs = @match param begin
-        GuardBy(is_arr) => :(Vector{$(ptr_type(param.type))}(undef, $(retrieve_length(param))))
+        GuardBy(is_arr) => :(Vector{$(layout_type(ptr_type(param.type)))}(undef, $(retrieve_length(param))))
         _ => @match param.type begin
             :(Ptr{Cvoid}) => :(Ref{Ptr{Cvoid}}())
-            _ => :(Ref{$(ptr_type(param.type))}())
+            _ => :(Ref{$(layout_type(ptr_type(param.type)))}())
         end
     end
     :($(param.name) = $rhs)

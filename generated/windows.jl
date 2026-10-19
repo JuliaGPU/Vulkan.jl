@@ -91900,7 +91900,7 @@ Arguments:
 
 """
 function _get_memory_fd_khr(device, get_fd_info::_MemoryGetFdInfoKHR)::ResultTypes.Result{Int, VulkanError}
-    pFd = Ref{Int}()
+    pFd = Ref{Cint}()
     @check @dispatch(device, vkGetMemoryFdKHR(device, get_fd_info, pFd))
     pFd[]
 end
@@ -92012,7 +92012,7 @@ Arguments:
 
 """
 function _get_semaphore_fd_khr(device, get_fd_info::_SemaphoreGetFdInfoKHR)::ResultTypes.Result{Int, VulkanError}
-    pFd = Ref{Int}()
+    pFd = Ref{Cint}()
     @check @dispatch(device, vkGetSemaphoreFdKHR(device, get_fd_info, pFd))
     pFd[]
 end
@@ -92099,7 +92099,7 @@ Arguments:
 
 """
 function _get_fence_fd_khr(device, get_fd_info::_FenceGetFdInfoKHR)::ResultTypes.Result{Int, VulkanError}
-    pFd = Ref{Int}()
+    pFd = Ref{Cint}()
     @check @dispatch(device, vkGetFenceFdKHR(device, get_fd_info, pFd))
     pFd[]
 end
@@ -99287,7 +99287,7 @@ function _get_memory_win_32_handle_properties_khr(device, handle_type::ExternalM
 end
 
 function _get_memory_fd_khr(device, get_fd_info::_MemoryGetFdInfoKHR, fptr::FunctionPtr)::ResultTypes.Result{Int, VulkanError}
-    pFd = Ref{Int}()
+    pFd = Ref{Cint}()
     @check vkGetMemoryFdKHR(device, get_fd_info, pFd, fptr)
     pFd[]
 end
@@ -99315,7 +99315,7 @@ _get_semaphore_win_32_handle_khr(device, get_win_32_handle_info::_SemaphoreGetWi
 _import_semaphore_win_32_handle_khr(device, import_semaphore_win_32_handle_info::_ImportSemaphoreWin32HandleInfoKHR, fptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkImportSemaphoreWin32HandleKHR(device, import_semaphore_win_32_handle_info, fptr))
 
 function _get_semaphore_fd_khr(device, get_fd_info::_SemaphoreGetFdInfoKHR, fptr::FunctionPtr)::ResultTypes.Result{Int, VulkanError}
-    pFd = Ref{Int}()
+    pFd = Ref{Cint}()
     @check vkGetSemaphoreFdKHR(device, get_fd_info, pFd, fptr)
     pFd[]
 end
@@ -99333,7 +99333,7 @@ _get_fence_win_32_handle_khr(device, get_win_32_handle_info::_FenceGetWin32Handl
 _import_fence_win_32_handle_khr(device, import_fence_win_32_handle_info::_ImportFenceWin32HandleInfoKHR, fptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkImportFenceWin32HandleKHR(device, import_fence_win_32_handle_info, fptr))
 
 function _get_fence_fd_khr(device, get_fd_info::_FenceGetFdInfoKHR, fptr::FunctionPtr)::ResultTypes.Result{Int, VulkanError}
-    pFd = Ref{Int}()
+    pFd = Ref{Cint}()
     @check vkGetFenceFdKHR(device, get_fd_info, pFd, fptr)
     pFd[]
 end

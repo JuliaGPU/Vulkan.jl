@@ -91591,7 +91591,7 @@ Arguments:
 
 """
 function _get_memory_fd_khr(device, get_fd_info::_MemoryGetFdInfoKHR)::ResultTypes.Result{Int, VulkanError}
-    pFd = Ref{Int}()
+    pFd = Ref{Cint}()
     @check @dispatch(device, vkGetMemoryFdKHR(device, get_fd_info, pFd))
     pFd[]
 end
@@ -91668,7 +91668,7 @@ Arguments:
 
 """
 function _get_semaphore_fd_khr(device, get_fd_info::_SemaphoreGetFdInfoKHR)::ResultTypes.Result{Int, VulkanError}
-    pFd = Ref{Int}()
+    pFd = Ref{Cint}()
     @check @dispatch(device, vkGetSemaphoreFdKHR(device, get_fd_info, pFd))
     pFd[]
 end
@@ -91720,7 +91720,7 @@ Arguments:
 
 """
 function _get_fence_fd_khr(device, get_fd_info::_FenceGetFdInfoKHR)::ResultTypes.Result{Int, VulkanError}
-    pFd = Ref{Int}()
+    pFd = Ref{Cint}()
     @check @dispatch(device, vkGetFenceFdKHR(device, get_fd_info, pFd))
     pFd[]
 end
@@ -98871,7 +98871,7 @@ function _get_physical_device_external_buffer_properties(physical_device, extern
 end
 
 function _get_memory_fd_khr(device, get_fd_info::_MemoryGetFdInfoKHR, fptr::FunctionPtr)::ResultTypes.Result{Int, VulkanError}
-    pFd = Ref{Int}()
+    pFd = Ref{Cint}()
     @check vkGetMemoryFdKHR(device, get_fd_info, pFd, fptr)
     pFd[]
 end
@@ -98895,7 +98895,7 @@ function _get_physical_device_external_semaphore_properties(physical_device, ext
 end
 
 function _get_semaphore_fd_khr(device, get_fd_info::_SemaphoreGetFdInfoKHR, fptr::FunctionPtr)::ResultTypes.Result{Int, VulkanError}
-    pFd = Ref{Int}()
+    pFd = Ref{Cint}()
     @check vkGetSemaphoreFdKHR(device, get_fd_info, pFd, fptr)
     pFd[]
 end
@@ -98909,7 +98909,7 @@ function _get_physical_device_external_fence_properties(physical_device, externa
 end
 
 function _get_fence_fd_khr(device, get_fd_info::_FenceGetFdInfoKHR, fptr::FunctionPtr)::ResultTypes.Result{Int, VulkanError}
-    pFd = Ref{Int}()
+    pFd = Ref{Cint}()
     @check vkGetFenceFdKHR(device, get_fd_info, pFd, fptr)
     pFd[]
 end

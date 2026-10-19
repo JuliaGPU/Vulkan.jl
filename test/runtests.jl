@@ -10,5 +10,6 @@ using Accessors: @set
     include("formats.jl")
     @test Vulkan.precompile_workload()
     include("extensions.jl")
+    include("external_fd.jl")
     VERSION ≥ v"1.12" && include("doctests.jl")
 end;
