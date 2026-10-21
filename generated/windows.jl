@@ -89528,7 +89528,7 @@ Arguments:
 
 """
 function _create_pipeline_binaries_khr(device, create_info::_PipelineBinaryCreateInfoKHR; allocator = C_NULL)::ResultTypes.Result{Tuple{_PipelineBinaryHandlesInfoKHR, Result}, VulkanError}
-    pBinaries = Ref{VkPipelineBinaryHandlesInfoKHR}()
+    pBinaries = Ref(initialize_core(VkPipelineBinaryHandlesInfoKHR, []))
     @check @dispatch(device, vkCreatePipelineBinariesKHR(device, create_info, allocator, pBinaries))
     (from_vk(_PipelineBinaryHandlesInfoKHR, pBinaries[]), _return_code)
 end
@@ -89562,7 +89562,7 @@ Arguments:
 
 """
 function _get_pipeline_key_khr(device; pipeline_create_info = C_NULL)::ResultTypes.Result{_PipelineBinaryKeyKHR, VulkanError}
-    pPipelineKey = Ref{VkPipelineBinaryKeyKHR}()
+    pPipelineKey = Ref(initialize_core(VkPipelineBinaryKeyKHR, []))
     @check @dispatch(device, vkGetPipelineKeyKHR(device, pipeline_create_info, pPipelineKey))
     from_vk(_PipelineBinaryKeyKHR, pPipelineKey[])
 end
@@ -91839,7 +91839,7 @@ Arguments:
 
 """
 function _get_physical_device_external_buffer_properties(physical_device, external_buffer_info::_PhysicalDeviceExternalBufferInfo)::_ExternalBufferProperties
-    pExternalBufferProperties = Ref{VkExternalBufferProperties}()
+    pExternalBufferProperties = Ref(initialize_core(VkExternalBufferProperties, []))
     @dispatch instance(physical_device) vkGetPhysicalDeviceExternalBufferProperties(physical_device, external_buffer_info, pExternalBufferProperties)
     from_vk(_ExternalBufferProperties, pExternalBufferProperties[])
 end
@@ -91879,7 +91879,7 @@ Arguments:
 
 """
 function _get_memory_win_32_handle_properties_khr(device, handle_type::ExternalMemoryHandleTypeFlag, handle::vk.HANDLE)::ResultTypes.Result{_MemoryWin32HandlePropertiesKHR, VulkanError}
-    pMemoryWin32HandleProperties = Ref{VkMemoryWin32HandlePropertiesKHR}()
+    pMemoryWin32HandleProperties = Ref(initialize_core(VkMemoryWin32HandlePropertiesKHR, []))
     @check @dispatch(device, vkGetMemoryWin32HandlePropertiesKHR(device, VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)), handle, pMemoryWin32HandleProperties))
     from_vk(_MemoryWin32HandlePropertiesKHR, pMemoryWin32HandleProperties[])
 end
@@ -91922,7 +91922,7 @@ Arguments:
 
 """
 function _get_memory_fd_properties_khr(device, handle_type::ExternalMemoryHandleTypeFlag, fd::Integer)::ResultTypes.Result{_MemoryFdPropertiesKHR, VulkanError}
-    pMemoryFdProperties = Ref{VkMemoryFdPropertiesKHR}()
+    pMemoryFdProperties = Ref(initialize_core(VkMemoryFdPropertiesKHR, []))
     @check @dispatch(device, vkGetMemoryFdPropertiesKHR(device, VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)), fd, pMemoryFdProperties))
     from_vk(_MemoryFdPropertiesKHR, pMemoryFdProperties[])
 end
@@ -91956,7 +91956,7 @@ Arguments:
 
 """
 function _get_physical_device_external_semaphore_properties(physical_device, external_semaphore_info::_PhysicalDeviceExternalSemaphoreInfo)::_ExternalSemaphoreProperties
-    pExternalSemaphoreProperties = Ref{VkExternalSemaphoreProperties}()
+    pExternalSemaphoreProperties = Ref(initialize_core(VkExternalSemaphoreProperties, []))
     @dispatch instance(physical_device) vkGetPhysicalDeviceExternalSemaphoreProperties(physical_device, external_semaphore_info, pExternalSemaphoreProperties)
     from_vk(_ExternalSemaphoreProperties, pExternalSemaphoreProperties[])
 end
@@ -92043,7 +92043,7 @@ Arguments:
 
 """
 function _get_physical_device_external_fence_properties(physical_device, external_fence_info::_PhysicalDeviceExternalFenceInfo)::_ExternalFenceProperties
-    pExternalFenceProperties = Ref{VkExternalFenceProperties}()
+    pExternalFenceProperties = Ref(initialize_core(VkExternalFenceProperties, []))
     @dispatch instance(physical_device) vkGetPhysicalDeviceExternalFenceProperties(physical_device, external_fence_info, pExternalFenceProperties)
     from_vk(_ExternalFenceProperties, pExternalFenceProperties[])
 end
@@ -92282,7 +92282,7 @@ Arguments:
 
 """
 function _get_physical_device_surface_capabilities_2_ext(physical_device, surface)::ResultTypes.Result{_SurfaceCapabilities2EXT, VulkanError}
-    pSurfaceCapabilities = Ref{VkSurfaceCapabilities2EXT}()
+    pSurfaceCapabilities = Ref(initialize_core(VkSurfaceCapabilities2EXT, []))
     @check @dispatch(instance(physical_device), vkGetPhysicalDeviceSurfaceCapabilities2EXT(physical_device, surface, pSurfaceCapabilities))
     from_vk(_SurfaceCapabilities2EXT, pSurfaceCapabilities[])
 end
@@ -92382,7 +92382,7 @@ Arguments:
 
 """
 function _get_device_group_present_capabilities_khr(device)::ResultTypes.Result{_DeviceGroupPresentCapabilitiesKHR, VulkanError}
-    pDeviceGroupPresentCapabilities = Ref{VkDeviceGroupPresentCapabilitiesKHR}()
+    pDeviceGroupPresentCapabilities = Ref(initialize_core(VkDeviceGroupPresentCapabilitiesKHR, []))
     @check @dispatch(device, vkGetDeviceGroupPresentCapabilitiesKHR(device, pDeviceGroupPresentCapabilities))
     from_vk(_DeviceGroupPresentCapabilitiesKHR, pDeviceGroupPresentCapabilities[])
 end
@@ -92692,7 +92692,7 @@ Arguments:
 
 """
 function _get_physical_device_multisample_properties_ext(physical_device, samples::SampleCountFlag)::_MultisamplePropertiesEXT
-    pMultisampleProperties = Ref{VkMultisamplePropertiesEXT}()
+    pMultisampleProperties = Ref(initialize_core(VkMultisamplePropertiesEXT, []))
     @dispatch instance(physical_device) vkGetPhysicalDeviceMultisamplePropertiesEXT(physical_device, VkSampleCountFlagBits(flag_value(samples)), pMultisampleProperties)
     from_vk(_MultisamplePropertiesEXT, pMultisampleProperties[])
 end
@@ -92838,7 +92838,7 @@ Arguments:
 
 """
 function _get_display_plane_capabilities_2_khr(physical_device, display_plane_info::_DisplayPlaneInfo2KHR)::ResultTypes.Result{_DisplayPlaneCapabilities2KHR, VulkanError}
-    pCapabilities = Ref{VkDisplayPlaneCapabilities2KHR}()
+    pCapabilities = Ref(initialize_core(VkDisplayPlaneCapabilities2KHR, []))
     @check @dispatch(instance(physical_device), vkGetDisplayPlaneCapabilities2KHR(physical_device, display_plane_info, pCapabilities))
     from_vk(_DisplayPlaneCapabilities2KHR, pCapabilities[])
 end
@@ -93363,7 +93363,7 @@ Arguments:
 
 """
 function _get_memory_host_pointer_properties_ext(device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid})::ResultTypes.Result{_MemoryHostPointerPropertiesEXT, VulkanError}
-    pMemoryHostPointerProperties = Ref{VkMemoryHostPointerPropertiesEXT}()
+    pMemoryHostPointerProperties = Ref(initialize_core(VkMemoryHostPointerPropertiesEXT, []))
     @check @dispatch(device, vkGetMemoryHostPointerPropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)), host_pointer, pMemoryHostPointerProperties))
     from_vk(_MemoryHostPointerPropertiesEXT, pMemoryHostPointerProperties[])
 end
@@ -94309,7 +94309,7 @@ Arguments:
 
 """
 function _get_cluster_acceleration_structure_build_sizes_nv(device, info::_ClusterAccelerationStructureInputInfoNV)::_AccelerationStructureBuildSizesInfoKHR
-    pSizeInfo = Ref{VkAccelerationStructureBuildSizesInfoKHR}()
+    pSizeInfo = Ref(initialize_core(VkAccelerationStructureBuildSizesInfoKHR, []))
     @dispatch device vkGetClusterAccelerationStructureBuildSizesNV(device, info, pSizeInfo)
     from_vk(_AccelerationStructureBuildSizesInfoKHR, pSizeInfo[])
 end
@@ -94407,7 +94407,7 @@ Arguments:
 
 """
 function _get_image_view_address_nvx(device, image_view)::ResultTypes.Result{_ImageViewAddressPropertiesNVX, VulkanError}
-    pProperties = Ref{VkImageViewAddressPropertiesNVX}()
+    pProperties = Ref(initialize_core(VkImageViewAddressPropertiesNVX, []))
     @check @dispatch(device, vkGetImageViewAddressNVX(device, image_view, pProperties))
     from_vk(_ImageViewAddressPropertiesNVX, pProperties[])
 end
@@ -94584,7 +94584,7 @@ Arguments:
 
 """
 function _get_image_drm_format_modifier_properties_ext(device, image)::ResultTypes.Result{_ImageDrmFormatModifierPropertiesEXT, VulkanError}
-    pProperties = Ref{VkImageDrmFormatModifierPropertiesEXT}()
+    pProperties = Ref(initialize_core(VkImageDrmFormatModifierPropertiesEXT, []))
     @check @dispatch(device, vkGetImageDrmFormatModifierPropertiesEXT(device, image, pProperties))
     from_vk(_ImageDrmFormatModifierPropertiesEXT, pProperties[])
 end
@@ -95898,7 +95898,7 @@ Arguments:
 
 """
 function _get_acceleration_structure_build_sizes_khr(device, build_type::AccelerationStructureBuildTypeKHR, build_info::_AccelerationStructureBuildGeometryInfoKHR; max_primitive_counts = C_NULL)::_AccelerationStructureBuildSizesInfoKHR
-    pSizeInfo = Ref{VkAccelerationStructureBuildSizesInfoKHR}()
+    pSizeInfo = Ref(initialize_core(VkAccelerationStructureBuildSizesInfoKHR, []))
     @dispatch device vkGetAccelerationStructureBuildSizesKHR(device, build_type, build_info, max_primitive_counts, pSizeInfo)
     from_vk(_AccelerationStructureBuildSizesInfoKHR, pSizeInfo[])
 end
@@ -96452,7 +96452,7 @@ Arguments:
 
 """
 function _get_partitioned_acceleration_structures_build_sizes_nv(device, info::_PartitionedAccelerationStructureInstancesInputNV)::_AccelerationStructureBuildSizesInfoKHR
-    pSizeInfo = Ref{VkAccelerationStructureBuildSizesInfoKHR}()
+    pSizeInfo = Ref(initialize_core(VkAccelerationStructureBuildSizesInfoKHR, []))
     @dispatch device vkGetPartitionedAccelerationStructuresBuildSizesNV(device, info, pSizeInfo)
     from_vk(_AccelerationStructureBuildSizesInfoKHR, pSizeInfo[])
 end
@@ -96893,7 +96893,7 @@ Arguments:
 
 """
 function _get_descriptor_set_layout_host_mapping_info_valve(device, binding_reference::_DescriptorSetBindingReferenceVALVE)::_DescriptorSetLayoutHostMappingInfoVALVE
-    pHostMapping = Ref{VkDescriptorSetLayoutHostMappingInfoVALVE}()
+    pHostMapping = Ref(initialize_core(VkDescriptorSetLayoutHostMappingInfoVALVE, []))
     @dispatch device vkGetDescriptorSetLayoutHostMappingInfoVALVE(device, binding_reference, pHostMapping)
     from_vk(_DescriptorSetLayoutHostMappingInfoVALVE, pHostMapping[])
 end
@@ -97144,7 +97144,7 @@ Arguments:
 
 """
 function _get_micromap_build_sizes_ext(device, build_type::AccelerationStructureBuildTypeKHR, build_info::_MicromapBuildInfoEXT)::_MicromapBuildSizesInfoEXT
-    pSizeInfo = Ref{VkMicromapBuildSizesInfoEXT}()
+    pSizeInfo = Ref(initialize_core(VkMicromapBuildSizesInfoEXT, []))
     @dispatch device vkGetMicromapBuildSizesEXT(device, build_type, build_info, pSizeInfo)
     from_vk(_MicromapBuildSizesInfoEXT, pSizeInfo[])
 end
@@ -97160,7 +97160,7 @@ Arguments:
 
 """
 function _get_shader_module_identifier_ext(device, shader_module)::_ShaderModuleIdentifierEXT
-    pIdentifier = Ref{VkShaderModuleIdentifierEXT}()
+    pIdentifier = Ref(initialize_core(VkShaderModuleIdentifierEXT, []))
     @dispatch device vkGetShaderModuleIdentifierEXT(device, shader_module, pIdentifier)
     from_vk(_ShaderModuleIdentifierEXT, pIdentifier[])
 end
@@ -97176,7 +97176,7 @@ Arguments:
 
 """
 function _get_shader_module_create_info_identifier_ext(device, create_info::_ShaderModuleCreateInfo)::_ShaderModuleIdentifierEXT
-    pIdentifier = Ref{VkShaderModuleIdentifierEXT}()
+    pIdentifier = Ref(initialize_core(VkShaderModuleIdentifierEXT, []))
     @dispatch device vkGetShaderModuleCreateInfoIdentifierEXT(device, create_info, pIdentifier)
     from_vk(_ShaderModuleIdentifierEXT, pIdentifier[])
 end
@@ -97263,7 +97263,7 @@ Arguments:
 
 """
 function _get_dynamic_rendering_tile_properties_qcom(device, rendering_info::_RenderingInfo)::_TilePropertiesQCOM
-    pProperties = Ref{VkTilePropertiesQCOM}()
+    pProperties = Ref(initialize_core(VkTilePropertiesQCOM, []))
     @dispatch device vkGetDynamicRenderingTilePropertiesQCOM(device, rendering_info, pProperties)
     from_vk(_TilePropertiesQCOM, pProperties[])
 end
@@ -97379,8 +97379,8 @@ Arguments:
 
 """
 function _get_device_fault_info_ext(device)::ResultTypes.Result{Tuple{_DeviceFaultCountsEXT, _DeviceFaultInfoEXT}, VulkanError}
-    pFaultCounts = Ref{VkDeviceFaultCountsEXT}()
-    pFaultInfo = Ref{VkDeviceFaultInfoEXT}()
+    pFaultCounts = Ref(initialize_core(VkDeviceFaultCountsEXT, []))
+    pFaultInfo = Ref(initialize_core(VkDeviceFaultInfoEXT, []))
     @check @dispatch(device, vkGetDeviceFaultInfoEXT(device, pFaultCounts, pFaultInfo))
     (from_vk(_DeviceFaultCountsEXT, pFaultCounts[]), from_vk(_DeviceFaultInfoEXT, pFaultInfo[]))
 end
@@ -97694,7 +97694,7 @@ Arguments:
 
 """
 function _get_latency_timings_nv(device, swapchain)::_GetLatencyMarkerInfoNV
-    pLatencyMarkerInfo = Ref{VkGetLatencyMarkerInfoNV}()
+    pLatencyMarkerInfo = Ref(initialize_core(VkGetLatencyMarkerInfoNV, []))
     @dispatch device vkGetLatencyTimingsNV(device, swapchain, pLatencyMarkerInfo)
     from_vk(_GetLatencyMarkerInfoNV, pLatencyMarkerInfo[])
 end
@@ -97904,7 +97904,7 @@ Arguments:
 
 """
 function _get_external_compute_queue_data_nv(external_queue)::Tuple{_ExternalComputeQueueDataParamsNV, Ptr{Cvoid}}
-    params = Ref{VkExternalComputeQueueDataParamsNV}()
+    params = Ref(initialize_core(VkExternalComputeQueueDataParamsNV, []))
     pData = Ref{Ptr{Cvoid}}()
     @dispatch device(external_queue) vkGetExternalComputeQueueDataNV(external_queue, params, pData)
     (from_vk(_ExternalComputeQueueDataParamsNV, params[]), pData[])
@@ -98108,7 +98108,7 @@ Arguments:
 
 """
 function _get_physical_device_external_tensor_properties_arm(physical_device, external_tensor_info::_PhysicalDeviceExternalTensorInfoARM)::_ExternalTensorPropertiesARM
-    pExternalTensorProperties = Ref{VkExternalTensorPropertiesARM}()
+    pExternalTensorProperties = Ref(initialize_core(VkExternalTensorPropertiesARM, []))
     @dispatch instance(physical_device) vkGetPhysicalDeviceExternalTensorPropertiesARM(physical_device, external_tensor_info, pExternalTensorProperties)
     from_vk(_ExternalTensorPropertiesARM, pExternalTensorProperties[])
 end
@@ -98336,7 +98336,7 @@ Arguments:
 
 """
 function _get_physical_device_queue_family_data_graph_processing_engine_properties_arm(physical_device, queue_family_data_graph_processing_engine_info::_PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM)::_QueueFamilyDataGraphProcessingEnginePropertiesARM
-    pQueueFamilyDataGraphProcessingEngineProperties = Ref{VkQueueFamilyDataGraphProcessingEnginePropertiesARM}()
+    pQueueFamilyDataGraphProcessingEngineProperties = Ref(initialize_core(VkQueueFamilyDataGraphProcessingEnginePropertiesARM, []))
     @dispatch instance(physical_device) vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM(physical_device, queue_family_data_graph_processing_engine_info, pQueueFamilyDataGraphProcessingEngineProperties)
     from_vk(_QueueFamilyDataGraphProcessingEnginePropertiesARM, pQueueFamilyDataGraphProcessingEngineProperties[])
 end
@@ -98678,7 +98678,7 @@ end
 _merge_pipeline_caches(device, dst_cache, src_caches::AbstractArray, fptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkMergePipelineCaches(device, dst_cache, pointer_length(src_caches), src_caches, fptr))
 
 function _create_pipeline_binaries_khr(device, create_info::_PipelineBinaryCreateInfoKHR, fptr_create::FunctionPtr, fptr_destroy::FunctionPtr; allocator = C_NULL)::ResultTypes.Result{Tuple{_PipelineBinaryHandlesInfoKHR, Result}, VulkanError}
-    pBinaries = Ref{VkPipelineBinaryHandlesInfoKHR}()
+    pBinaries = Ref(initialize_core(VkPipelineBinaryHandlesInfoKHR, []))
     @check vkCreatePipelineBinariesKHR(device, create_info, allocator, pBinaries, fptr_create)
     (from_vk(_PipelineBinaryHandlesInfoKHR, pBinaries[]), _return_code)
 end
@@ -98686,7 +98686,7 @@ end
 _destroy_pipeline_binary_khr(device, pipeline_binary, fptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyPipelineBinaryKHR(device, pipeline_binary, allocator, fptr)
 
 function _get_pipeline_key_khr(device, fptr::FunctionPtr; pipeline_create_info = C_NULL)::ResultTypes.Result{_PipelineBinaryKeyKHR, VulkanError}
-    pPipelineKey = Ref{VkPipelineBinaryKeyKHR}()
+    pPipelineKey = Ref(initialize_core(VkPipelineBinaryKeyKHR, []))
     @check vkGetPipelineKeyKHR(device, pipeline_create_info, pPipelineKey, fptr)
     from_vk(_PipelineBinaryKeyKHR, pPipelineKey[])
 end
@@ -99273,7 +99273,7 @@ _cmd_push_descriptor_set(command_buffer, pipeline_bind_point::PipelineBindPoint,
 _trim_command_pool(device, command_pool, fptr::FunctionPtr; flags = 0)::Cvoid = vkTrimCommandPool(device, command_pool, flags, fptr)
 
 function _get_physical_device_external_buffer_properties(physical_device, external_buffer_info::_PhysicalDeviceExternalBufferInfo, fptr::FunctionPtr)::_ExternalBufferProperties
-    pExternalBufferProperties = Ref{VkExternalBufferProperties}()
+    pExternalBufferProperties = Ref(initialize_core(VkExternalBufferProperties, []))
     vkGetPhysicalDeviceExternalBufferProperties(physical_device, external_buffer_info, pExternalBufferProperties, fptr)
     from_vk(_ExternalBufferProperties, pExternalBufferProperties[])
 end
@@ -99281,7 +99281,7 @@ end
 _get_memory_win_32_handle_khr(device, get_win_32_handle_info::_MemoryGetWin32HandleInfoKHR, handle::vk.HANDLE, fptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkGetMemoryWin32HandleKHR(device, get_win_32_handle_info, to_vk(Ptr{vk.HANDLE}, handle), fptr))
 
 function _get_memory_win_32_handle_properties_khr(device, handle_type::ExternalMemoryHandleTypeFlag, handle::vk.HANDLE, fptr::FunctionPtr)::ResultTypes.Result{_MemoryWin32HandlePropertiesKHR, VulkanError}
-    pMemoryWin32HandleProperties = Ref{VkMemoryWin32HandlePropertiesKHR}()
+    pMemoryWin32HandleProperties = Ref(initialize_core(VkMemoryWin32HandlePropertiesKHR, []))
     @check vkGetMemoryWin32HandlePropertiesKHR(device, VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)), handle, pMemoryWin32HandleProperties, fptr)
     from_vk(_MemoryWin32HandlePropertiesKHR, pMemoryWin32HandleProperties[])
 end
@@ -99293,7 +99293,7 @@ function _get_memory_fd_khr(device, get_fd_info::_MemoryGetFdInfoKHR, fptr::Func
 end
 
 function _get_memory_fd_properties_khr(device, handle_type::ExternalMemoryHandleTypeFlag, fd::Integer, fptr::FunctionPtr)::ResultTypes.Result{_MemoryFdPropertiesKHR, VulkanError}
-    pMemoryFdProperties = Ref{VkMemoryFdPropertiesKHR}()
+    pMemoryFdProperties = Ref(initialize_core(VkMemoryFdPropertiesKHR, []))
     @check vkGetMemoryFdPropertiesKHR(device, VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)), fd, pMemoryFdProperties, fptr)
     from_vk(_MemoryFdPropertiesKHR, pMemoryFdProperties[])
 end
@@ -99305,7 +99305,7 @@ function _get_memory_remote_address_nv(device, memory_get_remote_address_info::_
 end
 
 function _get_physical_device_external_semaphore_properties(physical_device, external_semaphore_info::_PhysicalDeviceExternalSemaphoreInfo, fptr::FunctionPtr)::_ExternalSemaphoreProperties
-    pExternalSemaphoreProperties = Ref{VkExternalSemaphoreProperties}()
+    pExternalSemaphoreProperties = Ref(initialize_core(VkExternalSemaphoreProperties, []))
     vkGetPhysicalDeviceExternalSemaphoreProperties(physical_device, external_semaphore_info, pExternalSemaphoreProperties, fptr)
     from_vk(_ExternalSemaphoreProperties, pExternalSemaphoreProperties[])
 end
@@ -99323,7 +99323,7 @@ end
 _import_semaphore_fd_khr(device, import_semaphore_fd_info::_ImportSemaphoreFdInfoKHR, fptr::FunctionPtr)::ResultTypes.Result{Result, VulkanError} = @check(vkImportSemaphoreFdKHR(device, import_semaphore_fd_info, fptr))
 
 function _get_physical_device_external_fence_properties(physical_device, external_fence_info::_PhysicalDeviceExternalFenceInfo, fptr::FunctionPtr)::_ExternalFenceProperties
-    pExternalFenceProperties = Ref{VkExternalFenceProperties}()
+    pExternalFenceProperties = Ref(initialize_core(VkExternalFenceProperties, []))
     vkGetPhysicalDeviceExternalFenceProperties(physical_device, external_fence_info, pExternalFenceProperties, fptr)
     from_vk(_ExternalFenceProperties, pExternalFenceProperties[])
 end
@@ -99380,7 +99380,7 @@ function _get_swapchain_counter_ext(device, swapchain, counter::SurfaceCounterFl
 end
 
 function _get_physical_device_surface_capabilities_2_ext(physical_device, surface, fptr::FunctionPtr)::ResultTypes.Result{_SurfaceCapabilities2EXT, VulkanError}
-    pSurfaceCapabilities = Ref{VkSurfaceCapabilities2EXT}()
+    pSurfaceCapabilities = Ref(initialize_core(VkSurfaceCapabilities2EXT, []))
     @check vkGetPhysicalDeviceSurfaceCapabilities2EXT(physical_device, surface, pSurfaceCapabilities, fptr)
     from_vk(_SurfaceCapabilities2EXT, pSurfaceCapabilities[])
 end
@@ -99408,7 +99408,7 @@ _bind_image_memory_2(device, bind_infos::AbstractArray, fptr::FunctionPtr)::Resu
 _cmd_set_device_mask(command_buffer, device_mask::Integer, fptr::FunctionPtr)::Cvoid = vkCmdSetDeviceMask(command_buffer, device_mask, fptr)
 
 function _get_device_group_present_capabilities_khr(device, fptr::FunctionPtr)::ResultTypes.Result{_DeviceGroupPresentCapabilitiesKHR, VulkanError}
-    pDeviceGroupPresentCapabilities = Ref{VkDeviceGroupPresentCapabilitiesKHR}()
+    pDeviceGroupPresentCapabilities = Ref(initialize_core(VkDeviceGroupPresentCapabilitiesKHR, []))
     @check vkGetDeviceGroupPresentCapabilitiesKHR(device, pDeviceGroupPresentCapabilities, fptr)
     from_vk(_DeviceGroupPresentCapabilitiesKHR, pDeviceGroupPresentCapabilities[])
 end
@@ -99483,7 +99483,7 @@ _cmd_set_discard_rectangle_mode_ext(command_buffer, discard_rectangle_mode::Disc
 _cmd_set_sample_locations_ext(command_buffer, sample_locations_info::_SampleLocationsInfoEXT, fptr::FunctionPtr)::Cvoid = vkCmdSetSampleLocationsEXT(command_buffer, sample_locations_info, fptr)
 
 function _get_physical_device_multisample_properties_ext(physical_device, samples::SampleCountFlag, fptr::FunctionPtr)::_MultisamplePropertiesEXT
-    pMultisampleProperties = Ref{VkMultisamplePropertiesEXT}()
+    pMultisampleProperties = Ref(initialize_core(VkMultisamplePropertiesEXT, []))
     vkGetPhysicalDeviceMultisamplePropertiesEXT(physical_device, VkSampleCountFlagBits(flag_value(samples)), pMultisampleProperties, fptr)
     from_vk(_MultisamplePropertiesEXT, pMultisampleProperties[])
 end
@@ -99538,7 +99538,7 @@ function _get_display_mode_properties_2_khr(physical_device, display, fptr::Func
 end
 
 function _get_display_plane_capabilities_2_khr(physical_device, display_plane_info::_DisplayPlaneInfo2KHR, fptr::FunctionPtr)::ResultTypes.Result{_DisplayPlaneCapabilities2KHR, VulkanError}
-    pCapabilities = Ref{VkDisplayPlaneCapabilities2KHR}()
+    pCapabilities = Ref(initialize_core(VkDisplayPlaneCapabilities2KHR, []))
     @check vkGetDisplayPlaneCapabilities2KHR(physical_device, display_plane_info, pCapabilities, fptr)
     from_vk(_DisplayPlaneCapabilities2KHR, pCapabilities[])
 end
@@ -99709,7 +99709,7 @@ _destroy_debug_utils_messenger_ext(instance, messenger, fptr::FunctionPtr; alloc
 _submit_debug_utils_message_ext(instance, message_severity::DebugUtilsMessageSeverityFlagEXT, message_types::DebugUtilsMessageTypeFlagEXT, callback_data::_DebugUtilsMessengerCallbackDataEXT, fptr::FunctionPtr)::Cvoid = vkSubmitDebugUtilsMessageEXT(instance, VkDebugUtilsMessageSeverityFlagBitsEXT(flag_value(message_severity)), message_types, callback_data, fptr)
 
 function _get_memory_host_pointer_properties_ext(device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid}, fptr::FunctionPtr)::ResultTypes.Result{_MemoryHostPointerPropertiesEXT, VulkanError}
-    pMemoryHostPointerProperties = Ref{VkMemoryHostPointerPropertiesEXT}()
+    pMemoryHostPointerProperties = Ref(initialize_core(VkMemoryHostPointerPropertiesEXT, []))
     @check vkGetMemoryHostPointerPropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)), host_pointer, pMemoryHostPointerProperties, fptr)
     from_vk(_MemoryHostPointerPropertiesEXT, pMemoryHostPointerProperties[])
 end
@@ -99879,7 +99879,7 @@ _cmd_trace_rays_indirect_khr(command_buffer, raygen_shader_binding_table::_Strid
 _cmd_trace_rays_indirect_2_khr(command_buffer, indirect_device_address::Integer, fptr::FunctionPtr)::Cvoid = vkCmdTraceRaysIndirect2KHR(command_buffer, indirect_device_address, fptr)
 
 function _get_cluster_acceleration_structure_build_sizes_nv(device, info::_ClusterAccelerationStructureInputInfoNV, fptr::FunctionPtr)::_AccelerationStructureBuildSizesInfoKHR
-    pSizeInfo = Ref{VkAccelerationStructureBuildSizesInfoKHR}()
+    pSizeInfo = Ref(initialize_core(VkAccelerationStructureBuildSizesInfoKHR, []))
     vkGetClusterAccelerationStructureBuildSizesNV(device, info, pSizeInfo, fptr)
     from_vk(_AccelerationStructureBuildSizesInfoKHR, pSizeInfo[])
 end
@@ -99901,7 +99901,7 @@ _get_image_view_handle_nvx(device, info::_ImageViewHandleInfoNVX, fptr::Function
 _get_image_view_handle_64_nvx(device, info::_ImageViewHandleInfoNVX, fptr::FunctionPtr)::UInt64 = vkGetImageViewHandle64NVX(device, info, fptr)
 
 function _get_image_view_address_nvx(device, image_view, fptr::FunctionPtr)::ResultTypes.Result{_ImageViewAddressPropertiesNVX, VulkanError}
-    pProperties = Ref{VkImageViewAddressPropertiesNVX}()
+    pProperties = Ref(initialize_core(VkImageViewAddressPropertiesNVX, []))
     @check vkGetImageViewAddressNVX(device, image_view, pProperties, fptr)
     from_vk(_ImageViewAddressPropertiesNVX, pProperties[])
 end
@@ -99948,7 +99948,7 @@ _acquire_profiling_lock_khr(device, info::_AcquireProfilingLockInfoKHR, fptr::Fu
 _release_profiling_lock_khr(device, fptr::FunctionPtr)::Cvoid = vkReleaseProfilingLockKHR(device, fptr)
 
 function _get_image_drm_format_modifier_properties_ext(device, image, fptr::FunctionPtr)::ResultTypes.Result{_ImageDrmFormatModifierPropertiesEXT, VulkanError}
-    pProperties = Ref{VkImageDrmFormatModifierPropertiesEXT}()
+    pProperties = Ref(initialize_core(VkImageDrmFormatModifierPropertiesEXT, []))
     @check vkGetImageDrmFormatModifierPropertiesEXT(device, image, pProperties, fptr)
     from_vk(_ImageDrmFormatModifierPropertiesEXT, pProperties[])
 end
@@ -100237,7 +100237,7 @@ end
 _cmd_set_fragment_shading_rate_enum_nv(command_buffer, shading_rate::FragmentShadingRateNV, combiner_ops::NTuple{2, FragmentShadingRateCombinerOpKHR}, fptr::FunctionPtr)::Cvoid = vkCmdSetFragmentShadingRateEnumNV(command_buffer, shading_rate, to_vk(NTuple{2, VkFragmentShadingRateCombinerOpKHR}, combiner_ops), fptr)
 
 function _get_acceleration_structure_build_sizes_khr(device, build_type::AccelerationStructureBuildTypeKHR, build_info::_AccelerationStructureBuildGeometryInfoKHR, fptr::FunctionPtr; max_primitive_counts = C_NULL)::_AccelerationStructureBuildSizesInfoKHR
-    pSizeInfo = Ref{VkAccelerationStructureBuildSizesInfoKHR}()
+    pSizeInfo = Ref(initialize_core(VkAccelerationStructureBuildSizesInfoKHR, []))
     vkGetAccelerationStructureBuildSizesKHR(device, build_type, build_info, max_primitive_counts, pSizeInfo, fptr)
     from_vk(_AccelerationStructureBuildSizesInfoKHR, pSizeInfo[])
 end
@@ -100365,7 +100365,7 @@ _cmd_decompress_memory_nv(command_buffer, decompress_memory_regions::AbstractArr
 _cmd_decompress_memory_indirect_count_nv(command_buffer, indirect_commands_address::Integer, indirect_commands_count_address::Integer, stride::Integer, fptr::FunctionPtr)::Cvoid = vkCmdDecompressMemoryIndirectCountNV(command_buffer, indirect_commands_address, indirect_commands_count_address, stride, fptr)
 
 function _get_partitioned_acceleration_structures_build_sizes_nv(device, info::_PartitionedAccelerationStructureInstancesInputNV, fptr::FunctionPtr)::_AccelerationStructureBuildSizesInfoKHR
-    pSizeInfo = Ref{VkAccelerationStructureBuildSizesInfoKHR}()
+    pSizeInfo = Ref(initialize_core(VkAccelerationStructureBuildSizesInfoKHR, []))
     vkGetPartitionedAccelerationStructuresBuildSizesNV(device, info, pSizeInfo, fptr)
     from_vk(_AccelerationStructureBuildSizesInfoKHR, pSizeInfo[])
 end
@@ -100467,7 +100467,7 @@ _cmd_end_rendering(command_buffer, fptr::FunctionPtr)::Cvoid = vkCmdEndRendering
 _cmd_end_rendering_2_ext(command_buffer, fptr::FunctionPtr; rendering_end_info = C_NULL)::Cvoid = vkCmdEndRendering2EXT(command_buffer, rendering_end_info, fptr)
 
 function _get_descriptor_set_layout_host_mapping_info_valve(device, binding_reference::_DescriptorSetBindingReferenceVALVE, fptr::FunctionPtr)::_DescriptorSetLayoutHostMappingInfoVALVE
-    pHostMapping = Ref{VkDescriptorSetLayoutHostMappingInfoVALVE}()
+    pHostMapping = Ref(initialize_core(VkDescriptorSetLayoutHostMappingInfoVALVE, []))
     vkGetDescriptorSetLayoutHostMappingInfoVALVE(device, binding_reference, pHostMapping, fptr)
     from_vk(_DescriptorSetLayoutHostMappingInfoVALVE, pHostMapping[])
 end
@@ -100516,19 +100516,19 @@ function _get_device_micromap_compatibility_ext(device, version_info::_MicromapV
 end
 
 function _get_micromap_build_sizes_ext(device, build_type::AccelerationStructureBuildTypeKHR, build_info::_MicromapBuildInfoEXT, fptr::FunctionPtr)::_MicromapBuildSizesInfoEXT
-    pSizeInfo = Ref{VkMicromapBuildSizesInfoEXT}()
+    pSizeInfo = Ref(initialize_core(VkMicromapBuildSizesInfoEXT, []))
     vkGetMicromapBuildSizesEXT(device, build_type, build_info, pSizeInfo, fptr)
     from_vk(_MicromapBuildSizesInfoEXT, pSizeInfo[])
 end
 
 function _get_shader_module_identifier_ext(device, shader_module, fptr::FunctionPtr)::_ShaderModuleIdentifierEXT
-    pIdentifier = Ref{VkShaderModuleIdentifierEXT}()
+    pIdentifier = Ref(initialize_core(VkShaderModuleIdentifierEXT, []))
     vkGetShaderModuleIdentifierEXT(device, shader_module, pIdentifier, fptr)
     from_vk(_ShaderModuleIdentifierEXT, pIdentifier[])
 end
 
 function _get_shader_module_create_info_identifier_ext(device, create_info::_ShaderModuleCreateInfo, fptr::FunctionPtr)::_ShaderModuleIdentifierEXT
-    pIdentifier = Ref{VkShaderModuleIdentifierEXT}()
+    pIdentifier = Ref(initialize_core(VkShaderModuleIdentifierEXT, []))
     vkGetShaderModuleCreateInfoIdentifierEXT(device, create_info, pIdentifier, fptr)
     from_vk(_ShaderModuleIdentifierEXT, pIdentifier[])
 end
@@ -100561,7 +100561,7 @@ function _get_framebuffer_tile_properties_qcom(device, framebuffer, fptr::Functi
 end
 
 function _get_dynamic_rendering_tile_properties_qcom(device, rendering_info::_RenderingInfo, fptr::FunctionPtr)::_TilePropertiesQCOM
-    pProperties = Ref{VkTilePropertiesQCOM}()
+    pProperties = Ref(initialize_core(VkTilePropertiesQCOM, []))
     vkGetDynamicRenderingTilePropertiesQCOM(device, rendering_info, pProperties, fptr)
     from_vk(_TilePropertiesQCOM, pProperties[])
 end
@@ -100592,8 +100592,8 @@ _bind_optical_flow_session_image_nv(device, session, binding_point::OpticalFlowS
 _cmd_optical_flow_execute_nv(command_buffer, session, execute_info::_OpticalFlowExecuteInfoNV, fptr::FunctionPtr)::Cvoid = vkCmdOpticalFlowExecuteNV(command_buffer, session, execute_info, fptr)
 
 function _get_device_fault_info_ext(device, fptr::FunctionPtr)::ResultTypes.Result{Tuple{_DeviceFaultCountsEXT, _DeviceFaultInfoEXT}, VulkanError}
-    pFaultCounts = Ref{VkDeviceFaultCountsEXT}()
-    pFaultInfo = Ref{VkDeviceFaultInfoEXT}()
+    pFaultCounts = Ref(initialize_core(VkDeviceFaultCountsEXT, []))
+    pFaultInfo = Ref(initialize_core(VkDeviceFaultInfoEXT, []))
     @check vkGetDeviceFaultInfoEXT(device, pFaultCounts, pFaultInfo, fptr)
     (from_vk(_DeviceFaultCountsEXT, pFaultCounts[]), from_vk(_DeviceFaultInfoEXT, pFaultInfo[]))
 end
@@ -100677,7 +100677,7 @@ end
 _set_latency_marker_nv(device, swapchain, latency_marker_info::_SetLatencyMarkerInfoNV, fptr::FunctionPtr)::Cvoid = vkSetLatencyMarkerNV(device, swapchain, latency_marker_info, fptr)
 
 function _get_latency_timings_nv(device, swapchain, fptr::FunctionPtr)::_GetLatencyMarkerInfoNV
-    pLatencyMarkerInfo = Ref{VkGetLatencyMarkerInfoNV}()
+    pLatencyMarkerInfo = Ref(initialize_core(VkGetLatencyMarkerInfoNV, []))
     vkGetLatencyTimingsNV(device, swapchain, pLatencyMarkerInfo, fptr)
     from_vk(_GetLatencyMarkerInfoNV, pLatencyMarkerInfo[])
 end
@@ -100732,7 +100732,7 @@ end
 _destroy_external_compute_queue_nv(device, external_queue, fptr::FunctionPtr; allocator = C_NULL)::Cvoid = vkDestroyExternalComputeQueueNV(device, external_queue, allocator, fptr)
 
 function _get_external_compute_queue_data_nv(external_queue, fptr::FunctionPtr)::Tuple{_ExternalComputeQueueDataParamsNV, Ptr{Cvoid}}
-    params = Ref{VkExternalComputeQueueDataParamsNV}()
+    params = Ref(initialize_core(VkExternalComputeQueueDataParamsNV, []))
     pData = Ref{Ptr{Cvoid}}()
     vkGetExternalComputeQueueDataNV(external_queue, params, pData, fptr)
     (from_vk(_ExternalComputeQueueDataParamsNV, params[]), pData[])
@@ -100795,7 +100795,7 @@ function _get_tensor_view_opaque_capture_descriptor_data_arm(device, info::_Tens
 end
 
 function _get_physical_device_external_tensor_properties_arm(physical_device, external_tensor_info::_PhysicalDeviceExternalTensorInfoARM, fptr::FunctionPtr)::_ExternalTensorPropertiesARM
-    pExternalTensorProperties = Ref{VkExternalTensorPropertiesARM}()
+    pExternalTensorProperties = Ref(initialize_core(VkExternalTensorPropertiesARM, []))
     vkGetPhysicalDeviceExternalTensorPropertiesARM(physical_device, external_tensor_info, pExternalTensorProperties, fptr)
     from_vk(_ExternalTensorPropertiesARM, pExternalTensorProperties[])
 end
@@ -100870,7 +100870,7 @@ function _get_physical_device_queue_family_data_graph_properties_arm(physical_de
 end
 
 function _get_physical_device_queue_family_data_graph_processing_engine_properties_arm(physical_device, queue_family_data_graph_processing_engine_info::_PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM, fptr::FunctionPtr)::_QueueFamilyDataGraphProcessingEnginePropertiesARM
-    pQueueFamilyDataGraphProcessingEngineProperties = Ref{VkQueueFamilyDataGraphProcessingEnginePropertiesARM}()
+    pQueueFamilyDataGraphProcessingEngineProperties = Ref(initialize_core(VkQueueFamilyDataGraphProcessingEnginePropertiesARM, []))
     vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM(physical_device, queue_family_data_graph_processing_engine_info, pQueueFamilyDataGraphProcessingEngineProperties, fptr)
     from_vk(_QueueFamilyDataGraphProcessingEnginePropertiesARM, pQueueFamilyDataGraphProcessingEngineProperties[])
 end

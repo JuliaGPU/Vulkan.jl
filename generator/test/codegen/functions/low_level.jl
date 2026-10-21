@@ -1,4 +1,12 @@
 @testset "API functions" begin
+    test_ex(APIFunction(api.functions[:vkGetMemoryHostPointerPropertiesEXT], false), :(
+        function _get_memory_host_pointer_properties_ext(device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid})::ResultTypes.Result{_MemoryHostPointerPropertiesEXT,VulkanError}
+            pMemoryHostPointerProperties = Ref(initialize_core(VkMemoryHostPointerPropertiesEXT, []))
+            @check @dispatch device vkGetMemoryHostPointerPropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)), host_pointer, pMemoryHostPointerProperties)
+            from_vk(_MemoryHostPointerPropertiesEXT, pMemoryHostPointerProperties[])
+        end
+    ))
+
     test_ex(APIFunction(api.functions[:vkEnumeratePhysicalDevices], false), :(
         function _enumerate_physical_devices(instance)::ResultTypes.Result{Vector{PhysicalDevice},VulkanError}
             pPhysicalDeviceCount = Ref{UInt32}()

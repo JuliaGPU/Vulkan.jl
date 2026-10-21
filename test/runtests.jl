@@ -11,5 +11,6 @@ using Accessors: @set
     @test Vulkan.precompile_workload()
     include("extensions.jl")
     include("external_fd.jl")
+    include("host_pointer.jl")
     VERSION ≥ v"1.12" && include("doctests.jl")
 end;

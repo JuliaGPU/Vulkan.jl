@@ -28,7 +28,12 @@ function initialize_ptr(param::SpecFuncParam)
         GuardBy(is_arr) => :(Vector{$(layout_type(ptr_type(param.type)))}(undef, $(retrieve_length(param))))
         _ => @match param.type begin
             :(Ptr{Cvoid}) => :(Ref{Ptr{Cvoid}}())
-            _ => :(Ref{$(layout_type(ptr_type(param.type)))}())
+            _ => begin
+                T = layout_type(ptr_type(param.type))
+                # An output structure's sType/pNext are still inputs to Vulkan.
+                # Initialize singular outputs just as initialize_array does.
+                haskey(api.structure_types, T) ? :(Ref(initialize_core($T, []))) : :(Ref{$T}())
+            end
         end
     end
     :($(param.name) = $rhs)
