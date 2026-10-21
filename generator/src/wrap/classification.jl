@@ -15,6 +15,38 @@ function is_pointer_start(spec::Union{SpecStructMember, SpecFuncParam})
     end
 end
 
+"""
+    counts_a_fixed_array(x::SpecStructMember)
+
+Whether `x` is a length member counting a FIXED-SIZE array, so that dropping it
+loses the count for good.
+
+`is_inferable_length` means "recoverable from the other members", and for a
+pointer array it is: that becomes a `Vector` and `length` gives the count back,
+which is why the high-level struct drops such members. A fixed-size array carries
+no such information. `memoryTypes` is an `NTuple{32}` whatever `memoryTypeCount`
+says, so a high-level `PhysicalDeviceMemoryProperties` without the count reports
+32 memory types on a device that has 11, the other 21 zeroed and
+indistinguishable from real ones -- and no way left to ask.
+
+Four members in the specification, all of them in returned-only query structs
+where the count is the entire answer: both counts of
+`VkPhysicalDeviceMemoryProperties`, `VkPhysicalDeviceGroupProperties`'s
+`physicalDeviceCount` and `VkQueueFamilyGlobalPriorityProperties`'s
+`priorityCount`.
+"""
+function counts_a_fixed_array(x::SpecStructMember)
+    is_length(x) || return false
+    members = children(x.parent)
+    any(x.arglen) do arrayname
+        i = findfirst(==(arrayname), members.name)
+        isnothing(i) && return false
+        t = members[i].type
+        t isa Expr && t.head === :curly && t.args[1] === :NTuple
+    end
+end
+counts_a_fixed_array(::Spec) = false
+
 is_semantic_ptr(type) = is_ptr(type) || type == :Cstring
 needs_deps(spec::SpecStruct) = any(is_semantic_ptr, spec.members.type)
 "Whether it makes sense to return a success code (i.e. when there are possible errors or non-`SUCCESS` success codes)."

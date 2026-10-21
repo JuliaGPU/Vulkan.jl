@@ -269,7 +269,7 @@ function VulkanWrapper(config::WrapperConfig)
     aliases = AliasDeclaration[]
     for (source, target) in pairs(api.aliases.dict)
         startswith(string(target), "vk") && continue
-        in(source, api.disabled_symbols) && continue
+        in(source, disabled_symbols(api)) && continue
         spec = api[source]
         source, target = @match spec begin
             ::SpecBitmask => bitmask_flag_type.((source, target))
