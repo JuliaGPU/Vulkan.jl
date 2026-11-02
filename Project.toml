@@ -51,7 +51,7 @@ ResultTypes = "3, 4"
 StaticArraysCore = "1"
 StructEquality = "2"
 SwiftShader_jll = "0.1"
-VulkanCore = "1.4"
+VulkanCore = "2"
 XCB = "0.5, 0.6, 0.7, 0.8"
 julia = "1.10"
 
