@@ -2,6 +2,7 @@
     @test _PhysicalDeviceLineRasterizationFeaturesEXT === _PhysicalDeviceLineRasterizationFeatures
     @test _QueueFamilyGlobalPriorityPropertiesKHR === _QueueFamilyGlobalPriorityProperties
     @test :_cmd_push_descriptor_set_khr in names(Vulkan)
+    @test ACCESS_2_ACCELERATION_STRUCTURE_READ_BIT_KHR isa AccessFlag2
 end
 
 @testset "Driver selection" begin

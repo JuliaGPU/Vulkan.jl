@@ -281,7 +281,8 @@ function VulkanWrapper(config::WrapperConfig)
         end
         for prefix in ("", "_")
             name = Symbol(prefix, target)
-            name in exported_symbols && push!(aliases, AliasDeclaration(Symbol(prefix, source) => name))
+            Symbol(prefix, source) ∉ exported_symbols && name in exported_symbols &&
+                push!(aliases, AliasDeclaration(Symbol(prefix, source) => name))
         end
     end
     function_aliases = Expr[]

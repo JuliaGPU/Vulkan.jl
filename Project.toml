@@ -48,7 +48,6 @@ Reexport = "1"
 ResultTypes = "3, 4"
 StaticArraysCore = "1"
 StructEquality = "2"
-SwiftShader_jll = "0.1"
 VulkanCore = "2"
 XCB = "0.5, 0.6, 0.7, 0.8"
 julia = "1.10"
@@ -56,8 +55,8 @@ julia = "1.10"
 [extras]
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
-SwiftShader_jll = "c404ff5a-e271-5628-8eaa-423d39d64c15"
+Lavapipe_jll = "89601188-ea2b-501d-a121-fa144db6cabf"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["Test", "ColorTypes", "FixedPointNumbers", "StaticArraysCore", "Documenter", "Pkg", "SwiftShader_jll", "XCB"]
+test = ["Test", "ColorTypes", "FixedPointNumbers", "StaticArraysCore", "Documenter", "Pkg", "Lavapipe_jll", "XCB"]

@@ -1,4 +1,5 @@
 using Test
+using Lavapipe_jll
 using Vulkan
 using Accessors: @set
 
