@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - uses: serenity4/julia-lavapipe@v1
       - uses: julia-actions/setup-julia@latest
         with:
           version: "1"

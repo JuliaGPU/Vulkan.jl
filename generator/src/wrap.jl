@@ -154,6 +154,8 @@ function VulkanWrapper(config::WrapperConfig)
     constants = collect(ConstantDefinition.(filter(include_constant, f(api.constants))))
     enums = collect(EnumDefinition.(f(api.enums)))
     bitmasks = collect(BitmaskDefinition.(f(api.bitmasks)))
+    enum_symbols = Set([exports.(enums)...; exports.(bitmasks)...])
+    filter!(def -> name(def) ∉ enum_symbols, constants)
     handles = collect(HandleDefinition.(f(api.handles)))
 
     # Structures.
