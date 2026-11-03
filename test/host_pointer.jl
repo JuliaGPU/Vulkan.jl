@@ -4,8 +4,7 @@ const CoreVK = Vulkan.VkCore
 const observed = Ref((false, false))
 const external_observed = Ref((false, false))
 
-# This stub reads the same required input header as the driver/validation layer.
-# It makes the regression check independent of GPU/extension availability.
+# Inspect required output headers without depending on an optional driver feature.
 function spy(device, handle_type, pointer, output)
     value = unsafe_load(output)
     observed[] = (value.sType == CoreVK.VK_STRUCTURE_TYPE_MEMORY_HOST_POINTER_PROPERTIES_EXT,

@@ -157,11 +157,7 @@ end;
 
 GC.gc()
 
-# An optional flag member defaults to the integer 0, and the wrapper turns a flag
-# into its raw `Vk*FlagBits`. Reading `.val` to do that made every such default a
-# `FieldError: type Int64 has no field val` -- `_RenderingAttachmentInfo` could
-# not be built without naming `resolve_mode`, and nineteen flag members have such
-# a default. `flag_value` takes the integer and the `BitMask` alike.
+# Optional flags accept both their integer defaults and BitMask values.
 @testset "a flag member may be left at its integer default" begin
     clear = _ClearValue(_ClearColorValue((0f0, 0f0, 0f0, 1f0)))
     default = _RenderingAttachmentInfo(IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL,

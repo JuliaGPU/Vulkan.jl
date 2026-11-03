@@ -82,6 +82,16 @@ function _initialize_core(T, refs)
         ref[] = initialize_core(typeof(ref[]), refs)
         pNext = Base.unsafe_convert(Ptr{Cvoid}, ref)
     end
+    # Clang layout blobs expose fields through pointer accessors.
+    if fieldnames(T) == (:data,)
+        value = Ref(res)
+        GC.@preserve value begin
+            ptr = Base.unsafe_convert(Ptr{T}, value)
+            ptr.sType = sType
+            ptr.pNext = pNext
+        end
+        return value[]
+    end
     setproperties(res, (; sType, pNext))
 end
 

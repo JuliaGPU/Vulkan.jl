@@ -32,15 +32,14 @@ SwiftShader is available as a JLL package. You can add it with
 julia> ]add SwiftShader_jll
 ```
 
-A convenience macro is implemented in Vulkan, so you can quickly use SwiftShader with
+Select SwiftShader as the Vulkan implementation with
 
-```@example
-using SwiftShader_jll
-using Vulkan
+```julia
+using SwiftShader_jll, Vulkan
 set_driver(:SwiftShader)
 ```
 
-which will tell the Vulkan Loader to use the SwiftShader Installable Client Driver.
+Restart Julia to apply the preference. Use `set_driver(:System)` to restore the default.
 
 #### Lavapipe
 

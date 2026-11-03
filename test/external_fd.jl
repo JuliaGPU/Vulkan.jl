@@ -1,9 +1,4 @@
-# The three POSIX fd exports write a C `int` through `int* pFd`. VulkanSpec's
-# semantic translation calls that `Int`, and the generator allocated `Ref{Int}()`,
-# which does not convert to VulkanCore's `Ptr{Cint}`: every call threw
-# `MethodError: no method matching unsafe_convert(::Type{Ptr{Int32}}, ::RefValue{Int64})`.
-# Found exporting Vulkan memory to CUDA and HIP. Runs on the first physical device
-# with all three extensions.
+# C int outputs must use Cint storage even when the public return type is Int.
 using Test, Vulkan
 
 const FD_EXTENSIONS = ["VK_KHR_external_memory_fd", "VK_KHR_external_semaphore_fd", "VK_KHR_external_fence_fd"]
@@ -12,10 +7,18 @@ closefd(fd) = ccall(:close, Cint, (Cint,), fd)
 
 @testset "fd exports return the descriptor" begin
     inst = Instance(String[], String[]; application_info = ApplicationInfo(v"1", v"1", v"1.1"))
-    has(pd) = issubset(FD_EXTENSIONS, getproperty.(unwrap(enumerate_device_extension_properties(pd)), :extension_name))
+    function has(pd)
+        issubset(FD_EXTENSIONS, getproperty.(unwrap(enumerate_device_extension_properties(pd)), :extension_name)) || return false
+        semaphore = get_physical_device_external_semaphore_properties(pd,
+            PhysicalDeviceExternalSemaphoreInfo(EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT))
+        fence = get_physical_device_external_fence_properties(pd,
+            PhysicalDeviceExternalFenceInfo(EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT))
+        !iszero(semaphore.external_semaphore_features & EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT) &&
+            !iszero(fence.external_fence_features & EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT)
+    end
     pds = filter(has, unwrap(enumerate_physical_devices(inst)))
     if isempty(pds)
-        @test_skip "no physical device with $(join(FD_EXTENSIONS, ", "))"
+        @test_skip "no physical device supports all OPAQUE_FD exports"
     else
         pd = first(pds)
         qf = find_queue_family(pd, QUEUE_COMPUTE_BIT)

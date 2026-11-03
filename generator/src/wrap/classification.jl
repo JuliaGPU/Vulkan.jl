@@ -15,26 +15,7 @@ function is_pointer_start(spec::Union{SpecStructMember, SpecFuncParam})
     end
 end
 
-"""
-    counts_a_fixed_array(x::SpecStructMember)
-
-Whether `x` is a length member counting a FIXED-SIZE array, so that dropping it
-loses the count for good.
-
-`is_inferable_length` means "recoverable from the other members", and for a
-pointer array it is: that becomes a `Vector` and `length` gives the count back,
-which is why the high-level struct drops such members. A fixed-size array carries
-no such information. `memoryTypes` is an `NTuple{32}` whatever `memoryTypeCount`
-says, so a high-level `PhysicalDeviceMemoryProperties` without the count reports
-32 memory types on a device that has 11, the other 21 zeroed and
-indistinguishable from real ones -- and no way left to ask.
-
-Four members in the specification, all of them in returned-only query structs
-where the count is the entire answer: both counts of
-`VkPhysicalDeviceMemoryProperties`, `VkPhysicalDeviceGroupProperties`'s
-`physicalDeviceCount` and `VkQueueFamilyGlobalPriorityProperties`'s
-`priorityCount`.
-"""
+# Fixed-size tuples do not carry the number of populated elements.
 function counts_a_fixed_array(x::SpecStructMember)
     is_length(x) || return false
     members = children(x.parent)

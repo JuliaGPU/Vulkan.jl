@@ -3,9 +3,7 @@ module VulkanFixedPointNumbersExt
 using Vulkan
 using FixedPointNumbers
 
-# No bindings to extend when Vulkan compiled none — see `VulkanCore.HAS_LOADER`.
-# `Vk.Format` does not exist then, and an extension that referenced it was the
-# last thing on a driverless machine still failing to precompile.
+# These methods require the optional Vulkan bindings.
 @static if Vulkan.HAS_LOADER
 
 

@@ -15,6 +15,3 @@ _*wrapped_api.jl
 .vscode
 LocalPreferences.toml
 !/assets/*.spv
-
-# Julia writes <file>.jl.<pid>.mem — `*.jl.mem` never matched it
-*.mem

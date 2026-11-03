@@ -1,45 +1,16 @@
-# Choosing which Vulkan implementation to bind to.
-#
-# OUTSIDE the `HAS_LOADER` gate, deliberately. Everything else in this package is
-# compiled only when there is something to bind to; this is what a user reaches
-# for when there is NOT. It used to be inside, so on a machine with no driver the
-# one escape hatch did not exist.
-
-const VULKANCORE_UUID = Base.UUID("16167f82-ea26-5cba-b1de-ed6fd5e30a11")
-
 """
     set_driver(name::Symbol)
 
-Bind this package to a Vulkan implementation shipped as a Julia artifact, so that
-no system-wide installation is needed.
+Select `:SwiftShader`, `:Loader`, or `:System` (the default). Driver JLLs must
+already be installed. The choice is stored as a VulkanCore preference and takes
+effect after restarting Julia.
 
-Takes effect on the next load. The choice is stored as a `VulkanCore` preference,
-and a preference is part of the precompile hash, so the bindings are rebuilt
-against it automatically -- restart Julia and it is in force. This is why it is a
-preference and not `JULIA_VULKAN_LIBNAME`: an `ENV` read is not hashed, so that
-variable takes effect only if something else happens to invalidate the cache.
-
-Available:
-
-- `:SwiftShader` -- a CPU implementation, from `SwiftShader_jll`. Reports Vulkan
-  1.3 and is slow, but runs wherever the JLL does, macOS included.
-- `:Loader` -- the Khronos loader, from `Vulkan_Loader_jll`. Finds system drivers
-  itself, and is the only one of these that can offer validation layers.
-- `:System` -- undo, and go back to whatever the platform provides.
-
-The named package has to be installed already; this will not add it for you.
-
-`:SwiftShader` is reached DIRECTLY, with no loader in between. Two things the
-loader would have provided are then absent: validation layers and driver
-discovery.
-
-Driver JLLs that ship an ICD manifest do not need this function. In particular,
-`using Lavapipe_jll, Vulkan` registers Lavapipe additively with the loader, so a
-hardware driver and Lavapipe remain available in the same process.
+For Lavapipe, load `Lavapipe_jll` before creating an instance. It adds its ICD
+to the loader without replacing system drivers.
 """
 function set_driver(name::Symbol)
     lib = driver_library(Val(name))
-    Preferences.set_preferences!(VULKANCORE_UUID, "libvulkan" => lib; force = true)
+    Preferences.set_preferences!(VulkanCore, "libvulkan" => lib; force = true)
     isnothing(lib) ? @info("Vulkan driver reset to the system default. Restart Julia.") :
                      @info("Vulkan driver set to $name. Restart Julia.", library = lib)
     nothing
@@ -54,13 +25,9 @@ driver_library(::Val{name}) where {name} =
     haskey(DRIVERS, name) ? jll_library(DRIVERS[name]...) :
     error("no driver `$name`. Available: ", join(keys(DRIVERS), ", "))
 
-"""
-The Vulkan library a driver package provides.
-
-Resolved through the active environment by NAME rather than by a hard-coded UUID.
-"""
 function jll_library(pkgname::AbstractString, fields::Tuple)
     id = Base.identify_package(pkgname)
+    isnothing(id) && (id = Base.identify_package(VulkanCore, pkgname))
     isnothing(id) && error("$pkgname is not in this environment. `Pkg.add(\"$pkgname\")` first.")
     mod = get(Base.loaded_modules, id, nothing)
     isnothing(mod) && (mod = Base.require(id))

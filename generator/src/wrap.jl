@@ -267,21 +267,24 @@ function VulkanWrapper(config::WrapperConfig)
     ]
 
     aliases = AliasDeclaration[]
+    disabled = disabled_symbols(api)
     for (source, target) in pairs(api.aliases.dict)
         startswith(string(target), "vk") && continue
-        in(source, disabled_symbols(api)) && continue
+        in(source, disabled) && continue
         spec = api[source]
         source, target = @match spec begin
             ::SpecBitmask => bitmask_flag_type.((source, target))
             ::SpecEnum => enum_type.((source, target))
             _ => remove_vk_prefix.((source, target))
         end
-        target in exported_symbols && push!(aliases, AliasDeclaration(source => target))
+        for prefix in ("", "_")
+            name = Symbol(prefix, target)
+            name in exported_symbols && push!(aliases, AliasDeclaration(Symbol(prefix, source) => name))
+        end
     end
     function_aliases = Expr[]
     functions = f(api.functions)
     for (source, target) in pairs(api.aliases.dict)
-        al = AliasDeclaration(source => target)
         startswith(string(source), "vk") || continue
         f = api.functions[target]
         handle = dispatch_handle(f)
@@ -292,11 +295,13 @@ function VulkanWrapper(config::WrapperConfig)
         args = Any[:(args...)]
         !isnothing(param) && pushfirst!(args, param)
         if f in functions
-            push!(function_aliases,
-                # :($source(args..., fptr::FunctionPtr; kwargs...) = $target(args..., fptr; kwargs...)),
-                :($(al.source)($(args...); kwargs...) = @dispatch $source $handle $(al.target)($(args...); kwargs...))
-            )
-            push!(exported_symbols, al.source)
+            for high_level in (true, false)
+                source_name = function_name(source, high_level)
+                target_name = function_name(target, high_level)
+                push!(function_aliases,
+                    :($source_name($(args...); kwargs...) = @dispatch $source $handle $target_name($(args...); kwargs...)))
+                push!(exported_symbols, source_name)
+            end
         end
     end
 

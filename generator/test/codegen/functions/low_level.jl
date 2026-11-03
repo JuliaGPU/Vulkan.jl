@@ -186,8 +186,8 @@
             pCounterCount = Ref{UInt32}()
             @repeat_while_incomplete begin
                 @check @dispatch instance(physical_device) vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, C_NULL, C_NULL)
-                pCounters = Vector{VkPerformanceCounterKHR}(undef, pCounterCount[])
-                pCounterDescriptions = Vector{VkPerformanceCounterDescriptionKHR}(undef, pCounterCount[])
+                pCounters = fill(initialize_core(VkPerformanceCounterKHR, []), pCounterCount[])
+                pCounterDescriptions = fill(initialize_core(VkPerformanceCounterDescriptionKHR, []), pCounterCount[])
                 @check @dispatch instance(physical_device) vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, pCounters, pCounterDescriptions)
             end
             (from_vk.(_PerformanceCounterKHR, pCounters), from_vk.(_PerformanceCounterDescriptionKHR, pCounterDescriptions))

@@ -28,7 +28,8 @@ function block(ex::Expr)
     str = @match category(ex) begin
         :doc => string('\"'^3, '\n', ex.args[3], '\n', '\"'^3, '\n', block(ex.args[4]))
         :enum => string(ex)
-        _ => string(prettify(ex))
+        # Keep imported type names independent of bindings in Main.
+        _ => sprint(print, prettify(ex); context = :module => @__MODULE__)
     end
     str * spacing(ex)
 end
