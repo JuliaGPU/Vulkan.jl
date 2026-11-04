@@ -107,8 +107,6 @@ export
         SpecExtensionSPIRV, SpecCapabilitySPIRV,
         PropertyCondition, FeatureCondition,
 
-        # Driver
-
         # Printing
         print_app_info,
         print_available_devices,
