@@ -6,7 +6,7 @@ already be installed. The choice is stored as a VulkanCore preference and takes
 effect after restarting Julia.
 
 For Lavapipe, load `Lavapipe_jll` before creating an instance. Windows requires
-26.2.2+1 or later. The JLL adds its ICD without replacing system drivers.
+26.2.3 or later. The JLL adds its ICD without replacing system drivers.
 """
 function set_driver(name::Symbol)
     lib = driver_library(Val(name))
