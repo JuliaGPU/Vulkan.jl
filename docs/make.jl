@@ -1,5 +1,6 @@
 using Documenter
 using Literate
+using Lavapipe_jll
 using Vulkan
 using VulkanGen
 

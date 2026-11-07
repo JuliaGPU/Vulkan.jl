@@ -39,6 +39,9 @@ function function_pointer end
 
 function function_pointer(disp::APIDispatcher, handle, key::Symbol; allow_null::Bool = false)::Ptr{Cvoid}
     t = table(disp, handle)
+    if !haskey(t.pointers, key) && !VkCore.loaded()
+        error("Vulkan loader '$(VkCore.libvulkan)' is unavailable; cannot resolve '$key'.")
+    end
     fptr = t.pointers[key]
     if fptr == C_NULL && !allow_null
         error(
@@ -48,10 +51,37 @@ function function_pointer(disp::APIDispatcher, handle, key::Symbol; allow_null::
     fptr
 end
 
-function_pointer(name::AbstractString) = get_instance_proc_addr(name)
+# Bare ICDs may export only vk_icdGetInstanceProcAddr.
+function instance_proc_addr()
+    ptr = INSTANCE_PROC_ADDR[]
+    ptr === C_NULL || return ptr
+    handle = VkCore.libvulkan_handle[]
+    handle === C_NULL &&
+        error("no Vulkan loader: `$(VkCore.libvulkan)` was not found when Vulkan.jl " *
+              "loaded, so no function pointers can be resolved.")
+    for name in (:vkGetInstanceProcAddr, :vk_icdGetInstanceProcAddr)
+        ptr = Libdl.dlsym_e(handle, name)
+        ptr === C_NULL || return INSTANCE_PROC_ADDR[] = ptr
+    end
+    error("`$(VkCore.libvulkan)` exports neither `vkGetInstanceProcAddr` nor " *
+          "`vk_icdGetInstanceProcAddr`, so it is not a Vulkan implementation this " *
+          "package can call.")
+end
+
+const INSTANCE_PROC_ADDR = Ref(C_NULL)
+
+instance_proc_addr(instance, name::AbstractString) =
+    ccall(instance_proc_addr(), Ptr{Cvoid}, (VkCore.VkInstance, Cstring), instance, name)
+
+function_pointer(name::AbstractString) = instance_proc_addr(C_NULL, name)
 function_pointer(::Nothing, name::AbstractString) = function_pointer(name)
-function_pointer(instance::Instance, name::AbstractString) = get_instance_proc_addr(name; instance)
-function_pointer(device::Device, name::AbstractString) = get_device_proc_addr(device, name)
+function_pointer(instance::Instance, name::AbstractString) = instance_proc_addr(instance, name)
+# Resolve device lookup through its instance, which also works with bare ICDs.
+function function_pointer(device::Device, name::AbstractString)
+    instance = device.physical_device.instance
+    fptr = function_pointer(global_dispatcher[], instance, :vkGetDeviceProcAddr)
+    ccall(fptr, Ptr{Cvoid}, (VkCore.VkDevice, Cstring), device, name)
+end
 function_pointer(x, name::AbstractString) = function_pointer(handle(x), name)
 
 dispatchable_functions(::Nothing) = CORE_FUNCTIONS
@@ -64,4 +94,7 @@ function fill_dispatch_table(handle = nothing)
     for f in dispatchable_functions(handle)
         add_fptr!(t, handle, f)
     end
+    # Device table initialization needs this instance-level lookup first.
+    handle isa Instance && add_fptr!(t, handle, :vkGetDeviceProcAddr)
+    nothing
 end

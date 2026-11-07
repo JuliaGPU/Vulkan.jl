@@ -156,3 +156,19 @@ end
 end;
 
 GC.gc()
+
+# Optional flags accept both their integer defaults and BitMask values.
+@testset "a flag member may be left at its integer default" begin
+    clear = _ClearValue(_ClearColorValue((0f0, 0f0, 0f0, 1f0)))
+    default = _RenderingAttachmentInfo(IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL,
+                                       IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL,
+                                       ATTACHMENT_LOAD_OP_CLEAR, ATTACHMENT_STORE_OP_STORE, clear)
+    @test default.vks.resolveMode == VkCore.VK_RESOLVE_MODE_NONE
+    # and the same member given a BitMask still works
+    named = _RenderingAttachmentInfo(IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL,
+                                     IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL,
+                                     ATTACHMENT_LOAD_OP_CLEAR, ATTACHMENT_STORE_OP_STORE, clear;
+                                     resolve_mode = RESOLVE_MODE_AVERAGE_BIT)
+    @test named.vks.resolveMode == VkCore.VK_RESOLVE_MODE_AVERAGE_BIT
+    @test Vulkan.flag_value(RESOLVE_MODE_AVERAGE_BIT) === Vulkan.flag_value(UInt32(2)) === UInt32(2)
+end

@@ -1,8 +1,9 @@
 function EnumDefinition(spec::SpecEnum)
+    disabled = disabled_symbols(api)
     p = Dict(
         :category => :enum,
         :macro => Symbol("@cenum"),
-        :values => map(unique(spec.enums)) do enum
+        :values => map(filter(x -> x.name ∉ disabled, unique(spec.enums))) do enum
             :($(remove_vk_prefix(enum.name)) = $(enum.value))
         end,
         :decl => :($(enum_type(spec))::$(enum_val_type(spec))),

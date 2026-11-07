@@ -115,7 +115,7 @@
                 name = cconvert(Cstring, name)
                 specialization_info = cconvert(Ptr{VkSpecializationInfo}, specialization_info)
                 deps = Any[next, name, specialization_info]
-                vks = VkPipelineShaderStageCreateInfo(structure_type(VkPipelineShaderStageCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, VkShaderStageFlagBits(stage.val), _module, unsafe_convert(Cstring, name), unsafe_convert(Ptr{VkSpecializationInfo}, specialization_info))
+                vks = VkPipelineShaderStageCreateInfo(structure_type(VkPipelineShaderStageCreateInfo), unsafe_convert(Ptr{Cvoid}, next), flags, VkShaderStageFlagBits(flag_value(stage)), _module, unsafe_convert(Cstring, name), unsafe_convert(Ptr{VkSpecializationInfo}, specialization_info))
                 _PipelineShaderStageCreateInfo(vks, deps, _module)
             end
         ))

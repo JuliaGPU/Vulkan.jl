@@ -15,6 +15,19 @@ function is_pointer_start(spec::Union{SpecStructMember, SpecFuncParam})
     end
 end
 
+# Fixed-size tuples do not carry the number of populated elements.
+function counts_a_fixed_array(x::SpecStructMember)
+    is_length(x) || return false
+    members = children(x.parent)
+    any(x.arglen) do arrayname
+        i = findfirst(==(arrayname), members.name)
+        isnothing(i) && return false
+        t = members[i].type
+        t isa Expr && t.head === :curly && t.args[1] === :NTuple
+    end
+end
+counts_a_fixed_array(::Spec) = false
+
 is_semantic_ptr(type) = is_ptr(type) || type == :Cstring
 needs_deps(spec::SpecStruct) = any(is_semantic_ptr, spec.members.type)
 "Whether it makes sense to return a success code (i.e. when there are possible errors or non-`SUCCESS` success codes)."

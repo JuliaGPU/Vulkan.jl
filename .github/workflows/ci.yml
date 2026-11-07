@@ -14,15 +14,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        julia-version: ['lts', '1', 'pre', 'nightly']
-        julia-arch: [x64, x86]
+        julia-version: ['1.10', '1', 'pre', 'nightly']
         os: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v7
-      - uses: serenity4/julia-lavapipe@v1
       - uses: julia-actions/setup-julia@latest
         with:
           version: ${{ matrix.julia-version }}
       - uses: julia-actions/cache@v3
       - uses: julia-actions/julia-buildpkg@latest
       - uses: julia-actions/julia-runtest@latest
+      - name: Test generator
+        if: matrix.julia-version == '1'
+        run: julia --project=generator -e 'using Pkg; Pkg.test()'

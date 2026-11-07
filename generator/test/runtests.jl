@@ -15,6 +15,13 @@ test_ex(x::WrapperNode, y) = @test prettify(to_expr(x)) == prettify(y)
   include("config.jl")
   include("state.jl")
 
+  @testset "Metadata source" begin
+    metadata = first(api.extensions_spirv)
+    source = VulkanGen.block(:(const SPIRV_EXTENSIONS = [$metadata]))
+    @test !occursin("VulkanSpec.", source)
+    @test Meta.parse(source).head === :const
+  end
+
   @testset "Code generation" begin
     @testset "Structs" begin
       include("codegen/structs/low_level.jl")
