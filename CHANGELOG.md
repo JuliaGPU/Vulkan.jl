@@ -5,7 +5,7 @@
 - ![BREAKING][badge-breaking] Update to Vulkan 1.4.321 and VulkanCore 2. Obsolete provisional video-encoding constants were removed upstream.
 - ![Bugfix][badge-bugfix] Initialize output structure headers, preserve fixed-array counts and pointer union members, and accept integer flag defaults.
 - ![Bugfix][badge-bugfix] Initialize output headers in VulkanCore layout blobs and use Cint storage for file descriptor outputs.
-- ![Enhancement][badge-enhancement] Load without a Vulkan loader. Driver selection is stored as a preference and takes effect after restarting Julia.
+- ![Enhancement][badge-enhancement] Load without a Vulkan loader and select loaders through Preferences. Loading `Lavapipe_jll` or `SwiftShader_jll` adds software devices alongside system devices.
 
 ## Version `v0.6.28`
 - ![Enhancement][badge-enhancement] Performance has been improved by reducing dynamic dispatch due to missing function specializations.

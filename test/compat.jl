@@ -9,6 +9,9 @@ end
     @test Vulkan.driver_library(Val(:System)) === nothing
     @test_throws ErrorException Vulkan.driver_library(Val(:Unknown))
     @test isfile(Vulkan.driver_library(Val(:Loader)))
+    preference = Vulkan.Preferences.load_preference(VkCore, "libvulkan", nothing)
+    @test isnothing(Vulkan.set_driver(:Lavapipe))
+    @test Vulkan.Preferences.load_preference(VkCore, "libvulkan", nothing) == preference
 end
 
 @testset "Layout blob output headers" begin

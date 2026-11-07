@@ -21,6 +21,7 @@ VulkanCore = "16167f82-ea26-5cba-b1de-ed6fd5e30a11"
 ColorTypes = "3da002f7-5984-5a60-b8a6-cbb66c0b333f"
 FixedPointNumbers = "53c48c17-4a7d-5ca2-90c5-79b7896eea93"
 StaticArraysCore = "1e83bf80-4336-4d27-bf5d-d5a4f845583c"
+SwiftShader_jll = "c404ff5a-e271-5628-8eaa-423d39d64c15"
 XCB = "16167f82-ea26-5cba-b1de-ed6fd5e30a10"
 
 [extensions]
@@ -29,6 +30,7 @@ VulkanFixedPointNumbersColorTypesExt = ["ColorTypes", "FixedPointNumbers"]
 VulkanFixedPointNumbersExt = "FixedPointNumbers"
 VulkanFixedPointNumbersStaticArraysCoreExt = ["FixedPointNumbers", "StaticArraysCore"]
 VulkanStaticArraysCoreExt = "StaticArraysCore"
+VulkanSwiftShaderExt = "SwiftShader_jll"
 VulkanXCBExt = "XCB"
 
 [compat]
@@ -46,6 +48,7 @@ Reexport = "1"
 ResultTypes = "3, 4"
 StaticArraysCore = "1"
 StructEquality = "2"
+SwiftShader_jll = "0.1"
 VulkanCore = "2"
 XCB = "0.5, 0.6, 0.7, 0.8"
 julia = "1.10"

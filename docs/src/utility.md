@@ -32,14 +32,16 @@ SwiftShader is available as a JLL package. You can add it with
 julia> ]add SwiftShader_jll
 ```
 
-Select SwiftShader as the Vulkan implementation with
+Load it before creating the first Vulkan instance:
 
 ```julia
 using SwiftShader_jll, Vulkan
-set_driver(:SwiftShader)
 ```
 
-Restart Julia to apply the preference. Use `set_driver(:System)` to restore the default.
+Its software device is enumerated alongside the system's hardware devices.
+
+The published Linux SwiftShader binary requests an executable stack and may fail
+to load on newer glibc. This binary packaging issue is separate from discovery.
 
 #### Lavapipe
 
@@ -56,3 +58,13 @@ julia> using Lavapipe_jll, Vulkan
 Loading the JLL adds its ICD manifest to the Vulkan loader's discovery. It does
 not hide system drivers, so hardware devices and Lavapipe can be enumerated and
 used in the same process.
+
+Both software drivers can be loaded together:
+
+```julia
+using Lavapipe_jll, SwiftShader_jll, Vulkan
+```
+
+Choose the physical device returned by `enumerate_physical_devices(instance)`.
+No `set_driver` call or restart is needed. If an earlier `set_driver(:SwiftShader)`
+saved a library preference, reset it once with `set_driver(:System)` and restart.
