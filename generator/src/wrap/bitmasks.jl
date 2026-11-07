@@ -13,10 +13,11 @@ bitmask_value(spec::SpecBitCombination) = spec.value
 
 function BitmaskDefinition(spec::SpecBitmask)
     name = bitmask_flag_type(spec)
+    disabled = disabled_symbols(api)
     p = Dict(
         :category => :enum,
         :macro => bitmask_enum_sym,
-        :values => map(x -> :($(remove_vk_prefix(x.name)) = $(bitmask_value(x))), [collect(spec.bits); collect(spec.combinations)]),
+        :values => map(x -> :($(remove_vk_prefix(x.name)) = $(bitmask_value(x))), filter(x -> x.name ∉ disabled, [collect(spec.bits); collect(spec.combinations)])),
         :decl => :($name::$(bitmask_type(spec))),
     )
     BitmaskDefinition(spec, p)

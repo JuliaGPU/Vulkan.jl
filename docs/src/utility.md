@@ -32,20 +32,39 @@ SwiftShader is available as a JLL package. You can add it with
 julia> ]add SwiftShader_jll
 ```
 
-A convenience macro is implemented in Vulkan, so you can quickly use SwiftShader with
+Load it before creating the first Vulkan instance:
 
-```@example
-using SwiftShader_jll
-using Vulkan
-set_driver(:SwiftShader)
+```julia
+using SwiftShader_jll, Vulkan
 ```
 
-which will tell the Vulkan Loader to use the SwiftShader Installable Client Driver.
+Its software device is enumerated alongside the system's hardware devices.
+
+The published Linux SwiftShader binary requests an executable stack and may fail
+to load on newer glibc. This binary packaging issue is separate from discovery.
 
 #### Lavapipe
 
 [Lavapipe](https://docs.mesa3d.org/drivers/llvmpipe.html) is another CPU implementation of Vulkan, developed by Mesa as part of its Gallium stack.
 
-This one was deemed to be too much of a hassle to setup with the Artifact system; instead, the [julia-lavapipe](https://github.com/marketplace/actions/julia-lavapipe) action was added for GitHub Actions for use in CI using `apt` to install the driver. At the time of writing, this action only supports Linux runners with the latest Ubuntu version, but contributions are encouraged to provide support for other platforms and setups.
+Install and load its JLL before creating the first Vulkan instance:
 
-If you want to take on the task of adding Lavapipe to Yggdrasil, that would be greatly appreciated and would result in a more convenient setup than a GitHub Action, but do expect a big rabbit hole.
+```julia-repl
+julia> ]add Lavapipe_jll
+
+julia> using Lavapipe_jll, Vulkan
+```
+
+Loading the JLL adds its ICD manifest to the Vulkan loader's discovery. It does
+not hide system drivers, so hardware devices and Lavapipe can be enumerated and
+used in the same process.
+
+Both software drivers can be loaded together:
+
+```julia
+using Lavapipe_jll, SwiftShader_jll, Vulkan
+```
+
+Choose the physical device returned by `enumerate_physical_devices(instance)`.
+No `set_driver` call or restart is needed. If an earlier `set_driver(:SwiftShader)`
+saved a library preference, reset it once with `set_driver(:System)` and restart.

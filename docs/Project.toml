@@ -1,8 +1,8 @@
 [deps]
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 DocumenterTools = "35a29f4d-8980-5a13-9543-d66fff28ecb8"
+Lavapipe_jll = "89601188-ea2b-501d-a121-fa144db6cabf"
 Literate = "98b081ad-f1c9-55d3-8b20-4c87d4299306"
-SwiftShader_jll = "c404ff5a-e271-5628-8eaa-423d39d64c15"
 Vulkan = "9f14b124-c50e-4008-a7d4-969b3a6cd68a"
 VulkanGen = "a1e12450-decb-4c3e-a000-968e74262140"
 glslang_jll = "6fd5517d-459c-5c5a-9b1a-c968b4e37a81"
@@ -10,3 +10,6 @@ glslang_jll = "6fd5517d-459c-5c5a-9b1a-c968b4e37a81"
 [sources]
 Vulkan = {path = ".."}
 VulkanGen = {path = "../generator"}
+
+[compat]
+Lavapipe_jll = "26.2.3"

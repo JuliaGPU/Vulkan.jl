@@ -1,4 +1,12 @@
 @testset "API functions" begin
+    test_ex(APIFunction(api.functions[:vkGetMemoryHostPointerPropertiesEXT], false), :(
+        function _get_memory_host_pointer_properties_ext(device, handle_type::ExternalMemoryHandleTypeFlag, host_pointer::Ptr{Cvoid})::ResultTypes.Result{_MemoryHostPointerPropertiesEXT,VulkanError}
+            pMemoryHostPointerProperties = Ref(initialize_core(VkMemoryHostPointerPropertiesEXT, []))
+            @check @dispatch device vkGetMemoryHostPointerPropertiesEXT(device, VkExternalMemoryHandleTypeFlagBits(flag_value(handle_type)), host_pointer, pMemoryHostPointerProperties)
+            from_vk(_MemoryHostPointerPropertiesEXT, pMemoryHostPointerProperties[])
+        end
+    ))
+
     test_ex(APIFunction(api.functions[:vkEnumeratePhysicalDevices], false), :(
         function _enumerate_physical_devices(instance)::ResultTypes.Result{Vector{PhysicalDevice},VulkanError}
             pPhysicalDeviceCount = Ref{UInt32}()
@@ -135,7 +143,7 @@
 
     test_ex(APIFunction(api.functions[:vkGetFenceFdKHR], false), :(
         function _get_fence_fd_khr(device, get_fd_info::_FenceGetFdInfoKHR)::ResultTypes.Result{Int,VulkanError}
-            pFd = Ref{Int}()
+            pFd = Ref{Cint}()
             @check @dispatch device vkGetFenceFdKHR(device, get_fd_info, pFd)
             pFd[]
         end
@@ -178,8 +186,8 @@
             pCounterCount = Ref{UInt32}()
             @repeat_while_incomplete begin
                 @check @dispatch instance(physical_device) vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, C_NULL, C_NULL)
-                pCounters = Vector{VkPerformanceCounterKHR}(undef, pCounterCount[])
-                pCounterDescriptions = Vector{VkPerformanceCounterDescriptionKHR}(undef, pCounterCount[])
+                pCounters = fill(initialize_core(VkPerformanceCounterKHR, []), pCounterCount[])
+                pCounterDescriptions = fill(initialize_core(VkPerformanceCounterDescriptionKHR, []), pCounterCount[])
                 @check @dispatch instance(physical_device) vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR(physical_device, queue_family_index, pCounterCount, pCounters, pCounterDescriptions)
             end
             (from_vk.(_PerformanceCounterKHR, pCounters), from_vk.(_PerformanceCounterDescriptionKHR, pCounterDescriptions))

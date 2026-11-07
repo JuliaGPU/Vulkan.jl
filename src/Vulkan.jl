@@ -49,6 +49,16 @@ using ResultTypes: ResultTypes
 
 include("preferences.jl")
 
+"Whether VulkanCore compiled its bindings."
+const HAS_LOADER = VulkanCore.HAS_LOADER
+
+using Preferences: Preferences
+include("driver.jl")
+export set_driver, @set_driver
+
+# Skip bindings when VulkanCore was compiled without a loader.
+@static if VulkanCore.HAS_LOADER
+
 # generated wrapper
 include("prewrap.jl")
 
@@ -67,7 +77,6 @@ end
 
 include("utils.jl")
 include("debug.jl")
-include("driver.jl")
 include("validation.jl")
 include("instance.jl")
 include("device.jl")
@@ -82,6 +91,8 @@ include("precompile.jl")
 
 function __init__()
     global_dispatcher[] = APIDispatcher()
+    INSTANCE_PROC_ADDR[] = C_NULL
+    VkCore.loaded() || return nothing
     fill_dispatch_table()
 end
 
@@ -95,10 +106,6 @@ export
         structure_type,
         SpecExtensionSPIRV, SpecCapabilitySPIRV,
         PropertyCondition, FeatureCondition,
-
-        # Driver
-        set_driver,
-        @set_driver,
 
         # Printing
         print_app_info,
@@ -129,5 +136,7 @@ export
 
         # Formats
         format_type
+
+end # @static if VulkanCore.HAS_LOADER
 
 end # module Vulkan

@@ -114,6 +114,8 @@ function supertype_union(type, is_high_level)
         :UInt8 || :UInt16 || :UInt32 || :UInt64 => :Unsigned
         :Int8 || :Int16 || :Int32 || :Int64 => :Signed
         :Float8 || :Float16 || :Float32 || :Float64 => :AbstractFloat
+        # Preserve pointer alternatives; the caller owns the pointee.
+        GuardBy(is_ptr) => type
         _ => is_high_level ? hl_type(type) : idiomatic_julia_type(type)
     end
 end

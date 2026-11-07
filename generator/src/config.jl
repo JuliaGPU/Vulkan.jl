@@ -15,17 +15,42 @@ end
 include_provisional_exts(config::WrapperConfig) = config.include_provisional_exts || PLATFORM_PROVISIONAL in config.include_platforms
 
 function extensions(config::WrapperConfig)
-    exts = filter(x -> x.is_provisional && include_provisional_exts(config) || x.platform in config.include_platforms || x.platform == PLATFORM_NONE && config.wrap_core, filter(x -> EXTENSION_SUPPORT_VULKAN in x.support, api.extensions))
+    exts = filter(x -> x.is_provisional && include_provisional_exts(config) || x.platform in config.include_platforms || x.platform == PLATFORM_NONE && config.wrap_core, filter(x -> VULKAN in x.applicable, api.extensions))
 end
 
-function _filter_specs(specs, extensions, wrap_core)
+function _filter_specs(specs, extensions, wrap_core, disabled)
     filter(specs) do spec
+        VulkanSpec.name(spec) in disabled && return false
         ext = get(api.extensions, spec, nothing)
         isnothing(ext) && wrap_core || ext in extensions
     end
 end
 
-filter_specs(config::WrapperConfig) = x -> _filter_specs(x, extensions(config), config.wrap_core)
+function filter_specs(config::WrapperConfig)
+    disabled = disabled_symbols(api)
+    x -> _filter_specs(x, extensions(config), config.wrap_core, disabled)
+end
+
+# Exclude symbols reachable only through disabled or Vulkan SC requirements.
+function disabled_symbols(api::VulkanAPI)
+    enabled, disabled = Set{Symbol}(), Set{Symbol}()
+    applies(x) = isempty(x.applicable) || VULKAN in x.applicable
+    function sort_groups!(groups, off)
+        for group in groups
+            target = (off || !applies(group)) ? disabled : enabled
+            for sym in group.symbols
+                push!(target, sym.name)
+            end
+        end
+    end
+    for ext in api.extensions
+        sort_groups!(ext.groups, ext.disabled || !applies(ext))
+    end
+    for set in api.sets
+        sort_groups!(set.groups, !applies(set))
+    end
+    setdiff!(disabled, enabled)
+end
 
 abstract type Platform end
 
